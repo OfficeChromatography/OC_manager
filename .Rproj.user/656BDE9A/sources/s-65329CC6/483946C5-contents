@@ -1,0 +1,53 @@
+## Admin file, should be in gitignore
+shiny::runApp('/home/clau/Dropbox/DLC/inst/shinyapps/rtlc/', display.mode = "normal",launch.browser = T,host = '0.0.0.0',port=8011)
+shiny::runApp('/home/clau/Dropbox/DLC/inst/shinyapps/tlcbrain/', display.mode = "normal",launch.browser = T,host = '0.0.0.0',port=8011)
+shiny::runApp('/home/clau/Dropbox/DLC/inst/shinyapps/tlc_denoising', display.mode = "normal",launch.browser = T)
+shiny::runApp("/home/clau/Dropbox/DLC/inst/shinyapps/tlc_RBM_classification/",launch.browser = T)
+shiny::runApp('/home/clau/Dropbox/DLC/inst/shinyapps/tlc_var_selector', display.mode = "normal",launch.browser = T)
+shiny::runApp('/home/clau/Dropbox/DLC/inst/shinyapps/plate_prediction/', display.mode = "normal",launch.browser = T)
+
+shiny::runApp('/home/clau/Dropbox/DLC/inst/shinyapps/Supervised_systematic_propolis/', display.mode = "normal",launch.browser = T)
+
+#First commit and sync,
+roxygen2::roxygenise()
+
+# devtools::install_github('DimitriF/DLC')
+# sudo git add -A
+# sudo git commit -m "change the message"
+# sudo git push origin master
+
+# sudo cp -a /home/clau/Dropbox/DLC/inst/shinyapps/rtlc/. /home/clau/Dropbox/rTLC/apps/
+
+# then redownload and deploy
+devtools::install_github('DimitriF/DLC')
+rsconnect::deployApp("/home/clau/Dropbox/DLC/inst/shinyapps/rtlc/",account="dimitrif",appName="rtlc")
+rsconnect::deployApp("/home/clau/Dropbox/DLC/inst/shinyapps/tlcbrain/",account="dimitrif",appName="TLC-brain")
+rsconnect::deployApp("/home/clau/Dropbox/DLC/inst/shinyapps/tlc_denoising/",account="dimitrif",appName="tlc_denoising")
+rsconnect::deployApp("/home/clau/Dropbox/DLC/inst/shinyapps/tlc_RBM_classification/",account="dimitrif",appName="tlc_RBM_classification")
+
+
+### On the VPS
+# sudo R
+devtools::install_github('DimitriF/DLC')
+# sudo cp -R /home/dimitri/R/x86_64-pc-linux-gnu-library/3.2/DLC/shinyapps/tlc_denoising/ /srv/shiny-server/
+
+# sudo scp -r /home/clau/Dropbox/DLC/index.html  dimitri@134.176.7.66:/srv/shiny-server/
+# sudo scp -r /home/clau/Dropbox/DLC/inst/shinyapps/plate_prediction  dimitri@134.176.7.66:/srv/shiny-server/
+# sudo scp -r /home/clau/Dropbox/DLC/inst/shinyapps/rtlc  dimitri@134.176.7.66:/srv/shiny-server/
+
+  # sudo scp -r /home/clau/Dropbox/DLC/inst/shinyapps/Supervised_systematic_propolis  dimitri@134.176.7.66:/srv/shiny-server/
+
+
+#
+# Not working because different directory names
+# sudo cp -r /home/clau/Dropbox/rTLC/apps/  /home/clau/Dropbox/DLC/inst/shinyapps/rtlc
+
+
+run.rtlc()
+run.tlcbrain()
+run.tlc_denoising()
+run.tlc_RBM_classification()
+
+
+
+

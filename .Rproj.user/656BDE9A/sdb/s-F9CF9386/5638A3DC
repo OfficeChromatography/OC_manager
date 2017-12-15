@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "Option;Value\nDistance to lower edge;dist_bottom;8\nFirst application position;dist_gauche;5\nBand length;band_length;90\nSpeed (mm/s);speed;10\npath;path;40\nI;I;5\nL (pulse delay <20);L;5\nWait between path (s);wait;1\nS;S;4095\n",
+    "created" : 1506677182332.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1558305446",
+    "id" : "5638A3DC",
+    "lastKnownWriteTime" : 1506675324,
+    "last_content_update" : 1506675324,
+    "path" : "~/MEGA/OC/Software/OC_manager/tables/SA_prep_table.csv",
+    "project_path" : "tables/SA_prep_table.csv",
+    "properties" : {
+    },
+    "relative_order" : 13,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "text"
+}

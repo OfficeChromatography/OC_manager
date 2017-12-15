@@ -1,0 +1,10 @@
+Option;Value
+Distance to lower edge;dist_bottom;8
+First application position;dist_gauche;5
+Band length;band_length;90
+Speed (mm/s);speed;10
+path;path;40
+I;I;5
+L (pulse delay <20);L;5
+Wait between path (s);wait;1
+S;S;4095

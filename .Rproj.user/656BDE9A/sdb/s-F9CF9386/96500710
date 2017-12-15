@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#!/usr/bin/env python\n\"\"\"\nSimple g-code streaming script for grbl\nhttps://onehossshay.wordpress.com/2011/08/26/grbl-a-simple-python-interface/\n\"\"\"\ny=5\nimport serial\nimport time\nimport atexit\n\n# open the camera\n# camera = PiCamera()\n\ndef connect_board(port):\n    global s\n    \n    # Open grbl serial port\n    s = serial.Serial(port,115200)\n    \n    # Wake up grbl\n    s.write(\"\\r\\n\\r\\n\")\n    time.sleep(2)   # Wait for grbl to initialize\n    s.flushInput()  # Flush startup text in serial input\n    \n    \ndef GPIO7_on():\n    # from picamera import PiCamera\n    import RPi.GPIO as GPIO ## Import GPIO library\n    GPIO.setmode(GPIO.BOARD) ## Use board pin numbering\n    GPIO.setup(7, GPIO.OUT) ## Setup GPIO Pin 7 to OUT\n    # GPIO.output(7,False) ## Turn on GPIO pin 7\n    GPIO.output(7, True)\n\n\ndef GPIO7_off():\n    # from picamera import PiCamera\n    import RPi.GPIO as GPIO ## Import GPIO library\n    GPIO.setmode(GPIO.BOARD) ## Use board pin numbering\n    GPIO.setup(7, GPIO.OUT) ## Setup GPIO Pin 7 to OUT\n    # GPIO.output(7,False) ## Turn on GPIO pin 7\n    GPIO.output(7, False)\n\n\n\ndef get_temp():\n    s.write(\"M105\" + '\\n') # Send g-code block to grbl\n    return(s.readline()) # Wait for grbl response with carriage return\n    \ndef set_temp(temp):\n    truc = \"M140 S\" +str(temp) + '\\n'\n    print(truc)\n    s.write(truc) # Send g-code block to grbl\n    # return(s.readline()) # Wait for grbl response with carriage return\n    \ndef M112():\n    s.write(\"M112\")\n    \ndef extrude(x):\n    # truc = \"G1 E\" +str(x) + '\\n'\n    print(truc)\n    s.write(truc) # Send g-code block to grbl\n    return(s.readline()) # Wait for grbl response with carriage return\n    \ndef send_cmd(cmd):\n    cmd = str(cmd)\n    cmd = cmd.strip()\n    print \"Sending: \" + cmd\n    cmd = cmd.split(\";\")[0]\n    s.write(cmd + '\\n') # Send g-code block to grbl\n    grbl_out = s.readline() # Wait for grbl response with carriage return\n    print ' : ' + grbl_out.strip()\n    return(grbl_out) # Wait for grbl response with carriage return\n    \ndef send_gcode(file = \"\"):\n    f = open(file,'r'); \n    # Stream g-code to grbl\n    for line in f:\n        l = line.strip() # Strip all EOL characters for streaming\n        print 'Sending: ' + l,\n        l = l.split(\";\")[0]\n        s.write(l + '\\n') # Send g-code block to grbl\n        grbl_out = s.readline() # Wait for grbl response with carriage return\n        print ' : ' + grbl_out.strip()\n    f.close()\n\n# Wait here until grbl is finished to close serial port and file.\n#raw_input(\"  Press <Enter> to exit and disable grbl.\")\n\n\n# Close file and serial port\ndef close_connections():\n  if \"s\" in locals():\n    s.close()\n    # camera.close()\n    \ndef Visu_take(file): ## done direct with raspistill from R\n    camera.start_preview()\n    time.sleep(2)\n    camera.capture(file)\n    camera.stop_preview()\n\ndef test_stop():\n    for x in range(0, 60):\n        print(\"test_stop\")\n        time.sleep(1)\n\n\natexit.register(close_connections)\n",
+    "created" : 1506518685583.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4012599844",
+    "id" : "96500710",
+    "lastKnownWriteTime" : 1498759041,
+    "last_content_update" : 1506519000145,
+    "path" : "~/MEGA/OC/Software/OC_manager/setup.py",
+    "project_path" : "setup.py",
+    "properties" : {
+    },
+    "relative_order" : 11,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "python"
+}

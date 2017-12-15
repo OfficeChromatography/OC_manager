@@ -1,0 +1,2055 @@
+Time;Step;File;Log;Visa;Plate
+20161228_19:43:37;Connection;NA;Connection attempt;admin;test
+20161228_19:43:42;Connection;NA;Connection attempt;admin;test
+20161228_19:43:47;Connection;NA;Sign in;admin;test
+20161228_19:44:28;Connection;NA;Sign out;admin;test
+20161228_19:44:32;Connection;NA;Sign in;admin;test
+20161230_12:21:07;Connection;NA;Sign in;admin;test
+20170224_14:25:26;Connection;NA;Sign in;admin;test
+20170224_14:25:35;Connection;NA;Sign out;admin;test
+20170224_14:30:43;Connection;NA;Board connection;;test
+20170224_14:32:05;Connection;NA;Board connection;;test
+20170224_14:32:25;Connection;NA;Board connection;;test
+20170224_14:32:40;Connection;NA;Board connection;;test
+20170224_14:34:04;Connection;NA;Board connection;;test
+20170224_14:34:25;Connection;NA;Board connection;;test
+20170224_14:36:21;Connection;NA;Board disconnection;;test
+20170224_14:37:02;Connection;NA;Board connection;;test
+20170224_14:38:23;Connection;NA;Board connection;;test
+20170224_14:38:34;Connection;NA;Board disconnection;;test
+20170224_14:41:29;Connection;NA;Board connection;;test
+20170224_14:42:05;Connection;NA;Board connection;;test
+20170224_14:43:32;Connection;NA;Board connection;;test
+20170224_14:44:06;Connection;NA;Board connection;;test
+20170224_14:44:25;Connection;NA;Board connection;;test
+20170224_14:44:46;Connection;NA;Board connection;;test
+20170303_10:34:36;Connection;NA;Board connection;;test
+20170303_10:36:12;Connection;NA;Board disconnection;;test
+20170307_09:33:22;Connection;NA;Board connection;;test
+20170310_13:30:26;Connection;NA;Board connection;;test
+20170310_13:37:10;Connection;NA;Board disconnection;;test
+20170311_16:02:51;Connection;NA;Board connection;;test
+20170311_16:03:59;Connection;NA;Board disconnection;;test
+20170314_11:45:45;Connection;NA;Board connection;;test
+20170316_08:46:15;Connection;NA;Board connection;;test
+20170316_08:47:44;Connection;NA;Board connection;;test
+20170316_08:48:03;SA;gcode/20170316_08:48:03Method.gcode;gcode/20170316_08:48:03Method.gcode;;test
+20170316_08:48:32;SA;Emergency stop; LOG;;test
+20170316_08:59:49;SA;gcode/20170316_08:59:49Method.gcode;gcode/20170316_08:59:49Method.gcode;;pesticide_n1
+20170316_09:28:47;SA;gcode/20170316_09:28:47Method.gcode;gcode/20170316_09:28:47Method.gcode;;pesticide_n1
+20170316_09:28:49;SA;Emergency stop; LOG;;pesticide_n1
+20170316_09:28:50;SA;gcode/20170316_09:28:50Method.gcode;gcode/20170316_09:28:50Method.gcode;;pesticide_n1
+20170316_09:29:35;SA;Emergency stop; LOG;;pesticide_n1
+20170316_09:32:06;Visualisation;pictures/20170316_09:32:06.jpg;raspistill -w 1000 -h 1000 -n -o pictures/20170316_09:32:06.jpg --shutter 5000 --timeout 5000 --sharpness 0 --contrast 0 --brightness 50 --saturation 0 --ISO 0 --exposure auto --awb auto;;pesticide_n1
+20170316_10:10:14;Connection;NA;Board connection;;pesticide_n1
+20170316_10:17:33;Deriv;gcode/20170316_10:17:33Method.gcode;gcode/20170316_10:17:33Method.gcode;;pesticide_n1
+20170316_10:19:47;Deriv;gcode/20170316_10:19:47Method.gcode;gcode/20170316_10:19:47Method.gcode;;pesticide_n1
+20170316_10:19:48;Deriv;Emergency stop; LOG;;pesticide_n1
+20170316_10:19:49;Deriv;gcode/20170316_10:19:49Method.gcode;gcode/20170316_10:19:49Method.gcode;;pesticide_n1
+20170316_10:21:48;Deriv;gcode/20170316_10:21:48Method.gcode;gcode/20170316_10:21:48Method.gcode;;pesticide_n1
+20170316_10:21:49;Deriv;Emergency stop; LOG;;pesticide_n1
+20170316_10:21:50;Deriv;gcode/20170316_10:21:50Method.gcode;gcode/20170316_10:21:50Method.gcode;;pesticide_n1
+20170316_10:49:57;Connection;NA;Board connection;;preservative_n0
+20170316_10:49:59;Connection;NA;Board connection;;preservative_n0
+20170316_10:52:41;SA;gcode/20170316_10:52:41Method.gcode;gcode/20170316_10:52:41Method.gcode;;preservative_n0
+20170316_11:40:24;SA;gcode/20170316_11:40:24Method.gcode;gcode/20170316_11:40:24Method.gcode;;preservative_n0
+20170316_11:40:25;SA;Emergency stop; LOG;;preservative_n0
+20170316_11:40:27;SA;gcode/20170316_11:40:27Method.gcode;gcode/20170316_11:40:27Method.gcode;;preservative_n0
+20170316_11:41:09;SA;Emergency stop; LOG;;preservative_n0
+20170316_11:41:11;SA;gcode/20170316_11:41:11Method.gcode;gcode/20170316_11:41:11Method.gcode;;preservative_n0
+20170316_11:41:12;SA;Emergency stop; LOG;;preservative_n0
+20170316_11:41:15;Connection;NA;Board disconnection;;preservative_n0
+20170316_11:42:15;Connection;NA;Board connection;;preservative_n0
+20170316_11:42:32;SA;gcode/20170316_11:42:32Method.gcode;gcode/20170316_11:42:32Method.gcode;;preservative_n0
+20170316_11:44:39;SA;Emergency stop; LOG;;preservative_n0
+20170316_11:46:44;test_ink;gcode/20170316_11:46:44test_ink.gcode;gcode/20170316_11:46:44test_ink.gcode;;preservative_n0
+20170316_11:46:46;test_ink;gcode/20170316_11:46:46test_ink.gcode;gcode/20170316_11:46:46test_ink.gcode;;preservative_n0
+20170316_11:46:47;test_ink;gcode/20170316_11:46:47test_ink.gcode;gcode/20170316_11:46:47test_ink.gcode;;preservative_n0
+20170316_11:46:48;test_ink;gcode/20170316_11:46:48test_ink.gcode;gcode/20170316_11:46:48test_ink.gcode;;preservative_n0
+20170316_11:46:49;test_ink;gcode/20170316_11:46:49test_ink.gcode;gcode/20170316_11:46:49test_ink.gcode;;preservative_n0
+20170316_11:46:55;test_ink;gcode/20170316_11:46:55test_ink.gcode;gcode/20170316_11:46:55test_ink.gcode;;preservative_n0
+20170316_11:47:02;test_ink;gcode/20170316_11:47:02test_ink.gcode;gcode/20170316_11:47:02test_ink.gcode;;preservative_n0
+20170316_11:47:30;SA;gcode/20170316_11:47:30Method.gcode;gcode/20170316_11:47:30Method.gcode;;preservative_n0
+20170316_13:36:11;Connection;NA;Board connection;;test
+20170316_13:38:53;test_ink;gcode/20170316_13:38:53test_ink.gcode;gcode/20170316_13:38:53test_ink.gcode;;test
+20170316_13:41:02;test_ink;gcode/20170316_13:41:02test_ink.gcode;gcode/20170316_13:41:02test_ink.gcode;;test
+20170316_13:42:32;test_ink;gcode/20170316_13:42:32test_ink.gcode;gcode/20170316_13:42:32test_ink.gcode;;test
+20170316_14:03:44;test_ink;gcode/20170316_14:03:44test_ink.gcode;gcode/20170316_14:03:44test_ink.gcode;;test
+20170316_15:59:47;Connection;NA;Board disconnection;;test
+20170316_18:16:07;Connection;NA;Board connection;;test
+20170316_18:20:11;Connection;NA;Board connection;;test
+20170316_18:25:22;Connection;NA;Board connection;;test
+20170316_18:25:24;Connection;NA;Board connection;;test
+20170316_18:25:46;Deriv;gcode/20170316_18:25:46Method.gcode;gcode/20170316_18:25:46Method.gcode;;test
+20170316_18:28:41;Connection;NA;Board connection;;test
+20170316_18:28:58;Deriv;gcode/20170316_18:28:58Method.gcode;gcode/20170316_18:28:58Method.gcode;;test
+20170316_18:29:29;Connection;NA;Board connection;;test
+20170316_18:29:40;Deriv;gcode/20170316_18:29:40Method.gcode;gcode/20170316_18:29:40Method.gcode;;test
+20170316_18:30:21;Connection;NA;Board connection;;test
+20170316_18:30:29;Deriv;gcode/20170316_18:30:29Method.gcode;gcode/20170316_18:30:29Method.gcode;;test
+20170316_18:31:22;Connection;NA;Board connection;;test
+20170316_18:31:31;Deriv;gcode/20170316_18:31:31Method.gcode;gcode/20170316_18:31:31Method.gcode;;test
+20170316_18:33:07;Connection;NA;Board connection;;test
+20170316_18:33:14;Deriv;gcode/20170316_18:33:14Method.gcode;gcode/20170316_18:33:14Method.gcode;;test
+20170316_18:35:27;Connection;NA;Board connection;;test
+20170316_18:35:37;Deriv;gcode/20170316_18:35:37Method.gcode;gcode/20170316_18:35:37Method.gcode;;test
+20170316_18:45:00;Connection;NA;Board connection;;test
+20170316_18:45:16;Deriv;gcode/20170316_18:45:16Method.gcode;gcode/20170316_18:45:16Method.gcode;;test
+20170316_18:45:27;Deriv;gcode/20170316_18:45:27Method.gcode;gcode/20170316_18:45:27Method.gcode;;test
+20170316_18:45:28;Deriv;Emergency stop; LOG;;test
+20170316_18:45:29;Deriv;gcode/20170316_18:45:29Method.gcode;gcode/20170316_18:45:29Method.gcode;;test
+20170316_18:46:50;Connection;NA;Board connection;;test
+20170316_18:46:58;Deriv;gcode/20170316_18:46:58Method.gcode;gcode/20170316_18:46:58Method.gcode;;test
+20170316_18:48:54;Connection;NA;Board connection;;test
+20170316_18:49:02;Deriv;gcode/20170316_18:49:02Method.gcode;gcode/20170316_18:49:02Method.gcode;;test
+20170316_18:49:56;Connection;NA;Board connection;;test
+20170316_18:50:11;Deriv;gcode/20170316_18:50:11Method.gcode;gcode/20170316_18:50:11Method.gcode;;test
+20170316_19:09:18;Connection;NA;Board connection;;test
+20170316_19:09:40;Connection;NA;Board connection;;test
+20170316_19:10:43;Connection;NA;Board connection;;test
+20170316_19:10:45;Connection;NA;Board connection;;test
+20170316_19:11:15;Connection;NA;Board connection;;test
+20170316_19:11:39;Deriv_vert;gcode/20170316_19:11:39Method.gcode;gcode/20170316_19:11:39Method.gcode;;test
+20170316_19:12:14;Deriv_vert;gcode/20170316_19:12:14Method.gcode;gcode/20170316_19:12:14Method.gcode;;test
+20170316_19:12:16;Deriv_vert;gcode/20170316_19:12:16Method.gcode;gcode/20170316_19:12:16Method.gcode;;test
+20170316_19:12:16;Deriv_vert;Emergency stop; LOG;;test
+20170316_19:12:17;Deriv_vert;gcode/20170316_19:12:17Method.gcode;gcode/20170316_19:12:17Method.gcode;;test
+20170316_19:12:45;Deriv_vert;gcode/20170316_19:12:45Method.gcode;gcode/20170316_19:12:45Method.gcode;;test
+20170316_19:12:46;Deriv_vert;Emergency stop; LOG;;test
+20170316_19:14:42;Connection;NA;Board disconnection;;test
+20170316_19:18:03;Connection;NA;Board connection;;test
+20170316_19:19:11;Deriv;gcode/20170316_19:19:11Method.gcode;gcode/20170316_19:19:11Method.gcode;;test
+20170316_19:27:36;Deriv;gcode/20170316_19:27:36Method.gcode;gcode/20170316_19:27:36Method.gcode;;test
+20170316_19:27:37;Deriv;Emergency stop; LOG;;test
+20170316_19:27:38;Deriv;gcode/20170316_19:27:38Method.gcode;gcode/20170316_19:27:38Method.gcode;;test
+20170316_19:27:57;Deriv;Emergency stop; LOG;;test
+20170316_19:27:58;Deriv;gcode/20170316_19:27:58Method.gcode;gcode/20170316_19:27:58Method.gcode;;test
+20170316_19:27:59;Deriv;Emergency stop; LOG;;test
+20170316_19:28:00;Deriv;gcode/20170316_19:28:00Method.gcode;gcode/20170316_19:28:00Method.gcode;;test
+20170316_19:28:09;Deriv;Emergency stop; LOG;;test
+20170316_19:28:16;Connection;NA;Board disconnection;;test
+20170316_19:28:56;Connection;NA;Board connection;;test
+20170316_19:29:07;Deriv;gcode/20170316_19:29:07Method.gcode;gcode/20170316_19:29:07Method.gcode;;test
+20170316_19:30:17;Deriv;Emergency stop; LOG;;test
+20170316_19:30:19;Deriv;gcode/20170316_19:30:19Method.gcode;gcode/20170316_19:30:19Method.gcode;;test
+20170316_19:31:40;Connection;NA;Board disconnection;;test
+20170317_15:04:06;Connection;NA;Board connection;;test
+20170317_15:10:02;Connection;NA;Board disconnection;;test
+20170317_15:15:02;Connection;NA;Board connection;;test
+20170317_15:15:18;Deriv;gcode/20170317_15:15:18Method.gcode;gcode/20170317_15:15:18Method.gcode;;test
+20170317_15:16:18;Deriv;gcode/20170317_15:16:18Method.gcode;gcode/20170317_15:16:18Method.gcode;;test
+20170317_15:16:19;Deriv;Emergency stop; LOG;;test
+20170317_15:16:21;Deriv;gcode/20170317_15:16:21Method.gcode;gcode/20170317_15:16:21Method.gcode;;test
+20170317_15:16:32;Deriv;Emergency stop; LOG;;test
+20170317_15:16:43;Deriv;gcode/20170317_15:16:43Method.gcode;gcode/20170317_15:16:43Method.gcode;;test
+20170317_15:36:17;Connection;NA;Board disconnection;;test
+20170317_15:44:57;Connection;NA;Board connection;;test
+20170317_15:45:46;test_ink;gcode/20170317_15:45:46test_ink.gcode;gcode/20170317_15:45:46test_ink.gcode;;test
+20170317_15:45:47;test_ink;gcode/20170317_15:45:47test_ink.gcode;gcode/20170317_15:45:47test_ink.gcode;;test
+20170317_15:45:48;test_ink;gcode/20170317_15:45:48test_ink.gcode;gcode/20170317_15:45:48test_ink.gcode;;test
+20170317_15:45:48;test_ink;gcode/20170317_15:45:48test_ink.gcode;gcode/20170317_15:45:48test_ink.gcode;;test
+20170317_15:45:49;test_ink;gcode/20170317_15:45:49test_ink.gcode;gcode/20170317_15:45:49test_ink.gcode;;test
+20170317_15:45:49;test_ink;gcode/20170317_15:45:49test_ink.gcode;gcode/20170317_15:45:49test_ink.gcode;;test
+20170317_15:45:49;test_ink;gcode/20170317_15:45:49test_ink.gcode;gcode/20170317_15:45:49test_ink.gcode;;test
+20170317_15:45:50;test_ink;gcode/20170317_15:45:50test_ink.gcode;gcode/20170317_15:45:50test_ink.gcode;;test
+20170317_15:46:21;test_ink;gcode/20170317_15:46:21test_ink.gcode;gcode/20170317_15:46:21test_ink.gcode;;test
+20170317_15:46:22;test_ink;gcode/20170317_15:46:22test_ink.gcode;gcode/20170317_15:46:22test_ink.gcode;;test
+20170317_15:46:22;test_ink;gcode/20170317_15:46:22test_ink.gcode;gcode/20170317_15:46:22test_ink.gcode;;test
+20170317_15:46:23;test_ink;gcode/20170317_15:46:23test_ink.gcode;gcode/20170317_15:46:23test_ink.gcode;;test
+20170317_15:46:27;test_ink;gcode/20170317_15:46:27test_ink.gcode;gcode/20170317_15:46:27test_ink.gcode;;test
+20170317_15:46:27;test_ink;gcode/20170317_15:46:27test_ink.gcode;gcode/20170317_15:46:27test_ink.gcode;;test
+20170317_15:46:31;test_ink;gcode/20170317_15:46:31test_ink.gcode;gcode/20170317_15:46:31test_ink.gcode;;test
+20170317_15:46:32;test_ink;gcode/20170317_15:46:32test_ink.gcode;gcode/20170317_15:46:32test_ink.gcode;;test
+20170317_15:46:33;test_ink;gcode/20170317_15:46:33test_ink.gcode;gcode/20170317_15:46:33test_ink.gcode;;test
+20170317_15:46:33;test_ink;gcode/20170317_15:46:33test_ink.gcode;gcode/20170317_15:46:33test_ink.gcode;;test
+20170317_15:46:37;test_ink;gcode/20170317_15:46:37test_ink.gcode;gcode/20170317_15:46:37test_ink.gcode;;test
+20170317_15:46:38;test_ink;gcode/20170317_15:46:38test_ink.gcode;gcode/20170317_15:46:38test_ink.gcode;;test
+20170317_15:46:38;test_ink;gcode/20170317_15:46:38test_ink.gcode;gcode/20170317_15:46:38test_ink.gcode;;test
+20170317_15:46:39;test_ink;gcode/20170317_15:46:39test_ink.gcode;gcode/20170317_15:46:39test_ink.gcode;;test
+20170317_15:46:44;test_ink;gcode/20170317_15:46:44test_ink.gcode;gcode/20170317_15:46:44test_ink.gcode;;test
+20170317_15:46:45;test_ink;gcode/20170317_15:46:45test_ink.gcode;gcode/20170317_15:46:45test_ink.gcode;;test
+20170317_15:46:47;test_ink;gcode/20170317_15:46:47test_ink.gcode;gcode/20170317_15:46:47test_ink.gcode;;test
+20170317_15:46:54;test_ink;gcode/20170317_15:46:54test_ink.gcode;gcode/20170317_15:46:54test_ink.gcode;;test
+20170317_15:46:56;test_ink;gcode/20170317_15:46:56test_ink.gcode;gcode/20170317_15:46:56test_ink.gcode;;test
+20170317_15:46:56;test_ink;gcode/20170317_15:46:56test_ink.gcode;gcode/20170317_15:46:56test_ink.gcode;;test
+20170317_15:47:02;test_ink;gcode/20170317_15:47:02test_ink.gcode;gcode/20170317_15:47:02test_ink.gcode;;test
+20170317_15:47:12;test_ink;gcode/20170317_15:47:12test_ink.gcode;gcode/20170317_15:47:12test_ink.gcode;;test
+20170317_15:47:13;test_ink;gcode/20170317_15:47:13test_ink.gcode;gcode/20170317_15:47:13test_ink.gcode;;test
+20170317_15:47:35;test_ink;gcode/20170317_15:47:35test_ink.gcode;gcode/20170317_15:47:35test_ink.gcode;;test
+20170317_15:47:36;test_ink;gcode/20170317_15:47:36test_ink.gcode;gcode/20170317_15:47:36test_ink.gcode;;test
+20170317_15:47:37;test_ink;gcode/20170317_15:47:37test_ink.gcode;gcode/20170317_15:47:37test_ink.gcode;;test
+20170317_15:47:37;test_ink;gcode/20170317_15:47:37test_ink.gcode;gcode/20170317_15:47:37test_ink.gcode;;test
+20170317_15:47:41;test_ink;gcode/20170317_15:47:41test_ink.gcode;gcode/20170317_15:47:41test_ink.gcode;;test
+20170317_15:47:42;test_ink;gcode/20170317_15:47:42test_ink.gcode;gcode/20170317_15:47:42test_ink.gcode;;test
+20170317_15:47:43;test_ink;gcode/20170317_15:47:43test_ink.gcode;gcode/20170317_15:47:43test_ink.gcode;;test
+20170317_15:47:43;test_ink;gcode/20170317_15:47:43test_ink.gcode;gcode/20170317_15:47:43test_ink.gcode;;test
+20170317_15:47:44;test_ink;gcode/20170317_15:47:44test_ink.gcode;gcode/20170317_15:47:44test_ink.gcode;;test
+20170317_15:47:44;test_ink;gcode/20170317_15:47:44test_ink.gcode;gcode/20170317_15:47:44test_ink.gcode;;test
+20170317_15:47:45;test_ink;gcode/20170317_15:47:45test_ink.gcode;gcode/20170317_15:47:45test_ink.gcode;;test
+20170317_15:47:48;test_ink;gcode/20170317_15:47:48test_ink.gcode;gcode/20170317_15:47:48test_ink.gcode;;test
+20170317_15:47:49;test_ink;gcode/20170317_15:47:49test_ink.gcode;gcode/20170317_15:47:49test_ink.gcode;;test
+20170317_15:47:51;test_ink;gcode/20170317_15:47:51test_ink.gcode;gcode/20170317_15:47:51test_ink.gcode;;test
+20170317_15:47:52;test_ink;gcode/20170317_15:47:52test_ink.gcode;gcode/20170317_15:47:52test_ink.gcode;;test
+20170317_15:47:57;test_ink;gcode/20170317_15:47:57test_ink.gcode;gcode/20170317_15:47:57test_ink.gcode;;test
+20170317_15:47:58;test_ink;gcode/20170317_15:47:58test_ink.gcode;gcode/20170317_15:47:58test_ink.gcode;;test
+20170317_15:47:59;test_ink;gcode/20170317_15:47:59test_ink.gcode;gcode/20170317_15:47:59test_ink.gcode;;test
+20170317_15:48:01;test_ink;gcode/20170317_15:48:01test_ink.gcode;gcode/20170317_15:48:01test_ink.gcode;;test
+20170317_15:48:23;test_ink;gcode/20170317_15:48:23test_ink.gcode;gcode/20170317_15:48:23test_ink.gcode;;test
+20170317_15:51:25;Connection;NA;Board connection;;test
+20170317_16:25:32;Connection;NA;Board disconnection;;test
+20170317_16:31:29;Connection;NA;Board connection;;test
+20170317_16:33:52;Connection;NA;Board disconnection;;test
+20170320_08:45:48;Connection;NA;Board connection;;test
+20170320_08:46:26;Connection;NA;Board disconnection;;test
+20170320_08:49:34;Connection;NA;Board connection;;test
+20170320_09:35:16;Connection;NA;Board disconnection;;test
+20170320_10:00:30;Connection;NA;Board connection;;test
+20170320_10:06:10;Deriv;gcode/20170320_10:06:10Method.gcode;gcode/20170320_10:06:10Method.gcode;;test
+20170320_10:19:43;Connection;NA;Board disconnection;;test
+20170320_10:19:49;Connection;NA;Board connection;;test
+20170320_10:41:25;Deriv;gcode/20170320_10:41:25Method.gcode;gcode/20170320_10:41:25Method.gcode;;test
+20170320_10:42:07;Deriv;Emergency stop; LOG;;test
+20170320_10:42:15;Deriv;gcode/20170320_10:42:15Method.gcode;gcode/20170320_10:42:15Method.gcode;;test
+20170320_10:42:28;Deriv;Emergency stop; LOG;;test
+20170320_10:42:32;Deriv;gcode/20170320_10:42:32Method.gcode;gcode/20170320_10:42:32Method.gcode;;test
+20170320_10:45:23;Deriv;gcode/20170320_10:45:23Method.gcode;gcode/20170320_10:45:23Method.gcode;;test
+20170320_10:45:25;Deriv;Emergency stop; LOG;;test
+20170320_10:46:24;Deriv;gcode/20170320_10:46:24Method.gcode;gcode/20170320_10:46:24Method.gcode;;test
+20170320_10:50:37;Deriv;gcode/20170320_10:50:37Method.gcode;gcode/20170320_10:50:37Method.gcode;;test
+20170320_10:50:39;Deriv;Emergency stop; LOG;;test
+20170320_10:50:40;Deriv;gcode/20170320_10:50:40Method.gcode;gcode/20170320_10:50:40Method.gcode;;test
+20170320_10:54:23;Deriv;Emergency stop; LOG;;test
+20170320_10:54:26;Deriv;gcode/20170320_10:54:26Method.gcode;gcode/20170320_10:54:26Method.gcode;;test
+20170320_10:55:09;Deriv;Emergency stop; LOG;;test
+20170320_10:55:16;test_ink;gcode/20170320_10:55:16test_ink.gcode;gcode/20170320_10:55:16test_ink.gcode;;test
+20170320_10:55:16;test_ink;gcode/20170320_10:55:16test_ink.gcode;gcode/20170320_10:55:16test_ink.gcode;;test
+20170320_10:55:17;test_ink;gcode/20170320_10:55:17test_ink.gcode;gcode/20170320_10:55:17test_ink.gcode;;test
+20170320_10:55:17;test_ink;gcode/20170320_10:55:17test_ink.gcode;gcode/20170320_10:55:17test_ink.gcode;;test
+20170320_10:55:18;test_ink;gcode/20170320_10:55:18test_ink.gcode;gcode/20170320_10:55:18test_ink.gcode;;test
+20170320_10:55:18;test_ink;gcode/20170320_10:55:18test_ink.gcode;gcode/20170320_10:55:18test_ink.gcode;;test
+20170320_10:55:37;Deriv;gcode/20170320_10:55:37Method.gcode;gcode/20170320_10:55:37Method.gcode;;test
+20170320_10:56:54;Deriv;Emergency stop; LOG;;test
+20170320_10:57:58;Deriv;gcode/20170320_10:57:58Method.gcode;gcode/20170320_10:57:58Method.gcode;;test
+20170320_11:02:58;Deriv;Emergency stop; LOG;;test
+20170320_11:03:23;Deriv;gcode/20170320_11:03:23Method.gcode;gcode/20170320_11:03:23Method.gcode;;test
+20170320_11:05:00;Deriv;Emergency stop; LOG;;test
+20170320_11:05:05;Deriv;gcode/20170320_11:05:05Method.gcode;gcode/20170320_11:05:05Method.gcode;;test
+20170320_11:05:06;Deriv;Emergency stop; LOG;;test
+20170320_11:05:20;Deriv;gcode/20170320_11:05:20Method.gcode;gcode/20170320_11:05:20Method.gcode;;test
+20170320_11:06:48;Deriv;gcode/20170320_11:06:48Method.gcode;gcode/20170320_11:06:48Method.gcode;;test
+20170320_11:06:50;Deriv;Emergency stop; LOG;;test
+20170320_11:06:51;Deriv;gcode/20170320_11:06:51Method.gcode;gcode/20170320_11:06:51Method.gcode;;test
+20170320_11:07:23;Deriv;Emergency stop; LOG;;test
+20170320_11:10:55;Deriv;gcode/20170320_11:10:55Method.gcode;gcode/20170320_11:10:55Method.gcode;;test
+20170320_11:12:06;Deriv;Emergency stop; LOG;;test
+20170320_11:15:31;Connection;NA;Board disconnection;;test
+20170320_11:16:39;Connection;NA;Board connection;;test
+20170320_11:23:51;Connection;NA;Board disconnection;;test
+20170321_09:44:30;Connection;NA;Board connection;;test
+20170321_09:58:50;Connection;NA;Board disconnection;;test
+20170321_09:59:50;Connection;NA;Board connection;;test
+20170321_10:34:44;Connection;NA;Board disconnection;;test
+20170321_10:48:11;Connection;NA;Board connection;;test
+20170321_10:48:48;Connection;NA;Board disconnection;;test
+20170321_10:52:06;Connection;NA;Board connection;;test
+20170321_11:42:10;test_ink;gcode/20170321_11:42:10test_ink.gcode;gcode/20170321_11:42:10test_ink.gcode;;test
+20170321_11:42:11;test_ink;gcode/20170321_11:42:11test_ink.gcode;gcode/20170321_11:42:11test_ink.gcode;;test
+20170321_11:42:12;test_ink;gcode/20170321_11:42:12test_ink.gcode;gcode/20170321_11:42:12test_ink.gcode;;test
+20170321_11:42:13;test_ink;gcode/20170321_11:42:13test_ink.gcode;gcode/20170321_11:42:13test_ink.gcode;;test
+20170321_11:42:13;test_ink;gcode/20170321_11:42:13test_ink.gcode;gcode/20170321_11:42:13test_ink.gcode;;test
+20170321_11:42:14;test_ink;gcode/20170321_11:42:14test_ink.gcode;gcode/20170321_11:42:14test_ink.gcode;;test
+20170321_11:42:14;test_ink;gcode/20170321_11:42:14test_ink.gcode;gcode/20170321_11:42:14test_ink.gcode;;test
+20170321_11:42:15;test_ink;gcode/20170321_11:42:15test_ink.gcode;gcode/20170321_11:42:15test_ink.gcode;;test
+20170321_11:42:16;test_ink;gcode/20170321_11:42:16test_ink.gcode;gcode/20170321_11:42:16test_ink.gcode;;test
+20170321_11:42:16;test_ink;gcode/20170321_11:42:16test_ink.gcode;gcode/20170321_11:42:16test_ink.gcode;;test
+20170321_11:42:16;test_ink;gcode/20170321_11:42:16test_ink.gcode;gcode/20170321_11:42:16test_ink.gcode;;test
+20170321_11:42:17;test_ink;gcode/20170321_11:42:17test_ink.gcode;gcode/20170321_11:42:17test_ink.gcode;;test
+20170321_11:42:17;test_ink;gcode/20170321_11:42:17test_ink.gcode;gcode/20170321_11:42:17test_ink.gcode;;test
+20170321_11:42:17;test_ink;gcode/20170321_11:42:17test_ink.gcode;gcode/20170321_11:42:17test_ink.gcode;;test
+20170321_11:42:17;test_ink;gcode/20170321_11:42:17test_ink.gcode;gcode/20170321_11:42:17test_ink.gcode;;test
+20170321_11:42:18;test_ink;gcode/20170321_11:42:18test_ink.gcode;gcode/20170321_11:42:18test_ink.gcode;;test
+20170321_11:42:18;test_ink;gcode/20170321_11:42:18test_ink.gcode;gcode/20170321_11:42:18test_ink.gcode;;test
+20170321_11:42:18;test_ink;gcode/20170321_11:42:18test_ink.gcode;gcode/20170321_11:42:18test_ink.gcode;;test
+20170321_11:42:19;test_ink;gcode/20170321_11:42:19test_ink.gcode;gcode/20170321_11:42:19test_ink.gcode;;test
+20170321_11:42:19;test_ink;gcode/20170321_11:42:19test_ink.gcode;gcode/20170321_11:42:19test_ink.gcode;;test
+20170321_11:42:19;test_ink;gcode/20170321_11:42:19test_ink.gcode;gcode/20170321_11:42:19test_ink.gcode;;test
+20170321_11:42:20;test_ink;gcode/20170321_11:42:20test_ink.gcode;gcode/20170321_11:42:20test_ink.gcode;;test
+20170321_11:42:22;test_ink;gcode/20170321_11:42:22test_ink.gcode;gcode/20170321_11:42:22test_ink.gcode;;test
+20170321_11:42:24;test_ink;gcode/20170321_11:42:24test_ink.gcode;gcode/20170321_11:42:24test_ink.gcode;;test
+20170321_11:42:25;test_ink;gcode/20170321_11:42:25test_ink.gcode;gcode/20170321_11:42:25test_ink.gcode;;test
+20170321_11:43:56;SA;gcode/20170321_11:43:56Method.gcode;gcode/20170321_11:43:56Method.gcode;;test
+20170321_11:45:07;SA;Emergency stop; LOG;;preservative n1
+20170321_11:45:10;SA;gcode/20170321_11:45:10Method.gcode;gcode/20170321_11:45:10Method.gcode;;preservative n1
+20170321_11:46:16;SA;Emergency stop; LOG;;preservative n1
+20170321_11:46:19;SA;gcode/20170321_11:46:19Method.gcode;gcode/20170321_11:46:19Method.gcode;;preservative n1
+20170321_11:47:26;SA;Emergency stop; LOG;;preservative n1
+20170321_11:47:29;SA;gcode/20170321_11:47:29Method.gcode;gcode/20170321_11:47:29Method.gcode;;preservative n1
+20170321_11:48:38;SA;Emergency stop; LOG;;preservative n1
+20170321_11:48:39;SA;gcode/20170321_11:48:39Method.gcode;gcode/20170321_11:48:39Method.gcode;;preservative n1
+20170321_11:49:51;SA;Emergency stop; LOG;;preservative n1
+20170321_11:49:52;SA;gcode/20170321_11:49:52Method.gcode;gcode/20170321_11:49:52Method.gcode;;preservative n1
+20170321_11:51:03;SA;Emergency stop; LOG;;preservative n1
+20170321_11:51:05;SA;gcode/20170321_11:51:05Method.gcode;gcode/20170321_11:51:05Method.gcode;;preservative n1
+20170321_11:52:57;SA;Emergency stop; LOG;;preservative n1
+20170321_11:53:04;SA;gcode/20170321_11:53:04Method.gcode;gcode/20170321_11:53:04Method.gcode;;preservative n1
+20170321_11:54:16;SA;Emergency stop; LOG;;preservative n1
+20170321_11:54:19;SA;gcode/20170321_11:54:19Method.gcode;gcode/20170321_11:54:19Method.gcode;;preservative n1
+20170321_11:55:32;SA;Emergency stop; LOG;;preservative n1
+20170321_11:55:35;SA;gcode/20170321_11:55:35Method.gcode;gcode/20170321_11:55:35Method.gcode;;preservative n1
+20170321_12:32:21;Connection;NA;Board disconnection;;preservative n1
+20170321_14:03:00;Connection;NA;Board connection;;test
+20170321_14:08:25;Connection;NA;Board disconnection;;test
+20170321_15:56:22;Connection;NA;Board connection;;test
+20170321_16:14:02;SA;gcode/20170321_16:14:02Method.gcode;gcode/20170321_16:14:02Method.gcode;;pesticides_n3
+20170321_16:14:54;SA;Emergency stop; LOG;;pesticides_n3
+20170321_16:15:24;SA;gcode/20170321_16:15:24Method.gcode;gcode/20170321_16:15:24Method.gcode;;pesticides_n3
+20170321_16:25:19;SA;Emergency stop; LOG;;pesticides_n4
+20170321_16:25:20;SA;gcode/20170321_16:25:20Method.gcode;gcode/20170321_16:25:20Method.gcode;;pesticides_n4
+20170321_16:51:02;Connection;NA;Board disconnection;;pesticides_n4
+20170321_16:51:16;Connection;NA;Board connection;;pesticides_n4
+20170321_16:57:49;Deriv;gcode/20170321_16:57:49Method.gcode;gcode/20170321_16:57:49Method.gcode;;pesticides_n4
+20170321_17:02:05;Deriv;gcode/20170321_17:02:05Method.gcode;gcode/20170321_17:02:05Method.gcode;;pesticides_n4
+20170321_17:02:07;Deriv;Emergency stop; LOG;;pesticides_n4
+20170321_17:02:07;Deriv;gcode/20170321_17:02:07Method.gcode;gcode/20170321_17:02:07Method.gcode;;pesticides_n4
+20170321_17:03:26;Deriv;gcode/20170321_17:03:26Method.gcode;gcode/20170321_17:03:26Method.gcode;;pesticides_n4
+20170321_17:03:27;Deriv;Emergency stop; LOG;;pesticides_n4
+20170321_17:03:28;Deriv;gcode/20170321_17:03:28Method.gcode;gcode/20170321_17:03:28Method.gcode;;pesticides_n4
+20170321_17:04:16;Deriv;Emergency stop; LOG;;pesticides_n4
+20170321_17:04:20;Deriv;gcode/20170321_17:04:20Method.gcode;gcode/20170321_17:04:20Method.gcode;;pesticides_n4
+20170321_17:04:43;Deriv;gcode/20170321_17:04:43Method.gcode;gcode/20170321_17:04:43Method.gcode;;pesticides_n4
+20170321_17:04:44;Deriv;Emergency stop; LOG;;pesticides_n4
+20170321_17:04:44;Deriv;gcode/20170321_17:04:44Method.gcode;gcode/20170321_17:04:44Method.gcode;;pesticides_n4
+20170321_17:07:03;Deriv;Emergency stop; LOG;;pesticides_n4
+20170321_17:07:04;Deriv;gcode/20170321_17:07:04Method.gcode;gcode/20170321_17:07:04Method.gcode;;pesticides_n4
+20170321_17:08:10;Deriv;Emergency stop; LOG;;pesticides_n4
+20170321_17:08:11;Deriv;gcode/20170321_17:08:11Method.gcode;gcode/20170321_17:08:11Method.gcode;;pesticides_n4
+20170321_17:08:18;Deriv;Emergency stop; LOG;;pesticides_n4
+20170321_17:08:20;Deriv;gcode/20170321_17:08:20Method.gcode;gcode/20170321_17:08:20Method.gcode;;pesticides_n4
+20170321_17:08:21;Deriv;Emergency stop; LOG;;pesticides_n4
+20170321_17:08:38;Connection;NA;Board disconnection;;pesticides_n4
+20170321_17:11:31;Connection;NA;Board connection;;test
+20170321_17:12:58;Deriv;gcode/20170321_17:12:58Method.gcode;gcode/20170321_17:12:58Method.gcode;;test
+20170321_17:13:02;Connection;NA;Board disconnection;;test
+20170321_17:13:05;Connection;NA;Board connection;;test
+20170321_17:13:16;Deriv;Emergency stop; LOG;;test
+20170321_17:13:40;Deriv;gcode/20170321_17:13:40Method.gcode;gcode/20170321_17:13:40Method.gcode;;test
+20170321_17:13:45;Deriv;Emergency stop; LOG;;test
+20170321_17:13:49;Deriv;gcode/20170321_17:13:49Method.gcode;gcode/20170321_17:13:49Method.gcode;;test
+20170321_17:26:44;test_ink;gcode/20170321_17:26:44test_ink.gcode;gcode/20170321_17:26:44test_ink.gcode;;test
+20170321_17:26:51;test_ink;gcode/20170321_17:26:51test_ink.gcode;gcode/20170321_17:26:51test_ink.gcode;;test
+20170321_17:28:05;test_ink;gcode/20170321_17:28:05test_ink.gcode;gcode/20170321_17:28:05test_ink.gcode;;test
+20170321_17:28:07;test_ink;gcode/20170321_17:28:07test_ink.gcode;gcode/20170321_17:28:07test_ink.gcode;;test
+20170321_17:28:07;test_ink;gcode/20170321_17:28:07test_ink.gcode;gcode/20170321_17:28:07test_ink.gcode;;test
+20170321_17:28:08;test_ink;gcode/20170321_17:28:08test_ink.gcode;gcode/20170321_17:28:08test_ink.gcode;;test
+20170321_17:28:08;test_ink;gcode/20170321_17:28:08test_ink.gcode;gcode/20170321_17:28:08test_ink.gcode;;test
+20170321_17:28:08;test_ink;gcode/20170321_17:28:08test_ink.gcode;gcode/20170321_17:28:08test_ink.gcode;;test
+20170321_17:28:08;test_ink;gcode/20170321_17:28:08test_ink.gcode;gcode/20170321_17:28:08test_ink.gcode;;test
+20170321_17:28:09;test_ink;gcode/20170321_17:28:09test_ink.gcode;gcode/20170321_17:28:09test_ink.gcode;;test
+20170321_17:28:09;test_ink;gcode/20170321_17:28:09test_ink.gcode;gcode/20170321_17:28:09test_ink.gcode;;test
+20170321_17:28:09;test_ink;gcode/20170321_17:28:09test_ink.gcode;gcode/20170321_17:28:09test_ink.gcode;;test
+20170321_17:28:09;test_ink;gcode/20170321_17:28:09test_ink.gcode;gcode/20170321_17:28:09test_ink.gcode;;test
+20170321_17:28:10;test_ink;gcode/20170321_17:28:10test_ink.gcode;gcode/20170321_17:28:10test_ink.gcode;;test
+20170321_17:28:10;test_ink;gcode/20170321_17:28:10test_ink.gcode;gcode/20170321_17:28:10test_ink.gcode;;test
+20170321_17:28:10;test_ink;gcode/20170321_17:28:10test_ink.gcode;gcode/20170321_17:28:10test_ink.gcode;;test
+20170321_17:28:10;test_ink;gcode/20170321_17:28:10test_ink.gcode;gcode/20170321_17:28:10test_ink.gcode;;test
+20170321_17:28:11;test_ink;gcode/20170321_17:28:11test_ink.gcode;gcode/20170321_17:28:11test_ink.gcode;;test
+20170321_17:28:11;test_ink;gcode/20170321_17:28:11test_ink.gcode;gcode/20170321_17:28:11test_ink.gcode;;test
+20170321_17:28:11;test_ink;gcode/20170321_17:28:11test_ink.gcode;gcode/20170321_17:28:11test_ink.gcode;;test
+20170321_17:28:11;test_ink;gcode/20170321_17:28:11test_ink.gcode;gcode/20170321_17:28:11test_ink.gcode;;test
+20170321_17:28:13;test_ink;gcode/20170321_17:28:13test_ink.gcode;gcode/20170321_17:28:13test_ink.gcode;;test
+20170321_17:28:14;test_ink;gcode/20170321_17:28:14test_ink.gcode;gcode/20170321_17:28:14test_ink.gcode;;test
+20170321_17:28:14;test_ink;gcode/20170321_17:28:14test_ink.gcode;gcode/20170321_17:28:14test_ink.gcode;;test
+20170321_17:28:15;test_ink;gcode/20170321_17:28:15test_ink.gcode;gcode/20170321_17:28:15test_ink.gcode;;test
+20170321_17:28:16;test_ink;gcode/20170321_17:28:16test_ink.gcode;gcode/20170321_17:28:16test_ink.gcode;;test
+20170321_17:28:21;test_ink;gcode/20170321_17:28:21test_ink.gcode;gcode/20170321_17:28:21test_ink.gcode;;test
+20170321_17:28:23;test_ink;gcode/20170321_17:28:23test_ink.gcode;gcode/20170321_17:28:23test_ink.gcode;;test
+20170321_17:28:26;test_ink;gcode/20170321_17:28:26test_ink.gcode;gcode/20170321_17:28:26test_ink.gcode;;test
+20170321_17:28:31;test_ink;gcode/20170321_17:28:31test_ink.gcode;gcode/20170321_17:28:31test_ink.gcode;;test
+20170321_17:28:34;test_ink;gcode/20170321_17:28:34test_ink.gcode;gcode/20170321_17:28:34test_ink.gcode;;test
+20170321_17:30:04;test_ink;gcode/20170321_17:30:04test_ink.gcode;gcode/20170321_17:30:04test_ink.gcode;;test
+20170321_17:30:31;test_ink;gcode/20170321_17:30:31test_ink.gcode;gcode/20170321_17:30:31test_ink.gcode;;test
+20170321_17:30:39;test_ink;gcode/20170321_17:30:39test_ink.gcode;gcode/20170321_17:30:39test_ink.gcode;;test
+20170321_17:31:24;Deriv;gcode/20170321_17:31:24Method.gcode;gcode/20170321_17:31:24Method.gcode;;test
+20170321_17:31:25;Deriv;Emergency stop; LOG;;test
+20170321_17:31:26;Deriv;gcode/20170321_17:31:26Method.gcode;gcode/20170321_17:31:26Method.gcode;;test
+20170321_17:33:21;Deriv;gcode/20170321_17:33:21Method.gcode;gcode/20170321_17:33:21Method.gcode;;test
+20170321_17:33:22;Deriv;Emergency stop; LOG;;test
+20170321_17:33:23;Deriv;gcode/20170321_17:33:23Method.gcode;gcode/20170321_17:33:23Method.gcode;;test
+20170321_17:34:07;Deriv;Emergency stop; LOG;;test
+20170321_17:34:08;Deriv;gcode/20170321_17:34:08Method.gcode;gcode/20170321_17:34:08Method.gcode;;test
+20170321_17:38:59;Deriv;Emergency stop; LOG;;test
+20170321_17:43:13;Deriv;gcode/20170321_17:43:13Method.gcode;gcode/20170321_17:43:13Method.gcode;;test
+20170321_17:43:29;Deriv;Emergency stop; LOG;;test
+20170321_17:43:30;Deriv;gcode/20170321_17:43:30Method.gcode;gcode/20170321_17:43:30Method.gcode;;test
+20170321_17:43:45;Deriv;Emergency stop; LOG;;test
+20170321_17:43:46;Deriv;gcode/20170321_17:43:46Method.gcode;gcode/20170321_17:43:46Method.gcode;;test
+20170321_17:44:09;Deriv;gcode/20170321_17:44:09Method.gcode;gcode/20170321_17:44:09Method.gcode;;test
+20170321_17:44:10;Deriv;Emergency stop; LOG;;test
+20170321_17:44:10;Deriv;gcode/20170321_17:44:10Method.gcode;gcode/20170321_17:44:10Method.gcode;;test
+20170321_17:44:34;Deriv;Emergency stop; LOG;;test
+20170321_17:44:35;Deriv;gcode/20170321_17:44:35Method.gcode;gcode/20170321_17:44:35Method.gcode;;test
+20170321_17:45:16;Deriv;Emergency stop; LOG;;test
+20170321_17:45:16;Deriv;gcode/20170321_17:45:16Method.gcode;gcode/20170321_17:45:16Method.gcode;;test
+20170321_17:51:40;Connection;NA;Board disconnection;;test
+20170321_18:03:09;Connection;NA;Board connection;;test
+20170321_18:03:13;test_ink;gcode/20170321_18:03:13test_ink.gcode;gcode/20170321_18:03:13test_ink.gcode;;test
+20170321_18:03:20;test_ink;gcode/20170321_18:03:20test_ink.gcode;gcode/20170321_18:03:20test_ink.gcode;;test
+20170321_18:03:46;test_ink;gcode/20170321_18:03:46test_ink.gcode;gcode/20170321_18:03:46test_ink.gcode;;test
+20170321_18:04:16;test_ink;gcode/20170321_18:04:16test_ink.gcode;gcode/20170321_18:04:16test_ink.gcode;;test
+20170321_18:04:50;test_ink;gcode/20170321_18:04:50test_ink.gcode;gcode/20170321_18:04:50test_ink.gcode;;test
+20170321_18:23:23;Connection;NA;Board disconnection;;test
+20170321_18:25:40;Connection;NA;Board connection;;test
+20170321_18:41:57;test_ink;gcode/20170321_18:41:57test_ink.gcode;gcode/20170321_18:41:57test_ink.gcode;;pesticide n5
+20170321_18:42:09;test_ink;gcode/20170321_18:42:09test_ink.gcode;gcode/20170321_18:42:09test_ink.gcode;;pesticide n5
+20170321_18:42:13;test_ink;gcode/20170321_18:42:13test_ink.gcode;gcode/20170321_18:42:13test_ink.gcode;;pesticide n5
+20170321_18:42:17;test_ink;gcode/20170321_18:42:17test_ink.gcode;gcode/20170321_18:42:17test_ink.gcode;;pesticide n5
+20170321_18:45:53;test_ink;gcode/20170321_18:45:53test_ink.gcode;gcode/20170321_18:45:53test_ink.gcode;;pesticide n5
+20170321_18:47:52;SA;gcode/20170321_18:47:52Method.gcode;gcode/20170321_18:47:52Method.gcode;;pesticide n5
+20170321_19:20:11;Connection;NA;Board disconnection;;pesticide n5
+20170322_10:52:42;Connection;NA;Board connection;;test
+20170322_10:52:56;Connection;NA;Board disconnection;;test
+20170322_11:26:10;Connection;NA;Board connection;;test
+20170322_11:32:11;Connection;NA;Board disconnection;;test
+20170322_11:32:11;Connection;NA;Board disconnection;;test
+20170322_11:32:48;Connection;NA;Board connection;;test
+20170322_11:33:15;Deriv;gcode/20170322_11:33:15Method.gcode;gcode/20170322_11:33:15Method.gcode;;test
+20170322_11:40:59;Connection;NA;Board connection;;test
+20170322_11:41:13;Connection;NA;Board disconnection;;test
+20170322_11:41:23;Connection;NA;Board connection;;test
+20170322_11:41:49;Connection;NA;Board disconnection;;test
+20170322_11:43:23;Connection;NA;Board connection;;test
+20170322_11:43:47;Deriv;gcode/20170322_11:43:47Method.gcode;gcode/20170322_11:43:47Method.gcode;;test
+20170322_11:44:01;Deriv;Emergency stop; LOG;;test
+20170322_11:45:44;test_ink;gcode/20170322_11:45:44test_ink.gcode;gcode/20170322_11:45:44test_ink.gcode;;test
+20170322_11:45:45;test_ink;gcode/20170322_11:45:45test_ink.gcode;gcode/20170322_11:45:45test_ink.gcode;;test
+20170322_11:45:46;test_ink;gcode/20170322_11:45:46test_ink.gcode;gcode/20170322_11:45:46test_ink.gcode;;test
+20170322_11:45:46;test_ink;gcode/20170322_11:45:46test_ink.gcode;gcode/20170322_11:45:46test_ink.gcode;;test
+20170322_11:45:46;test_ink;gcode/20170322_11:45:46test_ink.gcode;gcode/20170322_11:45:46test_ink.gcode;;test
+20170322_11:45:47;test_ink;gcode/20170322_11:45:47test_ink.gcode;gcode/20170322_11:45:47test_ink.gcode;;test
+20170322_11:45:47;test_ink;gcode/20170322_11:45:47test_ink.gcode;gcode/20170322_11:45:47test_ink.gcode;;test
+20170322_11:45:48;test_ink;gcode/20170322_11:45:48test_ink.gcode;gcode/20170322_11:45:48test_ink.gcode;;test
+20170322_11:45:53;test_ink;gcode/20170322_11:45:53test_ink.gcode;gcode/20170322_11:45:53test_ink.gcode;;test
+20170322_11:45:55;test_ink;gcode/20170322_11:45:55test_ink.gcode;gcode/20170322_11:45:55test_ink.gcode;;test
+20170322_11:45:57;test_ink;gcode/20170322_11:45:57test_ink.gcode;gcode/20170322_11:45:57test_ink.gcode;;test
+20170322_11:46:00;test_ink;gcode/20170322_11:46:00test_ink.gcode;gcode/20170322_11:46:00test_ink.gcode;;test
+20170322_11:46:02;test_ink;gcode/20170322_11:46:02test_ink.gcode;gcode/20170322_11:46:02test_ink.gcode;;test
+20170322_11:46:04;test_ink;gcode/20170322_11:46:04test_ink.gcode;gcode/20170322_11:46:04test_ink.gcode;;test
+20170322_11:46:06;test_ink;gcode/20170322_11:46:06test_ink.gcode;gcode/20170322_11:46:06test_ink.gcode;;test
+20170322_11:46:08;test_ink;gcode/20170322_11:46:08test_ink.gcode;gcode/20170322_11:46:08test_ink.gcode;;test
+20170322_11:46:11;test_ink;gcode/20170322_11:46:11test_ink.gcode;gcode/20170322_11:46:11test_ink.gcode;;test
+20170322_11:46:13;test_ink;gcode/20170322_11:46:13test_ink.gcode;gcode/20170322_11:46:13test_ink.gcode;;test
+20170322_11:46:15;test_ink;gcode/20170322_11:46:15test_ink.gcode;gcode/20170322_11:46:15test_ink.gcode;;test
+20170322_11:50:06;Deriv;gcode/20170322_11:50:06Method.gcode;gcode/20170322_11:50:06Method.gcode;;test
+20170322_11:57:04;Deriv;gcode/20170322_11:57:04Method.gcode;gcode/20170322_11:57:04Method.gcode;;test
+20170322_11:57:05;Deriv;Emergency stop; LOG;;test
+20170322_11:57:06;Deriv;gcode/20170322_11:57:06Method.gcode;gcode/20170322_11:57:06Method.gcode;;test
+20170322_15:25:41;Connection;NA;Board connection;;test
+20170322_15:28:54;Connection;NA;Board connection;;test
+20170322_15:30:21;Connection;NA;Board connection;;test
+20170322_15:30:36;Connection;NA;Board disconnection;;test
+20170322_17:39:13;Connection;NA;Board connection;;test
+20170322_17:45:15;SA;gcode/20170322_17:45:15Method.gcode;gcode/20170322_17:45:15Method.gcode;;test
+20170322_17:45:39;SA;gcode/20170322_17:45:39Method.gcode;gcode/20170322_17:45:39Method.gcode;;test
+20170322_17:45:40;SA;Emergency stop; LOG;;test
+20170322_17:45:41;SA;gcode/20170322_17:45:41Method.gcode;gcode/20170322_17:45:41Method.gcode;;test
+20170322_17:47:19;SA;Emergency stop; LOG;;test
+20170322_17:47:20;SA;gcode/20170322_17:47:20Method.gcode;gcode/20170322_17:47:20Method.gcode;;test
+20170322_17:50:29;SA;Emergency stop; LOG;;test
+20170322_17:50:30;SA;gcode/20170322_17:50:30Method.gcode;gcode/20170322_17:50:30Method.gcode;;test
+20170322_17:55:07;SA;Emergency stop; LOG;;test
+20170322_17:55:08;SA;gcode/20170322_17:55:08Method.gcode;gcode/20170322_17:55:08Method.gcode;;test
+20170322_18:13:53;SA;gcode/20170322_18:13:53Method.gcode;gcode/20170322_18:13:53Method.gcode;;test
+20170322_18:13:54;SA;Emergency stop; LOG;;test
+20170322_18:13:54;SA;gcode/20170322_18:13:54Method.gcode;gcode/20170322_18:13:54Method.gcode;;test
+20170322_18:15:38;SA;Emergency stop; LOG;;test
+20170322_18:15:39;SA;gcode/20170322_18:15:39Method.gcode;gcode/20170322_18:15:39Method.gcode;;test
+20170322_18:18:21;SA;Emergency stop; LOG;;test
+20170322_18:18:24;SA;gcode/20170322_18:18:24Method.gcode;gcode/20170322_18:18:24Method.gcode;;test
+20170322_18:22:54;SA;Emergency stop; LOG;;test
+20170322_18:22:59;SA;gcode/20170322_18:22:59Method.gcode;gcode/20170322_18:22:59Method.gcode;;test
+20170322_18:36:19;Connection;NA;Board disconnection;;test
+20170323_08:53:59;Connection;NA;Board connection;;test
+20170323_10:11:59;Connection;NA;Board disconnection;;test
+20170326_15:31:28;Connection;NA;Board connection;;test
+20170326_15:31:52;Connection;NA;Board disconnection;;test
+20170326_15:32:54;Connection;NA;Board connection;;test
+20170326_16:13:18;SA;gcode/20170326_16:13:18Method.gcode;gcode/20170326_16:13:18Method.gcode;;preservatives_n2
+20170326_16:29:57;Connection;NA;Board disconnection;;preservatives_n2
+20170326_16:30:04;Connection;NA;Board connection;;preservatives_n2
+20170326_16:31:32;Connection;NA;Board connection;;preservatives_n2
+20170326_16:32:03;Connection;NA;Board connection;;preservatives_n2
+20170326_16:32:48;Connection;NA;Board connection;;preservatives_n2
+20170326_16:37:00;SA;gcode/20170326_16:37:00Method.gcode;gcode/20170326_16:37:00Method.gcode;;preservatives_n2
+20170326_16:40:03;SA;Emergency stop; LOG;;preservatives_n2
+20170326_16:40:09;SA;gcode/20170326_16:40:09Method.gcode;gcode/20170326_16:40:09Method.gcode;;preservatives_n2
+20170326_16:44:15;SA;gcode/20170326_16:44:15Method.gcode;gcode/20170326_16:44:15Method.gcode;;preservatives_n2
+20170326_16:44:17;SA;Emergency stop; LOG;;preservatives_n2
+20170326_16:44:18;SA;gcode/20170326_16:44:18Method.gcode;gcode/20170326_16:44:18Method.gcode;;preservatives_n2
+20170326_16:44:35;SA;Emergency stop; LOG;;preservatives_n2
+20170326_16:44:36;SA;gcode/20170326_16:44:36Method.gcode;gcode/20170326_16:44:36Method.gcode;;preservatives_n2
+20170326_16:44:38;SA;Emergency stop; LOG;;preservatives_n2
+20170326_16:44:41;Connection;NA;Board disconnection;;preservatives_n2
+20170326_16:45:07;Connection;NA;Board connection;;preservatives_n2
+20170326_17:08:28;Connection;NA;Board connection;;test
+20170326_17:11:44;test_ink;gcode/20170326_17:11:44test_ink.gcode;gcode/20170326_17:11:44test_ink.gcode;;test
+20170326_17:11:45;test_ink;gcode/20170326_17:11:45test_ink.gcode;gcode/20170326_17:11:45test_ink.gcode;;test
+20170326_17:11:46;test_ink;gcode/20170326_17:11:46test_ink.gcode;gcode/20170326_17:11:46test_ink.gcode;;test
+20170326_17:12:00;Connection;NA;Board connection;;test
+20170326_17:12:20;SA;gcode/20170326_17:12:20Method.gcode;gcode/20170326_17:12:20Method.gcode;;test
+20170326_17:12:36;SA;Emergency stop; LOG;;test
+20170326_17:12:43;SA;gcode/20170326_17:12:43Method.gcode;gcode/20170326_17:12:43Method.gcode;;test
+20170326_17:14:41;SA;Emergency stop; LOG;;test
+20170326_17:19:03;Connection;NA;Board disconnection;;test
+20170326_19:30:16;Connection;NA;Board connection;;test
+20170326_19:30:46;Connection;NA;Board connection;;test
+20170326_19:31:55;test_ink;gcode/20170326_19:31:55test_ink.gcode;gcode/20170326_19:31:55test_ink.gcode;;test
+20170326_19:32:08;test_ink;gcode/20170326_19:32:08test_ink.gcode;gcode/20170326_19:32:08test_ink.gcode;;test
+20170326_19:32:21;test_ink;gcode/20170326_19:32:21test_ink.gcode;gcode/20170326_19:32:21test_ink.gcode;;test
+20170326_19:32:36;test_ink;gcode/20170326_19:32:36test_ink.gcode;gcode/20170326_19:32:36test_ink.gcode;;test
+20170326_19:33:24;Connection;NA;Board disconnection;;test
+20170326_19:33:28;Connection;NA;Board connection;;test
+20170326_19:35:17;Connection;NA;Board disconnection;;test
+20170326_19:37:47;Connection;NA;Board connection;;test
+20170326_19:41:52;test_ink;gcode/20170326_19:41:52test_ink.gcode;gcode/20170326_19:41:52test_ink.gcode;;test
+20170326_19:42:14;test_ink;gcode/20170326_19:42:14test_ink.gcode;gcode/20170326_19:42:14test_ink.gcode;;test
+20170326_19:42:15;test_ink;gcode/20170326_19:42:15test_ink.gcode;gcode/20170326_19:42:15test_ink.gcode;;test
+20170326_19:42:29;test_ink;gcode/20170326_19:42:29test_ink.gcode;gcode/20170326_19:42:29test_ink.gcode;;test
+20170326_19:42:30;test_ink;gcode/20170326_19:42:30test_ink.gcode;gcode/20170326_19:42:30test_ink.gcode;;test
+20170326_19:42:31;test_ink;gcode/20170326_19:42:31test_ink.gcode;gcode/20170326_19:42:31test_ink.gcode;;test
+20170326_19:42:32;test_ink;gcode/20170326_19:42:32test_ink.gcode;gcode/20170326_19:42:32test_ink.gcode;;test
+20170326_19:42:43;test_ink;gcode/20170326_19:42:43test_ink.gcode;gcode/20170326_19:42:43test_ink.gcode;;test
+20170326_19:43:28;test_ink;gcode/20170326_19:43:28test_ink.gcode;gcode/20170326_19:43:28test_ink.gcode;;test
+20170326_20:01:46;Connection;NA;Board disconnection;;test
+20170326_20:02:27;Connection;NA;Board connection;;test
+20170326_20:02:31;Connection;NA;Board disconnection;;test
+20170327_11:04:34;Connection;NA;Board connection;;test
+20170327_11:08:57;test_ink;gcode/20170327_11:08:57test_ink.gcode;gcode/20170327_11:08:57test_ink.gcode;;test
+20170327_11:09:09;test_ink;gcode/20170327_11:09:09test_ink.gcode;gcode/20170327_11:09:09test_ink.gcode;;test
+20170327_11:09:10;test_ink;gcode/20170327_11:09:10test_ink.gcode;gcode/20170327_11:09:10test_ink.gcode;;test
+20170327_11:09:12;test_ink;gcode/20170327_11:09:12test_ink.gcode;gcode/20170327_11:09:12test_ink.gcode;;test
+20170327_11:09:25;test_ink;gcode/20170327_11:09:25test_ink.gcode;gcode/20170327_11:09:25test_ink.gcode;;test
+20170327_11:09:39;test_ink;gcode/20170327_11:09:39test_ink.gcode;gcode/20170327_11:09:39test_ink.gcode;;test
+20170327_11:09:47;test_ink;gcode/20170327_11:09:47test_ink.gcode;gcode/20170327_11:09:47test_ink.gcode;;test
+20170327_11:09:56;test_ink;gcode/20170327_11:09:56test_ink.gcode;gcode/20170327_11:09:56test_ink.gcode;;test
+20170327_11:15:38;Deriv_2;gcode/20170327_11:15:38Method.gcode;gcode/20170327_11:15:38Method.gcode;;test
+20170327_11:21:44;test_ink;gcode/20170327_11:21:44test_ink.gcode;gcode/20170327_11:21:44test_ink.gcode;;test
+20170327_11:21:45;test_ink;gcode/20170327_11:21:45test_ink.gcode;gcode/20170327_11:21:45test_ink.gcode;;test
+20170327_11:21:48;test_ink;gcode/20170327_11:21:48test_ink.gcode;gcode/20170327_11:21:48test_ink.gcode;;test
+20170327_11:21:53;test_ink;gcode/20170327_11:21:53test_ink.gcode;gcode/20170327_11:21:53test_ink.gcode;;test
+20170327_11:21:54;test_ink;gcode/20170327_11:21:54test_ink.gcode;gcode/20170327_11:21:54test_ink.gcode;;test
+20170327_11:22:10;test_ink;gcode/20170327_11:22:10test_ink.gcode;gcode/20170327_11:22:10test_ink.gcode;;test
+20170327_11:22:11;test_ink;gcode/20170327_11:22:11test_ink.gcode;gcode/20170327_11:22:11test_ink.gcode;;test
+20170327_11:22:22;test_ink;gcode/20170327_11:22:22test_ink.gcode;gcode/20170327_11:22:22test_ink.gcode;;test
+20170327_11:22:23;test_ink;gcode/20170327_11:22:23test_ink.gcode;gcode/20170327_11:22:23test_ink.gcode;;test
+20170327_11:22:27;test_ink;gcode/20170327_11:22:27test_ink.gcode;gcode/20170327_11:22:27test_ink.gcode;;test
+20170327_11:22:28;test_ink;gcode/20170327_11:22:28test_ink.gcode;gcode/20170327_11:22:28test_ink.gcode;;test
+20170327_11:23:10;Deriv_2;gcode/20170327_11:23:10Method.gcode;gcode/20170327_11:23:10Method.gcode;;test
+20170327_11:23:12;Deriv_2;Emergency stop; LOG;;test
+20170327_11:23:12;Deriv_2;gcode/20170327_11:23:12Method.gcode;gcode/20170327_11:23:12Method.gcode;;test
+20170327_11:24:57;test_ink;gcode/20170327_11:24:57test_ink.gcode;gcode/20170327_11:24:57test_ink.gcode;;test
+20170327_11:25:00;test_ink;gcode/20170327_11:25:00test_ink.gcode;gcode/20170327_11:25:00test_ink.gcode;;test
+20170327_11:25:00;test_ink;gcode/20170327_11:25:00test_ink.gcode;gcode/20170327_11:25:00test_ink.gcode;;test
+20170327_11:25:01;test_ink;gcode/20170327_11:25:01test_ink.gcode;gcode/20170327_11:25:01test_ink.gcode;;test
+20170327_11:25:01;test_ink;gcode/20170327_11:25:01test_ink.gcode;gcode/20170327_11:25:01test_ink.gcode;;test
+20170327_11:25:02;test_ink;gcode/20170327_11:25:02test_ink.gcode;gcode/20170327_11:25:02test_ink.gcode;;test
+20170327_11:25:02;test_ink;gcode/20170327_11:25:02test_ink.gcode;gcode/20170327_11:25:02test_ink.gcode;;test
+20170327_11:25:03;test_ink;gcode/20170327_11:25:03test_ink.gcode;gcode/20170327_11:25:03test_ink.gcode;;test
+20170327_11:25:03;test_ink;gcode/20170327_11:25:03test_ink.gcode;gcode/20170327_11:25:03test_ink.gcode;;test
+20170327_11:25:17;test_ink;gcode/20170327_11:25:17test_ink.gcode;gcode/20170327_11:25:17test_ink.gcode;;test
+20170327_11:25:18;test_ink;gcode/20170327_11:25:18test_ink.gcode;gcode/20170327_11:25:18test_ink.gcode;;test
+20170327_11:25:18;test_ink;gcode/20170327_11:25:18test_ink.gcode;gcode/20170327_11:25:18test_ink.gcode;;test
+20170327_11:25:19;test_ink;gcode/20170327_11:25:19test_ink.gcode;gcode/20170327_11:25:19test_ink.gcode;;test
+20170327_11:25:20;test_ink;gcode/20170327_11:25:20test_ink.gcode;gcode/20170327_11:25:20test_ink.gcode;;test
+20170327_11:31:36;test_ink;gcode/20170327_11:31:36test_ink.gcode;gcode/20170327_11:31:36test_ink.gcode;;test
+20170327_11:31:37;test_ink;gcode/20170327_11:31:37test_ink.gcode;gcode/20170327_11:31:37test_ink.gcode;;test
+20170327_11:31:37;test_ink;gcode/20170327_11:31:37test_ink.gcode;gcode/20170327_11:31:37test_ink.gcode;;test
+20170327_11:31:38;test_ink;gcode/20170327_11:31:38test_ink.gcode;gcode/20170327_11:31:38test_ink.gcode;;test
+20170327_11:31:39;test_ink;gcode/20170327_11:31:39test_ink.gcode;gcode/20170327_11:31:39test_ink.gcode;;test
+20170327_11:31:40;test_ink;gcode/20170327_11:31:40test_ink.gcode;gcode/20170327_11:31:40test_ink.gcode;;test
+20170327_11:31:41;test_ink;gcode/20170327_11:31:41test_ink.gcode;gcode/20170327_11:31:41test_ink.gcode;;test
+20170327_11:33:16;Deriv_2;Emergency stop; LOG;;test
+20170327_11:33:19;Deriv_2;gcode/20170327_11:33:19Method.gcode;gcode/20170327_11:33:19Method.gcode;;test
+20170327_11:35:46;Deriv_2;Emergency stop; LOG;;test
+20170327_11:36:02;Deriv_2;gcode/20170327_11:36:02Method.gcode;gcode/20170327_11:36:02Method.gcode;;test
+20170327_11:37:38;Deriv_2;Emergency stop; LOG;;test
+20170327_11:37:42;Deriv_2;gcode/20170327_11:37:42Method.gcode;gcode/20170327_11:37:42Method.gcode;;test
+20170327_11:37:54;Deriv_2;Emergency stop; LOG;;test
+20170327_11:38:20;Deriv_2;gcode/20170327_11:38:20Method.gcode;gcode/20170327_11:38:20Method.gcode;;test
+20170327_11:38:36;Deriv_2;Emergency stop; LOG;;test
+20170327_11:38:42;Deriv_2;gcode/20170327_11:38:42Method.gcode;gcode/20170327_11:38:42Method.gcode;;test
+20170327_11:38:52;Deriv_2;Emergency stop; LOG;;test
+20170327_12:09:11;test_ink;gcode/20170327_12:09:11test_ink.gcode;gcode/20170327_12:09:11test_ink.gcode;;test
+20170327_12:09:12;test_ink;gcode/20170327_12:09:12test_ink.gcode;gcode/20170327_12:09:12test_ink.gcode;;test
+20170327_12:09:13;test_ink;gcode/20170327_12:09:13test_ink.gcode;gcode/20170327_12:09:13test_ink.gcode;;test
+20170327_12:09:22;test_ink;gcode/20170327_12:09:22test_ink.gcode;gcode/20170327_12:09:22test_ink.gcode;;test
+20170327_12:09:22;test_ink;gcode/20170327_12:09:22test_ink.gcode;gcode/20170327_12:09:22test_ink.gcode;;test
+20170327_12:09:27;test_ink;gcode/20170327_12:09:27test_ink.gcode;gcode/20170327_12:09:27test_ink.gcode;;test
+20170327_12:09:28;test_ink;gcode/20170327_12:09:28test_ink.gcode;gcode/20170327_12:09:28test_ink.gcode;;test
+20170327_12:09:36;Deriv_2;gcode/20170327_12:09:36Method.gcode;gcode/20170327_12:09:36Method.gcode;;test
+20170327_12:09:38;Deriv_2;Emergency stop; LOG;;test
+20170327_12:09:44;Deriv_2;gcode/20170327_12:09:44Method.gcode;gcode/20170327_12:09:44Method.gcode;;test
+20170327_12:11:55;Deriv_2;Emergency stop; LOG;;test
+20170327_12:11:56;Deriv_2;gcode/20170327_12:11:56Method.gcode;gcode/20170327_12:11:56Method.gcode;;test
+20170327_12:13:59;Deriv_2;gcode/20170327_12:13:59Method.gcode;gcode/20170327_12:13:59Method.gcode;;test
+20170327_12:14:00;Deriv_2;Emergency stop; LOG;;test
+20170327_12:14:00;Deriv_2;gcode/20170327_12:14:00Method.gcode;gcode/20170327_12:14:00Method.gcode;;test
+20170327_12:15:20;Deriv_2;Emergency stop; LOG;;test
+20170327_12:16:07;Deriv_2;gcode/20170327_12:16:07Method.gcode;gcode/20170327_12:16:07Method.gcode;;test
+20170327_12:16:13;Deriv_2;Emergency stop; LOG;;test
+20170327_12:17:18;Connection;NA;Board connection;;test
+20170327_12:17:58;Deriv_2;gcode/20170327_12:17:58Method.gcode;gcode/20170327_12:17:58Method.gcode;;test
+20170327_12:18:39;Deriv_2;Emergency stop; LOG;;test
+20170327_12:18:52;Deriv_2;gcode/20170327_12:18:52Method.gcode;gcode/20170327_12:18:52Method.gcode;;test
+20170327_12:22:22;Deriv_2;gcode/20170327_12:22:22Method.gcode;gcode/20170327_12:22:22Method.gcode;;test
+20170327_12:22:24;Deriv_2;Emergency stop; LOG;;test
+20170327_12:22:25;Deriv_2;gcode/20170327_12:22:25Method.gcode;gcode/20170327_12:22:25Method.gcode;;test
+20170327_12:23:50;Deriv_2;Emergency stop; LOG;;test
+20170327_12:23:51;Deriv_2;gcode/20170327_12:23:51Method.gcode;gcode/20170327_12:23:51Method.gcode;;test
+20170327_12:24:03;Deriv_2;Emergency stop; LOG;;test
+20170327_12:24:08;Deriv_2;gcode/20170327_12:24:08Method.gcode;gcode/20170327_12:24:08Method.gcode;;test
+20170327_12:24:35;Deriv_2;Emergency stop; LOG;;test
+20170327_12:26:11;Deriv_2;gcode/20170327_12:26:11Method.gcode;gcode/20170327_12:26:11Method.gcode;;test
+20170327_12:26:13;Deriv_2;Emergency stop; LOG;;test
+20170327_12:26:38;Deriv_2;gcode/20170327_12:26:38Method.gcode;gcode/20170327_12:26:38Method.gcode;;test
+20170327_12:26:55;Deriv_2;Emergency stop; LOG;;test
+20170327_12:27:49;Deriv_2;gcode/20170327_12:27:49Method.gcode;gcode/20170327_12:27:49Method.gcode;;test
+20170327_12:28:59;Deriv_2;Emergency stop; LOG;;test
+20170327_12:29:23;Deriv_2;gcode/20170327_12:29:23Method.gcode;gcode/20170327_12:29:23Method.gcode;;test
+20170327_12:29:31;Deriv_2;Emergency stop; LOG;;test
+20170327_12:30:22;Deriv_2;gcode/20170327_12:30:22Method.gcode;gcode/20170327_12:30:22Method.gcode;;test
+20170327_12:30:35;Deriv_2;Emergency stop; LOG;;test
+20170327_12:30:42;Deriv_2;gcode/20170327_12:30:42Method.gcode;gcode/20170327_12:30:42Method.gcode;;test
+20170327_12:31:32;Deriv_2;Emergency stop; LOG;;test
+20170327_12:38:52;Connection;NA;Board disconnection;;test
+20170328_16:27:15;Connection;NA;Board connection;;test
+20170328_16:27:43;Deriv_2;gcode/20170328_16:27:43Method.gcode;gcode/20170328_16:27:43Method.gcode;;test
+20170328_16:28:39;Deriv_2;Emergency stop; LOG;;test
+20170328_16:29:21;Connection;NA;Board disconnection;;test
+20170328_16:29:33;Deriv_2;gcode/20170328_16:29:33Method.gcode;gcode/20170328_16:29:33Method.gcode;;test
+20170328_16:29:34;Deriv_2;Emergency stop; LOG;;test
+20170328_16:29:37;Deriv_2;gcode/20170328_16:29:37Method.gcode;gcode/20170328_16:29:37Method.gcode;;test
+20170328_16:29:37;Deriv_2;Emergency stop; LOG;;test
+20170328_16:29:42;Deriv_2;gcode/20170328_16:29:42Method.gcode;gcode/20170328_16:29:42Method.gcode;;test
+20170328_16:29:43;Deriv_2;Emergency stop; LOG;;test
+20170328_16:29:54;Connection;NA;Board connection;;test
+20170328_16:30:09;Deriv_2;gcode/20170328_16:30:09Method.gcode;gcode/20170328_16:30:09Method.gcode;;test
+20170328_16:30:35;Connection;NA;Board connection;;test
+20170328_16:32:12;Connection;NA;Board connection;;test
+20170328_16:33:35;Connection;NA;Board connection;;test
+20170328_16:33:45;Deriv_2;gcode/20170328_16:33:45Method.gcode;gcode/20170328_16:33:45Method.gcode;;test
+20170328_16:37:50;test_ink;gcode/20170328_16:37:50test_ink.gcode;gcode/20170328_16:37:50test_ink.gcode;;test
+20170328_16:38:06;Deriv_2;gcode/20170328_16:38:06Method.gcode;gcode/20170328_16:38:06Method.gcode;;test
+20170328_16:38:08;Deriv_2;Emergency stop; LOG;;test
+20170328_16:38:08;Deriv_2;gcode/20170328_16:38:08Method.gcode;gcode/20170328_16:38:08Method.gcode;;test
+20170328_16:38:41;Deriv_2;Emergency stop; LOG;;test
+20170328_16:38:42;Deriv_2;gcode/20170328_16:38:42Method.gcode;gcode/20170328_16:38:42Method.gcode;;test
+20170328_16:40:42;Deriv_2;Emergency stop; LOG;;test
+20170328_16:40:53;Deriv_2;gcode/20170328_16:40:53Method.gcode;gcode/20170328_16:40:53Method.gcode;;test
+20170328_16:42:05;test_ink;gcode/20170328_16:42:05test_ink.gcode;gcode/20170328_16:42:05test_ink.gcode;;test
+20170328_16:48:35;test_ink;gcode/20170328_16:48:35test_ink.gcode;gcode/20170328_16:48:35test_ink.gcode;;test
+20170328_16:48:36;test_ink;gcode/20170328_16:48:36test_ink.gcode;gcode/20170328_16:48:36test_ink.gcode;;test
+20170328_16:48:37;test_ink;gcode/20170328_16:48:37test_ink.gcode;gcode/20170328_16:48:37test_ink.gcode;;test
+20170328_16:48:39;test_ink;gcode/20170328_16:48:39test_ink.gcode;gcode/20170328_16:48:39test_ink.gcode;;test
+20170328_16:48:40;test_ink;gcode/20170328_16:48:40test_ink.gcode;gcode/20170328_16:48:40test_ink.gcode;;test
+20170328_16:50:26;Deriv_2;Emergency stop; LOG;;test
+20170328_16:50:27;Deriv_2;gcode/20170328_16:50:27Method.gcode;gcode/20170328_16:50:27Method.gcode;;test
+20170328_16:51:03;Deriv_2;gcode/20170328_16:51:03Method.gcode;gcode/20170328_16:51:03Method.gcode;;test
+20170328_16:51:04;Deriv_2;Emergency stop; LOG;;test
+20170328_16:51:05;Deriv_2;gcode/20170328_16:51:05Method.gcode;gcode/20170328_16:51:05Method.gcode;;test
+20170328_16:52:59;Deriv_2;Emergency stop; LOG;;test
+20170328_16:53:00;Deriv_2;gcode/20170328_16:53:00Method.gcode;gcode/20170328_16:53:00Method.gcode;;test
+20170328_16:53:15;Deriv_2;Emergency stop; LOG;;test
+20170328_17:00:37;test_ink;gcode/20170328_17:00:37test_ink.gcode;gcode/20170328_17:00:37test_ink.gcode;;test
+20170328_17:01:06;Deriv_2;gcode/20170328_17:01:06Method.gcode;gcode/20170328_17:01:06Method.gcode;;test
+20170328_17:01:50;Deriv_2;Emergency stop; LOG;;test
+20170328_17:01:51;Deriv_2;gcode/20170328_17:01:51Method.gcode;gcode/20170328_17:01:51Method.gcode;;test
+20170328_17:03:28;Deriv_2;Emergency stop; LOG;;test
+20170328_17:03:29;Deriv_2;gcode/20170328_17:03:29Method.gcode;gcode/20170328_17:03:29Method.gcode;;test
+20170328_17:04:13;Deriv_2;Emergency stop; LOG;;test
+20170328_17:04:13;Deriv_2;gcode/20170328_17:04:13Method.gcode;gcode/20170328_17:04:13Method.gcode;;test
+20170328_17:05:17;Deriv_2;gcode/20170328_17:05:17Method.gcode;gcode/20170328_17:05:17Method.gcode;;test
+20170328_17:05:18;Deriv_2;Emergency stop; LOG;;test
+20170328_17:05:18;Deriv_2;gcode/20170328_17:05:18Method.gcode;gcode/20170328_17:05:18Method.gcode;;test
+20170328_17:06:37;Deriv_2;Emergency stop; LOG;;test
+20170328_17:07:30;Deriv_2;gcode/20170328_17:07:30Method.gcode;gcode/20170328_17:07:30Method.gcode;;test
+20170328_17:08:20;Deriv_2;gcode/20170328_17:08:20Method.gcode;gcode/20170328_17:08:20Method.gcode;;test
+20170328_17:08:21;Deriv_2;Emergency stop; LOG;;test
+20170328_17:08:21;Deriv_2;gcode/20170328_17:08:21Method.gcode;gcode/20170328_17:08:21Method.gcode;;test
+20170328_17:10:41;Connection;NA;Board connection;;test
+20170328_17:11:28;Deriv_2;gcode/20170328_17:11:28Method.gcode;gcode/20170328_17:11:28Method.gcode;;test
+20170328_17:12:09;Deriv_2;Emergency stop; LOG;;test
+20170328_17:12:11;Deriv_2;gcode/20170328_17:12:11Method.gcode;gcode/20170328_17:12:11Method.gcode;;test
+20170328_17:13:10;Deriv_2;gcode/20170328_17:13:10Method.gcode;gcode/20170328_17:13:10Method.gcode;;test
+20170328_17:13:11;Deriv_2;Emergency stop; LOG;;test
+20170328_17:13:18;Deriv_2;gcode/20170328_17:13:18Method.gcode;gcode/20170328_17:13:18Method.gcode;;test
+20170328_17:13:53;Deriv_2;Emergency stop; LOG;;test
+20170328_17:13:53;Deriv_2;gcode/20170328_17:13:53Method.gcode;gcode/20170328_17:13:53Method.gcode;;test
+20170328_17:14:30;Deriv_2;Emergency stop; LOG;;test
+20170328_17:14:31;Deriv_2;gcode/20170328_17:14:31Method.gcode;gcode/20170328_17:14:31Method.gcode;;test
+20170328_17:15:12;Deriv_2;Emergency stop; LOG;;test
+20170328_17:15:13;Deriv_2;gcode/20170328_17:15:13Method.gcode;gcode/20170328_17:15:13Method.gcode;;test
+20170328_17:19:33;Deriv_2;Emergency stop; LOG;;test
+20170328_17:19:34;Deriv_2;gcode/20170328_17:19:34Method.gcode;gcode/20170328_17:19:34Method.gcode;;test
+20170328_17:20:16;test_ink;gcode/20170328_17:20:16test_ink.gcode;gcode/20170328_17:20:16test_ink.gcode;;test
+20170328_17:20:21;test_ink;gcode/20170328_17:20:21test_ink.gcode;gcode/20170328_17:20:21test_ink.gcode;;test
+20170328_17:20:31;test_ink;gcode/20170328_17:20:31test_ink.gcode;gcode/20170328_17:20:31test_ink.gcode;;test
+20170328_17:20:46;test_ink;gcode/20170328_17:20:46test_ink.gcode;gcode/20170328_17:20:46test_ink.gcode;;test
+20170328_17:20:54;test_ink;gcode/20170328_17:20:54test_ink.gcode;gcode/20170328_17:20:54test_ink.gcode;;test
+20170328_17:29:18;test_ink;gcode/20170328_17:29:18test_ink.gcode;gcode/20170328_17:29:18test_ink.gcode;;test
+20170328_17:29:19;test_ink;gcode/20170328_17:29:19test_ink.gcode;gcode/20170328_17:29:19test_ink.gcode;;test
+20170328_17:29:20;test_ink;gcode/20170328_17:29:20test_ink.gcode;gcode/20170328_17:29:20test_ink.gcode;;test
+20170328_17:29:21;test_ink;gcode/20170328_17:29:21test_ink.gcode;gcode/20170328_17:29:21test_ink.gcode;;test
+20170328_17:29:21;test_ink;gcode/20170328_17:29:21test_ink.gcode;gcode/20170328_17:29:21test_ink.gcode;;test
+20170328_17:29:22;test_ink;gcode/20170328_17:29:22test_ink.gcode;gcode/20170328_17:29:22test_ink.gcode;;test
+20170328_17:29:22;test_ink;gcode/20170328_17:29:22test_ink.gcode;gcode/20170328_17:29:22test_ink.gcode;;test
+20170328_17:29:23;test_ink;gcode/20170328_17:29:23test_ink.gcode;gcode/20170328_17:29:23test_ink.gcode;;test
+20170328_17:34:40;Connection;NA;Board disconnection;;test
+20170329_08:47:49;Connection;NA;Board connection;;test
+20170329_09:22:34;Connection;NA;Board disconnection;;test
+20170329_13:13:58;Connection;NA;Board connection;;test
+20170329_13:14:00;Connection;NA;Board connection;;test
+20170329_13:14:02;Connection;NA;Board connection;;test
+20170329_13:15:24;test_ink;gcode/20170329_13:15:24test_ink.gcode;gcode/20170329_13:15:24test_ink.gcode;;test
+20170329_13:15:26;test_ink;gcode/20170329_13:15:26test_ink.gcode;gcode/20170329_13:15:26test_ink.gcode;;test
+20170329_13:15:27;test_ink;gcode/20170329_13:15:27test_ink.gcode;gcode/20170329_13:15:27test_ink.gcode;;test
+20170329_13:15:44;Deriv_2;gcode/20170329_13:15:44Method.gcode;gcode/20170329_13:15:44Method.gcode;;test
+20170329_13:24:06;Deriv_2;Emergency stop; LOG;;test
+20170329_13:24:07;Deriv_2;gcode/20170329_13:24:07Method.gcode;gcode/20170329_13:24:07Method.gcode;;test
+20170329_13:27:49;Deriv_2;Emergency stop; LOG;;test
+20170329_13:27:51;Deriv_2;gcode/20170329_13:27:51Method.gcode;gcode/20170329_13:27:51Method.gcode;;test
+20170329_13:28:03;Deriv_2;Emergency stop; LOG;;test
+20170329_13:30:16;Deriv_2;gcode/20170329_13:30:16Method.gcode;gcode/20170329_13:30:16Method.gcode;;test
+20170329_13:37:13;Deriv_2;Emergency stop; LOG;;test
+20170329_13:37:16;Deriv_2;gcode/20170329_13:37:16Method.gcode;gcode/20170329_13:37:16Method.gcode;;test
+20170329_13:39:30;Deriv_2;Emergency stop; LOG;;test
+20170329_13:39:44;Deriv_2;gcode/20170329_13:39:44Method.gcode;gcode/20170329_13:39:44Method.gcode;;test
+20170329_13:48:07;Deriv_2;gcode/20170329_13:48:07Method.gcode;gcode/20170329_13:48:07Method.gcode;;test
+20170329_13:48:08;Deriv_2;Emergency stop; LOG;;test
+20170329_13:48:09;Deriv_2;gcode/20170329_13:48:09Method.gcode;gcode/20170329_13:48:09Method.gcode;;test
+20170329_13:55:32;Deriv_2;Emergency stop; LOG;;test
+20170329_13:55:34;Deriv_2;gcode/20170329_13:55:34Method.gcode;gcode/20170329_13:55:34Method.gcode;;test
+20170329_13:55:39;Deriv_2;Emergency stop; LOG;;test
+20170329_13:55:46;Deriv_2;gcode/20170329_13:55:46Method.gcode;gcode/20170329_13:55:46Method.gcode;;test
+20170329_13:56:38;Deriv_2;gcode/20170329_13:56:38Method.gcode;gcode/20170329_13:56:38Method.gcode;;test
+20170329_13:56:39;Deriv_2;Emergency stop; LOG;;test
+20170329_13:56:40;Deriv_2;gcode/20170329_13:56:40Method.gcode;gcode/20170329_13:56:40Method.gcode;;test
+20170329_14:01:00;Deriv_2;Emergency stop; LOG;;test
+20170329_14:01:01;Deriv_2;gcode/20170329_14:01:01Method.gcode;gcode/20170329_14:01:01Method.gcode;;test
+20170329_14:05:58;Connection;NA;Board disconnection;;test
+20170329_14:25:19;Connection;NA;Board connection;;test
+20170329_14:25:49;Connection;NA;Board connection;;test
+20170329_14:26:30;Connection;NA;Board connection;;test
+20170329_14:28:06;Connection;NA;Board connection;;test
+20170329_14:28:13;Deriv_3;gcode/20170329_14:28:13Method.gcode;gcode/20170329_14:28:13Method.gcode;;test
+20170329_14:28:49;Connection;NA;Board connection;;test
+20170329_14:28:57;Deriv_3;gcode/20170329_14:28:57Method.gcode;gcode/20170329_14:28:57Method.gcode;;test
+20170329_14:29:31;Deriv_3;Emergency stop; LOG;;test
+20170329_14:29:31;Deriv_3;gcode/20170329_14:29:31Method.gcode;gcode/20170329_14:29:31Method.gcode;;test
+20170329_14:29:52;Deriv_3;Emergency stop; LOG;;test
+20170329_14:29:53;Deriv_3;gcode/20170329_14:29:53Method.gcode;gcode/20170329_14:29:53Method.gcode;;test
+20170329_14:31:47;Connection;NA;Board connection;;test
+20170330_13:19:38;SA;gcode/20170330_13:19:38Method.gcode;gcode/20170330_13:19:38Method.gcode;;test
+20170330_13:19:45;SA;Emergency stop; LOG;;test
+20170330_13:19:53;Connection;NA;Board connection;;test
+20170330_13:20:03;SA;gcode/20170330_13:20:03Method.gcode;gcode/20170330_13:20:03Method.gcode;;test
+20170330_13:20:32;SA;Emergency stop; LOG;;test
+20170330_13:23:38;test_ink;gcode/20170330_13:23:37test_ink.gcode;gcode/20170330_13:23:37test_ink.gcode;;test
+20170330_13:23:38;test_ink;gcode/20170330_13:23:38test_ink.gcode;gcode/20170330_13:23:38test_ink.gcode;;test
+20170330_13:23:45;test_ink;gcode/20170330_13:23:45test_ink.gcode;gcode/20170330_13:23:45test_ink.gcode;;test
+20170330_13:23:46;test_ink;gcode/20170330_13:23:46test_ink.gcode;gcode/20170330_13:23:46test_ink.gcode;;test
+20170330_13:23:47;test_ink;gcode/20170330_13:23:47test_ink.gcode;gcode/20170330_13:23:47test_ink.gcode;;test
+20170330_13:23:47;test_ink;gcode/20170330_13:23:47test_ink.gcode;gcode/20170330_13:23:47test_ink.gcode;;test
+20170330_13:23:47;test_ink;gcode/20170330_13:23:47test_ink.gcode;gcode/20170330_13:23:47test_ink.gcode;;test
+20170330_13:23:47;test_ink;gcode/20170330_13:23:47test_ink.gcode;gcode/20170330_13:23:47test_ink.gcode;;test
+20170330_13:23:47;test_ink;gcode/20170330_13:23:47test_ink.gcode;gcode/20170330_13:23:47test_ink.gcode;;test
+20170330_13:23:48;test_ink;gcode/20170330_13:23:48test_ink.gcode;gcode/20170330_13:23:48test_ink.gcode;;test
+20170330_13:23:48;test_ink;gcode/20170330_13:23:48test_ink.gcode;gcode/20170330_13:23:48test_ink.gcode;;test
+20170330_13:23:49;test_ink;gcode/20170330_13:23:49test_ink.gcode;gcode/20170330_13:23:49test_ink.gcode;;test
+20170330_13:23:50;test_ink;gcode/20170330_13:23:50test_ink.gcode;gcode/20170330_13:23:50test_ink.gcode;;test
+20170330_13:23:50;test_ink;gcode/20170330_13:23:50test_ink.gcode;gcode/20170330_13:23:50test_ink.gcode;;test
+20170330_13:23:50;test_ink;gcode/20170330_13:23:50test_ink.gcode;gcode/20170330_13:23:50test_ink.gcode;;test
+20170330_13:23:54;test_ink;gcode/20170330_13:23:54test_ink.gcode;gcode/20170330_13:23:54test_ink.gcode;;test
+20170330_13:23:59;test_ink;gcode/20170330_13:23:59test_ink.gcode;gcode/20170330_13:23:59test_ink.gcode;;test
+20170330_13:25:00;test_ink;gcode/20170330_13:25:00test_ink.gcode;gcode/20170330_13:25:00test_ink.gcode;;test
+20170330_13:26:45;SA;gcode/20170330_13:26:45Method.gcode;gcode/20170330_13:26:45Method.gcode;;test
+20170330_13:26:50;SA;Emergency stop; LOG;;test
+20170330_13:26:58;SA;gcode/20170330_13:26:58Method.gcode;gcode/20170330_13:26:58Method.gcode;;test
+20170330_13:41:45;SA;Emergency stop; LOG;;test
+20170330_13:41:46;SA;gcode/20170330_13:41:46Method.gcode;gcode/20170330_13:41:46Method.gcode;;test
+20170330_13:46:52;SA;Emergency stop; LOG;;test
+20170330_13:53:06;SA;gcode/20170330_13:53:06Method.gcode;gcode/20170330_13:53:06Method.gcode;;test
+20170330_14:03:06;SA;Emergency stop; LOG;;test
+20170330_14:03:07;SA;gcode/20170330_14:03:07Method.gcode;gcode/20170330_14:03:07Method.gcode;;test
+20170330_15:20:30;Connection;NA;Board disconnection;;test
+20170330_15:53:07;Connection;NA;Board connection;;test
+20170330_15:57:22;Deriv_3;gcode/20170330_15:57:22Method.gcode;gcode/20170330_15:57:22Method.gcode;;test
+20170330_15:58:06;Deriv_3;Emergency stop; LOG;;test
+20170330_15:58:08;Deriv_3;gcode/20170330_15:58:08Method.gcode;gcode/20170330_15:58:08Method.gcode;;test
+20170330_15:59:01;Deriv_3;Emergency stop; LOG;;test
+20170330_15:59:02;Deriv_3;gcode/20170330_15:59:02Method.gcode;gcode/20170330_15:59:02Method.gcode;;test
+20170330_15:59:40;Deriv_3;Emergency stop; LOG;;test
+20170330_15:59:41;Deriv_3;gcode/20170330_15:59:41Method.gcode;gcode/20170330_15:59:41Method.gcode;;test
+20170330_16:00:20;Deriv_3;Emergency stop; LOG;;test
+20170330_16:00:21;Deriv_3;gcode/20170330_16:00:21Method.gcode;gcode/20170330_16:00:21Method.gcode;;test
+20170330_16:00:57;Deriv_3;Emergency stop; LOG;;test
+20170330_16:00:58;Deriv_3;gcode/20170330_16:00:58Method.gcode;gcode/20170330_16:00:58Method.gcode;;test
+20170330_16:01:38;Deriv_3;Emergency stop; LOG;;test
+20170330_16:01:39;Deriv_3;gcode/20170330_16:01:39Method.gcode;gcode/20170330_16:01:39Method.gcode;;test
+20170330_16:02:18;Deriv_3;Emergency stop; LOG;;test
+20170330_16:02:19;Deriv_3;gcode/20170330_16:02:19Method.gcode;gcode/20170330_16:02:19Method.gcode;;test
+20170330_16:02:58;Deriv_3;Emergency stop; LOG;;test
+20170330_16:02:59;Deriv_3;gcode/20170330_16:02:59Method.gcode;gcode/20170330_16:02:59Method.gcode;;test
+20170330_16:03:39;Deriv_3;Emergency stop; LOG;;test
+20170330_16:03:40;Deriv_3;gcode/20170330_16:03:40Method.gcode;gcode/20170330_16:03:40Method.gcode;;test
+20170330_16:23:02;Connection;NA;Board disconnection;;test
+20170330_16:23:05;Connection;NA;Board connection;;test
+20170330_16:23:49;Deriv_3;Emergency stop; LOG;;test
+20170330_16:23:51;Deriv_3;gcode/20170330_16:23:50Method.gcode;gcode/20170330_16:23:50Method.gcode;;test
+20170330_16:24:33;Deriv_3;Emergency stop; LOG;;test
+20170330_16:24:36;Deriv_3;gcode/20170330_16:24:36Method.gcode;gcode/20170330_16:24:36Method.gcode;;test
+20170330_16:25:10;Deriv_3;Emergency stop; LOG;;test
+20170330_16:25:16;Deriv_3;gcode/20170330_16:25:16Method.gcode;gcode/20170330_16:25:16Method.gcode;;test
+20170330_16:25:50;Deriv_3;Emergency stop; LOG;;test
+20170330_16:25:55;Deriv_3;gcode/20170330_16:25:55Method.gcode;gcode/20170330_16:25:55Method.gcode;;test
+20170330_16:26:33;Deriv_3;Emergency stop; LOG;;test
+20170330_16:26:34;Deriv_3;gcode/20170330_16:26:34Method.gcode;gcode/20170330_16:26:34Method.gcode;;test
+20170330_16:26:55;Deriv_3;Emergency stop; LOG;;test
+20170330_16:27:03;Deriv_3;gcode/20170330_16:27:03Method.gcode;gcode/20170330_16:27:03Method.gcode;;test
+20170330_16:27:42;Deriv_3;Emergency stop; LOG;;test
+20170330_16:27:46;Deriv_3;gcode/20170330_16:27:46Method.gcode;gcode/20170330_16:27:46Method.gcode;;test
+20170330_16:28:23;Deriv_3;Emergency stop; LOG;;test
+20170330_16:28:24;Deriv_3;gcode/20170330_16:28:24Method.gcode;gcode/20170330_16:28:24Method.gcode;;test
+20170330_16:28:57;Deriv_3;Emergency stop; LOG;;test
+20170330_16:28:58;Deriv_3;gcode/20170330_16:28:58Method.gcode;gcode/20170330_16:28:58Method.gcode;;test
+20170330_16:29:33;Deriv_3;Emergency stop; LOG;;test
+20170330_16:29:36;Deriv_3;gcode/20170330_16:29:36Method.gcode;gcode/20170330_16:29:36Method.gcode;;test
+20170330_16:30:10;Deriv_3;Emergency stop; LOG;;test
+20170330_16:30:11;Deriv_3;gcode/20170330_16:30:11Method.gcode;gcode/20170330_16:30:11Method.gcode;;test
+20170330_16:37:11;Connection;NA;Board disconnection;;test
+20170331_10:39:55;Connection;NA;Board connection;;test
+20170331_10:40:20;Deriv_3;gcode/20170331_10:40:20Method.gcode;gcode/20170331_10:40:20Method.gcode;;test
+20170331_10:57:49;Deriv_3;gcode/20170331_10:57:49Method.gcode;gcode/20170331_10:57:49Method.gcode;;test
+20170331_10:57:49;Deriv_3;Emergency stop; LOG;;test
+20170331_10:57:50;Deriv_3;gcode/20170331_10:57:50Method.gcode;gcode/20170331_10:57:50Method.gcode;;test
+20170331_11:00:00;Connection;NA;Board connection;;test
+20170331_11:00:10;Deriv_3;gcode/20170331_11:00:10Method.gcode;gcode/20170331_11:00:10Method.gcode;;test
+20170331_11:00:47;Deriv_3;gcode/20170331_11:00:47Method.gcode;gcode/20170331_11:00:47Method.gcode;;test
+20170331_11:01:53;Connection;NA;Board connection;;test
+20170331_11:02:07;Deriv_3;gcode/20170331_11:02:07Method.gcode;gcode/20170331_11:02:07Method.gcode;;test
+20170331_11:02:13;Deriv_3;Emergency stop; LOG;;test
+20170331_11:02:15;Deriv_3;gcode/20170331_11:02:15Method.gcode;gcode/20170331_11:02:15Method.gcode;;test
+20170331_11:02:32;Deriv_3;gcode/20170331_11:02:32Method.gcode;gcode/20170331_11:02:32Method.gcode;;test
+20170331_11:02:33;Deriv_3;gcode/20170331_11:02:33Method.gcode;gcode/20170331_11:02:33Method.gcode;;test
+20170331_11:02:33;Deriv_3;gcode/20170331_11:02:33Method.gcode;gcode/20170331_11:02:33Method.gcode;;test
+20170331_11:08:47;Deriv_3;gcode/20170331_11:08:47Method.gcode;gcode/20170331_11:08:47Method.gcode;;test
+20170331_11:08:47;Deriv_3;Emergency stop; LOG;;test
+20170331_11:08:48;Deriv_3;gcode/20170331_11:08:48Method.gcode;gcode/20170331_11:08:48Method.gcode;;test
+20170331_11:34:11;Connection;NA;Board connection;;test
+20170331_11:35:16;Connection;NA;Board connection;;test
+20170331_11:35:47;Deriv_3;gcode/20170331_11:35:47Method.gcode;gcode/20170331_11:35:47Method.gcode;;test
+20170331_12:07:01;Connection;NA;Board disconnection;;test
+20170403_08:43:32;Connection;NA;Board connection;;test
+20170403_08:45:38;Connection;NA;Board connection;;test
+20170403_08:47:28;Connection;NA;Board connection;;test
+20170403_08:48:16;Deriv_3;gcode/20170403_08:48:16Method.gcode;gcode/20170403_08:48:16Method.gcode;;test
+20170403_08:48:35;Deriv_3;Emergency stop; LOG;;test
+20170403_08:56:58;Connection;NA;Board disconnection;;test
+20170403_11:09:56;Connection;NA;Board connection;;test
+20170403_11:12:28;Deriv_3;gcode/20170403_11:12:28Method.gcode;gcode/20170403_11:12:28Method.gcode;;test
+20170403_11:12:34;Deriv_3;Emergency stop; LOG;;test
+20170403_11:21:14;Deriv_3;gcode/20170403_11:21:14Method.gcode;gcode/20170403_11:21:14Method.gcode;;test
+20170403_11:24:37;Deriv_3;Emergency stop; LOG;;test
+20170403_11:24:39;Deriv_3;gcode/20170403_11:24:39Method.gcode;gcode/20170403_11:24:39Method.gcode;;test
+20170403_11:27:41;Deriv_3;Emergency stop; LOG;;test
+20170411_14:26:59;Connection;NA;Board connection;;test
+20170411_14:55:25;Deriv_3;gcode/20170411_14:55:25Method.gcode;gcode/20170411_14:55:25Method.gcode;;test
+20170411_15:13:01;Deriv_3;Emergency stop; LOG;;test
+20170411_15:13:02;Deriv_3;gcode/20170411_15:13:02Method.gcode;gcode/20170411_15:13:02Method.gcode;;test
+20170411_15:22:11;Deriv_3;gcode/20170411_15:22:11Method.gcode;gcode/20170411_15:22:11Method.gcode;;test
+20170411_15:22:12;Deriv_3;Emergency stop; LOG;;test
+20170411_15:22:13;Deriv_3;gcode/20170411_15:22:13Method.gcode;gcode/20170411_15:22:13Method.gcode;;test
+20170411_15:25:45;Deriv;gcode/20170411_15:25:45Method.gcode;gcode/20170411_15:25:45Method.gcode;;test
+20170411_15:25:48;Deriv;Emergency stop; LOG;;test
+20170411_15:25:49;Deriv;gcode/20170411_15:25:49Method.gcode;gcode/20170411_15:25:49Method.gcode;;test
+20170411_15:38:03;Deriv_3;gcode/20170411_15:38:03Method.gcode;gcode/20170411_15:38:03Method.gcode;;test
+20170411_15:38:04;Deriv_3;Emergency stop; LOG;;test
+20170411_15:38:05;Deriv_3;gcode/20170411_15:38:05Method.gcode;gcode/20170411_15:38:05Method.gcode;;test
+20170411_15:38:35;Deriv_3;Emergency stop; LOG;;test
+20170411_15:38:43;Connection;NA;Board connection;;test
+20170411_15:38:55;Deriv_3;gcode/20170411_15:38:55Method.gcode;gcode/20170411_15:38:55Method.gcode;;test
+20170411_16:18:26;SA;Emergency stop; LOG;;test
+20170411_16:18:27;SA;gcode/20170411_16:18:27Method.gcode;gcode/20170411_16:18:27Method.gcode;;test
+20170411_16:19:05;SA;Emergency stop; LOG;;test
+20170411_16:19:32;SA;gcode/20170411_16:19:32Method.gcode;gcode/20170411_16:19:32Method.gcode;;test
+20170411_16:22:55;SA;Emergency stop; LOG;;test
+20170411_16:23:06;SA;gcode/20170411_16:23:06Method.gcode;gcode/20170411_16:23:06Method.gcode;;test
+20170411_16:29:59;test_ink;gcode/20170411_16:29:59test_ink.gcode;gcode/20170411_16:29:59test_ink.gcode;;test
+20170411_16:30:04;test_ink;gcode/20170411_16:30:04test_ink.gcode;gcode/20170411_16:30:04test_ink.gcode;;test
+20170411_16:30:11;test_ink;gcode/20170411_16:30:11test_ink.gcode;gcode/20170411_16:30:11test_ink.gcode;;test
+20170411_16:30:15;test_ink;gcode/20170411_16:30:15test_ink.gcode;gcode/20170411_16:30:15test_ink.gcode;;test
+20170411_16:30:19;test_ink;gcode/20170411_16:30:19test_ink.gcode;gcode/20170411_16:30:19test_ink.gcode;;test
+20170411_16:30:37;Deriv_3;Emergency stop; LOG;;test
+20170411_16:30:39;Deriv_3;gcode/20170411_16:30:39Method.gcode;gcode/20170411_16:30:39Method.gcode;;test
+20170411_16:32:38;test_ink;gcode/20170411_16:32:38test_ink.gcode;gcode/20170411_16:32:38test_ink.gcode;;test
+20170411_16:32:40;test_ink;gcode/20170411_16:32:40test_ink.gcode;gcode/20170411_16:32:40test_ink.gcode;;test
+20170411_16:32:43;test_ink;gcode/20170411_16:32:43test_ink.gcode;gcode/20170411_16:32:43test_ink.gcode;;test
+20170411_16:32:45;test_ink;gcode/20170411_16:32:45test_ink.gcode;gcode/20170411_16:32:45test_ink.gcode;;test
+20170411_16:33:03;Deriv_3;Emergency stop; LOG;;test
+20170411_16:33:10;Deriv_3;gcode/20170411_16:33:10Method.gcode;gcode/20170411_16:33:10Method.gcode;;test
+20170411_16:36:08;test_ink;gcode/20170411_16:36:08test_ink.gcode;gcode/20170411_16:36:08test_ink.gcode;;test
+20170411_16:36:10;test_ink;gcode/20170411_16:36:10test_ink.gcode;gcode/20170411_16:36:10test_ink.gcode;;test
+20170411_16:36:13;test_ink;gcode/20170411_16:36:13test_ink.gcode;gcode/20170411_16:36:13test_ink.gcode;;test
+20170411_16:36:15;test_ink;gcode/20170411_16:36:15test_ink.gcode;gcode/20170411_16:36:15test_ink.gcode;;test
+20170411_16:36:19;test_ink;gcode/20170411_16:36:19test_ink.gcode;gcode/20170411_16:36:19test_ink.gcode;;test
+20170411_16:36:30;Deriv_3;Emergency stop; LOG;;test
+20170411_16:36:42;Deriv_3;gcode/20170411_16:36:42Method.gcode;gcode/20170411_16:36:42Method.gcode;;test
+20170411_16:41:09;test_ink;gcode/20170411_16:41:09test_ink.gcode;gcode/20170411_16:41:09test_ink.gcode;;test
+20170411_16:41:12;test_ink;gcode/20170411_16:41:12test_ink.gcode;gcode/20170411_16:41:12test_ink.gcode;;test
+20170411_16:41:14;test_ink;gcode/20170411_16:41:14test_ink.gcode;gcode/20170411_16:41:14test_ink.gcode;;test
+20170411_16:41:16;test_ink;gcode/20170411_16:41:16test_ink.gcode;gcode/20170411_16:41:16test_ink.gcode;;test
+20170411_16:41:19;test_ink;gcode/20170411_16:41:19test_ink.gcode;gcode/20170411_16:41:19test_ink.gcode;;test
+20170411_16:41:22;test_ink;gcode/20170411_16:41:22test_ink.gcode;gcode/20170411_16:41:22test_ink.gcode;;test
+20170411_16:41:34;Deriv_3;Emergency stop; LOG;;test
+20170411_16:41:35;Deriv_3;gcode/20170411_16:41:35Method.gcode;gcode/20170411_16:41:35Method.gcode;;test
+20170411_16:47:06;test_ink;gcode/20170411_16:47:06test_ink.gcode;gcode/20170411_16:47:06test_ink.gcode;;test
+20170411_16:47:08;test_ink;gcode/20170411_16:47:08test_ink.gcode;gcode/20170411_16:47:08test_ink.gcode;;test
+20170411_16:47:11;test_ink;gcode/20170411_16:47:11test_ink.gcode;gcode/20170411_16:47:11test_ink.gcode;;test
+20170411_16:47:13;test_ink;gcode/20170411_16:47:13test_ink.gcode;gcode/20170411_16:47:13test_ink.gcode;;test
+20170411_16:47:15;test_ink;gcode/20170411_16:47:15test_ink.gcode;gcode/20170411_16:47:15test_ink.gcode;;test
+20170411_16:47:17;test_ink;gcode/20170411_16:47:17test_ink.gcode;gcode/20170411_16:47:17test_ink.gcode;;test
+20170411_16:47:20;test_ink;gcode/20170411_16:47:20test_ink.gcode;gcode/20170411_16:47:20test_ink.gcode;;test
+20170411_16:47:22;test_ink;gcode/20170411_16:47:22test_ink.gcode;gcode/20170411_16:47:22test_ink.gcode;;test
+20170411_16:47:24;test_ink;gcode/20170411_16:47:24test_ink.gcode;gcode/20170411_16:47:24test_ink.gcode;;test
+20170411_16:47:26;test_ink;gcode/20170411_16:47:26test_ink.gcode;gcode/20170411_16:47:26test_ink.gcode;;test
+20170411_16:51:35;Deriv_3;Emergency stop; LOG;;test
+20170411_16:51:36;Deriv_3;gcode/20170411_16:51:36Method.gcode;gcode/20170411_16:51:36Method.gcode;;test
+20170411_16:51:56;Deriv_3;Emergency stop; LOG;;test
+20170411_16:52:02;Connection;NA;Board connection;;test
+20170411_16:52:06;Deriv_3;gcode/20170411_16:52:06Method.gcode;gcode/20170411_16:52:06Method.gcode;;test
+20170411_16:55:19;Deriv_3;Emergency stop; LOG;;test
+20170411_16:55:20;Deriv_3;gcode/20170411_16:55:20Method.gcode;gcode/20170411_16:55:20Method.gcode;;test
+20170411_16:58:54;Deriv_3;Emergency stop; LOG;;test
+20170411_16:58:55;Deriv_3;gcode/20170411_16:58:55Method.gcode;gcode/20170411_16:58:55Method.gcode;;test
+20170411_17:02:12;Deriv_3;Emergency stop; LOG;;test
+20170411_17:02:22;Deriv_3;gcode/20170411_17:02:22Method.gcode;gcode/20170411_17:02:22Method.gcode;;test
+20170411_17:07:17;test_ink;gcode/20170411_17:07:17test_ink.gcode;gcode/20170411_17:07:17test_ink.gcode;;test
+20170411_17:07:19;test_ink;gcode/20170411_17:07:19test_ink.gcode;gcode/20170411_17:07:19test_ink.gcode;;test
+20170411_17:07:23;test_ink;gcode/20170411_17:07:23test_ink.gcode;gcode/20170411_17:07:23test_ink.gcode;;test
+20170411_17:07:26;test_ink;gcode/20170411_17:07:26test_ink.gcode;gcode/20170411_17:07:26test_ink.gcode;;test
+20170411_17:08:51;Deriv_3;Emergency stop; LOG;;test
+20170411_17:08:53;Deriv_3;gcode/20170411_17:08:53Method.gcode;gcode/20170411_17:08:53Method.gcode;;test
+20170411_17:10:57;Deriv_3;gcode/20170411_17:10:57Method.gcode;gcode/20170411_17:10:57Method.gcode;;test
+20170411_17:10:58;Deriv_3;Emergency stop; LOG;;test
+20170411_17:10:59;Deriv_3;gcode/20170411_17:10:59Method.gcode;gcode/20170411_17:10:59Method.gcode;;test
+20170418_13:41:53;Connection;NA;Board connection;;test
+20170418_13:43:43;Connection;NA;Board connection;;test
+20170418_13:44:14;Connection;NA;Board disconnection;;test
+20170420_11:22:34;Connection;NA;Board connection;;test
+20170420_11:24:53;Connection;NA;Board disconnection;;test
+20170421_09:09:04;Connection;NA;Board connection;;test
+20170421_09:13:08;SA_2;gcode/20170421_09:13:08Method.gcode;gcode/20170421_09:13:08Method.gcode;;test
+20170421_09:14:55;SA_2;Emergency stop; LOG;;test
+20170421_09:14:55;SA_2;gcode/20170421_09:14:55Method.gcode;gcode/20170421_09:14:55Method.gcode;;test
+20170421_09:17:40;SA_2;Emergency stop; LOG;;test
+20170421_09:17:41;SA_2;gcode/20170421_09:17:41Method.gcode;gcode/20170421_09:17:41Method.gcode;;test
+20170421_09:18:53;SA_2;Emergency stop; LOG;;test
+20170421_09:18:54;SA_2;gcode/20170421_09:18:54Method.gcode;gcode/20170421_09:18:54Method.gcode;;test
+20170421_09:20:06;SA_2;Emergency stop; LOG;;test
+20170421_09:20:07;SA_2;gcode/20170421_09:20:07Method.gcode;gcode/20170421_09:20:07Method.gcode;;test
+20170421_09:25:14;SA_2;Emergency stop; LOG;;test
+20170421_09:25:16;SA_2;gcode/20170421_09:25:16Method.gcode;gcode/20170421_09:25:16Method.gcode;;test
+20170421_09:25:51;SA_2;Emergency stop; LOG;;test
+20170421_09:25:52;SA_2;gcode/20170421_09:25:52Method.gcode;gcode/20170421_09:25:52Method.gcode;;test
+20170421_09:29:02;SA_2;Emergency stop; LOG;;test
+20170421_09:29:03;SA_2;gcode/20170421_09:29:03Method.gcode;gcode/20170421_09:29:03Method.gcode;;test
+20170421_09:39:49;SA_2;Emergency stop; LOG;;test
+20170421_09:39:57;SA_2;gcode/20170421_09:39:57Method.gcode;gcode/20170421_09:39:57Method.gcode;;test
+20170421_09:40:23;SA_2;Emergency stop; LOG;;test
+20170421_09:42:48;SA_2;gcode/20170421_09:42:48Method.gcode;gcode/20170421_09:42:48Method.gcode;;test
+20170421_09:49:59;SA_2;Emergency stop; LOG;;test
+20170421_09:50:06;SA_2;gcode/20170421_09:50:06Method.gcode;gcode/20170421_09:50:06Method.gcode;;test
+20170421_09:58:18;Connection;NA;Board disconnection;;test
+20170421_09:58:23;Connection;NA;Board connection;;test
+20170421_09:59:27;SA_2;gcode/20170421_09:59:27Method.gcode;gcode/20170421_09:59:27Method.gcode;;test
+20170421_10:11:27;SA_2;Emergency stop; LOG;;test
+20170421_10:11:28;SA_2;gcode/20170421_10:11:28Method.gcode;gcode/20170421_10:11:28Method.gcode;;test
+20170421_10:22:53;Connection;NA;Board connection;;test
+20170421_10:25:20;Connection;NA;Board connection;;test
+20170421_10:27:44;SA_2;gcode/20170421_10:27:44Method.gcode;gcode/20170421_10:27:44Method.gcode;;test
+20170421_10:39:37;SA_2;Emergency stop; LOG;;test
+20170421_10:39:39;SA_2;gcode/20170421_10:39:39Method.gcode;gcode/20170421_10:39:39Method.gcode;;test
+20170421_11:28:15;test_ink;gcode/20170421_11:28:15test_ink.gcode;gcode/20170421_11:28:15test_ink.gcode;;test
+20170421_11:28:30;test_ink;gcode/20170421_11:28:30test_ink.gcode;gcode/20170421_11:28:30test_ink.gcode;;test
+20170421_11:28:34;test_ink;gcode/20170421_11:28:34test_ink.gcode;gcode/20170421_11:28:34test_ink.gcode;;test
+20170421_11:28:36;test_ink;gcode/20170421_11:28:36test_ink.gcode;gcode/20170421_11:28:36test_ink.gcode;;test
+20170421_11:28:54;test_ink;gcode/20170421_11:28:54test_ink.gcode;gcode/20170421_11:28:54test_ink.gcode;;test
+20170421_11:28:56;test_ink;gcode/20170421_11:28:56test_ink.gcode;gcode/20170421_11:28:56test_ink.gcode;;test
+20170421_11:28:59;test_ink;gcode/20170421_11:28:59test_ink.gcode;gcode/20170421_11:28:59test_ink.gcode;;test
+20170421_11:29:02;test_ink;gcode/20170421_11:29:02test_ink.gcode;gcode/20170421_11:29:02test_ink.gcode;;test
+20170421_11:29:04;test_ink;gcode/20170421_11:29:04test_ink.gcode;gcode/20170421_11:29:04test_ink.gcode;;test
+20170421_11:29:06;test_ink;gcode/20170421_11:29:06test_ink.gcode;gcode/20170421_11:29:06test_ink.gcode;;test
+20170421_11:29:08;test_ink;gcode/20170421_11:29:08test_ink.gcode;gcode/20170421_11:29:08test_ink.gcode;;test
+20170421_11:29:11;test_ink;gcode/20170421_11:29:11test_ink.gcode;gcode/20170421_11:29:11test_ink.gcode;;test
+20170421_11:29:13;test_ink;gcode/20170421_11:29:13test_ink.gcode;gcode/20170421_11:29:13test_ink.gcode;;test
+20170421_11:29:15;test_ink;gcode/20170421_11:29:15test_ink.gcode;gcode/20170421_11:29:15test_ink.gcode;;test
+20170421_11:29:17;test_ink;gcode/20170421_11:29:17test_ink.gcode;gcode/20170421_11:29:17test_ink.gcode;;test
+20170421_11:32:44;Dev_2;gcode/20170421_11:32:44Method.gcode;gcode/20170421_11:32:44Method.gcode;;test
+20170421_11:32:45;Dev_2;Emergency stop; LOG;;test
+20170421_11:32:46;Dev_2;gcode/20170421_11:32:46Method.gcode;gcode/20170421_11:32:46Method.gcode;;test
+20170421_11:32:58;Dev_2;Emergency stop; LOG;;test
+20170421_11:33:07;Dev_2;gcode/20170421_11:33:07Method.gcode;gcode/20170421_11:33:07Method.gcode;;test
+20170421_11:40:42;Dev_2;Emergency stop; LOG;;test
+20170421_11:55:32;Connection;NA;Board disconnection;;test
+20170421_11:55:40;Connection;NA;Board connection;;test
+20170421_11:57:51;Connection;NA;Board connection;;test
+20170421_12:00:35;Connection;NA;Board connection;;test
+20170421_12:01:18;Dev_2;gcode/20170421_12:01:18Method.gcode;gcode/20170421_12:01:18Method.gcode;;test
+20170421_12:06:21;Dev_2;Emergency stop; LOG;;test
+20170421_12:06:35;Dev_2;gcode/20170421_12:06:35Method.gcode;gcode/20170421_12:06:35Method.gcode;;test
+20170421_12:11:26;Dev_2;Emergency stop; LOG;;test
+20170421_12:13:05;Dev_2;gcode/20170421_12:13:04Method.gcode;gcode/20170421_12:13:04Method.gcode;;test
+20170421_12:17:15;Dev_2;Emergency stop; LOG;;test
+20170421_14:09:02;Connection;NA;Board disconnection;;test
+20170421_15:39:28;Connection;NA;Board connection;;test
+20170421_15:39:56;Dev_2;gcode/20170421_15:39:56Method.gcode;gcode/20170421_15:39:56Method.gcode;;test
+20170421_15:42:52;Connection;NA;Board connection;;test
+20170421_15:43:45;Dev_2;gcode/20170421_15:43:45Method.gcode;gcode/20170421_15:43:45Method.gcode;;test
+20170421_15:47:14;Dev_2;Emergency stop; LOG;;test
+20170421_15:47:20;Dev_2;gcode/20170421_15:47:20Method.gcode;gcode/20170421_15:47:20Method.gcode;;test
+20170421_15:52:02;Dev_2;Emergency stop; LOG;;test
+20170421_15:52:06;Dev_2;gcode/20170421_15:52:06Method.gcode;gcode/20170421_15:52:06Method.gcode;;test
+20170421_15:55:48;Connection;NA;Board connection;;test
+20170421_15:57:46;Dev_2;gcode/20170421_15:57:46Method.gcode;gcode/20170421_15:57:46Method.gcode;;test
+20170421_15:58:03;Dev_2;Emergency stop; LOG;;test
+20170421_15:58:04;Dev_2;gcode/20170421_15:58:04Method.gcode;gcode/20170421_15:58:04Method.gcode;;test
+20170421_15:59:14;Dev_2;Emergency stop; LOG;;test
+20170421_15:59:17;Dev_2;gcode/20170421_15:59:17Method.gcode;gcode/20170421_15:59:17Method.gcode;;test
+20170421_16:00:58;Dev_2;gcode/20170421_16:00:58Method.gcode;gcode/20170421_16:00:58Method.gcode;;test
+20170421_16:01:00;Dev_2;Emergency stop; LOG;;test
+20170421_16:01:00;Dev_2;gcode/20170421_16:01:00Method.gcode;gcode/20170421_16:01:00Method.gcode;;test
+20170421_16:09:11;Dev_2;Emergency stop; LOG;;test
+20170421_16:09:17;Dev_2;gcode/20170421_16:09:17Method.gcode;gcode/20170421_16:09:17Method.gcode;;test
+20170421_16:11:01;Dev_2;Emergency stop; LOG;;test
+20170421_16:11:53;Dev_2;gcode/20170421_16:11:53Method.gcode;gcode/20170421_16:11:53Method.gcode;;test
+20170421_16:13:38;Dev_2;Emergency stop; LOG;;test
+20170421_16:13:38;Dev_2;gcode/20170421_16:13:38Method.gcode;gcode/20170421_16:13:38Method.gcode;;test
+20170421_16:16:26;Dev_2;gcode/20170421_16:16:26Method.gcode;gcode/20170421_16:16:26Method.gcode;;test
+20170421_16:16:27;Dev_2;Emergency stop; LOG;;test
+20170421_16:16:27;Dev_2;gcode/20170421_16:16:27Method.gcode;gcode/20170421_16:16:27Method.gcode;;test
+20170421_16:19:38;Dev_2;gcode/20170421_16:19:38Method.gcode;gcode/20170421_16:19:38Method.gcode;;test
+20170421_16:19:39;Dev_2;Emergency stop; LOG;;test
+20170421_16:19:40;Dev_2;gcode/20170421_16:19:40Method.gcode;gcode/20170421_16:19:40Method.gcode;;test
+20170421_16:22:07;Dev_2;gcode/20170421_16:22:07Method.gcode;gcode/20170421_16:22:07Method.gcode;;test
+20170421_16:22:08;Dev_2;Emergency stop; LOG;;test
+20170421_16:22:09;Dev_2;gcode/20170421_16:22:09Method.gcode;gcode/20170421_16:22:09Method.gcode;;test
+20170421_16:25:49;Dev_2;gcode/20170421_16:25:49Method.gcode;gcode/20170421_16:25:49Method.gcode;;test
+20170421_16:25:53;Dev_2;Emergency stop; LOG;;test
+20170421_16:25:54;Dev_2;gcode/20170421_16:25:54Method.gcode;gcode/20170421_16:25:54Method.gcode;;test
+20170421_16:33:46;Connection;NA;Board disconnection;;test
+20170424_09:16:54;Connection;NA;Board connection;;test
+20170424_10:05:04;Connection;NA;Board disconnection;;test
+20170424_10:11:47;Connection;NA;Board connection;;test
+20170424_10:58:07;Dev_2;gcode/20170424_10:58:07Method.gcode;gcode/20170424_10:58:07Method.gcode;;test
+20170424_10:59:56;Dev_2;Emergency stop; LOG;;test
+20170424_11:01:07;Dev_2;gcode/20170424_11:01:07Method.gcode;gcode/20170424_11:01:07Method.gcode;;test
+20170424_11:06:14;Dev_2;Emergency stop; LOG;;test
+20170424_11:07:48;Dev_2;gcode/20170424_11:07:48Method.gcode;gcode/20170424_11:07:48Method.gcode;;test
+20170424_11:08:12;Dev_2;Emergency stop; LOG;;test
+20170424_11:08:18;Dev_2;gcode/20170424_11:08:18Method.gcode;gcode/20170424_11:08:18Method.gcode;;test
+20170424_11:11:08;Dev_2;Emergency stop; LOG;;test
+20170424_11:28:00;Dev_2;gcode/20170424_11:28:00Method.gcode;gcode/20170424_11:28:00Method.gcode;;test
+20170424_11:28:20;Connection;NA;Board connection;;test
+20170424_11:28:23;Dev_2;Emergency stop; LOG;;test
+20170424_11:28:24;Dev_2;gcode/20170424_11:28:24Method.gcode;gcode/20170424_11:28:24Method.gcode;;test
+20170424_11:28:25;Dev_2;Emergency stop; LOG;;test
+20170424_11:29:23;Connection;NA;Board connection;;test
+20170424_11:29:34;Dev_2;gcode/20170424_11:29:34Method.gcode;gcode/20170424_11:29:34Method.gcode;;test
+20170424_13:33:15;Connection;NA;Board disconnection;;test
+20170424_14:01:55;Connection;NA;Board connection;;test
+20170424_14:06:12;test_ink;gcode/20170424_14:06:12test_ink.gcode;gcode/20170424_14:06:12test_ink.gcode;;test
+20170424_14:06:13;test_ink;gcode/20170424_14:06:13test_ink.gcode;gcode/20170424_14:06:13test_ink.gcode;;test
+20170424_14:06:14;test_ink;gcode/20170424_14:06:14test_ink.gcode;gcode/20170424_14:06:14test_ink.gcode;;test
+20170424_14:06:18;test_ink;gcode/20170424_14:06:18test_ink.gcode;gcode/20170424_14:06:18test_ink.gcode;;test
+20170424_14:06:51;test_ink;gcode/20170424_14:06:51test_ink.gcode;gcode/20170424_14:06:51test_ink.gcode;;test
+20170424_14:09:59;test_ink;gcode/20170424_14:09:59test_ink.gcode;gcode/20170424_14:09:59test_ink.gcode;;test
+20170424_14:10:43;test_ink;gcode/20170424_14:10:43test_ink.gcode;gcode/20170424_14:10:43test_ink.gcode;;test
+20170424_14:11:51;test_ink;gcode/20170424_14:11:51test_ink.gcode;gcode/20170424_14:11:51test_ink.gcode;;test
+20170424_14:12:06;test_ink;gcode/20170424_14:12:06test_ink.gcode;gcode/20170424_14:12:06test_ink.gcode;;test
+20170424_14:12:07;test_ink;gcode/20170424_14:12:07test_ink.gcode;gcode/20170424_14:12:07test_ink.gcode;;test
+20170424_14:12:09;test_ink;gcode/20170424_14:12:09test_ink.gcode;gcode/20170424_14:12:09test_ink.gcode;;test
+20170424_14:12:10;test_ink;gcode/20170424_14:12:10test_ink.gcode;gcode/20170424_14:12:10test_ink.gcode;;test
+20170424_14:13:00;test_ink;gcode/20170424_14:13:00test_ink.gcode;gcode/20170424_14:13:00test_ink.gcode;;test
+20170424_14:13:01;test_ink;gcode/20170424_14:13:01test_ink.gcode;gcode/20170424_14:13:01test_ink.gcode;;test
+20170424_14:13:03;test_ink;gcode/20170424_14:13:03test_ink.gcode;gcode/20170424_14:13:03test_ink.gcode;;test
+20170424_14:13:51;test_ink;gcode/20170424_14:13:51test_ink.gcode;gcode/20170424_14:13:51test_ink.gcode;;test
+20170424_14:14:38;test_ink;gcode/20170424_14:14:38test_ink.gcode;gcode/20170424_14:14:38test_ink.gcode;;test
+20170424_14:14:39;test_ink;gcode/20170424_14:14:39test_ink.gcode;gcode/20170424_14:14:39test_ink.gcode;;test
+20170424_15:02:26;Connection;NA;Board disconnection;;test
+20170424_16:13:34;Connection;NA;Board connection;;test
+20170424_16:17:07;LP;gcode/20170424_16:17:07Method.gcode;gcode/20170424_16:17:07Method.gcode;;test
+20170424_16:20:58;Connection;NA;Board disconnection;;test
+20170424_16:21:33;Connection;NA;Board connection;;test
+20170424_16:21:35;LP;gcode/20170424_16:21:35Method.gcode;gcode/20170424_16:21:35Method.gcode;;test
+20170424_16:21:38;LP;Emergency stop; LOG;;test
+20170424_16:21:39;LP;gcode/20170424_16:21:39Method.gcode;gcode/20170424_16:21:39Method.gcode;;test
+20170424_16:23:12;LP;Emergency stop; LOG;;test
+20170424_16:25:27;LP;gcode/20170424_16:25:27Method.gcode;gcode/20170424_16:25:27Method.gcode;;test
+20170424_16:28:25;Connection;NA;Board disconnection;;test
+20170425_11:12:48;Connection;NA;Board connection;;test
+20170425_11:15:52;test_ink;gcode/20170425_11:15:52test_ink.gcode;gcode/20170425_11:15:52test_ink.gcode;;test
+20170425_11:49:15;Dev_2;gcode/20170425_11:49:15Method.gcode;gcode/20170425_11:49:15Method.gcode;;test
+20170425_11:54:33;Dev_2;Emergency stop; LOG;;test
+20170425_11:54:34;Dev_2;gcode/20170425_11:54:34Method.gcode;gcode/20170425_11:54:34Method.gcode;;test
+20170425_12:06:27;Dev_2;Emergency stop; LOG;;test
+20170425_12:06:27;Dev_2;gcode/20170425_12:06:27Method.gcode;gcode/20170425_12:06:27Method.gcode;;test
+20170425_12:20:15;Dev_2;Emergency stop; LOG;;test
+20170425_12:20:16;Dev_2;gcode/20170425_12:20:16Method.gcode;gcode/20170425_12:20:16Method.gcode;;test
+20170425_12:24:30;Connection;NA;Board connection;;test
+20170425_12:24:32;Connection;NA;Board disconnection;;test
+20170425_12:24:35;Connection;NA;Board connection;;test
+20170425_12:24:35;Dev_2;Emergency stop; LOG;;test
+20170425_12:24:37;Dev_2;gcode/20170425_12:24:37Method.gcode;gcode/20170425_12:24:37Method.gcode;;test
+20170425_12:24:39;Dev_2;Emergency stop; LOG;;test
+20170425_12:24:43;Connection;NA;Board disconnection;;test
+20170425_12:24:49;Connection;NA;Board connection;;test
+20170425_12:24:57;Dev_2;gcode/20170425_12:24:57Method.gcode;gcode/20170425_12:24:57Method.gcode;;test
+20170425_12:27:03;Dev_2;Emergency stop; LOG;;test
+20170425_13:43:51;Dev_2;gcode/20170425_13:43:51Method.gcode;gcode/20170425_13:43:51Method.gcode;;test
+20170425_14:33:35;SA_2;Emergency stop; LOG;;test
+20170425_14:33:37;SA_2;gcode/20170425_14:33:37Method.gcode;gcode/20170425_14:33:37Method.gcode;;test
+20170425_14:42:42;SA_2;Emergency stop; LOG;;test
+20170425_14:42:44;SA_2;gcode/20170425_14:42:44Method.gcode;gcode/20170425_14:42:44Method.gcode;;test
+20170425_14:48:57;Dev_2;Emergency stop; LOG;;test
+20170425_14:48:58;Dev_2;gcode/20170425_14:48:58Method.gcode;gcode/20170425_14:48:58Method.gcode;;test
+20170425_14:49:06;Dev_2;Emergency stop; LOG;;test
+20170425_14:49:11;Connection;NA;Board connection;;test
+20170425_14:49:14;Connection;NA;Board disconnection;;test
+20170425_14:49:18;Connection;NA;Board connection;;test
+20170425_14:49:26;Dev_2;gcode/20170425_14:49:26Method.gcode;gcode/20170425_14:49:26Method.gcode;;test
+20170425_14:51:46;Dev_2;Emergency stop; LOG;;test
+20170425_14:52:02;Dev_2;gcode/20170425_14:52:02Method.gcode;gcode/20170425_14:52:02Method.gcode;;test
+20170425_15:22:29;Dev_2;Emergency stop; LOG;;test
+20170425_16:17:33;SA;gcode/20170425_16:17:33Method.gcode;gcode/20170425_16:17:33Method.gcode;;test
+20170425_16:17:43;SA;Emergency stop; LOG;;test
+20170425_16:17:49;Connection;NA;Board connection;;test
+20170425_16:18:16;SA;gcode/20170425_16:18:16Method.gcode;gcode/20170425_16:18:16Method.gcode;;test
+20170425_16:18:51;SA;gcode/20170425_16:18:51Method.gcode;gcode/20170425_16:18:51Method.gcode;;test
+20170425_16:18:52;SA;Emergency stop; LOG;;test
+20170425_16:18:52;SA;gcode/20170425_16:18:52Method.gcode;gcode/20170425_16:18:52Method.gcode;;test
+20170425_16:19:30;SA;Emergency stop; LOG;;test
+20170425_16:19:30;SA;gcode/20170425_16:19:30Method.gcode;gcode/20170425_16:19:30Method.gcode;;test
+20170425_16:23:28;SA;Emergency stop; LOG;;test
+20170425_16:23:30;SA;gcode/20170425_16:23:30Method.gcode;gcode/20170425_16:23:30Method.gcode;;test
+20170425_16:31:32;SA;Emergency stop; LOG;;test
+20170425_16:31:32;SA;gcode/20170425_16:31:32Method.gcode;gcode/20170425_16:31:32Method.gcode;;test
+20170425_16:49:54;Connection;NA;Board disconnection;;test
+20170426_13:21:40;Connection;NA;Board connection;;test
+20170426_13:21:50;Connection;NA;Board disconnection;;test
+20170426_16:56:22;Connection;NA;Board connection;;test
+20170426_16:57:54;test_ink;gcode/20170426_16:57:54test_ink.gcode;gcode/20170426_16:57:54test_ink.gcode;;test
+20170426_16:58:02;test_ink;gcode/20170426_16:58:02test_ink.gcode;gcode/20170426_16:58:02test_ink.gcode;;test
+20170426_16:58:04;test_ink;gcode/20170426_16:58:04test_ink.gcode;gcode/20170426_16:58:04test_ink.gcode;;test
+20170426_16:58:07;test_ink;gcode/20170426_16:58:07test_ink.gcode;gcode/20170426_16:58:07test_ink.gcode;;test
+20170426_16:58:09;test_ink;gcode/20170426_16:58:09test_ink.gcode;gcode/20170426_16:58:09test_ink.gcode;;test
+20170426_16:59:13;test_ink;gcode/20170426_16:59:13test_ink.gcode;gcode/20170426_16:59:13test_ink.gcode;;test
+20170426_16:59:15;test_ink;gcode/20170426_16:59:15test_ink.gcode;gcode/20170426_16:59:15test_ink.gcode;;test
+20170426_16:59:17;test_ink;gcode/20170426_16:59:17test_ink.gcode;gcode/20170426_16:59:17test_ink.gcode;;test
+20170426_16:59:19;test_ink;gcode/20170426_16:59:19test_ink.gcode;gcode/20170426_16:59:19test_ink.gcode;;test
+20170426_16:59:22;test_ink;gcode/20170426_16:59:22test_ink.gcode;gcode/20170426_16:59:22test_ink.gcode;;test
+20170426_16:59:24;test_ink;gcode/20170426_16:59:24test_ink.gcode;gcode/20170426_16:59:24test_ink.gcode;;test
+20170426_16:59:26;test_ink;gcode/20170426_16:59:26test_ink.gcode;gcode/20170426_16:59:26test_ink.gcode;;test
+20170426_16:59:57;test_ink;gcode/20170426_16:59:57test_ink.gcode;gcode/20170426_16:59:57test_ink.gcode;;test
+20170426_17:04:53;test_ink;gcode/20170426_17:04:53test_ink.gcode;gcode/20170426_17:04:53test_ink.gcode;;test
+20170426_17:04:54;test_ink;gcode/20170426_17:04:54test_ink.gcode;gcode/20170426_17:04:54test_ink.gcode;;test
+20170426_17:04:55;test_ink;gcode/20170426_17:04:55test_ink.gcode;gcode/20170426_17:04:55test_ink.gcode;;test
+20170426_17:04:55;test_ink;gcode/20170426_17:04:55test_ink.gcode;gcode/20170426_17:04:55test_ink.gcode;;test
+20170426_17:04:56;test_ink;gcode/20170426_17:04:56test_ink.gcode;gcode/20170426_17:04:56test_ink.gcode;;test
+20170426_17:04:56;test_ink;gcode/20170426_17:04:56test_ink.gcode;gcode/20170426_17:04:56test_ink.gcode;;test
+20170426_17:04:56;test_ink;gcode/20170426_17:04:56test_ink.gcode;gcode/20170426_17:04:56test_ink.gcode;;test
+20170426_17:04:57;test_ink;gcode/20170426_17:04:57test_ink.gcode;gcode/20170426_17:04:57test_ink.gcode;;test
+20170426_17:05:17;test_ink;gcode/20170426_17:05:17test_ink.gcode;gcode/20170426_17:05:17test_ink.gcode;;test
+20170426_17:05:18;test_ink;gcode/20170426_17:05:18test_ink.gcode;gcode/20170426_17:05:18test_ink.gcode;;test
+20170426_17:05:18;test_ink;gcode/20170426_17:05:18test_ink.gcode;gcode/20170426_17:05:18test_ink.gcode;;test
+20170426_17:05:19;test_ink;gcode/20170426_17:05:19test_ink.gcode;gcode/20170426_17:05:19test_ink.gcode;;test
+20170426_17:05:19;test_ink;gcode/20170426_17:05:19test_ink.gcode;gcode/20170426_17:05:19test_ink.gcode;;test
+20170426_17:05:19;test_ink;gcode/20170426_17:05:19test_ink.gcode;gcode/20170426_17:05:19test_ink.gcode;;test
+20170426_17:05:20;test_ink;gcode/20170426_17:05:20test_ink.gcode;gcode/20170426_17:05:20test_ink.gcode;;test
+20170426_17:05:20;test_ink;gcode/20170426_17:05:20test_ink.gcode;gcode/20170426_17:05:20test_ink.gcode;;test
+20170426_17:05:20;test_ink;gcode/20170426_17:05:20test_ink.gcode;gcode/20170426_17:05:20test_ink.gcode;;test
+20170426_17:05:21;test_ink;gcode/20170426_17:05:21test_ink.gcode;gcode/20170426_17:05:21test_ink.gcode;;test
+20170426_17:05:21;test_ink;gcode/20170426_17:05:21test_ink.gcode;gcode/20170426_17:05:21test_ink.gcode;;test
+20170426_17:05:22;test_ink;gcode/20170426_17:05:22test_ink.gcode;gcode/20170426_17:05:22test_ink.gcode;;test
+20170426_17:05:22;test_ink;gcode/20170426_17:05:22test_ink.gcode;gcode/20170426_17:05:22test_ink.gcode;;test
+20170426_17:05:22;test_ink;gcode/20170426_17:05:22test_ink.gcode;gcode/20170426_17:05:22test_ink.gcode;;test
+20170426_17:05:23;test_ink;gcode/20170426_17:05:23test_ink.gcode;gcode/20170426_17:05:23test_ink.gcode;;test
+20170426_17:05:23;test_ink;gcode/20170426_17:05:23test_ink.gcode;gcode/20170426_17:05:23test_ink.gcode;;test
+20170426_17:05:23;test_ink;gcode/20170426_17:05:23test_ink.gcode;gcode/20170426_17:05:23test_ink.gcode;;test
+20170426_17:05:24;test_ink;gcode/20170426_17:05:24test_ink.gcode;gcode/20170426_17:05:24test_ink.gcode;;test
+20170426_17:05:24;test_ink;gcode/20170426_17:05:24test_ink.gcode;gcode/20170426_17:05:24test_ink.gcode;;test
+20170426_17:05:24;test_ink;gcode/20170426_17:05:24test_ink.gcode;gcode/20170426_17:05:24test_ink.gcode;;test
+20170426_17:05:44;test_ink;gcode/20170426_17:05:44test_ink.gcode;gcode/20170426_17:05:44test_ink.gcode;;test
+20170426_17:05:46;test_ink;gcode/20170426_17:05:46test_ink.gcode;gcode/20170426_17:05:46test_ink.gcode;;test
+20170426_17:05:47;test_ink;gcode/20170426_17:05:47test_ink.gcode;gcode/20170426_17:05:47test_ink.gcode;;test
+20170426_17:05:48;test_ink;gcode/20170426_17:05:48test_ink.gcode;gcode/20170426_17:05:48test_ink.gcode;;test
+20170426_17:05:59;test_ink;gcode/20170426_17:05:59test_ink.gcode;gcode/20170426_17:05:59test_ink.gcode;;test
+20170426_17:06:11;test_ink;gcode/20170426_17:06:11test_ink.gcode;gcode/20170426_17:06:11test_ink.gcode;;test
+20170426_17:07:40;test_ink;gcode/20170426_17:07:40test_ink.gcode;gcode/20170426_17:07:40test_ink.gcode;;test
+20170426_17:28:16;test_ink;gcode/20170426_17:28:16test_ink.gcode;gcode/20170426_17:28:16test_ink.gcode;;test
+20170426_17:28:17;test_ink;gcode/20170426_17:28:17test_ink.gcode;gcode/20170426_17:28:17test_ink.gcode;;test
+20170426_17:28:18;test_ink;gcode/20170426_17:28:18test_ink.gcode;gcode/20170426_17:28:18test_ink.gcode;;test
+20170426_17:28:19;test_ink;gcode/20170426_17:28:19test_ink.gcode;gcode/20170426_17:28:19test_ink.gcode;;test
+20170426_17:28:21;test_ink;gcode/20170426_17:28:21test_ink.gcode;gcode/20170426_17:28:21test_ink.gcode;;test
+20170426_17:28:22;test_ink;gcode/20170426_17:28:22test_ink.gcode;gcode/20170426_17:28:22test_ink.gcode;;test
+20170426_17:28:22;test_ink;gcode/20170426_17:28:22test_ink.gcode;gcode/20170426_17:28:22test_ink.gcode;;test
+20170426_17:28:23;test_ink;gcode/20170426_17:28:23test_ink.gcode;gcode/20170426_17:28:23test_ink.gcode;;test
+20170426_17:28:24;test_ink;gcode/20170426_17:28:24test_ink.gcode;gcode/20170426_17:28:24test_ink.gcode;;test
+20170426_17:28:25;test_ink;gcode/20170426_17:28:25test_ink.gcode;gcode/20170426_17:28:25test_ink.gcode;;test
+20170426_17:28:26;test_ink;gcode/20170426_17:28:26test_ink.gcode;gcode/20170426_17:28:26test_ink.gcode;;test
+20170426_17:28:31;test_ink;gcode/20170426_17:28:31test_ink.gcode;gcode/20170426_17:28:31test_ink.gcode;;test
+20170426_17:28:53;test_ink;gcode/20170426_17:28:53test_ink.gcode;gcode/20170426_17:28:53test_ink.gcode;;test
+20170426_17:29:18;test_ink;gcode/20170426_17:29:18test_ink.gcode;gcode/20170426_17:29:18test_ink.gcode;;test
+20170426_17:30:36;SA;gcode/20170426_17:30:36Method.gcode;gcode/20170426_17:30:36Method.gcode;;test
+20170426_17:42:58;Connection;NA;Board connection;;test
+20170426_17:44:34;Connection;NA;Board connection;;test
+20170426_17:46:16;SA_in_X;gcode/20170426_17:46:16Method.gcode;gcode/20170426_17:46:16Method.gcode;;test
+20170426_17:46:30;SA_in_X;Emergency stop; LOG;;test
+20170426_17:47:59;SA_in_X;gcode/20170426_17:47:59Method.gcode;gcode/20170426_17:47:59Method.gcode;;test
+20170426_18:06:11;Dev_in_X;gcode/20170426_18:06:11Method.gcode;gcode/20170426_18:06:11Method.gcode;;test
+20170426_18:06:13;Dev_in_X;Emergency stop; LOG;;test
+20170426_18:06:14;Dev_in_X;gcode/20170426_18:06:14Method.gcode;gcode/20170426_18:06:14Method.gcode;;test
+20170426_18:07:12;Connection;NA;Board connection;;test
+20170426_18:07:17;Dev_in_X;Emergency stop; LOG;;test
+20170426_18:07:20;Connection;NA;Board disconnection;;test
+20170426_18:07:25;Connection;NA;Board connection;;test
+20170426_18:08:18;Connection;NA;Board disconnection;;test
+20170426_18:08:45;Connection;NA;Board connection;;test
+20170426_18:09:03;Dev_in_X;gcode/20170426_18:09:03Method.gcode;gcode/20170426_18:09:03Method.gcode;;test
+20170426_18:25:16;Dev_in_X;Emergency stop; LOG;;test
+20170426_18:28:11;Dev_in_X;gcode/20170426_18:28:11Method.gcode;gcode/20170426_18:28:11Method.gcode;;test
+20170426_18:33:20;Dev_in_X;Emergency stop; LOG;;test
+20170426_18:37:51;Dev_in_X;gcode/20170426_18:37:51Method.gcode;gcode/20170426_18:37:51Method.gcode;;test
+20170426_18:38:04;Dev_in_X;Emergency stop; LOG;;test
+20170426_18:39:15;Dev_in_X;gcode/20170426_18:39:15Method.gcode;gcode/20170426_18:39:15Method.gcode;;test
+20170426_18:44:37;Dev_in_X;Emergency stop; LOG;;test
+20170426_18:52:17;Dev_in_X;gcode/20170426_18:52:17Method.gcode;gcode/20170426_18:52:17Method.gcode;;test
+20170426_19:01:06;Dev_in_X;Emergency stop; LOG;;test
+20170426_19:11:35;SA_in_X;gcode/20170426_19:11:35Method.gcode;gcode/20170426_19:11:35Method.gcode;;test
+20170426_19:21:07;SA_in_X;gcode/20170426_19:21:07Method.gcode;gcode/20170426_19:21:07Method.gcode;;test
+20170426_19:21:08;SA_in_X;Emergency stop; LOG;;test
+20170426_19:21:08;SA_in_X;gcode/20170426_19:21:08Method.gcode;gcode/20170426_19:21:08Method.gcode;;test
+20170426_19:21:20;SA_in_X;Emergency stop; LOG;;test
+20170426_19:21:25;Connection;NA;Board connection;;test
+20170426_19:21:30;SA_in_X;gcode/20170426_19:21:30Method.gcode;gcode/20170426_19:21:30Method.gcode;;test
+20170426_19:30:20;Dev_in_X;Emergency stop; LOG;;test
+20170426_19:30:21;Dev_in_X;gcode/20170426_19:30:21Method.gcode;gcode/20170426_19:30:21Method.gcode;;test
+20170426_19:52:03;Dev_in_X;Emergency stop; LOG;;test
+20170426_20:11:05;Connection;NA;Board disconnection;;test
+20170427_08:11:48;Connection;NA;Board connection;;test
+20170427_08:15:15;Dev_in_X;gcode/20170427_08:15:15Method.gcode;gcode/20170427_08:15:15Method.gcode;;test
+20170427_08:28:38;Dev_in_X;Emergency stop; LOG;;test
+20170427_08:32:30;test_ink;gcode/20170427_08:32:30test_ink.gcode;gcode/20170427_08:32:30test_ink.gcode;;test
+20170427_08:32:40;SA_in_X;gcode/20170427_08:32:40Method.gcode;gcode/20170427_08:32:40Method.gcode;;test
+20170427_08:48:45;Connection;NA;Board disconnection;;test
+20170427_09:00:33;Connection;NA;Board connection;;test
+20170427_09:00:42;SA_in_X;Emergency stop; LOG;;test
+20170427_09:00:44;SA_in_X;gcode/20170427_09:00:44Method.gcode;gcode/20170427_09:00:44Method.gcode;;test
+20170427_09:28:13;Dev_in_X;gcode/20170427_09:28:13Method.gcode;gcode/20170427_09:28:13Method.gcode;;test
+20170427_09:28:14;Dev_in_X;Emergency stop; LOG;;test
+20170427_09:28:16;Dev_in_X;gcode/20170427_09:28:15Method.gcode;gcode/20170427_09:28:15Method.gcode;;test
+20170427_09:42:43;Dev_in_X;Emergency stop; LOG;;test
+20170427_09:46:44;Dev_in_X;gcode/20170427_09:46:44Method.gcode;gcode/20170427_09:46:44Method.gcode;;test
+20170427_10:09:39;Dev_in_X;Emergency stop; LOG;;test
+20170427_10:14:22;Dev_in_X;gcode/20170427_10:14:22Method.gcode;gcode/20170427_10:14:22Method.gcode;;test
+20170427_10:14:28;Dev_in_X;Emergency stop; LOG;;test
+20170427_10:14:34;Connection;NA;Board connection;;test
+20170427_10:15:00;Connection;NA;Board disconnection;;test
+20170427_10:15:00;Connection;NA;Board disconnection;;test
+20170427_10:16:43;Connection;NA;Board connection;;test
+20170427_10:18:08;Dev_in_X;gcode/20170427_10:18:08Method.gcode;gcode/20170427_10:18:08Method.gcode;;test
+20170427_10:37:50;Dev_in_X;Emergency stop; LOG;;test
+20170427_10:43:26;Dev_in_X;gcode/20170427_10:43:26Method.gcode;gcode/20170427_10:43:26Method.gcode;;test
+20170427_10:55:43;Dev_in_X;Emergency stop; LOG;;test
+20170427_10:58:13;Dev_in_X;gcode/20170427_10:58:13Method.gcode;gcode/20170427_10:58:13Method.gcode;;test
+20170427_11:16:56;Dev_in_X;Emergency stop; LOG;;test
+20170427_13:56:10;Connection;NA;Board connection;;test
+20170427_13:58:17;test_ink;gcode/20170427_13:58:17test_ink.gcode;gcode/20170427_13:58:17test_ink.gcode;;test
+20170427_13:58:18;test_ink;gcode/20170427_13:58:18test_ink.gcode;gcode/20170427_13:58:18test_ink.gcode;;test
+20170427_13:58:20;test_ink;gcode/20170427_13:58:20test_ink.gcode;gcode/20170427_13:58:20test_ink.gcode;;test
+20170427_13:58:22;test_ink;gcode/20170427_13:58:22test_ink.gcode;gcode/20170427_13:58:22test_ink.gcode;;test
+20170427_13:58:27;test_ink;gcode/20170427_13:58:27test_ink.gcode;gcode/20170427_13:58:27test_ink.gcode;;test
+20170427_13:58:28;test_ink;gcode/20170427_13:58:28test_ink.gcode;gcode/20170427_13:58:28test_ink.gcode;;test
+20170427_13:58:28;test_ink;gcode/20170427_13:58:28test_ink.gcode;gcode/20170427_13:58:28test_ink.gcode;;test
+20170427_13:58:29;test_ink;gcode/20170427_13:58:29test_ink.gcode;gcode/20170427_13:58:29test_ink.gcode;;test
+20170427_13:58:55;test_ink;gcode/20170427_13:58:55test_ink.gcode;gcode/20170427_13:58:55test_ink.gcode;;test
+20170427_13:58:56;test_ink;gcode/20170427_13:58:56test_ink.gcode;gcode/20170427_13:58:56test_ink.gcode;;test
+20170427_13:58:57;test_ink;gcode/20170427_13:58:57test_ink.gcode;gcode/20170427_13:58:57test_ink.gcode;;test
+20170427_13:58:58;test_ink;gcode/20170427_13:58:58test_ink.gcode;gcode/20170427_13:58:58test_ink.gcode;;test
+20170427_13:59:45;SA_in_X;gcode/20170427_13:59:45Method.gcode;gcode/20170427_13:59:45Method.gcode;;test
+20170427_14:16:56;SA_in_X;Emergency stop; LOG;;test
+20170427_14:16:57;SA_in_X;gcode/20170427_14:16:57Method.gcode;gcode/20170427_14:16:57Method.gcode;;test
+20170427_14:36:36;SA_in_X;Emergency stop; LOG;;test
+20170427_14:36:38;SA_in_X;gcode/20170427_14:36:38Method.gcode;gcode/20170427_14:36:38Method.gcode;;test
+20170427_14:53:41;SA_in_X;gcode/20170427_14:53:41Method.gcode;gcode/20170427_14:53:41Method.gcode;;test
+20170427_14:54:42;SA_in_X;Emergency stop; LOG;;test
+20170427_14:55:11;Connection;NA;Board disconnection;;test
+20170427_14:55:11;Connection;NA;Board disconnection;;test
+20170427_14:57:52;Connection;NA;Board connection;;test
+20170427_14:58:20;SA_in_X;gcode/20170427_14:58:20Method.gcode;gcode/20170427_14:58:20Method.gcode;;test
+20170427_15:19:22;Dev_in_X;Emergency stop; LOG;;test
+20170427_15:19:23;Dev_in_X;gcode/20170427_15:19:23Method.gcode;gcode/20170427_15:19:23Method.gcode;;test
+20170427_15:23:45;Dev_in_X;Emergency stop; LOG;;test
+20170427_15:25:29;Dev_in_X;gcode/20170427_15:25:29Method.gcode;gcode/20170427_15:25:29Method.gcode;;test
+20170427_15:26:39;Dev_in_X;Emergency stop; LOG;;test
+20170427_15:29:39;Dev_in_X;gcode/20170427_15:29:39Method.gcode;gcode/20170427_15:29:39Method.gcode;;test
+20170427_15:44:31;Dev_in_X;Emergency stop; LOG;;test
+20170427_15:51:57;Dev_in_X;gcode/20170427_15:51:57Method.gcode;gcode/20170427_15:51:57Method.gcode;;test
+20170427_16:02:07;Dev_in_X;Emergency stop; LOG;;test
+20170427_16:04:48;Connection;NA;Board disconnection;;test
+20170427_16:55:30;Connection;NA;Board connection;;test
+20170427_16:55:54;Dev_in_X;gcode/20170427_16:55:54Method.gcode;gcode/20170427_16:55:54Method.gcode;;test
+20170427_17:09:14;Dev_in_X;Emergency stop; LOG;;test
+20170427_17:14:23;Dev_in_X;gcode/20170427_17:14:23Method.gcode;gcode/20170427_17:14:23Method.gcode;;test
+20170427_17:24:33;Dev_in_X;gcode/20170427_17:24:33Method.gcode;gcode/20170427_17:24:33Method.gcode;;test
+20170427_17:24:37;Dev_in_X;Emergency stop; LOG;;test
+20170427_17:24:38;Dev_in_X;gcode/20170427_17:24:38Method.gcode;gcode/20170427_17:24:38Method.gcode;;test
+20170427_17:32:30;Dev_in_X;Emergency stop; LOG;;test
+20170427_17:32:30;Dev_in_X;gcode/20170427_17:32:30Method.gcode;gcode/20170427_17:32:30Method.gcode;;test
+20170427_17:44:58;Dev_in_X;gcode/20170427_17:44:58Method.gcode;gcode/20170427_17:44:58Method.gcode;;test
+20170427_17:45:00;Dev_in_X;Emergency stop; LOG;;test
+20170427_17:45:01;Dev_in_X;gcode/20170427_17:45:01Method.gcode;gcode/20170427_17:45:01Method.gcode;;test
+20170427_17:58:07;Connection;NA;Board disconnection;;test
+20170427_21:14:09;Connection;NA;Board connection;;test
+20170427_21:14:46;Scan_dart;gcode/20170427_21:14:46Method.gcode;gcode/20170427_21:14:46Method.gcode;;test
+20170427_21:18:10;Scan_dart;Emergency stop; LOG;;test
+20170427_21:22:09;Connection;NA;Board connection;;test
+20170427_21:22:18;Connection;NA;Board disconnection;;test
+20170427_21:42:03;Connection;NA;Board connection;;test
+20170427_21:42:37;Scan_dart;gcode/20170427_21:42:37Method.gcode;gcode/20170427_21:42:37Method.gcode;;test
+20170427_21:43:22;Scan_dart;Emergency stop; LOG;;test
+20170427_21:43:32;Connection;NA;Board connection;;test
+20170427_21:43:58;Connection;NA;Board connection;;test
+20170427_21:44:28;Scan_dart;gcode/20170427_21:44:28Method.gcode;gcode/20170427_21:44:28Method.gcode;;test
+20170427_21:48:11;Connection;NA;Board disconnection;;test
+20170428_09:33:24;Connection;NA;Board connection;;test
+20170428_09:34:55;Scan_dart;gcode/20170428_09:34:55Method.gcode;gcode/20170428_09:34:55Method.gcode;;test
+20170428_09:35:26;Connection;NA;Board disconnection;;test
+20170428_09:35:30;Connection;NA;Board connection;;test
+20170428_09:35:35;Scan_dart;gcode/20170428_09:35:35Method.gcode;gcode/20170428_09:35:35Method.gcode;;test
+20170428_09:35:38;Scan_dart;Emergency stop; LOG;;test
+20170428_09:35:54;Connection;NA;Board connection;;test
+20170428_09:37:34;Scan_dart;gcode/20170428_09:37:34Method.gcode;gcode/20170428_09:37:34Method.gcode;;test
+20170428_11:51:34;Scan_dart;Emergency stop; LOG;;test
+20170428_11:51:39;Scan_dart;gcode/20170428_11:51:39Method.gcode;gcode/20170428_11:51:39Method.gcode;;test
+20170428_11:51:55;Scan_dart;Emergency stop; LOG;;test
+20170428_12:10:09;Connection;NA;Board connection;;test
+20170428_12:11:08;Connection;NA;Board connection;;test
+20170428_12:32:32;Scan_dart;gcode/20170428_12:32:32Method.gcode;gcode/20170428_12:32:32Method.gcode;;test
+20170428_13:13:04;Connection;NA;Board disconnection;;test
+20170429_17:10:16;Connection;NA;Board connection;;test
+20170429_18:17:34;test_ink;gcode/20170429_18:17:34test_ink.gcode;gcode/20170429_18:17:34test_ink.gcode;;test
+20170429_18:17:35;test_ink;gcode/20170429_18:17:35test_ink.gcode;gcode/20170429_18:17:35test_ink.gcode;;test
+20170429_18:17:36;test_ink;gcode/20170429_18:17:36test_ink.gcode;gcode/20170429_18:17:36test_ink.gcode;;test
+20170429_18:17:37;test_ink;gcode/20170429_18:17:37test_ink.gcode;gcode/20170429_18:17:37test_ink.gcode;;test
+20170429_18:17:37;test_ink;gcode/20170429_18:17:37test_ink.gcode;gcode/20170429_18:17:37test_ink.gcode;;test
+20170429_18:17:37;test_ink;gcode/20170429_18:17:37test_ink.gcode;gcode/20170429_18:17:37test_ink.gcode;;test
+20170429_18:17:37;test_ink;gcode/20170429_18:17:37test_ink.gcode;gcode/20170429_18:17:37test_ink.gcode;;test
+20170429_18:17:38;test_ink;gcode/20170429_18:17:38test_ink.gcode;gcode/20170429_18:17:38test_ink.gcode;;test
+20170429_18:17:38;test_ink;gcode/20170429_18:17:38test_ink.gcode;gcode/20170429_18:17:38test_ink.gcode;;test
+20170429_18:17:38;test_ink;gcode/20170429_18:17:38test_ink.gcode;gcode/20170429_18:17:38test_ink.gcode;;test
+20170429_18:17:38;test_ink;gcode/20170429_18:17:38test_ink.gcode;gcode/20170429_18:17:38test_ink.gcode;;test
+20170429_18:17:43;test_ink;gcode/20170429_18:17:43test_ink.gcode;gcode/20170429_18:17:43test_ink.gcode;;test
+20170429_18:17:44;test_ink;gcode/20170429_18:17:44test_ink.gcode;gcode/20170429_18:17:44test_ink.gcode;;test
+20170429_18:17:44;test_ink;gcode/20170429_18:17:44test_ink.gcode;gcode/20170429_18:17:44test_ink.gcode;;test
+20170429_18:17:44;test_ink;gcode/20170429_18:17:44test_ink.gcode;gcode/20170429_18:17:44test_ink.gcode;;test
+20170429_18:27:31;Connection;NA;Board connection;;test
+20170429_19:33:58;Deriv_3;gcode/20170429_19:33:58Method.gcode;gcode/20170429_19:33:58Method.gcode;;test
+20170429_19:40:12;Deriv_3;Emergency stop; LOG;;test
+20170429_19:40:21;Deriv_3;gcode/20170429_19:40:21Method.gcode;gcode/20170429_19:40:21Method.gcode;;test
+20170429_19:40:32;Deriv_3;Emergency stop; LOG;;test
+20170429_19:40:38;Connection;NA;Board connection;;test
+20170429_19:40:41;Deriv_3;gcode/20170429_19:40:41Method.gcode;gcode/20170429_19:40:41Method.gcode;;test
+20170429_19:40:42;Deriv_3;Emergency stop; LOG;;test
+20170429_19:41:28;Connection;NA;Board connection;;test
+20170429_19:41:36;Deriv_3;gcode/20170429_19:41:36Method.gcode;gcode/20170429_19:41:36Method.gcode;;test
+20170429_19:54:00;Deriv_3;Emergency stop; LOG;;test
+20170429_19:55:14;Deriv_3;gcode/20170429_19:55:14Method.gcode;gcode/20170429_19:55:14Method.gcode;;test
+20170429_19:55:59;Deriv_3;Emergency stop; LOG;;test
+20170429_19:56:18;Deriv_3;gcode/20170429_19:56:18Method.gcode;gcode/20170429_19:56:18Method.gcode;;test
+20170429_19:56:54;Deriv_3;Emergency stop; LOG;;test
+20170429_19:57:11;test_ink;gcode/20170429_19:57:11test_ink.gcode;gcode/20170429_19:57:11test_ink.gcode;;test
+20170429_19:57:15;test_ink;gcode/20170429_19:57:15test_ink.gcode;gcode/20170429_19:57:15test_ink.gcode;;test
+20170429_19:58:13;Deriv_3;gcode/20170429_19:58:13Method.gcode;gcode/20170429_19:58:13Method.gcode;;test
+20170429_20:00:18;Deriv_3;Emergency stop; LOG;;test
+20170429_20:01:09;Deriv_3;gcode/20170429_20:01:09Method.gcode;gcode/20170429_20:01:09Method.gcode;;test
+20170429_20:41:23;Connection;NA;Board disconnection;;test
+20170503_11:05:20;Connection;NA;Board connection;;test
+20170503_11:14:17;SA;gcode/20170503_11:14:17Method.gcode;gcode/20170503_11:14:17Method.gcode;;test
+20170503_11:14:20;SA;Emergency stop; LOG;;test
+20170503_11:14:47;SA;gcode/20170503_11:14:47Method.gcode;gcode/20170503_11:14:47Method.gcode;;test
+20170503_11:42:58;Connection;NA;Board connection;;test
+20170503_11:45:49;Connection;NA;Board connection;;test
+20170503_11:53:39;SA_2;gcode/20170503_11:53:39Method.gcode;gcode/20170503_11:53:39Method.gcode;;test
+20170503_11:54:03;SA_2;Emergency stop; LOG;;test
+20170503_11:55:10;SA_2;gcode/20170503_11:55:10Method.gcode;gcode/20170503_11:55:10Method.gcode;;test
+20170503_11:57:15;SA_2;Emergency stop; LOG;;test
+20170503_11:57:22;SA_2;gcode/20170503_11:57:22Method.gcode;gcode/20170503_11:57:22Method.gcode;;test
+20170503_13:33:04;SA_2;Emergency stop; LOG;;test
+20170503_13:33:06;SA_2;gcode/20170503_13:33:06Method.gcode;gcode/20170503_13:33:06Method.gcode;;test
+20170503_13:33:09;Connection;NA;Board disconnection;;test
+20170503_13:33:12;Connection;NA;Board connection;;test
+20170503_13:34:07;Connection;NA;Board connection;;test
+20170503_13:34:37;SA_2;gcode/20170503_13:34:37Method.gcode;gcode/20170503_13:34:37Method.gcode;;test
+20170503_13:36:55;SA_2;Emergency stop; LOG;;test
+20170503_13:36:57;SA_2;gcode/20170503_13:36:57Method.gcode;gcode/20170503_13:36:57Method.gcode;;test
+20170503_13:41:08;SA_2;gcode/20170503_13:41:08Method.gcode;gcode/20170503_13:41:08Method.gcode;;test
+20170503_13:41:10;SA_2;Emergency stop; LOG;;test
+20170503_13:41:11;SA_2;gcode/20170503_13:41:11Method.gcode;gcode/20170503_13:41:11Method.gcode;;test
+20170503_13:41:30;SA_2;Emergency stop; LOG;;test
+20170503_13:42:17;SA_2;gcode/20170503_13:42:17Method.gcode;gcode/20170503_13:42:17Method.gcode;;test
+20170503_13:54:57;SA_2;gcode/20170503_13:54:57Method.gcode;gcode/20170503_13:54:57Method.gcode;;test
+20170503_13:55:02;SA_2;Emergency stop; LOG;;test
+20170503_13:55:04;SA_2;gcode/20170503_13:55:04Method.gcode;gcode/20170503_13:55:04Method.gcode;;test
+20170503_13:55:17;SA_2;Emergency stop; LOG;;test
+20170503_13:55:32;SA_2;gcode/20170503_13:55:32Method.gcode;gcode/20170503_13:55:32Method.gcode;;test
+20170503_14:22:01;SA_2;gcode/20170503_14:22:01Method.gcode;gcode/20170503_14:22:01Method.gcode;;test
+20170503_14:26:06;Connection;NA;Board disconnection;;test
+20170503_14:29:01;Connection;NA;Board connection;;test
+20170503_14:30:34;Connection;NA;Board connection;;test
+20170503_14:31:19;Connection;NA;Board connection;;test
+20170503_14:52:36;Connection;NA;Board connection;;test
+20170503_14:56:16;Connection;NA;Board connection;;test
+20170503_15:13:19;SA_2;gcode/20170503_15:13:19Method.gcode;gcode/20170503_15:13:19Method.gcode;;test
+20170503_15:23:00;SA_2;Emergency stop; LOG;;test
+20170503_15:23:01;SA_2;gcode/20170503_15:23:01Method.gcode;gcode/20170503_15:23:01Method.gcode;;test
+20170503_15:34:15;SA_2;Emergency stop; LOG;;test
+20170503_15:34:17;SA_2;gcode/20170503_15:34:17Method.gcode;gcode/20170503_15:34:17Method.gcode;;test
+20170503_15:50:32;SA_2;Emergency stop; LOG;;test
+20170503_15:50:32;SA_2;gcode/20170503_15:50:32Method.gcode;gcode/20170503_15:50:32Method.gcode;;test
+20170503_16:10:26;SA_2;Emergency stop; LOG;;test
+20170503_16:10:26;Connection;NA;Board disconnection;;test
+20170503_16:10:26;Connection;NA;Board disconnection;;test
+20170503_16:11:14;Connection;NA;Board connection;;test
+20170503_16:14:15;SA_2;gcode/20170503_16:14:15Method.gcode;gcode/20170503_16:14:15Method.gcode;;test
+20170503_17:21:24;Deriv_3;Emergency stop; LOG;;test
+20170503_17:21:37;Deriv_3;gcode/20170503_17:21:37Method.gcode;gcode/20170503_17:21:37Method.gcode;;test
+20170503_17:23:10;Connection;NA;Board connection;;test
+20170503_17:26:55;Connection;NA;Board connection;;test
+20170503_17:28:51;Deriv_3;gcode/20170503_17:28:51Method.gcode;gcode/20170503_17:28:51Method.gcode;;test
+20170503_17:34:54;Deriv_3;Emergency stop; LOG;;test
+20170503_18:00:56;Connection;NA;Board disconnection;;test
+20170503_18:02:13;Connection;NA;Board connection;;test
+20170504_09:28:24;Connection;NA;Board connection;;test
+20170504_09:49:10;Connection;NA;Board disconnection;;test
+20170504_09:49:20;Connection;NA;Board connection;;test
+20170504_09:51:25;Deriv_3;gcode/20170504_09:51:25Method.gcode;gcode/20170504_09:51:25Method.gcode;;test
+20170504_10:02:04;test_ink;gcode/20170504_10:02:04test_ink.gcode;gcode/20170504_10:02:04test_ink.gcode;;test
+20170504_10:02:08;test_ink;gcode/20170504_10:02:08test_ink.gcode;gcode/20170504_10:02:08test_ink.gcode;;test
+20170504_10:02:09;test_ink;gcode/20170504_10:02:09test_ink.gcode;gcode/20170504_10:02:09test_ink.gcode;;test
+20170504_10:02:49;Deriv_3;gcode/20170504_10:02:49Method.gcode;gcode/20170504_10:02:49Method.gcode;;test
+20170504_10:02:50;Deriv_3;Emergency stop; LOG;;test
+20170504_10:02:51;Deriv_3;gcode/20170504_10:02:51Method.gcode;gcode/20170504_10:02:51Method.gcode;;test
+20170504_10:15:36;test_ink;gcode/20170504_10:15:36test_ink.gcode;gcode/20170504_10:15:36test_ink.gcode;;test
+20170504_10:15:37;test_ink;gcode/20170504_10:15:37test_ink.gcode;gcode/20170504_10:15:37test_ink.gcode;;test
+20170504_10:15:41;Deriv_3;Emergency stop; LOG;;test
+20170504_10:15:46;Deriv_3;gcode/20170504_10:15:46Method.gcode;gcode/20170504_10:15:46Method.gcode;;test
+20170504_10:28:17;Deriv_3;gcode/20170504_10:28:17Method.gcode;gcode/20170504_10:28:17Method.gcode;;test
+20170504_10:30:53;test_ink;gcode/20170504_10:30:53test_ink.gcode;gcode/20170504_10:30:53test_ink.gcode;;test
+20170504_10:30:54;test_ink;gcode/20170504_10:30:54test_ink.gcode;gcode/20170504_10:30:54test_ink.gcode;;test
+20170504_10:30:54;test_ink;gcode/20170504_10:30:54test_ink.gcode;gcode/20170504_10:30:54test_ink.gcode;;test
+20170504_10:30:55;test_ink;gcode/20170504_10:30:55test_ink.gcode;gcode/20170504_10:30:55test_ink.gcode;;test
+20170504_10:30:55;test_ink;gcode/20170504_10:30:55test_ink.gcode;gcode/20170504_10:30:55test_ink.gcode;;test
+20170504_10:30:55;test_ink;gcode/20170504_10:30:55test_ink.gcode;gcode/20170504_10:30:55test_ink.gcode;;test
+20170504_10:30:56;test_ink;gcode/20170504_10:30:56test_ink.gcode;gcode/20170504_10:30:56test_ink.gcode;;test
+20170504_10:30:56;test_ink;gcode/20170504_10:30:56test_ink.gcode;gcode/20170504_10:30:56test_ink.gcode;;test
+20170504_10:31:00;Deriv_3;Emergency stop; LOG;;test
+20170504_10:31:01;Deriv_3;gcode/20170504_10:31:01Method.gcode;gcode/20170504_10:31:01Method.gcode;;test
+20170504_10:31:59;Deriv_3;Emergency stop; LOG;;test
+20170504_11:59:57;Connection;NA;Board connection;;test
+20170504_12:02:18;Connection;NA;Board connection;;test
+20170504_12:03:50;Deriv_3;gcode/20170504_12:03:50Method.gcode;gcode/20170504_12:03:50Method.gcode;;test
+20170504_12:04:34;Deriv_3;Emergency stop; LOG;;test
+20170504_12:06:45;Deriv_3;gcode/20170504_12:06:45Method.gcode;gcode/20170504_12:06:45Method.gcode;;test
+20170504_12:07:23;Deriv_3;Emergency stop; LOG;;test
+20170504_13:24:20;Connection;NA;Board disconnection;;test
+20170504_17:53:14;Connection;NA;Board connection;;test
+20170504_17:56:38;test_ink;gcode/20170504_17:56:38test_ink.gcode;gcode/20170504_17:56:38test_ink.gcode;;test
+20170504_17:56:39;test_ink;gcode/20170504_17:56:39test_ink.gcode;gcode/20170504_17:56:39test_ink.gcode;;test
+20170504_17:56:39;test_ink;gcode/20170504_17:56:39test_ink.gcode;gcode/20170504_17:56:39test_ink.gcode;;test
+20170504_17:56:40;test_ink;gcode/20170504_17:56:40test_ink.gcode;gcode/20170504_17:56:40test_ink.gcode;;test
+20170504_17:56:41;test_ink;gcode/20170504_17:56:41test_ink.gcode;gcode/20170504_17:56:41test_ink.gcode;;test
+20170504_17:56:41;test_ink;gcode/20170504_17:56:41test_ink.gcode;gcode/20170504_17:56:41test_ink.gcode;;test
+20170504_17:57:01;test_ink;gcode/20170504_17:57:01test_ink.gcode;gcode/20170504_17:57:01test_ink.gcode;;test
+20170504_17:57:01;test_ink;gcode/20170504_17:57:01test_ink.gcode;gcode/20170504_17:57:01test_ink.gcode;;test
+20170504_17:57:02;test_ink;gcode/20170504_17:57:02test_ink.gcode;gcode/20170504_17:57:02test_ink.gcode;;test
+20170504_17:57:02;test_ink;gcode/20170504_17:57:02test_ink.gcode;gcode/20170504_17:57:02test_ink.gcode;;test
+20170504_17:57:02;test_ink;gcode/20170504_17:57:02test_ink.gcode;gcode/20170504_17:57:02test_ink.gcode;;test
+20170504_17:57:02;test_ink;gcode/20170504_17:57:02test_ink.gcode;gcode/20170504_17:57:02test_ink.gcode;;test
+20170504_17:57:03;test_ink;gcode/20170504_17:57:03test_ink.gcode;gcode/20170504_17:57:03test_ink.gcode;;test
+20170504_17:57:03;test_ink;gcode/20170504_17:57:03test_ink.gcode;gcode/20170504_17:57:03test_ink.gcode;;test
+20170504_17:57:03;test_ink;gcode/20170504_17:57:03test_ink.gcode;gcode/20170504_17:57:03test_ink.gcode;;test
+20170504_17:57:26;test_ink;gcode/20170504_17:57:26test_ink.gcode;gcode/20170504_17:57:26test_ink.gcode;;test
+20170504_17:57:27;test_ink;gcode/20170504_17:57:27test_ink.gcode;gcode/20170504_17:57:27test_ink.gcode;;test
+20170504_17:57:27;test_ink;gcode/20170504_17:57:27test_ink.gcode;gcode/20170504_17:57:27test_ink.gcode;;test
+20170504_17:57:28;test_ink;gcode/20170504_17:57:28test_ink.gcode;gcode/20170504_17:57:28test_ink.gcode;;test
+20170504_17:58:43;test_ink;gcode/20170504_17:58:43test_ink.gcode;gcode/20170504_17:58:43test_ink.gcode;;test
+20170504_17:58:45;test_ink;gcode/20170504_17:58:45test_ink.gcode;gcode/20170504_17:58:45test_ink.gcode;;test
+20170504_17:58:46;test_ink;gcode/20170504_17:58:46test_ink.gcode;gcode/20170504_17:58:46test_ink.gcode;;test
+20170504_17:58:48;test_ink;gcode/20170504_17:58:48test_ink.gcode;gcode/20170504_17:58:48test_ink.gcode;;test
+20170504_17:58:50;test_ink;gcode/20170504_17:58:50test_ink.gcode;gcode/20170504_17:58:50test_ink.gcode;;test
+20170504_17:58:52;test_ink;gcode/20170504_17:58:52test_ink.gcode;gcode/20170504_17:58:52test_ink.gcode;;test
+20170504_17:58:54;test_ink;gcode/20170504_17:58:54test_ink.gcode;gcode/20170504_17:58:54test_ink.gcode;;test
+20170504_17:58:56;test_ink;gcode/20170504_17:58:56test_ink.gcode;gcode/20170504_17:58:56test_ink.gcode;;test
+20170504_17:58:58;test_ink;gcode/20170504_17:58:58test_ink.gcode;gcode/20170504_17:58:58test_ink.gcode;;test
+20170504_17:59:00;test_ink;gcode/20170504_17:59:00test_ink.gcode;gcode/20170504_17:59:00test_ink.gcode;;test
+20170504_17:59:04;test_ink;gcode/20170504_17:59:04test_ink.gcode;gcode/20170504_17:59:04test_ink.gcode;;test
+20170504_17:59:06;test_ink;gcode/20170504_17:59:06test_ink.gcode;gcode/20170504_17:59:06test_ink.gcode;;test
+20170504_17:59:10;test_ink;gcode/20170504_17:59:10test_ink.gcode;gcode/20170504_17:59:10test_ink.gcode;;test
+20170504_17:59:19;SA_2;gcode/20170504_17:59:19Method.gcode;gcode/20170504_17:59:19Method.gcode;;test
+20170504_17:59:38;SA_2;Emergency stop; LOG;;test
+20170504_18:00:25;SA_2;gcode/20170504_18:00:25Method.gcode;gcode/20170504_18:00:25Method.gcode;;test
+20170504_18:00:40;SA_2;Emergency stop; LOG;;test
+20170504_18:05:21;test_ink;gcode/20170504_18:05:21test_ink.gcode;gcode/20170504_18:05:21test_ink.gcode;;test
+20170504_18:12:05;SA_2;gcode/20170504_18:12:05Method.gcode;gcode/20170504_18:12:05Method.gcode;;test
+20170504_18:14:55;SA_2;Emergency stop; LOG;;test
+20170504_18:17:36;SA_2;gcode/20170504_18:17:36Method.gcode;gcode/20170504_18:17:36Method.gcode;;test
+20170504_18:18:17;SA_2;Emergency stop; LOG;;test
+20170504_18:23:14;test_ink;gcode/20170504_18:23:14test_ink.gcode;gcode/20170504_18:23:14test_ink.gcode;;test
+20170504_18:23:19;test_ink;gcode/20170504_18:23:19test_ink.gcode;gcode/20170504_18:23:19test_ink.gcode;;test
+20170504_18:23:20;test_ink;gcode/20170504_18:23:20test_ink.gcode;gcode/20170504_18:23:20test_ink.gcode;;test
+20170504_18:23:21;test_ink;gcode/20170504_18:23:21test_ink.gcode;gcode/20170504_18:23:21test_ink.gcode;;test
+20170504_18:23:21;test_ink;gcode/20170504_18:23:21test_ink.gcode;gcode/20170504_18:23:21test_ink.gcode;;test
+20170504_18:23:21;test_ink;gcode/20170504_18:23:21test_ink.gcode;gcode/20170504_18:23:21test_ink.gcode;;test
+20170504_18:23:22;test_ink;gcode/20170504_18:23:22test_ink.gcode;gcode/20170504_18:23:22test_ink.gcode;;test
+20170504_18:23:23;test_ink;gcode/20170504_18:23:23test_ink.gcode;gcode/20170504_18:23:23test_ink.gcode;;test
+20170504_18:23:23;test_ink;gcode/20170504_18:23:23test_ink.gcode;gcode/20170504_18:23:23test_ink.gcode;;test
+20170504_18:23:23;test_ink;gcode/20170504_18:23:23test_ink.gcode;gcode/20170504_18:23:23test_ink.gcode;;test
+20170504_18:23:23;test_ink;gcode/20170504_18:23:23test_ink.gcode;gcode/20170504_18:23:23test_ink.gcode;;test
+20170504_18:23:29;test_ink;gcode/20170504_18:23:29test_ink.gcode;gcode/20170504_18:23:29test_ink.gcode;;test
+20170504_18:23:30;test_ink;gcode/20170504_18:23:30test_ink.gcode;gcode/20170504_18:23:30test_ink.gcode;;test
+20170504_18:23:37;test_ink;gcode/20170504_18:23:37test_ink.gcode;gcode/20170504_18:23:37test_ink.gcode;;test
+20170504_18:23:38;test_ink;gcode/20170504_18:23:38test_ink.gcode;gcode/20170504_18:23:38test_ink.gcode;;test
+20170504_18:23:58;SA_2;gcode/20170504_18:23:58Method.gcode;gcode/20170504_18:23:58Method.gcode;;test
+20170504_18:25:13;Connection;NA;Board connection;;test
+20170504_18:26:46;SA_2;gcode/20170504_18:26:46Method.gcode;gcode/20170504_18:26:46Method.gcode;;test
+20170504_18:31:59;SA_2;Emergency stop; LOG;;test
+20170504_18:32:01;SA_2;gcode/20170504_18:32:01Method.gcode;gcode/20170504_18:32:01Method.gcode;;test
+20170504_18:32:51;SA_2;Emergency stop; LOG;;test
+20170504_18:32:52;SA_2;gcode/20170504_18:32:52Method.gcode;gcode/20170504_18:32:52Method.gcode;;test
+20170504_18:32:53;SA_2;Emergency stop; LOG;;test
+20170504_18:32:59;Connection;NA;Board connection;;test
+20170504_18:37:33;Connection;NA;Board connection;;test
+20170504_18:38:42;SA_2;gcode/20170504_18:38:42Method.gcode;gcode/20170504_18:38:42Method.gcode;;test
+20170504_19:45:44;test_ink;gcode/20170504_19:45:44test_ink.gcode;gcode/20170504_19:45:44test_ink.gcode;;test
+20170504_19:45:46;test_ink;gcode/20170504_19:45:46test_ink.gcode;gcode/20170504_19:45:46test_ink.gcode;;test
+20170504_19:54:01;Connection;NA;Board connection;;test
+20170504_19:56:37;Connection;NA;Board connection;;test
+20170504_19:57:23;Deriv_3;gcode/20170504_19:57:23Method.gcode;gcode/20170504_19:57:23Method.gcode;;test
+20170504_19:57:42;Deriv_3;Emergency stop; LOG;;test
+20170504_20:00:30;Deriv_3;gcode/20170504_20:00:30Method.gcode;gcode/20170504_20:00:30Method.gcode;;test
+20170504_20:14:40;Deriv_3;Emergency stop; LOG;;test
+20170504_20:14:41;Deriv_3;gcode/20170504_20:14:41Method.gcode;gcode/20170504_20:14:41Method.gcode;;test
+20170504_21:01:58;Connection;NA;Board disconnection;;test
+20170504_21:03:47;Connection;NA;Board connection;;test
+20170504_21:03:48;Connection;NA;Board disconnection;;test
+20170505_10:57:00;Connection;NA;Board connection;;test
+20170505_11:01:48;SA_in_X;gcode/20170505_11:01:48Method.gcode;gcode/20170505_11:01:48Method.gcode;;test
+20170505_11:49:25;SA_in_X;Emergency stop; LOG;;test
+20170505_11:49:26;SA_in_X;gcode/20170505_11:49:26Method.gcode;gcode/20170505_11:49:26Method.gcode;;test
+20170505_12:09:15;Connection;NA;Board connection;;test
+20170505_12:10:07;Connection;NA;Board connection;;test
+20170505_12:13:22;Connection;NA;Board connection;;test
+20170505_12:14:05;SA_in_X;gcode/20170505_12:14:05Method.gcode;gcode/20170505_12:14:05Method.gcode;;test
+20170505_12:14:11;SA_in_X;Emergency stop; LOG;;test
+20170505_12:14:42;SA_in_X;gcode/20170505_12:14:42Method.gcode;gcode/20170505_12:14:42Method.gcode;;test
+20170505_13:24:05;Dev_in_X;Emergency stop; LOG;;test
+20170505_13:24:10;Dev_in_X;gcode/20170505_13:24:10Method.gcode;gcode/20170505_13:24:10Method.gcode;;test
+20170505_13:52:51;Dev_in_X;Emergency stop; LOG;;test
+20170505_14:02:29;Connection;NA;Board disconnection;;test
+20170505_14:15:08;Dev_in_X;gcode/20170505_14:15:08Method.gcode;gcode/20170505_14:15:08Method.gcode;;test
+20170505_14:15:10;Dev_in_X;Emergency stop; LOG;;test
+20170505_14:15:38;Connection;NA;Board connection;;test
+20170505_14:15:52;Dev_in_X;gcode/20170505_14:15:52Method.gcode;gcode/20170505_14:15:52Method.gcode;;test
+20170505_15:06:23;Dev_in_X;Emergency stop; LOG;;test
+20170505_15:15:19;Connection;NA;Board disconnection;;test
+20170505_16:58:34;Connection;NA;Board connection;;test
+20170505_17:01:24;test_ink;gcode/20170505_17:01:24test_ink.gcode;gcode/20170505_17:01:24test_ink.gcode;;test
+20170505_17:01:36;test_ink;gcode/20170505_17:01:36test_ink.gcode;gcode/20170505_17:01:36test_ink.gcode;;test
+20170505_17:02:04;test_ink;gcode/20170505_17:02:04test_ink.gcode;gcode/20170505_17:02:04test_ink.gcode;;test
+20170505_17:02:25;test_ink;gcode/20170505_17:02:25test_ink.gcode;gcode/20170505_17:02:25test_ink.gcode;;test
+20170505_17:02:53;test_ink;gcode/20170505_17:02:53test_ink.gcode;gcode/20170505_17:02:53test_ink.gcode;;test
+20170505_17:03:19;test_ink;gcode/20170505_17:03:19test_ink.gcode;gcode/20170505_17:03:19test_ink.gcode;;test
+20170505_17:03:47;test_ink;gcode/20170505_17:03:47test_ink.gcode;gcode/20170505_17:03:47test_ink.gcode;;test
+20170505_17:11:20;test_ink;gcode/20170505_17:11:20test_ink.gcode;gcode/20170505_17:11:20test_ink.gcode;;test
+20170505_17:11:53;Connection;NA;Board connection;;test
+20170505_17:13:42;test_ink;gcode/20170505_17:13:42test_ink.gcode;gcode/20170505_17:13:42test_ink.gcode;;test
+20170505_17:15:41;SA_2;gcode/20170505_17:15:41Method.gcode;gcode/20170505_17:15:41Method.gcode;;test
+20170505_18:11:13;Connection;NA;Board connection;;test
+20170505_18:11:43;SA_2;gcode/20170505_18:11:43Method.gcode;gcode/20170505_18:11:43Method.gcode;;test
+20170505_18:11:44;SA_2;Emergency stop; LOG;;test
+20170505_18:11:45;SA_2;gcode/20170505_18:11:45Method.gcode;gcode/20170505_18:11:45Method.gcode;;test
+20170505_18:13:15;Connection;NA;Board connection;;test
+20170505_18:13:32;SA_2;gcode/20170505_18:13:32Method.gcode;gcode/20170505_18:13:32Method.gcode;;test
+20170505_18:35:33;test_ink;gcode/20170505_18:35:33test_ink.gcode;gcode/20170505_18:35:33test_ink.gcode;;test
+20170505_18:39:10;test_ink;gcode/20170505_18:39:10test_ink.gcode;gcode/20170505_18:39:10test_ink.gcode;;test
+20170505_18:43:03;test_ink;gcode/20170505_18:43:03test_ink.gcode;gcode/20170505_18:43:03test_ink.gcode;;test
+20170505_18:44:26;test_ink;gcode/20170505_18:44:26test_ink.gcode;gcode/20170505_18:44:26test_ink.gcode;;test
+20170505_18:45:58;Connection;NA;Board disconnection;;test
+20170506_12:46:53;SA_grid;gcode/20170506_12:46:53Method.gcode;gcode/20170506_12:46:53Method.gcode;;test
+20170506_12:46:56;SA_grid;Emergency stop; LOG;;test
+20170506_12:47:01;Connection;NA;Board connection;;test
+20170506_12:47:02;SA_grid;gcode/20170506_12:47:02Method.gcode;gcode/20170506_12:47:02Method.gcode;;test
+20170506_12:51:11;Deriv_single_nozzle;Emergency stop; LOG;;test
+20170506_12:51:12;Deriv_single_nozzle;gcode/20170506_12:51:12Method.gcode;gcode/20170506_12:51:12Method.gcode;;test
+20170506_12:55:11;test_ink;gcode/20170506_12:55:11test_ink.gcode;gcode/20170506_12:55:11test_ink.gcode;;test
+20170506_12:55:32;test_ink;gcode/20170506_12:55:32test_ink.gcode;gcode/20170506_12:55:32test_ink.gcode;;test
+20170506_12:57:03;test_ink;gcode/20170506_12:57:03test_ink.gcode;gcode/20170506_12:57:03test_ink.gcode;;test
+20170506_12:57:16;test_ink;gcode/20170506_12:57:16test_ink.gcode;gcode/20170506_12:57:16test_ink.gcode;;test
+20170506_12:57:20;test_ink;gcode/20170506_12:57:20test_ink.gcode;gcode/20170506_12:57:20test_ink.gcode;;test
+20170506_12:57:27;test_ink;gcode/20170506_12:57:27test_ink.gcode;gcode/20170506_12:57:27test_ink.gcode;;test
+20170506_12:57:32;test_ink;gcode/20170506_12:57:32test_ink.gcode;gcode/20170506_12:57:32test_ink.gcode;;test
+20170506_12:57:36;test_ink;gcode/20170506_12:57:36test_ink.gcode;gcode/20170506_12:57:36test_ink.gcode;;test
+20170506_12:57:59;test_ink;gcode/20170506_12:57:59test_ink.gcode;gcode/20170506_12:57:59test_ink.gcode;;test
+20170506_13:04:23;test_ink;gcode/20170506_13:04:23test_ink.gcode;gcode/20170506_13:04:23test_ink.gcode;;test
+20170506_13:12:54;SA_grid;gcode/20170506_13:12:54Method.gcode;gcode/20170506_13:12:54Method.gcode;;test
+20170506_13:12:56;SA_grid;Emergency stop; LOG;;test
+20170506_13:13:16;SA_grid;gcode/20170506_13:13:16Method.gcode;gcode/20170506_13:13:16Method.gcode;;test
+20170506_13:13:20;SA_grid;Emergency stop; LOG;;test
+20170506_13:15:23;SA_grid;gcode/20170506_13:15:23Method.gcode;gcode/20170506_13:15:23Method.gcode;;test
+20170506_14:02:55;Connection;NA;Board connection;;test
+20170506_14:03:43;Connection;NA;Board connection;;test
+20170506_14:04:13;SA_grid;gcode/20170506_14:04:13Method.gcode;gcode/20170506_14:04:13Method.gcode;;test
+20170506_15:15:50;test_ink;gcode/20170506_15:15:50test_ink.gcode;gcode/20170506_15:15:50test_ink.gcode;;test
+20170506_15:16:47;Connection;NA;Board connection;;test
+20170506_15:17:07;test_ink;gcode/20170506_15:17:07test_ink.gcode;gcode/20170506_15:17:07test_ink.gcode;;test
+20170506_15:19:06;test_ink;gcode/20170506_15:19:06test_ink.gcode;gcode/20170506_15:19:06test_ink.gcode;;test
+20170506_15:19:37;test_ink;gcode/20170506_15:19:37test_ink.gcode;gcode/20170506_15:19:37test_ink.gcode;;test
+20170506_15:29:15;SA_grid;gcode/20170506_15:29:15Method.gcode;gcode/20170506_15:29:15Method.gcode;;test
+20170506_16:17:08;test_ink;gcode/20170506_16:17:08test_ink.gcode;gcode/20170506_16:17:08test_ink.gcode;;test
+20170506_16:31:41;Connection;NA;Board disconnection;;test
+20170508_15:01:34;Connection;NA;Board connection;;test
+20170508_15:08:52;test_ink;gcode/20170508_15:08:52test_ink.gcode;gcode/20170508_15:08:52test_ink.gcode;;test
+20170508_15:09:23;test_ink;gcode/20170508_15:09:23test_ink.gcode;gcode/20170508_15:09:23test_ink.gcode;;test
+20170508_15:09:52;test_ink;gcode/20170508_15:09:52test_ink.gcode;gcode/20170508_15:09:52test_ink.gcode;;test
+20170508_15:10:17;test_ink;gcode/20170508_15:10:17test_ink.gcode;gcode/20170508_15:10:17test_ink.gcode;;test
+20170508_15:10:50;test_ink;gcode/20170508_15:10:50test_ink.gcode;gcode/20170508_15:10:50test_ink.gcode;;test
+20170508_15:11:14;test_ink;gcode/20170508_15:11:14test_ink.gcode;gcode/20170508_15:11:14test_ink.gcode;;test
+20170508_15:12:39;test_ink;gcode/20170508_15:12:39test_ink.gcode;gcode/20170508_15:12:39test_ink.gcode;;test
+20170508_15:13:24;test_ink;gcode/20170508_15:13:24test_ink.gcode;gcode/20170508_15:13:24test_ink.gcode;;test
+20170508_15:14:06;Connection;NA;Board disconnection;;test
+20170508_16:46:24;Connection;NA;Board connection;;test
+20170508_16:49:24;Deriv_3;gcode/20170508_16:49:24Method.gcode;gcode/20170508_16:49:24Method.gcode;;test
+20170508_16:51:26;Deriv_3;Emergency stop; LOG;;test
+20170508_16:52:14;Deriv_3;gcode/20170508_16:52:14Method.gcode;gcode/20170508_16:52:14Method.gcode;;test
+20170508_16:54:19;Deriv_3;Emergency stop; LOG;;test
+20170508_16:57:27;Deriv_3;gcode/20170508_16:57:27Method.gcode;gcode/20170508_16:57:27Method.gcode;;test
+20170508_16:59:25;Deriv_3;Emergency stop; LOG;;test
+20170508_17:00:30;Deriv_3;gcode/20170508_17:00:30Method.gcode;gcode/20170508_17:00:30Method.gcode;;test
+20170508_17:02:28;Deriv_3;Emergency stop; LOG;;test
+20170508_17:05:39;Deriv_3;gcode/20170508_17:05:39Method.gcode;gcode/20170508_17:05:39Method.gcode;;test
+20170508_17:07:38;Deriv_3;Emergency stop; LOG;;test
+20170508_17:09:05;Deriv_3;gcode/20170508_17:09:05Method.gcode;gcode/20170508_17:09:05Method.gcode;;test
+20170508_17:11:03;Deriv_3;Emergency stop; LOG;;test
+20170508_17:13:02;Deriv_3;gcode/20170508_17:13:02Method.gcode;gcode/20170508_17:13:02Method.gcode;;test
+20170508_17:14:59;Deriv_3;Emergency stop; LOG;;test
+20170508_17:16:37;Deriv_3;gcode/20170508_17:16:37Method.gcode;gcode/20170508_17:16:37Method.gcode;;test
+20170508_17:18:34;Deriv_3;Emergency stop; LOG;;test
+20170508_17:20:08;Deriv_3;gcode/20170508_17:20:08Method.gcode;gcode/20170508_17:20:08Method.gcode;;test
+20170508_17:22:00;Deriv_3;Emergency stop; LOG;;test
+20170508_17:22:26;Deriv_3;gcode/20170508_17:22:26Method.gcode;gcode/20170508_17:22:26Method.gcode;;test
+20170508_17:24:24;Deriv_3;Emergency stop; LOG;;test
+20170508_17:25:12;Connection;NA;Board disconnection;;test
+20170513_11:50:22;Connection;NA;Sign in;admin;test
+20170513_13:56:41;Connection;NA;Sign in;admin;test
+20170513_13:57:04;Connection;NA;Sign in;admin;test
+20170520_12:32:18;Connection;NA;Board connection;;test
+20170520_12:34:43;SA_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_12:35:12;SA_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_12:36:13;Dev_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_12:41:12;SA_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_13:01:51;SA_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_13:24:36;Dev_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_13:45:06;Connection;NA;Board disconnection;;test
+20170520_13:45:13;Connection;NA;Board connection;;test
+20170520_13:45:16;Dev_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_13:45:18;Dev_in_X;Emergency stop; LOG;;test
+20170520_13:45:25;Connection;NA;Board connection;;test
+20170520_13:45:27;Dev_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_13:45:29;Dev_in_X;Emergency stop; LOG;;test
+20170520_13:46:11;Connection;NA;Board connection;;test
+20170520_13:46:22;Dev_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_14:01:42;Dev_in_X;Emergency stop; LOG;;test
+20170520_14:10:17;SA_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_14:20:50;SA_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_14:30:38;Dev_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_14:38:17;Dev_in_X;Emergency stop; LOG;;test
+20170520_14:38:23;Dev_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_14:46:15;Dev_in_X;Emergency stop; LOG;;test
+20170520_14:54:09;SA_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_15:00:54;Connection;NA;Board connection;;test
+20170520_15:02:56;Connection;NA;Board connection;;test
+20170520_15:04:36;SA_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_15:05:11;SA_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_15:05:31;SA_in_X;Emergency stop; LOG;;test
+20170520_15:05:35;SA_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_15:10:33;SA_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_15:21:19;Dev_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_15:22:05;Dev_in_X;Emergency stop; LOG;;test
+20170520_15:26:41;Dev_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_15:32:16;Dev_in_X;Emergency stop; LOG;;test
+20170520_15:34:42;Dev_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_15:51:22;Dev_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_16:10:11;SA_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_16:16:09;Connection;NA;Board connection;;test
+20170520_16:16:24;SA_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_16:21:18;SA_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_16:34:23;Dev_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_16:34:40;Dev_in_X;Emergency stop; LOG;;test
+20170520_16:35:01;Dev_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_16:35:28;Dev_in_X;Emergency stop; LOG;;test
+20170520_16:36:02;Dev_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_16:36:30;Dev_in_X;Emergency stop; LOG;;test
+20170520_16:36:41;Dev_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_16:50:44;Dev_in_X;Emergency stop; LOG;;test
+20170520_17:01:03;SA_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_17:11:37;SA_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_17:25:02;SA_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_17:25:03;SA_in_X;Emergency stop; LOG;;test
+20170520_17:25:10;Dev_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_17:26:58;Dev_in_X;Emergency stop; LOG;;test
+20170520_17:27:39;Dev_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_17:27:48;Dev_in_X;Emergency stop; LOG;;test
+20170520_17:27:51;Connection;NA;Board disconnection;;test
+20170520_17:27:54;Connection;NA;Board connection;;test
+20170520_17:27:58;Dev_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_17:27:59;Dev_in_X;Emergency stop; LOG;;test
+20170520_17:28:19;Connection;NA;Board connection;;test
+20170520_17:28:33;Dev_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_17:43:15;Dev_in_X;Emergency stop; LOG;;test
+20170520_17:45:07;SA_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_17:55:51;SA_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_18:04:53;Dev_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_18:11:30;Dev_in_X;Emergency stop; LOG;;test
+20170520_18:11:47;Dev_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170520_18:31:42;Dev_in_X;Emergency stop; LOG;;test
+20170520_18:43:09;Connection;NA;Board disconnection;;test
+20170523_17:59:33;Connection;NA;Board connection;;test
+20170523_17:59:51;Connection;NA;Board connection;;test
+20170523_18:00:53;Connection;NA;Board connection;;test
+20170523_18:01:55;Connection;NA;Board connection;;test
+20170523_18:02:38;Connection;NA;Board connection;;test
+20170523_18:02:59;test_ink;gcode/test_ink.gcode;gcode/test_ink.gcode;;test
+20170523_18:03:14;Connection;NA;Board disconnection;;test
+20170523_18:05:22;Connection;NA;Board connection;;test
+20170523_18:08:01;SA_grid;gcode/Method.gcode;gcode/Method.gcode;;test
+20170523_18:20:54;SA_grid;gcode/Method.gcode;gcode/Method.gcode;;test
+20170523_18:37:58;Connection;NA;Board disconnection;;test
+20170524_11:35:01;Connection;NA;Board connection;;test
+20170524_11:36:06;Connection;NA;Board connection;;test
+20170524_11:36:43;Connection;NA;Board disconnection;;test
+20170524_16:27:42;Connection;NA;Board connection;;test
+20170524_16:27:54;LP;gcode/Method.gcode;gcode/Method.gcode;;test
+20170524_16:28:31;LP;Emergency stop; LOG;;test
+20170524_16:28:32;LP;gcode/Method.gcode;gcode/Method.gcode;;test
+20170524_16:33:31;LP;gcode/Method.gcode;gcode/Method.gcode;;test
+20170524_17:39:23;Connection;NA;Board disconnection;;test
+20170607_15:12:17;Connection;NA;Board connection;;test
+20170607_15:14:21;Connection;NA;Board connection;;test
+20170607_15:18:44;Connection;NA;Board connection;;test
+20170607_15:23:20;Connection;NA;Board disconnection;;test
+20170607_15:23:22;Connection;NA;Board connection;;test
+20170607_15:37:00;Connection;NA;Board connection;;test
+20170607_15:49:21;Connection;NA;Board connection;;test
+20170607_15:50:14;Connection;NA;Board connection;;test
+20170607_15:50:21;Connection;NA;Board disconnection;;test
+20170607_15:51:13;Connection;NA;Board connection;;test
+20170607_15:54:13;Connection;NA;Board connection;;test
+20170607_15:59:29;Connection;NA;Board connection;;test
+20170607_16:00:59;Connection;NA;Board connection;;test
+20170607_16:03:45;Connection;NA;Board connection;;test
+20170607_16:05:09;Connection;NA;Board disconnection;;test
+20170607_16:06:23;Connection;NA;Board connection;;test
+20170607_16:06:34;Connection;NA;Board connection;;test
+20170607_16:27:46;Connection;NA;Board disconnection;;test
+20170607_16:29:08;Connection;NA;Board connection;;test
+20170607_16:56:17;Connection;NA;Board connection;;test
+20170608_16:48:06;Connection;NA;Board connection;;test
+20170608_16:52:07;Connection;NA;Board disconnection;;test
+20170608_17:00:42;Connection;NA;Board connection;;test
+20170608_17:01:29;Connection;NA;Board disconnection;;test
+20170608_17:01:32;Connection;NA;Board connection;;test
+20170608_17:01:37;Connection;NA;Board connection;;test
+20170612_09:30:29;Connection;NA;Board connection;;test
+20170612_10:15:23;Connection;NA;Board disconnection;;test
+20170614_08:49:26;Connection;NA;Board connection;;test
+20170614_08:52:38;SA_grid;gcode/Method.gcode;gcode/Method.gcode;;test
+20170614_08:54:30;SA_grid;Emergency stop; LOG;;test
+20170614_08:57:10;SA_grid;gcode/Method.gcode;gcode/Method.gcode;;test
+20170614_09:26:29;SA_grid;gcode/Method.gcode;gcode/Method.gcode;;test
+20170614_10:02:23;Connection;NA;Board disconnection;;test
+20170619_09:35:20;Connection;NA;Board connection;;test
+20170619_09:36:44;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_09:38:01;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_09:39:33;LP_2;Emergency stop; LOG;;test
+20170619_09:40:34;Connection;NA;Board connection;;test
+20170619_09:40:49;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_09:42:15;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_09:43:15;Connection;NA;Board connection;;test
+20170619_09:44:09;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_09:44:53;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_09:47:17;Connection;NA;Board connection;;test
+20170619_09:47:38;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_09:51:46;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_09:53:51;Connection;NA;Board connection;;test
+20170619_09:54:10;Connection;NA;Board connection;;test
+20170619_09:54:18;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_10:16:50;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_10:22:56;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_10:38:08;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_10:39:36;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_10:39:49;LP_2;Emergency stop; LOG;;test
+20170619_10:40:33;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_10:40:46;LP_2;Emergency stop; LOG;;test
+20170619_10:41:20;Connection;NA;Board connection;;test
+20170619_10:41:39;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_10:41:42;LP_2;Emergency stop; LOG;;test
+20170619_10:42:54;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_10:57:01;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_10:58:11;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_10:59:34;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_11:00:48;Connection;NA;Board connection;;test
+20170619_11:01:05;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_11:01:22;LP_2;Emergency stop; LOG;;test
+20170619_11:01:35;Connection;NA;Board connection;;test
+20170619_11:01:46;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_11:05:12;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_11:05:31;LP_2;Emergency stop; LOG;;test
+20170619_11:06:00;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_11:21:40;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_11:23:17;Connection;NA;Board disconnection;;test
+20170619_12:31:39;Connection;NA;Board connection;;test
+20170619_12:33:00;Connection;NA;Board disconnection;;test
+20170619_12:39:49;Connection;NA;Board connection;;test
+20170619_12:39:52;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_12:41:03;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_12:42:30;Connection;NA;Board disconnection;;test
+20170619_12:42:35;Connection;NA;Board connection;;test
+20170619_12:42:45;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_12:43:59;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_12:44:03;LP_2;Emergency stop; LOG;;test
+20170619_12:44:25;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_13:04:29;Connection;NA;Board disconnection;;test
+20170619_13:10:00;Connection;NA;Board connection;;test
+20170619_13:10:11;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_13:11:19;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_13:12:34;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_13:13:49;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_13:14:08;LP_2;Emergency stop; LOG;;test
+20170619_13:27:47;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_13:30:04;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_13:32:52;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_13:37:06;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_13:37:17;LP_2;Emergency stop; LOG;;test
+20170619_13:37:26;Connection;NA;Board disconnection;;test
+20170619_13:37:32;Connection;NA;Board connection;;test
+20170619_13:37:40;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_13:38:50;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_13:41:10;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_13:41:25;LP_2;Emergency stop; LOG;;test
+20170619_13:41:28;Connection;NA;Board disconnection;;test
+20170619_13:41:32;Connection;NA;Board connection;;test
+20170619_13:41:40;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_13:42:51;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_13:44:03;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_13:45:23;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_13:45:53;LP_2;Emergency stop; LOG;;test
+20170619_13:46:07;Connection;NA;Board disconnection;;test
+20170619_13:46:14;Connection;NA;Board connection;;test
+20170619_13:46:31;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_13:47:42;LP_2;Emergency stop; LOG;;test
+20170619_13:47:43;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_13:47:56;LP_2;Emergency stop; LOG;;test
+20170619_13:48:01;Connection;NA;Board disconnection;;test
+20170619_13:48:06;Connection;NA;Board connection;;test
+20170619_13:48:08;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_13:50:17;LP_2;Emergency stop; LOG;;test
+20170619_13:50:19;Connection;NA;Board disconnection;;test
+20170619_13:50:24;Connection;NA;Board connection;;test
+20170619_13:52:36;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_13:53:38;LP_2;Emergency stop; LOG;;test
+20170619_13:53:43;Connection;NA;Board disconnection;;test
+20170619_13:53:46;Connection;NA;Board connection;;test
+20170619_13:53:59;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_13:55:24;LP_2;Emergency stop; LOG;;test
+20170619_13:55:26;Connection;NA;Board disconnection;;test
+20170619_13:55:29;Connection;NA;Board connection;;test
+20170619_13:55:48;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_14:04:40;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_14:04:45;LP_2;Emergency stop; LOG;;test
+20170619_14:07:03;Connection;NA;Board connection;;test
+20170619_14:07:28;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_14:07:53;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_14:08:16;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_14:10:07;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_14:10:47;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20170619_14:38:37;Connection;NA;Board connection;;test
+20170619_14:43:52;Connection;NA;Board disconnection;;test
+20170622_09:32:14;Connection;NA;Board connection;;test
+20170622_09:34:46;Connection;NA;Board connection;;test
+20170622_09:37:01;Connection;NA;Board connection;;test
+20170622_10:17:36;Connection;NA;Board connection;;test
+20170622_10:19:26;Connection;NA;Board connection;;test
+20170622_10:20:18;Connection;NA;Board connection;;test
+20170622_10:22:08;Connection;NA;Board disconnection;;test
+20170622_10:26:23;Connection;NA;Board connection;;test
+20170622_10:32:36;Connection;NA;Board disconnection;;test
+20170622_10:36:38;Connection;NA;Board connection;;test
+20170622_10:37:01;Connection;NA;Board connection;;test
+20170622_10:38:57;Connection;NA;Board connection;;test
+20170622_10:46:33;Connection;NA;Board connection;;test
+20170622_10:49:40;Connection;NA;Board disconnection;;test
+20170622_10:51:20;Connection;NA;Board connection;;test
+20170622_10:54:56;Connection;NA;Board disconnection;;test
+20170627_13:50:23;Connection;NA;Board connection;;test
+20170627_14:09:14;Connection;NA;Board connection;;test
+20170627_15:08:42;Connection;NA;Board connection;;test
+20170627_15:11:09;Connection;NA;Board connection;;test
+20170627_15:12:11;Connection;NA;Board disconnection;;test
+20170627_15:12:36;Connection;NA;Board connection;;test
+20170627_16:58:54;Connection;NA;Board disconnection;;test
+20170627_21:50:10;Connection;NA;Board connection;;test
+20170627_21:51:00;Connection;NA;Board disconnection;;test
+20170627_21:57:22;Connection;NA;Board connection;;test
+20170627_22:51:36;Connection;NA;Board disconnection;;test
+20170630_09:14:34;Connection;NA;Board connection;;test
+20170630_09:17:00;Connection;NA;Board disconnection;;test
+20170630_09:50:54;Connection;NA;Board connection;;test
+20170630_09:55:24;Connection;NA;Board disconnection;;test
+20170630_09:55:27;Connection;NA;Board connection;;test
+20170630_09:56:41;Connection;NA;Board connection;;test
+20170630_09:57:12;Connection;NA;Board connection;;test
+20170630_09:59:17;Connection;NA;Board connection;;test
+20170630_10:01:44;Connection;NA;Board connection;;test
+20170630_10:06:01;Connection;NA;Board disconnection;;test
+20170630_12:26:05;Connection;NA;Board connection;;test
+20170630_12:26:50;Connection;NA;Board disconnection;;test
+20170630_13:00:34;Connection;NA;Board connection;;test
+20170630_13:00:57;Connection;NA;Board disconnection;;test
+20170630_13:01:40;Connection;NA;Board connection;;test
+20170630_13:02:15;Connection;NA;Board disconnection;;test
+20170630_13:02:21;Connection;NA;Board connection;;test
+20170630_13:03:46;Connection;NA;Board disconnection;;test
+20170630_13:39:06;Connection;NA;Board connection;;test
+20170630_13:44:02;Connection;NA;Board disconnection;;test
+20170630_13:44:34;Connection;NA;Board connection;;test
+20170630_13:45:10;Connection;NA;Board disconnection;;test
+20170630_13:50:27;Connection;NA;Board connection;;test
+20170630_14:37:28;Connection;NA;Board connection;;test
+20170630_14:37:55;Connection;NA;Board disconnection;;test
+20170630_14:38:40;Connection;NA;Board connection;;test
+20170630_14:42:52;Connection;NA;Board disconnection;;test
+20170630_14:43:38;Connection;NA;Board connection;;test
+20170630_14:43:39;Connection;NA;Board disconnection;;test
+20170630_20:34:24;Connection;NA;Board connection;;test
+20170630_20:38:43;Connection;NA;Board connection;;test
+20170630_20:43:49;Connection;NA;Board disconnection;;test
+20170630_20:44:29;Connection;NA;Board connection;;test
+20170630_20:55:07;Connection;NA;Board disconnection;;test
+20170630_20:55:32;Connection;NA;Board connection;;test
+20170630_20:57:15;Connection;NA;Board disconnection;;test
+20170630_20:57:20;Connection;NA;Board connection;;test
+20170630_21:06:19;Connection;NA;Board disconnection;;test
+20170630_21:22:52;Connection;NA;Board connection;;test
+20170630_21:27:58;Connection;NA;Board connection;;test
+20170630_21:44:02;Connection;NA;Board disconnection;;test
+20170630_21:44:07;Connection;NA;Board connection;;test
+20170630_21:50:35;Connection;NA;Board disconnection;;test
+20170702_15:19:31;Connection;NA;Board connection;;test
+20170702_15:23:30;Connection;NA;Board connection;;test
+20170702_15:25:20;Connection;NA;Board connection;;test
+20170702_15:27:47;Connection;NA;Board connection;;test
+20170702_15:32:37;Connection;NA;Board connection;;test
+20170702_15:34:07;Connection;NA;Board connection;;test
+20170702_15:34:57;Connection;NA;Board connection;;test
+20170702_15:35:30;Connection;NA;Board connection;;test
+20170702_15:38:18;Connection;NA;Board connection;;test
+20170702_15:38:47;Connection;NA;Board connection;;test
+20170702_15:39:53;Connection;NA;Board connection;;test
+20170702_15:41:33;Connection;NA;Board disconnection;;test
+20170702_15:42:54;Connection;NA;Board connection;;test
+20170702_15:42:58;Connection;NA;Board disconnection;;test
+20170906_17:04:43;Connection;NA;Board connection;;test
+20170906_17:05:09;Connection;NA;Board disconnection;;test
+20170906_17:17:05;Connection;NA;Board connection;;test
+20170906_17:17:45;Connection;NA;Board disconnection;;test
+20170906_17:18:43;Connection;NA;Board connection;;test
+20170906_17:18:46;Connection;NA;Board disconnection;;test
+20170906_17:26:15;Connection;NA;Board connection;;test
+20170906_17:27:27;Connection;NA;Board disconnection;;test
+20170925_08:56:02;Connection;NA;Board connection;;test
+20170925_09:33:06;Connection;NA;Board connection;;test
+20170927_15:28:21;Connection;NA;Board disconnection;;test
+20170927_15:28:24;Connection;NA;Board disconnection;;test
+20170927_15:28:36;Connection;NA;Board disconnection;;test
+20170927_15:28:38;Connection;NA;Board connection;;test
+20170927_15:29:28;SA_in_X;Methods;Log;;test
+20170927_15:29:30;SA_in_X;Emergency stop; LOG;;test
+20170927_15:29:37;SA_in_X;Methods;Log;;test
+20170927_15:29:44;SA_in_X;Emergency stop; LOG;;test
+20170927_15:29:49;SA_in_X;Methods;Log;;test
+20170927_15:30:15;Connection;NA;Board disconnection;;test
+20170927_15:30:17;Connection;NA;Board connection;;test
+20170927_15:30:27;SA_in_X;Methods;Log;;test
+20170927_15:31:33;Connection;NA;Board connection;;test
+20170927_15:31:42;SA_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170927_15:32:38;SA_in_X;Emergency stop; LOG;;test
+20170927_15:35:57;SA_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170927_15:36:06;SA_in_X;Emergency stop; LOG;;test
+20170927_15:36:26;SA_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170927_15:56:56;Connection;NA;Board connection;;test
+20170927_15:59:22;Connection;NA;Board connection;;test
+20170927_16:10:18;SA_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170927_16:10:35;SA_in_X;Emergency stop; LOG;;test
+20170927_16:11:03;SA_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170927_16:22:55;SA_in_X;Emergency stop; LOG;;test
+20170927_16:23:12;SA_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20170927_16:34:10;SA_in_X;Emergency stop; LOG;;test
+20170927_16:49:58;Connection;NA;Board disconnection;;test
+20170929_11:11:04;Connection;NA;Board connection;;test
+20170929_11:11:23;SA_prep;gcode/Method.gcode;gcode/Method.gcode;;test
+20170929_11:19:07;SA_prep;Emergency stop; LOG;;test
+20170929_11:19:44;Connection;NA;Board disconnection;;test
+20171124_10:42:21;Connection;NA;Board connection;;test
+20171124_10:44:11;Deriv_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20171124_10:45:07;Deriv_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20171124_10:46:11;Deriv_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20171124_10:46:29;Deriv_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20171124_10:46:56;Deriv_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20171124_10:48:54;Deriv_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20171124_10:50:04;Connection;NA;Board connection;;test
+20171124_10:50:40;Deriv_single_nozzle;gcode/Method.gcode;gcode/Method.gcode;;test
+20171124_10:50:48;Deriv_single_nozzle;Emergency stop; LOG;;test
+20171124_10:51:57;Connection;NA;Board connection;;test
+20171124_10:52:27;Dev_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20171124_10:53:02;Dev_in_X;Emergency stop; LOG;;test
+20171124_10:56:11;Dev_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20171124_10:56:25;Dev_in_X;Emergency stop; LOG;;test
+20171124_11:08:09;Dev_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20171124_11:14:24;Dev_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20171124_11:15:49;Dev_in_X;Emergency stop; LOG;;test
+20171124_11:17:53;Dev_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20171124_11:20:44;Dev_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20171124_11:25:52;Dev_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20171124_11:26:52;Dev_in_X;Emergency stop; LOG;;test
+20171124_11:28:51;Dev_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20171124_11:29:11;Dev_in_X;Emergency stop; LOG;;test
+20171124_11:32:44;Dev_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20171124_11:34:26;Dev_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20171124_11:35:12;Dev_in_X;Emergency stop; LOG;;test
+20171124_11:37:27;Dev_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20171124_11:38:26;Dev_in_X;Emergency stop; LOG;;test
+20171124_11:41:37;Dev_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20171124_11:42:09;Dev_in_X;Emergency stop; LOG;;test
+20171213_15:07:02;Connection;NA;Board connection;;test
+20171213_15:19:34;Connection;NA;Board disconnection;;test
+20171215_10:40:43;Connection;NA;Board connection;;test
+20171215_10:46:36;Connection;NA;Board disconnection;;test

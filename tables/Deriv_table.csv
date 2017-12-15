@@ -1,0 +1,11 @@
+Option;Value
+Distance to lower edge;dist_bottom;5
+Distance to top edge;dist_top;15
+First application position;dist_gauche;25
+Band length;band_length;5
+Distance between track;gap;2
+Numbre of band;nbr_band;1
+Speed (mm/s);speed;50
+path;path;1
+I (number of firing);I;10
+L (pulse delay <20);L;5

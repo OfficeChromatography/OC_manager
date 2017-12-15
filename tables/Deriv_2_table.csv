@@ -1,0 +1,11 @@
+Option;Value
+X_bias;X_bias;24
+X_center (dist from left side);X_center;25
+X_width;X_width;10
+Y_center (dist from bottom);Y_center;25
+Y_width;Y_width;10
+Speed (mm/s);speed;50
+path;path;1
+I (number of firing);I;10
+L (pulse delay <20);L;5
+Direction (0 for X first, 1 otherwise);direction;0

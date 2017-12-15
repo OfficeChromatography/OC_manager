@@ -1,0 +1,13 @@
+Option;Value
+First application;first_appli;4.75
+bottom_dist;bottom_dist;2
+Y_length;Y_length;70
+gap between sample in mm;gap;5
+nbr_track;nbr_track;19
+nbr_path;nbr_path;4
+gap_path;gap_path;0.5
+microL_per_dm;microL_per_dm;10
+Z_offset;Z_offset;0
+speed mm/s;speed;60
+temperature;temp;0
+5 = 10 mL, 57 = 1 mL (mm/mL);syringe_ratio;5

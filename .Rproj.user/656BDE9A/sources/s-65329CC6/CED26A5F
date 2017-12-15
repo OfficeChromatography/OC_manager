@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1504877835078.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "CED26A5F",
+    "lastKnownWriteTime" : 1499025011,
+    "last_content_update" : 1499025011,
+    "path" : "~/MEGA/OC/Software/OC_manager/server_Method.R",
+    "project_path" : "server_Method.R",
+    "properties" : {
+        "cursorPosition" : "1,8",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
