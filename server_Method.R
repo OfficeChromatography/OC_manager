@@ -1,5 +1,5 @@
 ## server_Method.R
-library(rhandsontable)
+
 source("eat_table.R")
 output$Method_control_1 = renderUI({
   tagList(
@@ -19,7 +19,7 @@ output$Method_control_1 = renderUI({
            bsTooltip("Method_step_add","add step"),
            bsTooltip("Method_step_delete","delete step"),
            bsTooltip("Method_step_exec","Execute step, method will be saved"),
-           bsTooltip("Method_step_stop","Emergency stop"),
+           bsTooltip("Method_step_stop","Emergency stop, not on windows"),
            bsTooltip("Method_save","Save the method, carefull to overwritte"),
            bsTooltip("Method_load_refresh","Refresh list of method names"),
            bsTooltip("Method_load","Load saved method"),
@@ -231,7 +231,6 @@ output$Method_gcode = DT::renderDataTable({
 }, options = list(pageLength = 10))
 
 ## part for emergency stop
-library(parallel)
 rv <- reactiveValues(
   id=list()
 )
@@ -239,7 +238,7 @@ observeEvent(input$Method_step_exec,{
   if(board){ ## when no arduino connected, just testing
     if(!is.null(rv$id$pid)) return()
     write(paste0(format(Sys.time(),"%Y%m%d_%H:%M:%S"),";",Method$l[[as.numeric(input$Method_steps)]]$type,";Methods",";","Log",";",connect$Visa,";",input$Plate),file="log/log.txt",append = T)
-    rv$id <- mcparallel({ python.call("test_stop")}) #
+    rv$id <- mcparallel({ main$test_stop()}) #
     Method_feedback$text = paste0("Step ",input$Method_steps," started. Process ",rv$id$pid)
   }else{
     # create the gcode
@@ -253,7 +252,12 @@ observeEvent(input$Method_step_exec,{
     write(paste0(format(Sys.time(),"%Y%m%d_%H:%M:%S"),";",Method$l[[as.numeric(input$Method_steps)]]$type,";",Log,";",Log,";",connect$Visa,";",input$Plate),file="log/log.txt",append = T)
     # send the gcode
     # if(!is.null(rv$id$pid)) return()
-    rv$id <- mcparallel({ python.call("send_gcode",Method_file)}) #python.call("test_stop")
+    if(input$Serial_windows){
+      main$send_gcode(Method_file)
+    }else{
+      rv$id <- mcparallel({ main$send_gcode(Method_file)}) #python.call("test_stop")
+    }
+    
     Method_feedback$text = paste0("Step ",input$Method_steps," started. Process ",rv$id$pid)
   }
   
@@ -274,6 +278,7 @@ output$Method_gcode_download <- downloadHandler(
   }
 )
 observeEvent(input$Method_step_stop,{
+  validate(need(!input$Serial_windows,"not on windows"))
   if(!is.null(rv$id$pid)){
     tools::pskill(rv$id$pid)
     Method_feedback$text = paste0("Step ",input$Method_steps," stoped. Process ",rv$id$pid," killed")
@@ -289,13 +294,13 @@ observeEvent(input$Method_step_home,{
   fileConn<-file(test_ink_file)
   writeLines("G28 Y0", fileConn)
   close(fileConn)  # send the gcode
-  python.call("send_gcode",test_ink_file)
+  main$send_gcode(test_ink_file)
   test_ink_file = "gcode/test_ink_cmd.gcode"
   Log = test_ink_file
   fileConn<-file(test_ink_file)
   writeLines("G28 X0", fileConn)
   close(fileConn)  # send the gcode
-  python.call("send_gcode",test_ink_file)
+  main$send_gcode(test_ink_file)
 })
 observeEvent(input$Method_step_parking,{
   # create the gcode
@@ -304,7 +309,7 @@ observeEvent(input$Method_step_parking,{
   fileConn<-file(test_ink_file)
   writeLines("G1 X 130", fileConn)
   close(fileConn)  # send the gcode
-  python.call("send_gcode",test_ink_file)
+  main$send_gcode(test_ink_file)
 })
 observeEvent(input$Method_DART_parking,{
   # create the gcode
@@ -313,7 +318,7 @@ observeEvent(input$Method_DART_parking,{
   fileConn<-file(test_ink_file)
   writeLines("G1 Y 100 F3600", fileConn)
   close(fileConn)  # send the gcode
-  python.call("send_gcode",test_ink_file)
+  main$send_gcode(test_ink_file)
 })
 observeEvent(input$Method_nozzle_test,{
   I = 20 ; L = 5## cahnge here to input different pulse and I
@@ -330,7 +335,7 @@ observeEvent(input$Method_nozzle_test,{
   writeLines(gcode, fileConn)
   close(fileConn)
   # send the gcode
-  python.call("send_gcode",test_ink_file)
+  main$send_gcode(test_ink_file)
   
 })
 

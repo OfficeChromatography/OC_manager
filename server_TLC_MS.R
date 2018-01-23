@@ -164,10 +164,10 @@ TLC_MS_zoom <- reactiveValues(x=c(0,TLC_MS_x_width),y=c(0,TLC_MS_y_height))
 observeEvent(input$TLC_MS_click.pict.calib,{
   TLC_MS_Validate_coord$x <- round(input$TLC_MS_click.pict.calib$x,1)/10
   TLC_MS_Validate_coord$y <- round(input$TLC_MS_click.pict.calib$y,1)/10
-  python.call("send_cmd",paste0("G92 E",100," Z",50))
+  main$send_cmd(paste0("G92 E",100," Z",50))
 })
 observeEvent(input$TLC_MS_G92ichh,{
-  python.call("send_cmd",paste0("G92 E",100," Z",50))
+  main$send_cmd(paste0("G92 E",100," Z",50))
 })
 ## Click on the cartesian plot to move the head to , G91 and G1
 observeEvent(input$TLC_MS_click.pict.cartesian,{
@@ -187,22 +187,22 @@ observeEvent(input$TLC_MS_click.pict.cartesian,{
   }else{
     x = - 10^(abs(x)-2)
   }
-  python.call("send_cmd",paste0("G91"))# ; use relative positioning for the XYZ axes
-  python.call("send_cmd",paste0("G1 Z",y," F200"))
-  python.call("send_cmd",paste0("G1 E",x," F2000"))
+  main$send_cmd(paste0("G91"))# ; use relative positioning for the XYZ axes
+  main$send_cmd(paste0("G1 Z",y," F200"))
+  main$send_cmd(paste0("G1 E",x," F2000"))
 })
 ## Validate system, G92
 observeEvent(input$TLC_MS_validateSystem,{
-  python.call("send_cmd",paste0("G92 E",TLC_MS_Validate_coord$x," Z",TLC_MS_Validate_coord$y))
+  main$send_cmd(paste0("G92 E",TLC_MS_Validate_coord$x," Z",TLC_MS_Validate_coord$y))
 })
 ## click on band one after another: G90 and G1
 observeEvent(input$TLC_MS_click.pict.1,{
   x = round(input$TLC_MS_click.pict.1$x,1)/10
   y = round(input$TLC_MS_click.pict.1$y,1)/10
   if(!input$TLC_MS_batch_mode){
-    python.call("send_cmd","G90")# ; use absolute positioning for the XYZ axes
-    python.call("send_cmd",paste0("G1 Z",y," F200"))
-    python.call("send_cmd",paste0("G1 E",x," F2000"))
+    main$send_cmd("G90")# ; use absolute positioning for the XYZ axes
+    main$send_cmd(paste0("G1 Z",y," F200"))
+    main$send_cmd(paste0("G1 E",x," F2000"))
   }
   TLC_MS_coord$x <- c(TLC_MS_coord$x,x)
   TLC_MS_coord$y <- c(TLC_MS_coord$y,y)
@@ -211,9 +211,9 @@ observeEvent(input$TLC_MS_click.pict.2,{
   x = round(input$TLC_MS_click.pict.2$x,1)/10
   y = round(input$TLC_MS_click.pict.2$y,1)/10
   if(!input$TLC_MS_batch_mode){
-    python.call("send_cmd","G90")# ; use absolute positioning for the XYZ axes
-    python.call("send_cmd",paste0("G1 Z",y," F200"))
-    python.call("send_cmd",paste0("G1 E",x," F2000"))
+    main$send_cmd("G90")# ; use absolute positioning for the XYZ axes
+    main$send_cmd(paste0("G1 Z",y," F200"))
+    main$send_cmd(paste0("G1 E",x," F2000"))
   }
   TLC_MS_coord$x <- c(TLC_MS_coord$x,x)
   TLC_MS_coord$y <- c(TLC_MS_coord$y,y)
@@ -222,9 +222,9 @@ observeEvent(input$TLC_MS_click.pict.3,{
   x = round(input$TLC_MS_click.pict.3$x,1)/10
   y = round(input$TLC_MS_click.pict.3$y,1)/10
   if(!input$TLC_MS_batch_mode){
-    python.call("send_cmd","G90")# ; use absolute positioning for the XYZ axes
-    python.call("send_cmd",paste0("G1 Z",y," F200"))
-    python.call("send_cmd",paste0("G1 E",x," F2000"))
+    main$send_cmd("G90")# ; use absolute positioning for the XYZ axes
+    main$send_cmd(paste0("G1 Z",y," F200"))
+    main$send_cmd(paste0("G1 E",x," F2000"))
   }
   TLC_MS_coord$x <- c(TLC_MS_coord$x,x)
   TLC_MS_coord$y <- c(TLC_MS_coord$y,y)
@@ -233,9 +233,9 @@ observeEvent(input$TLC_MS_click.pict.4,{
   x = round(input$TLC_MS_click.pict.4$x,1)/10
   y = round(input$TLC_MS_click.pict.4$y,1)/10
   if(!input$TLC_MS_batch_mode){
-    python.call("send_cmd","G90")# ; use absolute positioning for the XYZ axes
-    python.call("send_cmd",paste0("G1 Z",y," F200"))
-    python.call("send_cmd",paste0("G1 E",x," F2000"))
+    main$send_cmd("G90")# ; use absolute positioning for the XYZ axes
+    main$send_cmd(paste0("G1 Z",y," F200"))
+    main$send_cmd(paste0("G1 E",x," F2000"))
   }
   TLC_MS_coord$x <- c(TLC_MS_coord$x,x)
   TLC_MS_coord$y <- c(TLC_MS_coord$y,y)
@@ -464,7 +464,7 @@ output$TLC_MS_batch_feedback = renderText({
 })
 observeEvent(input$TLC_MS_cmd_button,{
   # create the gcode
-  python.call("send_cmd",input$TLC_MS_cmd)
+  main$send_cmd(input$TLC_MS_cmd)
 })
 
 observeEvent(input$TLC_MS_laser,{
@@ -480,38 +480,38 @@ observeEvent(input$TLC_MS_laser,{
 
 observeEvent(input$TLC_MS_batch_action,{
   for(i in unlist(strsplit(input$TLC_MS_batch_before,split = "\n"))){
-    python.call("send_cmd",i)
-    python.call("send_cmd","M400")
-    python.call("send_cmd","G4 P100")
+    main$send_cmd(i)
+    main$send_cmd("M400")
+    main$send_cmd("G4 P100")
   }
   for(i in seq(length(TLC_MS_coord$x))){
-    python.call("send_cmd","G90")# ; use absolute positioning for the XYZ axes
-    python.call("send_cmd",paste0("G1 Z",TLC_MS_coord$y[i]," F200"))
-    python.call("send_cmd",paste0("G1 E",TLC_MS_coord$x[i]," F2000"))
-    python.call("send_cmd","M400")
-    python.call("send_cmd","G4 P100")
+    main$send_cmd("G90")# ; use absolute positioning for the XYZ axes
+    main$send_cmd(paste0("G1 Z",TLC_MS_coord$y[i]," F200"))
+    main$send_cmd(paste0("G1 E",TLC_MS_coord$x[i]," F2000"))
+    main$send_cmd("M400")
+    main$send_cmd("G4 P100")
     for(j in unlist(strsplit(input$TLC_MS_batch_between,split = "\n"))){
       if(j == "G4 P2000; insert numeric stamp time"){
         j = paste0("G4 P",input$TLC_MS_stamp_time,"; insert numeric stamp time")
       }
-      python.call("send_cmd",j)
-      python.call("send_cmd","M400")
-      python.call("send_cmd","G4 P100")
+      main$send_cmd(j)
+      main$send_cmd("M400")
+      main$send_cmd("G4 P100")
     }
   }
   for(i in unlist(strsplit(input$TLC_MS_batch_after,split = "\n"))){
-    python.call("send_cmd",i)
-    python.call("send_cmd","M400")
-    python.call("send_cmd","G4 P100")
+    main$send_cmd(i)
+    main$send_cmd("M400")
+    main$send_cmd("G4 P100")
   }
   TLC_MS_feedback$text = "batch finished"
 })
 
 observeEvent(input$TLC_MS_batch_action_init,{
   for(i in unlist(strsplit(input$TLC_MS_batch_before,split = "\n"))){
-    python.call("send_cmd",i)
-    python.call("send_cmd","M400")
-    python.call("send_cmd","G4 P100")
+    main$send_cmd(i)
+    main$send_cmd("M400")
+    main$send_cmd("G4 P100")
   }
   TLC_MS_feedback$text = "init finished"
 })

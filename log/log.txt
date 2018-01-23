@@ -2053,3 +2053,38 @@ Time;Step;File;Log;Visa;Plate
 20171213_15:19:34;Connection;NA;Board disconnection;;test
 20171215_10:40:43;Connection;NA;Board connection;;test
 20171215_10:46:36;Connection;NA;Board disconnection;;test
+20180115_14:31:11;Connection;NA;Board connection;;test
+20180115_14:35:30;Connection;NA;Board disconnection;;test
+20180115_14:36:21;Connection;NA;Board connection;;test
+20180115_14:38:57;Connection;NA;Board disconnection;;test
+20180115_14:40:07;Connection;NA;Board connection;;test
+20180115_14:48:58;Connection;NA;Board disconnection;;test
+20180115_14:49:22;Connection;NA;Board connection;;test
+20180123_09:27:37;Connection;NA;Board connection;;test
+20180123_09:27:49;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20180123_09:28:30;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20180123_09:38:38;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20180123_09:49:05;Connection;NA;Board disconnection;;test
+20180123_10:28:33;Connection;NA;Board connection;;test
+20180123_10:29:38;Connection;NA;Board connection;;test
+20180123_10:30:12;Connection;NA;Board connection;;test
+20180123_10:30:13;Connection;NA;Board disconnection;;test
+20180123_10:38:46;Connection;NA;Board connection;;test
+20180123_10:39:17;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20180123_10:39:50;Connection;NA;Board disconnection;;test
+20180123_12:00:14;Connection;NA;Board connection;;test
+20180123_12:00:16;Connection;NA;Board disconnection;;test
+20180123_12:02:29;Connection;NA;Board connection;;test
+20180123_12:03:39;Connection;NA;Board connection;;test
+20180123_12:06:19;Connection;NA;Board connection;;test
+20180123_12:42:23;Connection;NA;Board connection;;test
+20180123_12:42:39;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20180123_12:46:13;Connection;NA;Board connection;;test
+20180123_12:46:25;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20180123_13:06:01;Connection;NA;Board connection;;test
+20180123_13:06:11;LP_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20180123_13:07:18;Connection;NA;Board disconnection;;test
+20180123_14:15:10;Connection;NA;Board connection;;test
+20180123_14:17:06;Connection;NA;Board connection;;test
+20180123_14:17:20;Connection;NA;Board disconnection;;test
+20180123_14:17:22;Connection;NA;Board connection;;test

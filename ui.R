@@ -73,123 +73,14 @@ dashboardPage(
               uiOutput("Method_control_1")
               
       ),
-      tabItem(tabName = "LP",
-              column(4,
-                     column(6,
-                            uiOutput("LP_control_1"),
-                            uiOutput("LP_control_3")
-                            ),
-                     column(6,
-                            uiOutput("LP_control_2")
-                            )
-                     ),
-              column(8,
-                     plotOutput('LP_plot')
-                     ),
-              column(3,
-                     numericInput("LP_first_appli","first application position in mm (often the first two tracks will be bad)",4.75),
-                     numericInput("LP_bottom_dist","Distance from bottom",2),
-                     numericInput("LP_Y_length","Y length",70),
-                     numericInput("LP_gap","gap between sample in mm",5),
-                     numericInput("LP_nbr_track","number of tracks",19)
-              ),
-              column(3,
-                     numericInput("LP_nbr_path","number of paths per track",4),
-                     numericInput("LP_gap_path","gap between paths in one track",0.5),
-                     numericInput("LP_microL_per_dm","microL per dm",10) ## work with 40 tracks, 30% of 4 mL
-                     ),
-              column(3,
-                     numericInput("LP_Z_offset","Z_offset (use a gap of 90 and 2 tracks to test the system and adjust the offset accordingly)",0),
-                     numericInput("LP_speed","speed mm/s",60)
-              ),
-              column(3,
-                     numericInput("LP_temp","Temperature in degree celcius, better let 0 to disable and do it from pronterface",0),
-                     numericInput("LP_syringe_ratio","mm/mL in the syringe, 5 for the 10 mL syringe, 57 for the 1 mL syringe",5),
-                     h6("todo: multi layer, boustrophédon, gradient in speed and feed, syringe type")
-                     ),
-              br(),
-              dataTableOutput("LP_gcode")
-      ),
-      tabItem(tabName = "SA",
-              column(4,
-                     uiOutput("SA_control_1"),#,#filename, launch, nozzles fired, position fired
-                     tableOutput("SA_options")
-                     ),
-              column(4,
-                     tableOutput("SA_appli")
-                     ),
-              column(4,
-                     plotOutput("SA_plot")
-                     ),
-              br(),
-              br(),
-              br(),br(),br(),br(),br(),
-              dataTableOutput("SA_gcode")
-      ),
-      tabItem(tabName = "Dev",
-              column(4,
-                     uiOutput("Dev_control_1"),#,#filename, launch, nozzles fired, position fired
-                     tableOutput("Dev_options")
-              ),
-              column(4,
-                     plotOutput("Dev_plot")
-              ),
-              br(),
-              br(),
-              br(),br(),br(),br(),br(),
-              dataTableOutput("Dev_gcode")
-      ),
-      tabItem(tabName = "Deriv",
-              column(4,
-                     uiOutput("Deriv_control_1"),#,#filename, launch, nozzles fired, position fired
-                     tableOutput("Deriv_options")
-              ),
-              column(4,
-                     plotOutput("Deriv_plot")
-              ),
-              br(),
-              br(),
-              br(),br(),br(),br(),br(),
-              dataTableOutput("Deriv_gcode")
-      ),
+
       tabItem(tabName = "Visu",
               uiOutput("Visu_control_1")
       ),
       tabItem(tabName = "TLC_MS",
               uiOutput("TLC_MS_control_1")
       ),
-      # tabItem(tabName = "Visu",
-      #         tabsetPanel(
-      #           tabPanel("Capture",
-      #                    column(3,
-      #                           # numericInput("Visu_width","Set image width",1000),
-      #                           # numericInput("Visu_height","Set image height",1000),
-      #                           # numericInput("Visu_timeout","Time (in ms) before takes picture and shuts down",5000),
-      #                           numericInput("Visu_shutter","Sets the shutter speed to the specified value (in ms).",100),
-      #                           # numericInput("Visu_sharpness","Set image sharpness (-100 to 100)",0),
-      #                           # numericInput("Visu_contrast","Set image contrast (-100 to 100)",0),
-      #                           # numericInput("Visu_brightness","Set image brightness (0 to 100)",50),
-      #                           # numericInput("Visu_saturation","Set image saturation (-100 to 100)",0),
-      #                           numericInput("Visu_ISO","Set ISO (100 - 800) ",100)
-      #                           # selectizeInput("Visu_exposure","Set exposure mode (see Notes)",
-      #                                          # choices = c('off','auto','night','nightpreview','backlight','spotlight','sports','snow','beach','verylong','fixedfps','antishake','fireworks'),selected = "auto"),
-      #                           # selectizeInput("Visu_AWB","Set AWB mode (see Notes)",choices = c('off','auto','sun','cloud','shade','tungsten','fluorescent','incandescent','flash','horizon'),selected="auto")
-      #                           
-      #                    ),
-      #                    column(9,
-      #                           uiOutput("Visu_control_1"),
-      #                           plotOutput("Visu_plot")
-      #                    )
-      #                    ),
-      #           tabPanel("Explore",
-      #                    uiOutput("Visu_explore_select"),
-      #                    plotOutput("Visu_explore_plot"),
-      #                    uiOutput("Visu_explore_plot_bis")
-      #                    )
-      #         )
-      #         
-      #         
-      # ),
+
       tabItem(tabName = "Log",
               actionButton("Log_refresh","refresh"),
               dataTableOutput("Log")

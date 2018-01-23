@@ -65,7 +65,7 @@ observeEvent(input$test_ink_nozzle_test,{
   writeLines(gcode, fileConn)
   close(fileConn)
   # send the gcode
-  python.call("send_gcode",test_ink_file)
+  main$send_gcode(test_ink_file)
   
 })
 observeEvent(input$test_ink_action,{
@@ -79,7 +79,7 @@ observeEvent(input$test_ink_action,{
   # put it in the log
   write(paste0(format(Sys.time(),"%Y%m%d_%H:%M:%S"),";","test_ink;",test_ink_file,";",Log,";",connect$Visa,";",input$Plate),file="log/log.txt",append = T)
   # send the gcode
-  python.call("send_gcode",test_ink_file)
+  main$send_gcode(test_ink_file)
 })
 test_ink_gcode <- reactive({
   # paste0("M700 P0 I",input$test_ink_n_bis," S",input$test_ink_S)
@@ -95,7 +95,7 @@ observeEvent(input$test_ink_cmd_button,{
   fileConn<-file(test_ink_file)
   writeLines(input$test_ink_cmd, fileConn)
   close(fileConn)  # send the gcode
-  python.call("send_gcode",test_ink_file)
+  main$send_gcode(test_ink_file)
 })
 output$test_ink_plot = renderPlot({
   x = c(0,130)
@@ -114,7 +114,7 @@ observeEvent(input$test_ink_plot_click,{
     writeLines(truc, fileConn)
     close(fileConn)
     # send the gcode
-    python.call("send_gcode",test_ink_file)
+    main$send_gcode(test_ink_file)
   }
 })
 observeEvent(input$test_ink_G28_X0,{
@@ -124,7 +124,7 @@ observeEvent(input$test_ink_G28_X0,{
   fileConn<-file(test_ink_file)
   writeLines("G28 X0", fileConn)
   close(fileConn)  # send the gcode
-  python.call("send_gcode",test_ink_file)
+  main$send_gcode(test_ink_file)
 })
 observeEvent(input$test_ink_G28_Y0,{
   # create the gcode
@@ -133,7 +133,7 @@ observeEvent(input$test_ink_G28_Y0,{
   fileConn<-file(test_ink_file)
   writeLines("G28 Y0", fileConn)
   close(fileConn)  # send the gcode
-  python.call("send_gcode",test_ink_file)
+  main$send_gcode(test_ink_file)
 })
 observeEvent(input$test_ink_G28_Z0,{
   # create the gcode
@@ -142,7 +142,7 @@ observeEvent(input$test_ink_G28_Z0,{
   fileConn<-file(test_ink_file)
   writeLines("G28 Z0", fileConn)
   close(fileConn)  # send the gcode
-  python.call("send_gcode",test_ink_file)
+  main$send_gcode(test_ink_file)
 })
 
 observeEvent(input$test_ink_M84,{
@@ -152,7 +152,7 @@ observeEvent(input$test_ink_M84,{
   fileConn<-file(test_ink_file)
   writeLines("M84", fileConn)
   close(fileConn)  # send the gcode
-  python.call("send_gcode",test_ink_file)
+  main$send_gcode(test_ink_file)
 })
 observeEvent(input$test_ink_extrude_1mm,{
   # create the gcode
@@ -161,7 +161,7 @@ observeEvent(input$test_ink_extrude_1mm,{
   fileConn<-file(test_ink_file)
   writeLines(c("G92 E0","G1 E1"), fileConn)
   close(fileConn)  # send the gcode
-  python.call("send_gcode",test_ink_file)
+  main$send_gcode(test_ink_file)
 })
 observeEvent(input$test_ink_extrude_5mm,{
   # create the gcode
@@ -170,7 +170,7 @@ observeEvent(input$test_ink_extrude_5mm,{
   fileConn<-file(test_ink_file)
   writeLines(c("G92 E0","G1 E5"), fileConn)
   close(fileConn)  # send the gcode
-  python.call("send_gcode",test_ink_file)
+  main$send_gcode(test_ink_file)
 })
 observeEvent(input$test_ink_retract_5mm,{
   # create the gcode
@@ -179,7 +179,7 @@ observeEvent(input$test_ink_retract_5mm,{
   fileConn<-file(test_ink_file)
   writeLines(c("G92 E0","G1 E-5"), fileConn)
   close(fileConn)  # send the gcode
-  python.call("send_gcode",test_ink_file)
+  main$send_gcode(test_ink_file)
 })
 observeEvent(input$test_ink_bed_set,{
   # create the gcode
@@ -188,5 +188,5 @@ observeEvent(input$test_ink_bed_set,{
   fileConn<-file(test_ink_file)
   writeLines(paste0("M140 S",input$test_ink_bed_temp), fileConn)
   close(fileConn)  # send the gcode
-  python.call("send_gcode",test_ink_file)
+  main$send_gcode(test_ink_file)
 })

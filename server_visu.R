@@ -137,22 +137,22 @@ observeEvent(input$Visu_action,{
 })
 observeEvent(input$Visu_position,{
   if(connect$board){
-    python.call("send_cmd","G1 X130 Y20")
+    main$send_cmd("G1 X130 Y20")
   }
 })
 observeEvent(input$Visu_RGB_254_LED,{
   if(connect$board){
     for(i in LED_pin[1:3]){
       if(i %in% input$Visu_RGB_254_LED){
-        python.call("send_cmd",paste0("M42 P",i," S255"))
+        main$send_cmd(paste0("M42 P",i," S255"))
       }else{
-        python.call("send_cmd",paste0("M42 P",i," S0"))
+        main$send_cmd(paste0("M42 P",i," S0"))
       }
     }
     if(LED_pin[4] %in% input$Visu_RGB_254_LED){
-      python.call("send_cmd",paste0("M42 P",LED_pin[4]," S0"))
+      main$send_cmd(paste0("M42 P",LED_pin[4]," S0"))
     }else{
-      python.call("send_cmd",paste0("M42 P",LED_pin[4]," S255"))
+      main$send_cmd(paste0("M42 P",LED_pin[4]," S255"))
     }
   }
 })
@@ -161,40 +161,40 @@ observeEvent(input$Visu_christmas,{
   if(connect$board){
     for(i in sample(1:6,50,T)){
       if(i %in% seq(3)){
-        python.call("send_cmd",paste0("M42 P",LED_pin[i]," S255"))
+        main$send_cmd(paste0("M42 P",LED_pin[i]," S255"))
         Sys.sleep(0.5)
-        python.call("send_cmd",paste0("M42 P",LED_pin[i]," S0"))
+        main$send_cmd(paste0("M42 P",LED_pin[i]," S0"))
       }else if(i == 7){
         for(j in LED_pin[1:3]){
-          python.call("send_cmd",paste0("M42 P",j," S255"))
+          main$send_cmd(paste0("M42 P",j," S255"))
         }
         Sys.sleep(0.5)
         for(j in LED_pin[1:3]){
-          python.call("send_cmd",paste0("M42 P",j," S0"))
+          main$send_cmd(paste0("M42 P",j," S0"))
         }
       }else if(i == 4){
         for(j in LED_pin[1:2]){
-          python.call("send_cmd",paste0("M42 P",j," S255"))
+          main$send_cmd(paste0("M42 P",j," S255"))
         }
         Sys.sleep(0.5)
         for(j in LED_pin[1:2]){
-          python.call("send_cmd",paste0("M42 P",j," S0"))
+          main$send_cmd(paste0("M42 P",j," S0"))
         }
       }else if(i == 5){
         for(j in LED_pin[3:2]){
-          python.call("send_cmd",paste0("M42 P",j," S255"))
+          main$send_cmd(paste0("M42 P",j," S255"))
         }
         Sys.sleep(0.5)
         for(j in LED_pin[3:2]){
-          python.call("send_cmd",paste0("M42 P",j," S0"))
+          main$send_cmd(paste0("M42 P",j," S0"))
         }
       }else if(i == 6){
         for(j in LED_pin[c(1,3)]){
-          python.call("send_cmd",paste0("M42 P",j," S255"))
+          main$send_cmd(paste0("M42 P",j," S255"))
         }
         Sys.sleep(0.5)
         for(j in LED_pin[c(1,3)]){
-          python.call("send_cmd",paste0("M42 P",j," S0"))
+          main$send_cmd(paste0("M42 P",j," S0"))
         }
       }
     }
