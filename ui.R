@@ -37,7 +37,8 @@ dashboardPage(
     tabItems(
       tabItem(
         # tags$head(tags$style(type="text/css", ".btn {border-radius: 20px; font-size: 30px;}")),
-        
+        # padding: 6px 12px
+        tags$head(tags$style(type="text/css", "tfoot {display: table-header-group}")),
         tags$head(tags$style(type="text/css", "tfoot {display: table-header-group}")),
         tags$head(tags$style(HTML(".shiny-output-error-validation {color: red;font-size: 24px}"))),
         tags$head(tags$style(type="text/css", ".shiny-progress .progress {position: absolute;width: 100%;top: 100px;height: 10px;margin: 0px;}")),

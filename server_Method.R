@@ -1,5 +1,7 @@
 ## server_Method.R
 
+
+## padding: 6px 12px
 source("eat_table.R")
 output$Method_control_1 = renderUI({
   tagList(

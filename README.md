@@ -12,15 +12,16 @@ Download and install R:
 http://cran.r-project.org/
 
 
-R packages, possible missing package, please tell us.
+launch R and install the R packages, possible missing package, please tell us.
 
 ```r
 install.packages('devtools')
 devtools::install_github('DimitriF/DLC')
 devtools::install_github("rhandsontable","jrowen")
-install.pacakges("serial")
+install.packages("serial")
 install.packages("reticulate")
 install.packages("DT")
+install.packages("shinyBS")
 ```
 
 ### Python
@@ -28,10 +29,12 @@ install.packages("DT")
 Download and install python 2.7 (version superior to 2.7.10):
 https://www.python.org/downloads/
 
-Install PySerial
+Install PySerial from the command line, 
+
+In windows, go in the the folder containing pip.exe (`cd C:/Python27/Scripts`)
 
 ```python
-pip -m install PySerial
+pip install PySerial
 
 ```
 ## Run

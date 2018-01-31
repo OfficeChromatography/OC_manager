@@ -44,8 +44,8 @@ shinyServer(function(input, output,session) {
   source("server_visu.R",local = T)
   source("server_TLC_MS.R",local = T)
   source("server_ink_test.R",local = T)
-  # python.load("setup.py")
-  # main <- import_main()
+
+  # main = py_run_file("setup_old.py")
   main = py_run_file("setup.py")
   
   session$onSessionEnded(function() {
@@ -53,6 +53,7 @@ shinyServer(function(input, output,session) {
       # python.call("close_connections") ## py
     # py_call("close_connections") ## py
     main$close_connections() ## py
+    # stopApp()
       # put it in the log
       # write(paste0(format(Sys.time(),"%Y%m%d_%H:%M:%S"),";","Connection;",NA,";","Board disconnection",";",connect$Visa,";",input$Plate),file="log/log.txt",append = T)
       
@@ -106,7 +107,7 @@ shinyServer(function(input, output,session) {
     if(!board){ ## must check if not in development, cf config.R file
       if(connect$board){
         # python.call("close_connections") ## py
-        py_call("close_connections") ## py
+        main$close_connections()
         # put it in the log
         write(paste0(format(Sys.time(),"%Y%m%d_%H:%M:%S"),";","Connection;",NA,";","Board disconnection",";",connect$Visa,";",input$Plate),file="log/log.txt",append = T)
         connect$board = F
@@ -156,13 +157,6 @@ shinyServer(function(input, output,session) {
   })
   
   TempInvalidate <- reactiveTimer(2000)
-
-  
-  source("server_SA.R",local = T)
-  
-  source("server_Dev.R",local = T)
-  
-  source("server_Deriv.R",local = T)
 
   source("server_Method.R",local = T)  
   

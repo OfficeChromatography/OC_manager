@@ -4,7 +4,7 @@
 # http://raspberrypi.stackexchange.com/questions/41226/getting-the-latest-version-of-r-on-the-raspberry-pi
 
 shiny::runApp("/home/clau/MEGA/OC/Software/OC_manager",launch.browser = T,host = "0.0.0.0",port=5570)
-shiny::runApp(launch.browser = T,host = "0.0.0.0",port=5570)
+shiny::runApp(launch.browser = T,host = "0.0.0.0",port=5571)
 
 # shiny::runApp("/home/clau/Documents/Dropbox_true/Dropbox/OC/Com/SiteWeb/shiny version/OC-Lab/",launch.browser = T)
 
