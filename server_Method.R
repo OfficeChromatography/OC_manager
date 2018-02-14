@@ -11,24 +11,24 @@ output$Method_control_1 = renderUI({
            actionButton("Method_step_delete","",icon = icon("window-close")),
            actionButton("Method_step_exec","",icon = icon("play")),
            actionButton("Method_step_stop","",icon = icon("stop")),
-           column(2,textInput("Method_save_name","Method name to save","Sandbox")),actionButton("Method_save","",icon=icon("save")),
+           column(2,textInput("Method_save_name","Saving name","Sandbox")),actionButton("Method_save","",icon=icon("save")),
            column(2,uiOutput("Method_load_names")),actionButton("Method_load","",icon=icon("folder-o")),actionButton("Method_load_refresh","",icon=icon("refresh")),
            actionButton("Method_step_home","",icon = icon("home")),
            actionButton("Method_step_parking","",icon = icon("eyedropper")),
            actionButton("Method_nozzle_test","",icon = icon("heartbeat")),
            actionButton("Method_DART_parking","",icon = icon("reply-all")),
            column(2,textOutput("Method_feedback")),
-           bsTooltip("Method_step_add","add step"),
-           bsTooltip("Method_step_delete","delete step"),
-           bsTooltip("Method_step_exec","Execute step, method will be saved"),
-           bsTooltip("Method_step_stop","Emergency stop, not on windows"),
+           bsTooltip("Method_step_add","Add step"),
+           bsTooltip("Method_step_delete","Delete step"),
+           bsTooltip("Method_step_exec","Execute step"),
+           bsTooltip("Method_step_stop","Emergency stop, not working yet"),
            bsTooltip("Method_save","Save the method, carefull to overwritte"),
            bsTooltip("Method_load_refresh","Refresh list of method names"),
            bsTooltip("Method_load","Load saved method"),
            bsTooltip("Method_step_home","Go in home position"),
            bsTooltip("Method_step_parking","For the inkjet, send the cartridge in parking position, go home first or you will break the machine"),
-           bsTooltip("Method_nozzle_test","test the nozzles with a paper, go home first or you will break the machine"),
-           bsTooltip("Method_DART_parking","For the DART, send the plate in parking position, go home first or you will break the machine")
+           bsTooltip("Method_nozzle_test","Test the nozzles with a paper, perform homing first"),
+           bsTooltip("Method_DART_parking","For the DART, send the plate in parking position, perform homing first")
     )),
     column(2,
            # uiOutput("Method_control_4"),
@@ -43,11 +43,11 @@ output$Method_control_1 = renderUI({
 output$Method_feedback = renderText({
   Method_feedback$text
 })
-Method_feedback = reactiveValues(text="no feedback yet")
+Method_feedback = reactiveValues(text="No feedback yet")
 
 output$Method_control_2 = renderUI({
   validate(
-    need(length(Method$l) > 0 ,"add a step or load a saved method")
+    need(length(Method$l) > 0 ,"Add a step or load a saved method")
   )
   input$Method_step_add
   truc = seq(length(Method$l))
@@ -56,7 +56,7 @@ output$Method_control_2 = renderUI({
 })
 output$Method_control_3 = renderUI({
   validate(
-    need(length(Method$l) > 0 ,"add a step or load a saved method")
+    need(length(Method$l) > 0 ,"Add a step or load a saved method")
   )
   if(!is.null(input$Method_steps)){
     if(Method$l[[as.numeric(input$Method_steps)]]$type %in% need_appli){
@@ -103,7 +103,7 @@ output$Method_control_4 = renderUI({
 })
 output$Method_control_5 = renderUI({
   validate(
-    need(length(Method$l) > 0 ,"add a step or load a saved method")
+    need(length(Method$l) > 0 ,"Add a step or load a saved method")
   )
   if(!is.null(input$Method_steps)){
     if(Method$l[[as.numeric(input$Method_steps)]]$type %in% need_appli){
@@ -120,7 +120,7 @@ output$Method_control_5 = renderUI({
 })
 output$Method_load_names = renderUI({
   input$Method_load_refresh
-  selectizeInput("Method_load_name","Method name to load",choices=dir("methods/"))
+  selectizeInput("Method_load_name","Method to load",choices=dir("methods/"))
 })
 
 Method = reactiveValues(l=list(),selected = 1)
@@ -132,7 +132,7 @@ observeEvent(input$Method_step_add,{
                                         eat_table = eat_table[[input$Method_step_new]],
                                         gcode = NULL,
                                         plot=function(){plot(x=1,y=1,type="n",main="Update to visualize")},
-                                        info = "update to see the info",
+                                        info = "Update to see the info",
                                         Done = F)
   if(input$Method_step_new %in% need_appli){
     nbr_band=data[data[,1] == "nbr_band",2]
@@ -232,38 +232,7 @@ output$Method_gcode = DT::renderDataTable({
   }
 }, options = list(pageLength = 10))
 
-## part for emergency stop
-rv <- reactiveValues(
-  id=list()
-)
-observeEvent(input$Method_step_exec,{
-  if(board){ ## when no arduino connected, just testing
-    if(!is.null(rv$id$pid)) return()
-    write(paste0(format(Sys.time(),"%Y%m%d_%H:%M:%S"),";",Method$l[[as.numeric(input$Method_steps)]]$type,";Methods",";","Log",";",connect$Visa,";",input$Plate),file="log/log.txt",append = T)
-    rv$id <- mcparallel({ main$test_stop()}) #
-    Method_feedback$text = paste0("Step ",input$Method_steps," started. Process ",rv$id$pid)
-  }else{
-    # create the gcode
-    # Method_file = paste0("gcode/",format(Sys.time(),"%Y%m%d_%H:%M:%S"),"Method",".gcode")
-    Method_file = paste0("gcode/","Method",".gcode")
-    Log = Method_file
-    fileConn<-file(Method_file)
-    writeLines(Method$l[[as.numeric(input$Method_steps)]]$gcode, fileConn)
-    close(fileConn)
-    # put it in the log
-    write(paste0(format(Sys.time(),"%Y%m%d_%H:%M:%S"),";",Method$l[[as.numeric(input$Method_steps)]]$type,";",Log,";",Log,";",connect$Visa,";",input$Plate),file="log/log.txt",append = T)
-    # send the gcode
-    # if(!is.null(rv$id$pid)) return()
-    if(input$Serial_windows){
-      main$send_gcode(Method_file)
-    }else{
-      rv$id <- mcparallel({ main$send_gcode(Method_file)}) #python.call("test_stop")
-    }
-    
-    Method_feedback$text = paste0("Step ",input$Method_steps," started. Process ",rv$id$pid)
-  }
-  
-})
+
 output$Method_gcode_download <- downloadHandler(
   filename = function(x){paste0("OC_manager_",
                                 Method$l[[as.numeric(input$Method_steps)]]$type,
@@ -341,15 +310,35 @@ observeEvent(input$Method_nozzle_test,{
   
 })
 
-# observe({
-#   invalidateLater(1000, session)
-#   if(!is.null(rv$id$pid)){
-#     res <- mccollect(rv$id,wait=F)
-#     if(is.null(res)){
-#       Method_feedback$text <- sprintf("%1$s in process. Press stop to kill it",rv$id$pid)
-#     }else{
-#       Method_feedback$text <- jsonlite::toJSON(res)
-#       rv$id <- list()
-#     }
-#   }
-# })
+## part for emergency stop
+rv <- reactiveValues(
+  id=list()
+)
+observeEvent(input$Method_step_exec,{
+  if(board){ ## when no arduino connected, just testing
+    if(!is.null(rv$id$pid)) return()
+    write(paste0(format(Sys.time(),"%Y%m%d_%H:%M:%S"),";",Method$l[[as.numeric(input$Method_steps)]]$type,";Methods",";","Log",";",connect$Visa,";",input$Plate),file="log/log.txt",append = T)
+    rv$id <- mcparallel({ main$test_stop()}) #
+    Method_feedback$text = paste0("Step ",input$Method_steps," started. Process ",rv$id$pid)
+  }else{
+    # create the gcode
+    # Method_file = paste0("gcode/",format(Sys.time(),"%Y%m%d_%H:%M:%S"),"Method",".gcode")
+    Method_file = paste0("gcode/","Method",".gcode")
+    Log = Method_file
+    fileConn<-file(Method_file)
+    writeLines(Method$l[[as.numeric(input$Method_steps)]]$gcode, fileConn)
+    close(fileConn)
+    # put it in the log
+    write(paste0(format(Sys.time(),"%Y%m%d_%H:%M:%S"),";",Method$l[[as.numeric(input$Method_steps)]]$type,";",Log,";",Log,";",connect$Visa,";",input$Plate),file="log/log.txt",append = T)
+    # send the gcode
+    # if(!is.null(rv$id$pid)) return()
+    # if(input$Serial_windows){
+    main$send_gcode(Method_file)
+    # }else{
+    #   rv$id <- mcparallel({ main$send_gcode(Method_file)}) #python.call("test_stop")
+    # }
+    
+    Method_feedback$text = paste0("Step ",input$Method_steps," started. Process ",rv$id$pid)
+  }
+  
+})

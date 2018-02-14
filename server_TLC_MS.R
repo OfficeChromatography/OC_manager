@@ -5,7 +5,7 @@ TLC_MS_y_height = 1000
 TLC_MS_x_bias = 4.5
 TLC_MS_y_bias = 7
 
-TLC_pins = c(laser=59,rheodyn=66,heading=64,cleaning=44) ## just reminder, not used in the code...
+TLC_pins = c(laser=59,rheodyn=66,heading=64,rinsing=44) ## just reminder, not used in the code...
 
 TLC_MS_before = 
   "G28 X0
@@ -16,18 +16,21 @@ G1 Y0 Z0
 G28 Y0 Z0"
 
 TLC_MS_between = 
-  "M42 P64 S255; head down
+  "M42 P63 S255; close contact
+G4 P200; wait security
+M42 P63 S0; open contact
+M42 P64 S255; head down
 G4 P1000; waiting security
 M42 P66 S255; activate rheodyn
-G4 P2000; insert numeric head time
+G4 P2000; insert numeric elution time
 M42 P66 S0; deactivate rheodyn
 G4 P1000; waiting security
 M42 P64 S0; head up
 G4 P1000; waiting security
-M42 P44 S255; cleaning start
-G4 P1000; cleaning wait
-M42 P44 S0; cleaning stop
-G4 P1000; waiting securiry"
+M42 P44 S255; purge start
+G4 P1000; waiting security
+M42 P44 S0; purge stop
+G4 P2000; insert numeric rinsing time"
 
 
 TLC_MS_after = 
@@ -41,9 +44,9 @@ M84"
 TLC_MS_manual = reactiveValues(LED=F,head=F,elution=F)
 
 output$TLC_MS_control_manual = renderUI({
-  tagList(if(!TLC_MS_manual$LED){actionButton("TLC_MS_manual_LED_on","LED_on")}else{actionButton("TLC_MS_manual_LED_off","LED_off")},hr(),
+  tagList(if(!TLC_MS_manual$LED){actionButton("TLC_MS_manual_LED_on","LED on")}else{actionButton("TLC_MS_manual_LED_off","LED off")},hr(),
           if(!TLC_MS_manual$head){actionButton("TLC_MS_manual_head_down","Head down")}else{actionButton("TLC_MS_manual_head_up","Head up")},hr(),
-          if(!TLC_MS_manual$head){actionButton("TLC_MS_manual_cleaning","Cleaning")},hr(),
+          if(!TLC_MS_manual$head){actionButton("TLC_MS_manual_rinsing","Purge head")},hr(),
           if(TLC_MS_manual$elution){actionButton("TLC_MS_manual_Valve_bypass","Valve bypass")}else{actionButton("TLC_MS_manual_Valve_elution","Valve elution")}
           )
   
@@ -55,16 +58,18 @@ output$TLC_MS_control_1 = renderUI({
     tabPanel("Input/output",
              sidebarLayout(
                sidebarPanel(width = 3,
-                 fileInput("TLC_MS_files",label = "picture(s) file(s)",multiple = T),
-                 numericInput("TLC_MS_head_time","head time in ms (not yet)",3000),
+                 fileInput("TLC_MS_fileInput",label = "picture(s) file(s)",multiple = T),
+                 numericInput("TLC_MS_elution_time","Elution time in ms",20000),
+                 numericInput("TLC_MS_rinsing_time","After rinsing time in ms",20000),
                  actionButton("TLC_MS_manual", "Manual control",icon = icon("edit")),
                  bsModal("TLC_MS_manualModal", "TLC_MS_manual", "TLC_MS_manual", size = "large",
                          uiOutput("TLC_MS_control_manual")
                  ),
                  textOutput("TLC_MS_batch_feedback"),
-                 actionButton("TLC_MS_delete_last","delete last"),
-                 actionButton("TLC_MS_delete_all","delete all"),
+                 actionButton("TLC_MS_delete_last","Delete last"),
+                 actionButton("TLC_MS_delete_all","Delete all"),
                  actionButton("TLC_MS_batch_action","Run batch"),
+                 # actionButton("TLC_MS_batch_stop","Emergency stop"),
                  tableOutput("TLC_MS_table")
                ),
                mainPanel(width=9,
@@ -84,22 +89,24 @@ output$TLC_MS_control_1 = renderUI({
                )
              )
              ),
-    tabPanel("Batch options",
+    tabPanel("Options",
              column(6,
                     textAreaInput("TLC_MS_batch_before","Before batch",value = TLC_MS_before,height = "200px"),
                     textAreaInput("TLC_MS_batch_between","Between head",value = TLC_MS_between,height = "200px"),
                     textAreaInput("TLC_MS_batch_after","After batch",value = TLC_MS_after,height = "200px")
-                    )#,
-             # column(6,
-             #        
-             #        numericInput("TLC_MS_x_bias","TLC_MS_x_bias",-5),
-             #        numericInput("TLC_MS_y_bias","TLC_MS_y_bias",-5))
+                    ),
+             column(6,
+                    textInput("TLC_MS_color","Color on plots","red")#,
+                    # numericInput("TLC_MS_x_bias","TLC_MS_x_bias",-5),
+                    # numericInput("TLC_MS_y_bias","TLC_MS_y_bias",-5)
+                    )
                     
          )
   )
 })
 
 observeEvent(input$TLC_MS_manual_LED_on,{
+  validate(need(connect$login,"Please login"))
   gcode = c("M42 P59 S255")
   test_ink_file = paste0("gcode/","test_ink",".gcode")
   Log = test_ink_file
@@ -112,6 +119,7 @@ observeEvent(input$TLC_MS_manual_LED_on,{
 })
 
 observeEvent(input$TLC_MS_manual_LED_off,{
+  validate(need(connect$login,"Please login"))
   gcode = c("M42 P59 S0")
   test_ink_file = paste0("gcode/","test_ink",".gcode")
   Log = test_ink_file
@@ -124,6 +132,7 @@ observeEvent(input$TLC_MS_manual_LED_off,{
 })
 
 observeEvent(input$TLC_MS_manual_head_down,{
+  validate(need(connect$login,"Please login"))
   gcode = c("M42 P64 S255")
   test_ink_file = paste0("gcode/","test_ink",".gcode")
   Log = test_ink_file
@@ -136,6 +145,7 @@ observeEvent(input$TLC_MS_manual_head_down,{
 })
 
 observeEvent(input$TLC_MS_manual_head_up,{
+  validate(need(connect$login,"Please login"))
   gcode = c("M42 P64 S0")
   test_ink_file = paste0("gcode/","test_ink",".gcode")
   Log = test_ink_file
@@ -147,6 +157,7 @@ observeEvent(input$TLC_MS_manual_head_up,{
   TLC_MS_manual$head = F
 })
 observeEvent(input$TLC_MS_manual_Valve_bypass,{
+  validate(need(connect$login,"Please login"))
   gcode = c("M42 P66 S0")
   test_ink_file = paste0("gcode/","test_ink",".gcode")
   Log = test_ink_file
@@ -159,6 +170,7 @@ observeEvent(input$TLC_MS_manual_Valve_bypass,{
 })
 
 observeEvent(input$TLC_MS_manual_Valve_elution,{
+  validate(need(connect$login,"Please login"))
   gcode = c("M42 P66 S255")
   test_ink_file = paste0("gcode/","test_ink",".gcode")
   Log = test_ink_file
@@ -170,8 +182,9 @@ observeEvent(input$TLC_MS_manual_Valve_elution,{
   TLC_MS_manual$elution = T
 })
 
-observeEvent(input$TLC_MS_manual_cleaning,{
-  validate(need(!TLC_MS_manual$head,"Head down"))
+observeEvent(input$TLC_MS_manual_rinsing,{
+  validate(need(!TLC_MS_manual$head,"Head down"),
+           need(connect$login,"Please login"))
   gcode = c("M42 P44 S255","G4 P2000","M42 P44 S0")
   test_ink_file = paste0("gcode/","test_ink",".gcode")
   Log = test_ink_file
@@ -185,25 +198,30 @@ observeEvent(input$TLC_MS_manual_cleaning,{
 
 TLC_MS_files <- reactive({
   validate(
-    need(!is.null(input$TLC_MS_files), "Please upload the pictures"),
-    need(!grepl("csv",input$TLC_MS_files$name),"No pictures for csv files")
+    need(!is.null(input$TLC_MS_fileInput), "Please upload the pictures")#,
+    # need(!grepl("csv",input$TLC_MS_fileInput$name),"No pictures for csv files")
   )
-  data=f.read.image(input$TLC_MS_files$datapath, height = TLC_MS_y_height,ls.format = T)
+  if(grepl("csv",input$TLC_MS_fileInput$name)){
+    data=list(array(1,dim=c(TLC_MS_y_height,TLC_MS_x_width,3)))
+  }else{
+    data=f.read.image(input$TLC_MS_fileInput$datapath, height = TLC_MS_y_height,ls.format = T)
+  }
+  
   data
 })
-observeEvent(input$TLC_MS_files,{
-  if(grepl("csv",input$TLC_MS_files$name)){
-    data = read.table(input$TLC_MS_files$datapath,header=T,sep=",")
+observeEvent(input$TLC_MS_fileInput,{
+  if(grepl("csv",input$TLC_MS_fileInput$name)){
+    data = read.table(input$TLC_MS_fileInput$datapath,header=T,sep=",")
     TLC_MS_coord$x = data$x
     TLC_MS_coord$y = data$y
-    print("test")
+    # print("test")
   }
 })
 TLC_MS_files_name<- reactive({
   validate(
-    need(!is.null(input$TLC_MS_files), "Please upload the pictures")
+    need(!is.null(input$TLC_MS_fileInput), "Please upload the pictures")
   )
-  input$TLC_MS_files$name
+  input$TLC_MS_fileInput$name
 })
 
 TLC_MS_coord <- reactiveValues(x=NULL,y=NULL)
@@ -254,8 +272,8 @@ output$TLC_MS_pict.1.zoom <- renderPlot({
   par(mar=c(0,0,3,0))
   raster(TLC_MS_files()[[1]],main=TLC_MS_files_name()[1],xlim=TLC_MS_zoom$x,ylim=TLC_MS_zoom$y)
   if(!is.null(TLC_MS_coord$x)){
-    text(x=TLC_MS_coord$x*10,y=TLC_MS_coord$y*10,label=seq(length(TLC_MS_coord$x)),col="red",pos = 3)
-    symbols(x=TLC_MS_coord$x*10,y=TLC_MS_coord$y*10,fg="red",inches = F,add = T,rectangles = cbind(rep(4*10,length(TLC_MS_coord$x)),rep(2*10,length(TLC_MS_coord$x))))
+    text(x=TLC_MS_coord$x*10,y=TLC_MS_coord$y*10-10,label=seq(length(TLC_MS_coord$x)),col=input$TLC_MS_color,pos = 3,cex=0.5)
+    symbols(x=TLC_MS_coord$x*10,y=TLC_MS_coord$y*10,fg=input$TLC_MS_color,inches = F,add = T,rectangles = cbind(rep(4*10,length(TLC_MS_coord$x)),rep(2*10,length(TLC_MS_coord$x))))
   }
 })
 output$TLC_MS_pict.2 <- renderPlot({
@@ -272,8 +290,8 @@ output$TLC_MS_pict.2.zoom <- renderPlot({
   par(mar=c(0,0,3,0))
   raster(TLC_MS_files()[[2]],main=TLC_MS_files_name()[2],xlim=TLC_MS_zoom$x,ylim=TLC_MS_zoom$y)
   if(!is.null(TLC_MS_coord$x)){
-    text(x=TLC_MS_coord$x*10,y=TLC_MS_coord$y*10,label=seq(length(TLC_MS_coord$x)),col="red",pos = 3)
-    symbols(x=TLC_MS_coord$x*10,y=TLC_MS_coord$y*10,fg="red",inches = F,add = T,rectangles = cbind(rep(input$TLC_MS_head_width*10,length(TLC_MS_coord$x)),rep(input$TLC_MS_head_height*10,length(TLC_MS_coord$x))))
+    text(x=TLC_MS_coord$x*10,y=TLC_MS_coord$y*10,label=seq(length(TLC_MS_coord$x)),col=input$TLC_MS_color,pos = 3)
+    symbols(x=TLC_MS_coord$x*10,y=TLC_MS_coord$y*10,fg=input$TLC_MS_color,inches = F,add = T,rectangles = cbind(rep(input$TLC_MS_head_width*10,length(TLC_MS_coord$x)),rep(input$TLC_MS_head_height*10,length(TLC_MS_coord$x))))
   }
 })
 output$TLC_MS_pict.3 <- renderPlot({
@@ -290,8 +308,8 @@ output$TLC_MS_pict.3.zoom <- renderPlot({
   par(mar=c(0,0,3,0))
   raster(TLC_MS_files()[[3]],main=TLC_MS_files_name()[3],xlim=TLC_MS_zoom$x,ylim=TLC_MS_zoom$y)
   if(!is.null(TLC_MS_coord$x)){
-    text(x=TLC_MS_coord$x*10,y=TLC_MS_coord$y*10,label=seq(length(TLC_MS_coord$x)),col="red",pos = 3)
-    symbols(x=TLC_MS_coord$x*10,y=TLC_MS_coord$y*10,fg="red",inches = F,add = T,rectangles = cbind(rep(input$TLC_MS_head_width*10,length(TLC_MS_coord$x)),rep(input$TLC_MS_head_height*10,length(TLC_MS_coord$x))))
+    text(x=TLC_MS_coord$x*10,y=TLC_MS_coord$y*10,label=seq(length(TLC_MS_coord$x)),col=input$TLC_MS_color,pos = 3)
+    symbols(x=TLC_MS_coord$x*10,y=TLC_MS_coord$y*10,fg=input$TLC_MS_color,inches = F,add = T,rectangles = cbind(rep(input$TLC_MS_head_width*10,length(TLC_MS_coord$x)),rep(input$TLC_MS_head_height*10,length(TLC_MS_coord$x))))
   }
 })
 output$TLC_MS_pict.4 <- renderPlot({
@@ -308,17 +326,17 @@ output$TLC_MS_pict.4.zoom <- renderPlot({
   par(mar=c(0,0,3,0))
   raster(TLC_MS_files()[[4]],main=TLC_MS_files_name()[4],xlim=TLC_MS_zoom$x,ylim=TLC_MS_zoom$y)
   if(!is.null(TLC_MS_coord$x)){
-    text(x=TLC_MS_coord$x*10,y=TLC_MS_coord$y*10,label=seq(length(TLC_MS_coord$x)),col="red",pos = 3)
-    symbols(x=TLC_MS_coord$x*10,y=TLC_MS_coord$y*10,fg="red",inches = F,add = T,rectangles = cbind(rep(input$TLC_MS_head_width*10,length(TLC_MS_coord$x)),rep(input$TLC_MS_head_height*10,length(TLC_MS_coord$x))))
+    text(x=TLC_MS_coord$x*10,y=TLC_MS_coord$y*10,label=seq(length(TLC_MS_coord$x)),col=input$TLC_MS_color,pos = 3)
+    symbols(x=TLC_MS_coord$x*10,y=TLC_MS_coord$y*10,fg=input$TLC_MS_color,inches = F,add = T,rectangles = cbind(rep(input$TLC_MS_head_width*10,length(TLC_MS_coord$x)),rep(input$TLC_MS_head_height*10,length(TLC_MS_coord$x))))
   }
 })
 
 TLC_MS_table.dim <- reactive({
   validate(
-    need(length(TLC_MS_coord$x) >= 1, "Not enough head selected")
+    need(length(TLC_MS_coord$x) >= 1, "Not enough extraction selected")
   )
   data <- data.frame(pictX = TLC_MS_coord$x, pictY = TLC_MS_coord$y)
-  data$head = seq(nrow(data))
+  data$extraction = seq(nrow(data))
   data$x_mm = data$pictX# * x_resolution
   data$y_mm = data$pictY# * y_resolution
   # data$reverse_y = 100 - data$y
@@ -361,8 +379,11 @@ TLC_MS_gcode = reactive({
     gcode = c(gcode,"G4 P1000")
     ## between
     for(j in unlist(strsplit(input$TLC_MS_batch_between,split = "\n"))){
-      if(j == "G4 P2000; insert numeric head time"){
-        j = paste0("G4 P",input$TLC_MS_head_time,"; insert numeric head time")
+      if(j == "G4 P2000; insert numeric elution time"){
+        j = paste0("G4 P",input$TLC_MS_elution_time,"; insert numeric elution time")
+      }
+      if(j == "G4 P2000; insert numeric rinsing time"){
+        j = paste0("G4 P",input$TLC_MS_rinsing_time,"; insert numeric rinsing time")
       }
       gcode = c(gcode,j)
     }
@@ -375,14 +396,7 @@ TLC_MS_gcode = reactive({
 })
 
 observeEvent(input$TLC_MS_batch_action,{
-  if(board){ ## when no arduino connected, just testing
-    if(!is.null(rv$id$pid)) return()
-    write(paste0(format(Sys.time(),"%Y%m%d_%H:%M:%S"),";",Method$l[[as.numeric(input$Method_steps)]]$type,";Methods",";","Log",";",connect$Visa,";",input$Plate),file="log/log.txt",append = T)
-    rv$id <- mcparallel({ main$test_stop()}) #
-    Method_feedback$text = paste0("Step ",input$Method_steps," started. Process ",rv$id$pid)
-  }else{
     # create the gcode
-    # Method_file = paste0("gcode/",format(Sys.time(),"%Y%m%d_%H:%M:%S"),"Method",".gcode")
     Method_file = paste0("gcode/","Method",".gcode")
     Log = Method_file
     fileConn<-file(Method_file)
@@ -399,7 +413,14 @@ observeEvent(input$TLC_MS_batch_action,{
     # }
     
     TLC_MS_feedback$text = "batch finished"
-  }
   
 })
- 
+observeEvent(input$TLC_MS_batch_stop,{
+  # validate(need(!input$Serial_windows,"not on windows"))
+  # if(!is.null(rv$id$pid)){
+  #   tools::pskill(rv$id$pid)
+  #   TLC_MS_feedback$text = "batch killed"
+  #   rv$id <- list()
+  # }
+  main$cancel(Method_file)
+})

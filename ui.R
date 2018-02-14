@@ -55,15 +55,15 @@ dashboardPage(
               ),
               column(4,
                      h4("Board"),
-                     actionButton("Serial_port_refresh","refresh serial port",icon=icon("refresh")),
+                     actionButton("Serial_port_refresh","Refresh serial port",icon=icon("refresh")),
                      checkboxInput("Serial_windows","Windows ??",F),
-                     uiOutput("Serial_port"), # show the /dev directory
-                     uiOutput("Serial_port_connect") # show an actionButton only if connect$login is TRUE and set connect$board to TRUE
+                     uiOutput("Serial_portUI"), # show the /dev directory
+                     uiOutput("Serial_port_connectUI") # show an actionButton only if connect$login is TRUE and set connect$board to TRUE
               ),
               fileInput("Chrom_upload","Chromatograms upload (jpg)"),
               actionButton("Shutdown","Shutdown"),
-              actionButton("Reboot","Reboot"),
-              actionButton("Serial_port_disconnect_bis","disconnect the board bis")
+              actionButton("Reboot","Reboot")#,
+              # actionButton("Serial_port_disconnect_bis","Disconnect the board bis")
               
               ),
       # First tab content

@@ -1,0 +1,76 @@
+Loading required package: shiny
+Loading required package: methods
+
+Listening on http://127.0.0.1:4313
+
+Attaching package: 'shinydashboard'
+
+The following object is masked from 'package:graphics':
+
+    box
+
+Loading required package: jpeg
+Loading required package: png
+Loading required package: tiff
+Loading required package: abind
+Loading required package: magrittr
+Loading required package: kohonen
+Loading required package: plyr
+Loading required package: markdown
+Loading required package: rgl
+Loading required package: ChemometricsWithR
+
+Attaching package: 'ChemometricsWithR'
+
+The following objects are masked from 'package:stats':
+
+    loadings, screeplot
+
+Loading required package: RSNNS
+Loading required package: Rcpp
+
+Attaching package: 'RSNNS'
+
+The following object is masked from 'package:kohonen':
+
+    som
+
+Loading required package: tsne
+Loading required package: baseline
+
+Attaching package: 'baseline'
+
+The following object is masked from 'package:stats':
+
+    getCall
+
+
+Attaching package: 'DLC'
+
+The following object is masked from 'package:ChemometricsWithR':
+
+    reconstruct
+
+The following object is masked from 'package:kohonen':
+
+    map
+
+
+Attaching package: 'serial'
+
+The following object is masked from 'package:base':
+
+    isOpen
+
+Warning: Error in initialize_python: Your current architecture is 32bit however this version of Python is compiled for 64bit.
+Stack trace (innermost first):
+    45: initialize_python
+    44: ensure_python_initialized
+    43: py_run_file
+    42: server [C:\Users\WA2\Documents\MEGA\OC\Software\OC_manager/server.R#49]
+     1: shiny::runApp
+Error in initialize_python(required_module, use_environment) : 
+  Your current architecture is 32bit however this version of Python is compiled for 64bit.
+ERROR: [on_request_read] connection reset by peer
+ERROR: [on_request_read] connection reset by peer
+^C

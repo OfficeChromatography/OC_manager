@@ -35,8 +35,13 @@ def send_gcode(file):
   while p.printing:
     time.sleep(0.1)
 
+
 def send_cmd(cmd):
   p.send_now(cmd)
+
+def cancelprint():
+  print("stop print")
+  p.cancelprint()
 
 
 atexit.register(close_connections)

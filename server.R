@@ -7,61 +7,36 @@
 
 library(shiny)
 # library(rPython)
-library(reticulate) #devtools::install_github("rhandsontable","jrowen")
+library(reticulate)
 library(DLC)
 library(serial)#for port detection in windows
-library(rhandsontable)
+library(rhandsontable)#devtools::install_github("rhandsontable","jrowen")
 library(parallel)
+library(shinyBS)
 
 
-f.read.image = function(source,height=NULL,Normalize=F,ls.format=F){
-  ls <- list()
-  for(i in source){
-    try(data<-readTIFF(i,native=F)) # we could use the magic number instead of try here
-    try(data<-readJPEG(source=i,native=F))
-    try(data<-readPNG(source=i,native=F))
-    if(!is.null(height)){
-      data <- redim.array(data,height)
-    }
-    if(Normalize == T){data <- data %>% normalize}
-    ls[[i]]<- data
-  }
-  if(ls.format == F){
-    data <- abind(ls,along=2)
-  }else{
-    data <- ls
-  }
-  return(data)
-}
 
-source("config.R")
 
 shinyServer(function(input, output,session) {
-  
+  source("config.R")
+  login = T ## change to F to enable login, see the login.csv file to add users
   connect = reactiveValues(login = login, board = board,Visa = NULL)
-  # connect = reactiveValues(login = login, board = board,Visa = "admin")``
+  # connect = reactiveValues(login = login, board = board,Visa = "admin")
   source("functions.R")
   source("server_visu.R",local = T)
   source("server_TLC_MS.R",local = T)
   source("server_ink_test.R",local = T)
+  
 
   # main = py_run_file("setup_old.py")
   main = py_run_file("setup.py")
+  # python.load("setup.py")
+  # python.load("setup_old.py")
   
   session$onSessionEnded(function() {
-    # if(connect$board){
-      # python.call("close_connections") ## py
-    # py_call("close_connections") ## py
     main$close_connections() ## py
+    # python.call("close_connections") ## py
     # stopApp()
-      # put it in the log
-      # write(paste0(format(Sys.time(),"%Y%m%d_%H:%M:%S"),";","Connection;",NA,";","Board disconnection",";",connect$Visa,";",input$Plate),file="log/log.txt",append = T)
-      
-    # }
-    # if(connect$login){
-      # put it in the log
-      # write(paste0(format(Sys.time(),"%Y%m%d_%H:%M:%S"),";","Connection;",NA,";","Sign out",";",connect$Visa,";",input$Plate),file="log/log.txt",append = T)
-    # }
   })
   
   output$Login = renderUI({
@@ -74,7 +49,17 @@ shinyServer(function(input, output,session) {
     }else{
       tagList(
         h6(paste0(connect$Visa," connected")),
-        actionButton("Login_disconnect","disconnect")
+        actionButton("Login_disconnect","disconnect")#,
+        # actionButton("Login_options","Manage users",icon = icon("edit")),
+        # bsModal("Login_Modal", "Login_options", "Login_options", size = "small",
+        #   if(connect$Visa == "admin"){
+        #     textInput("Visa","Visa","admin"),
+        #     passwordInput("parola","password",value = ""),
+        #     actionButton("Login_connect","connect")
+        #   }else{
+        #     p("Only admin can change password and add users")
+        #   }
+        # )
       )
     }
   })
@@ -87,7 +72,7 @@ shinyServer(function(input, output,session) {
     system("sudo reboot")
   })
   observeEvent(input$Login_connect,{
-    t = read.csv2("logins.csv")
+    load("login.Rdata")
     if(t[t$Visa == input$Visa,2] == input$parola){
       connect$login = T
       connect$Visa = input$Visa
@@ -115,28 +100,30 @@ shinyServer(function(input, output,session) {
     }
   })
   
-  output$Serial_port = renderUI({
+  output$Serial_portUI = renderUI({
     input$Serial_port_refresh
     if(input$Serial_windows){
-      selectizeInput("Serial_port","select Serial port",choices = listPorts())
+      selectizeInput("Serial_port","Select serial port",choices = listPorts())
     }else{
-      selectizeInput("Serial_port","select Serial port",choices = dir("/dev/",pattern = "ACM",full.names = T))
+      selectizeInput("Serial_port","Select serial port",choices = dir("/dev/",pattern = "ACM",full.names = T))
     }
   })
-  output$Serial_port_connect = renderUI({
+  output$Serial_port_connectUI = renderUI({
     validate(
       need(connect$login,"Please login")
     )
     if(!connect$board){
-      actionButton("Serial_port_connect","connect the board")
+      actionButton("Serial_port_connect","Connect the board")
     }else{
-      actionButton("Serial_port_disconnect","disconnect the board")
+      actionButton("Serial_port_disconnect","Disconnect the board")
     }
   })
   observeEvent(input$Serial_port_connect,{
-    # python.call("connect_board",input$Serial_port) ## py
-    # py_call("connect_board",as.character(input$Serial_port)) ## py
+    
+    print("Connecting")
     main$connect_board(input$Serial_port) ## py
+    # python.call("connect_board",input$Serial_port) ## py
+    print("Connected")
     # put it in the log
     write(paste0(format(Sys.time(),"%Y%m%d_%H:%M:%S"),";","Connection;",NA,";","Board connection",";",connect$Visa,";",input$Plate),file="log/log.txt",append = T)
     connect$board = T

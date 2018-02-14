@@ -20,7 +20,9 @@ output$ink_test_control_1 = renderUI({
            actionButton("test_ink_G28_Y0","Home Y"),
            actionButton("test_ink_G28_Z0","Home Z"),
            actionButton("test_ink_M84","Disable Motors"),
-           uiOutput("temp_1")
+           uiOutput("temp_1"),
+           actionButton("test_ink_LED","LED gcode in pin 63"),
+           actionButton("test_ink_LED_stop","Stop_LED")
     ),
     column(3,
            h4("Layer printing"),
@@ -117,6 +119,28 @@ observeEvent(input$test_ink_plot_click,{
     main$send_gcode(test_ink_file)
   }
 })
+observeEvent(input$test_ink_LED,{
+  # if(input$Serial_windows){
+    # python.call("send_gcode","gcode/LED.gcode") ## py
+    main$send_gcode("gcode/LED.gcode")
+  # }else{
+  #   rv$id <- mcparallel({
+  #     python.call("send_gcode","gcode/LED.gcode") ## py
+  #     # main$send_gcode("gcode/LED.gcode")
+  #   })
+  # }
+})
+# observeEvent(input$test_ink_LED_stop,{
+#   python.call("cancelprint") ## py
+#   # main$cancelprint()
+# })
+# observeEvent(input$test_ink_LED_stop,{
+#   validate(need(!input$Serial_windows,"not on windows"))
+#   if(!is.null(rv$id$pid)){
+#     tools::pskill(rv$id$pid)
+#     rv$id <- list()
+#   }
+# })
 observeEvent(input$test_ink_G28_X0,{
   # create the gcode
   test_ink_file = "gcode/test_ink_cmd.gcode"

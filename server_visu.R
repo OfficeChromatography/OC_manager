@@ -10,22 +10,24 @@ output$Visu_control_1 = renderUI({
   
   tabsetPanel(
     tabPanel("Capture",
-             column(3,
+             column(4,
                     textInput("Visu_name","Name of the folder","sandbox"),
                     uiOutput("Visu_control_action"),
                     checkboxGroupInput("Visu_RGB_254_LED","LED to turn on",choices = LED_pin,selected=LED_pin[5]),
                     checkboxInput("Visu_awb_off","Turn off automatic white balance",FALSE),
-                    verbatimTextOutput("Visu_feedback"),
+                    verbatimTextOutput("Visu_feedback")
+             ),
+             column(4,
                     column(6,
                            checkboxGroupInput("Visu_exp","Exposure choice",c("auto",50,100,200,400,800),selected = 100)
-                           ),
+                    ),
                     column(6,
                            checkboxGroupInput("Visu_ISO","ISO choice",c("auto",100,200,400,800),selected = c(100))
-                           ),
-                    textInput("Visu_roi","ROI to input in raspistill",Visu_roi),
-                    actionButton("Visu_christmas","Christmas")
+                    ),
+                    textInput("Visu_roi","ROI to input in raspistill",Visu_roi)#,
+                    # actionButton("Visu_christmas","Christmas")
              ),
-             column(9,
+             column(4,
                     # verbatimTextOutput("Visu_dir"),
                     column(6,
                            uiOutput("Visu_control_dir_1"),
@@ -33,14 +35,14 @@ output$Visu_control_1 = renderUI({
                            uiOutput("Visu_control_img_1")
                            # plotOutput("Visu_control_img_1",click = "click_Visu_control_img_1",height="400px",width="400px"),
                            # plotOutput("Visu_control_chrom_1",height="400px",width="400px")
-                    ),
-                    column(6,
-                           uiOutput("Visu_control_dir_2"),
-                           uiOutput("Visu_control_pict_2"),
-                           uiOutput("Visu_control_img_2")
-                           # plotOutput("Visu_control_img_2",click = "click_Visu_control_img_2",height="400px",width="400px"),
-                           # plotOutput("Visu_control_chrom_2",height="400px",width="400px")
-                    )
+                    )#,
+                    # column(6,
+                    #        uiOutput("Visu_control_dir_2"),
+                    #        uiOutput("Visu_control_pict_2"),
+                    #        uiOutput("Visu_control_img_2")
+                    #        # plotOutput("Visu_control_img_2",click = "click_Visu_control_img_2",height="400px",width="400px"),
+                    #        # plotOutput("Visu_control_chrom_2",height="400px",width="400px")
+                    # )
                     
              )
     )
@@ -98,7 +100,7 @@ output$Visu_control_action = renderUI({
   tagList(
     actionButton("Visu_action","take picture"),
     # actionButton("Visu_delete_repo","Delete directory"),
-    actionButton("Visu_position","Go in position (X130 Y20), home first")
+    actionButton("Visu_position","Go in position")
   )
 })
 
@@ -137,67 +139,82 @@ observeEvent(input$Visu_action,{
 })
 observeEvent(input$Visu_position,{
   if(connect$board){
-    main$send_cmd("G1 X130 Y20")
+    fileConn<-file("gcode/Visu.gcode")
+    writeLines("G1 X130 Y20", fileConn)
+    close(fileConn)  # send the gcode
+    main$send_gcode("gcode/Visu.gcode")
   }
 })
 observeEvent(input$Visu_RGB_254_LED,{
   if(connect$board){
     for(i in LED_pin[1:3]){
       if(i %in% input$Visu_RGB_254_LED){
-        main$send_cmd(paste0("M42 P",i," S255"))
+        fileConn<-file("gcode/Visu.gcode")
+        writeLines(paste0("M42 P",i," S255"), fileConn)
+        close(fileConn)  # send the gcode
+        main$send_gcode("gcode/Visu.gcode")
       }else{
-        main$send_cmd(paste0("M42 P",i," S0"))
+        fileConn<-file("gcode/Visu.gcode")
+        writeLines(paste0("M42 P",i," S0"), fileConn)
+        close(fileConn)  # send the gcode
+        main$send_gcode("gcode/Visu.gcode")
       }
     }
     if(LED_pin[4] %in% input$Visu_RGB_254_LED){
-      main$send_cmd(paste0("M42 P",LED_pin[4]," S0"))
+      fileConn<-file("gcode/Visu.gcode")
+      writeLines(paste0("M42 P",LED_pin[4]," S0"), fileConn)
+      close(fileConn)  # send the gcode
+      main$send_gcode("gcode/Visu.gcode")
     }else{
-      main$send_cmd(paste0("M42 P",LED_pin[4]," S255"))
+      fileConn<-file("gcode/Visu.gcode")
+      writeLines(paste0("M42 P",LED_pin[4]," S255"), fileConn)
+      close(fileConn)  # send the gcode
+      main$send_gcode("gcode/Visu.gcode")
     }
   }
 })
 
-observeEvent(input$Visu_christmas,{
-  if(connect$board){
-    for(i in sample(1:6,50,T)){
-      if(i %in% seq(3)){
-        main$send_cmd(paste0("M42 P",LED_pin[i]," S255"))
-        Sys.sleep(0.5)
-        main$send_cmd(paste0("M42 P",LED_pin[i]," S0"))
-      }else if(i == 7){
-        for(j in LED_pin[1:3]){
-          main$send_cmd(paste0("M42 P",j," S255"))
-        }
-        Sys.sleep(0.5)
-        for(j in LED_pin[1:3]){
-          main$send_cmd(paste0("M42 P",j," S0"))
-        }
-      }else if(i == 4){
-        for(j in LED_pin[1:2]){
-          main$send_cmd(paste0("M42 P",j," S255"))
-        }
-        Sys.sleep(0.5)
-        for(j in LED_pin[1:2]){
-          main$send_cmd(paste0("M42 P",j," S0"))
-        }
-      }else if(i == 5){
-        for(j in LED_pin[3:2]){
-          main$send_cmd(paste0("M42 P",j," S255"))
-        }
-        Sys.sleep(0.5)
-        for(j in LED_pin[3:2]){
-          main$send_cmd(paste0("M42 P",j," S0"))
-        }
-      }else if(i == 6){
-        for(j in LED_pin[c(1,3)]){
-          main$send_cmd(paste0("M42 P",j," S255"))
-        }
-        Sys.sleep(0.5)
-        for(j in LED_pin[c(1,3)]){
-          main$send_cmd(paste0("M42 P",j," S0"))
-        }
-      }
-    }
-  }
-  
-})
+# observeEvent(input$Visu_christmas,{
+#   if(connect$board){
+#     for(i in sample(1:6,50,T)){
+#       if(i %in% seq(3)){
+#         main$send_cmd(paste0("M42 P",LED_pin[i]," S255"))
+#         Sys.sleep(0.5)
+#         main$send_cmd(paste0("M42 P",LED_pin[i]," S0"))
+#       }else if(i == 7){
+#         for(j in LED_pin[1:3]){
+#           main$send_cmd(paste0("M42 P",j," S255"))
+#         }
+#         Sys.sleep(0.5)
+#         for(j in LED_pin[1:3]){
+#           main$send_cmd(paste0("M42 P",j," S0"))
+#         }
+#       }else if(i == 4){
+#         for(j in LED_pin[1:2]){
+#           main$send_cmd(paste0("M42 P",j," S255"))
+#         }
+#         Sys.sleep(0.5)
+#         for(j in LED_pin[1:2]){
+#           main$send_cmd(paste0("M42 P",j," S0"))
+#         }
+#       }else if(i == 5){
+#         for(j in LED_pin[3:2]){
+#           main$send_cmd(paste0("M42 P",j," S255"))
+#         }
+#         Sys.sleep(0.5)
+#         for(j in LED_pin[3:2]){
+#           main$send_cmd(paste0("M42 P",j," S0"))
+#         }
+#       }else if(i == 6){
+#         for(j in LED_pin[c(1,3)]){
+#           main$send_cmd(paste0("M42 P",j," S255"))
+#         }
+#         Sys.sleep(0.5)
+#         for(j in LED_pin[c(1,3)]){
+#           main$send_cmd(paste0("M42 P",j," S0"))
+#         }
+#       }
+#     }
+#   }
+#   
+# })

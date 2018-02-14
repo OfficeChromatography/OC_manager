@@ -51,6 +51,9 @@ def send_gcode(file = ""):
         l = l.split(";")[0]
         s.write(l + '\n') # Send g-code block to grbl
         grbl_out = s.readline() # Wait for grbl response with carriage return
+        # if(grbl_out.strip() != "ok"):
+        #   time.sleep(1)
+        #   grbl_out = s.readline() # Wait for grbl response with carriage return
         print ' : ' + grbl_out.strip()
     f.close()
 

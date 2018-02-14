@@ -136,3 +136,26 @@ a_to_gcode_X_fix = function(a,start_gcode,end_gcode,I=1,L=5,W=0,nozzle = 1){ ## 
   }
   c(gcode,end_gcode)
 }
+
+
+
+
+f.read.image = function(source,height=NULL,Normalize=F,ls.format=F){
+  ls <- list()
+  for(i in source){
+    try(data<-readTIFF(i,native=F)) # we could use the magic number instead of try here
+    try(data<-readJPEG(source=i,native=F))
+    try(data<-readPNG(source=i,native=F))
+    if(!is.null(height)){
+      data <- redim.array(data,height)
+    }
+    if(Normalize == T){data <- data %>% normalize}
+    ls[[i]]<- data
+  }
+  if(ls.format == F){
+    data <- abind(ls,along=2)
+  }else{
+    data <- ls
+  }
+  return(data)
+}
