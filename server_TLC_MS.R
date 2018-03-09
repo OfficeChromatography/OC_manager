@@ -3,7 +3,7 @@
 TLC_MS_x_width = 2000
 TLC_MS_y_height = 1000
 TLC_MS_x_bias = 4.5
-TLC_MS_y_bias = 7
+TLC_MS_y_bias = 7+1
 
 TLC_pins = c(laser=59,rheodyn=66,heading=64,rinsing=44) ## just reminder, not used in the code...
 
@@ -43,14 +43,7 @@ M84"
 
 TLC_MS_manual = reactiveValues(LED=F,head=F,elution=F)
 
-output$TLC_MS_control_manual = renderUI({
-  tagList(if(!TLC_MS_manual$LED){actionButton("TLC_MS_manual_LED_on","LED on")}else{actionButton("TLC_MS_manual_LED_off","LED off")},hr(),
-          if(!TLC_MS_manual$head){actionButton("TLC_MS_manual_head_down","Head down")}else{actionButton("TLC_MS_manual_head_up","Head up")},hr(),
-          if(!TLC_MS_manual$head){actionButton("TLC_MS_manual_rinsing","Purge head")},hr(),
-          if(TLC_MS_manual$elution){actionButton("TLC_MS_manual_Valve_bypass","Valve bypass")}else{actionButton("TLC_MS_manual_Valve_elution","Valve elution")}
-          )
-  
-})
+
 
 output$TLC_MS_control_1 = renderUI({
   
@@ -96,15 +89,78 @@ output$TLC_MS_control_1 = renderUI({
                     textAreaInput("TLC_MS_batch_after","After batch",value = TLC_MS_after,height = "200px")
                     ),
              column(6,
-                    textInput("TLC_MS_color","Color on plots","red")#,
+                    textInput("TLC_MS_color","Color on plots","red"),
                     # numericInput("TLC_MS_x_bias","TLC_MS_x_bias",-5),
                     # numericInput("TLC_MS_y_bias","TLC_MS_y_bias",-5)
+                    textInput("TLC_MS_profile_name","Profile name to save",""),
+                    actionButton("TLC_MS_profile_save","Save profile"),
+                    selectInput("TLC_MS_profiles","Profile name to load",choices = c("Default",dir("tlcms_profile/")))
                     )
                     
          )
   )
 })
 
+output$TLC_MS_control_manual = renderUI({
+  tagList(if(!TLC_MS_manual$LED){actionButton("TLC_MS_manual_LED_on","LED on")}else{actionButton("TLC_MS_manual_LED_off","LED off")},hr(),
+          if(!TLC_MS_manual$head){actionButton("TLC_MS_manual_head_down","Head down")}else{actionButton("TLC_MS_manual_head_up","Head up")},hr(),
+          if(!TLC_MS_manual$head){actionButton("TLC_MS_manual_rinsing","Purge head")},hr(),
+          if(TLC_MS_manual$elution){actionButton("TLC_MS_manual_Valve_bypass","Valve bypass")}else{actionButton("TLC_MS_manual_Valve_elution","Valve elution")},hr(),
+          actionButton("TLC_MS_Home_X","Home X"),
+          actionButton("TLC_MS_Home_YZ","Home Y and Home Z")
+  )
+  
+})
+
+observeEvent(input$TLC_MS_profiles,{
+  if(input$TLC_MS_profiles == "Default"){
+    updateTextAreaInput(session,"TLC_MS_batch_before",value = TLC_MS_before)
+    updateTextAreaInput(session,"TLC_MS_batch_between",value = TLC_MS_between)
+    updateTextAreaInput(session,"TLC_MS_batch_after",value = TLC_MS_after)
+    updateNumericInput(session,"TLC_MS_elution_time",value = 20000)
+    updateNumericInput(session,"TLC_MS_rinsing_time",value = 20000)
+  }else{
+    load(paste0("tlcms_profile/",input$TLC_MS_profiles))
+    updateTextAreaInput(session,"TLC_MS_batch_before",value = data$TLC_MS_before)
+    updateTextAreaInput(session,"TLC_MS_batch_between",value = data$TLC_MS_between)
+    updateTextAreaInput(session,"TLC_MS_batch_after",value = data$TLC_MS_after)
+    if(length(data) > 3){
+      updateNumericInput(session,"TLC_MS_elution_time",value = data$TLC_MS_elution_time)
+      updateNumericInput(session,"TLC_MS_rinsing_time",value = data$TLC_MS_rinsing_time)
+    }
+  }
+})
+observeEvent(input$TLC_MS_profile_save,{
+  data = list(
+    TLC_MS_before = input$TLC_MS_batch_before,
+    TLC_MS_between = input$TLC_MS_batch_between,
+    TLC_MS_after = input$TLC_MS_batch_after,
+    TLC_MS_elution_time = input$TLC_MS_elution_time,
+    TLC_MS_rinsing_time = input$TLC_MS_rinsing_time
+  )
+  if(nchar(input$TLC_MS_profile_name) == 0){
+    shinyalert(type="error",title="stupid user",text = "Give a name to the profile to save")
+  }else{
+    save(data,file=paste0("tlcms_profile/",input$TLC_MS_profile_name,".Rdata"))
+    updateSelectInput(session,"TLC_MS_profiles",choices = c("Default",dir("tlcms_profile/")))
+  }
+  
+})
+
+observeEvent(input$TLC_MS_Home_X,{
+  if(connect$board){
+    main$send_gcode("gcode/TLC_MS_Home_X.gcode")
+  }else{
+    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+  }
+})
+observeEvent(input$TLC_MS_Home_YZ,{
+  if(connect$board){
+    main$send_gcode("gcode/TLC_MS_Home_YZ.gcode")
+  }else{
+    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+  }
+})
 observeEvent(input$TLC_MS_manual_LED_on,{
   validate(need(connect$login,"Please login"))
   gcode = c("M42 P59 S255")
@@ -396,6 +452,7 @@ TLC_MS_gcode = reactive({
 })
 
 observeEvent(input$TLC_MS_batch_action,{
+  if(connect$board){
     # create the gcode
     Method_file = paste0("gcode/","Method",".gcode")
     Log = Method_file
@@ -405,14 +462,12 @@ observeEvent(input$TLC_MS_batch_action,{
     # put it in the log
     write(paste0(format(Sys.time(),"%Y%m%d_%H:%M:%S"),";","TLC_MS",";",Log,";",Log,";",connect$Visa,";",input$Plate),file="log/log.txt",append = T)
     # send the gcode
-    # if(!is.null(rv$id$pid)) return()
-    # if(input$Serial_windows){
-      main$send_gcode(Method_file)
-    # }else{
-    #   rv$id <- mcparallel({ main$send_gcode(Method_file)}) #python.call("test_stop")
-    # }
-    
+    main$send_gcode(Method_file)
     TLC_MS_feedback$text = "batch finished"
+  }else{
+    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+  }
+
   
 })
 observeEvent(input$TLC_MS_batch_stop,{

@@ -13,7 +13,7 @@ library(serial)#for port detection in windows
 library(rhandsontable)#devtools::install_github("rhandsontable","jrowen")
 library(parallel)
 library(shinyBS)
-
+library(shinyalert)
 
 
 
@@ -25,8 +25,8 @@ shinyServer(function(input, output,session) {
   source("functions.R")
   source("server_visu.R",local = T)
   source("server_TLC_MS.R",local = T)
-  source("server_ink_test.R",local = T)
-  
+  source("server_Fine_control.R",local = T)
+  source("server_Method.R",local = T)  
 
   # main = py_run_file("setup_old.py")
   main = py_run_file("setup.py")
@@ -119,14 +119,17 @@ shinyServer(function(input, output,session) {
     }
   })
   observeEvent(input$Serial_port_connect,{
-    
-    print("Connecting")
-    main$connect_board(input$Serial_port) ## py
-    # python.call("connect_board",input$Serial_port) ## py
-    print("Connected")
-    # put it in the log
-    write(paste0(format(Sys.time(),"%Y%m%d_%H:%M:%S"),";","Connection;",NA,";","Board connection",";",connect$Visa,";",input$Plate),file="log/log.txt",append = T)
-    connect$board = T
+    if(nchar(input$Serial_port) == 0){
+      shinyalert(title = "stupid user",text = "No board selected",type="error")
+    }else{
+      print("Connecting")
+      main$connect_board(input$Serial_port) ## py
+      # python.call("connect_board",input$Serial_port) ## py
+      print("Connected")
+      # put it in the log
+      write(paste0(format(Sys.time(),"%Y%m%d_%H:%M:%S"),";","Connection;",NA,";","Board connection",";",connect$Visa,";",input$Plate),file="log/log.txt",append = T)
+      connect$board = T
+    }
   })
   observeEvent(input$Serial_port_disconnect,{
     # python.call("close_connections") ## py
@@ -145,7 +148,6 @@ shinyServer(function(input, output,session) {
   
   TempInvalidate <- reactiveTimer(2000)
 
-  source("server_Method.R",local = T)  
   
 
   

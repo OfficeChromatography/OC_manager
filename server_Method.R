@@ -1,8 +1,13 @@
 ## server_Method.R
+eat_table = list()
+for(i in dir("eat_tables/") %>% gsub(x=.,pattern=".R",replacement="")){
+  eat_table[[i]] = source(paste0("eat_tables/",i,".R"))$value
+}
+source("eat_tables/need_appli.R")
 
+steps_choices = dir("tables/") %>% gsub(x=.,pattern=".csv",replacement="")
+# steps_choices = c("Scan_dart")
 
-## padding: 6px 12px
-source("eat_table.R")
 output$Method_control_1 = renderUI({
   tagList(
     fluidPage(fluidRow(
@@ -12,7 +17,7 @@ output$Method_control_1 = renderUI({
            actionButton("Method_step_exec","",icon = icon("play")),
            actionButton("Method_step_stop","",icon = icon("stop")),
            column(2,textInput("Method_save_name","Saving name","Sandbox")),actionButton("Method_save","",icon=icon("save")),
-           column(2,uiOutput("Method_load_names")),actionButton("Method_load","",icon=icon("folder-o")),actionButton("Method_load_refresh","",icon=icon("refresh")),
+           column(2,uiOutput("Method_load_names")),actionButton("Method_load","",icon=icon("folder-o")),
            actionButton("Method_step_home","",icon = icon("home")),
            actionButton("Method_step_parking","",icon = icon("eyedropper")),
            actionButton("Method_nozzle_test","",icon = icon("heartbeat")),
@@ -23,7 +28,6 @@ output$Method_control_1 = renderUI({
            bsTooltip("Method_step_exec","Execute step"),
            bsTooltip("Method_step_stop","Emergency stop, not working yet"),
            bsTooltip("Method_save","Save the method, carefull to overwritte"),
-           bsTooltip("Method_load_refresh","Refresh list of method names"),
            bsTooltip("Method_load","Load saved method"),
            bsTooltip("Method_step_home","Go in home position"),
            bsTooltip("Method_step_parking","For the inkjet, send the cartridge in parking position, go home first or you will break the machine"),
@@ -49,7 +53,7 @@ output$Method_control_2 = renderUI({
   validate(
     need(length(Method$l) > 0 ,"Add a step or load a saved method")
   )
-  input$Method_step_add
+  # input$Method_step_add
   truc = seq(length(Method$l))
   names(truc) = paste0("Step ",seq(length(Method$l)),": ",lapply(Method$l,function(x){x$type}))
   radioButtons("Method_steps","Steps",choices = truc,selected = Method$selected)
@@ -75,8 +79,12 @@ output$Method_control_3 = renderUI({
     }else{
       tagList(
         column(5,
-               actionButton("Method_step_update","Update step",icon=icon("gears")),
-               downloadButton("Method_gcode_download","Download Gcode"),
+               # if(Method$l[[as.numeric(input$Method_steps)]]$type != "Documentation"){
+               #   tagList(
+                   actionButton("Method_step_update","Update step",icon=icon("gears")),
+                   downloadButton("Method_gcode_download","Download Gcode"),
+                 #   )
+                 # },
                rHandsontableOutput("Method_step_option"),
                verbatimTextOutput("Method_step_feedback")
         ),
@@ -119,56 +127,73 @@ output$Method_control_5 = renderUI({
   }
 })
 output$Method_load_names = renderUI({
-  input$Method_load_refresh
   selectizeInput("Method_load_name","Method to load",choices=dir("methods/"))
 })
 
 Method = reactiveValues(l=list(),selected = 1)
 
 observeEvent(input$Method_step_add,{
-  data = read.table(paste0("tables/",input$Method_step_new,"_table.csv"),header=T,sep=";")
-  Method$l[[length(Method$l)+1]] = list(type=input$Method_step_new,
-                                        table=data,
-                                        eat_table = eat_table[[input$Method_step_new]],
-                                        gcode = NULL,
-                                        plot=function(){plot(x=1,y=1,type="n",main="Update to visualize")},
-                                        info = "Update to see the info",
-                                        Done = F)
-  if(input$Method_step_new %in% need_appli){
+  step = length(Method$l)+1
+  data = read.table(paste0("tables/",input$Method_step_new,".csv"),header=T,sep=";")
+  Method$l[[step]] = list(type=input$Method_step_new,
+                          table=data,
+                          eat_table = eat_table[[input$Method_step_new]],
+                          gcode = NULL,
+                          plot=function(){plot(x=1,y=1,type="n",main="Update to visualize")},
+                          info = "Update to see the info",
+                          Done = F)
+  if(input$Method_step_new %in% need_appli && input$Method_step_new != "Documentation"){
     nbr_band=data[data[,1] == "nbr_band",2]
-    Method$l[[length(Method$l)]]$appli_table = data.frame(Band = seq(nbr_band),Vial = rep(1,nbr_band),Repeat = rep(1,nbr_band),I = rep(10,nbr_band),Content = rep("water",nbr_band),Use = rep(T,nbr_band))
-    Method$l[[length(Method$l)]]$appli_table$Content = as.character(Method$l[[length(Method$l)]]$appli_table$Content)
+    Method$l[[step]]$appli_table = data.frame(Band = seq(nbr_band),Vial = rep(1,nbr_band),Repeat = rep(1,nbr_band),I = rep(10,nbr_band),Content = rep("water",nbr_band),Use = rep(T,nbr_band))
+    Method$l[[step]]$appli_table$Content = as.character(Method$l[[step]]$appli_table$Content) ## for rhansontable modif
+  }
+  if(input$Method_step_new == "Documentation"){ ## pict table, special for Documentation
+    nbr_pict=data[data[,1] == "nbr_pict",2]
+    Method$l[[step]]$appli_table = data.frame(Exposure = rep(100,nbr_pict),ISO = rep(100,nbr_pict),Light = rep("Red",nbr_pict))
+    Method$l[[step]]$appli_table$Light = factor(Method$l[[step]]$appli_table$Light,levels = c("Red","Green","Blue","White","254 nm")) ## for rhansontable modif
+    Method$l[[step]]$info = c(Method$l[[step]]$info,"\nSet the exposure or ISO to 0 for automatique")
+    Method$l[[step]]$exec = source("eat_tables/Documentation_exec.R")$value
   }
   Method_feedback$text = paste0("Step ",input$Method_step_new," added")
   Method$selected = length(Method$l)
 })
 observeEvent(input$Method_step_delete,{
-  Method_feedback$text = paste0("Step ",input$Method_steps," deleted")
-  Method$l[[as.numeric(input$Method_steps)]] = NULL
-  Method$selected = 1
+  if(length(Method$l) == 0){
+    shinyalert(title = "stupid user",text = "no step to delete",type="error",closeOnClickOutside = T, showCancelButton = F)
+  }else{
+    Method_feedback$text = paste0("Step ",input$Method_steps," deleted")
+    Method$l[[as.numeric(input$Method_steps)]] = NULL
+    Method$selected = 1
+  }
+  
 })
 
 observeEvent(input$Method_step_update,{
+  step = as.numeric(input$Method_steps)
+  print(step)
   data = hot_to_r(input$Method_step_option)
-  Method$l[[as.numeric(input$Method_steps)]]$table=data
+  Method$l[[step]]$table=data
   ## update SA_table if appicable
-  if(Method$l[[as.numeric(input$Method_steps)]]$type %in% need_appli){
+  if(Method$l[[step]]$type %in% need_appli && Method$l[[step]]$type != "Documentation"){
     appli_data = hot_to_r(input$Method_step_appli_table)
     nbr_band = data[data[,1] == "nbr_band",2]
     if(nbr_band != nrow(appli_data)){ ## make a new one if applicable
       appli_data = data.frame(Band = seq(nbr_band),Vial = rep(1,nbr_band),Repeat = rep(1,nbr_band),I = rep(10,nbr_band),Content = rep("water",nbr_band),Use = rep(T,nbr_band))
     }
-    Method$l[[as.numeric(input$Method_steps)]]$appli_table=appli_data
-    Method$l[[length(Method$l)]]$appli_table$Content = as.character(Method$l[[length(Method$l)]]$appli_table$Content) ## coercion. 
+    Method$l[[step]]$appli_table=appli_data
+    Method$l[[step]]$appli_table$Content = as.character(Method$l[[step]]$appli_table$Content) ## coercion. 
+  }
+  if(Method$l[[step]]$type == "Documentation"){
+    appli_data = hot_to_r(input$Method_step_appli_table)
+    Method$l[[step]]$appli_table=appli_data
   }
   
   ## eat tables
   withProgress(message = "Processing", value=0, { ## do not work well, don't know why
-    Method$l[[as.numeric(input$Method_steps)]] = Method$l[[as.numeric(input$Method_steps)]]$eat_table(Method$l[[as.numeric(input$Method_steps)]])
+    Method$l[[step]] = Method$l[[step]]$eat_table(Method$l[[step]])
   })
   Method$selected = input$Method_steps
   Method_feedback$text = paste0("Step ",input$Method_steps," updated")
-  Method$l[[length(Method$l)]]$appli_table$Content = as.character(Method$l[[length(Method$l)]]$appli_table$Content) ## coercion. 
 })
 
 output$Method_step_option = renderRHandsontable({
@@ -187,11 +212,31 @@ output$Method_step_appli_table = renderRHandsontable({
 })
 
 observeEvent(input$Method_save,{
-  withProgress(message = "Processing", value=0, {
-    l = Method$l
-    save(l,file=paste0("methods/",input$Method_save_name,".Rdata"))
-    Method_feedback$text = paste0("Method ",input$Method_save_name," saved")
-  })
+  if(paste0(input$Method_save_name,".Rdata") %in% dir("methods/")){
+    shinyalert(title = "Method exist",text = "Overwrite",type="warning",closeOnClickOutside = T, showCancelButton = T,
+               callbackR = function(x){
+                 if(x != FALSE){
+                   withProgress(message = "Processing", value=0, {
+                     l = Method$l
+                     
+                     save(l,file=paste0("methods/",input$Method_save_name,".Rdata"))
+                     Method_feedback$text = paste0("Method ",input$Method_save_name," saved")
+                   })
+                   updateSelectizeInput(session,"Method_load_name",choices=dir("methods/"))
+                 }else{
+                   Method_feedback$text = paste0("Method ","not"," saved")
+                 }
+               })
+  }else{
+    withProgress(message = "Processing", value=0, {
+      l = Method$l
+      
+      save(l,file=paste0("methods/",input$Method_save_name,".Rdata"))
+      Method_feedback$text = paste0("Method ",input$Method_save_name," saved")
+    })
+    updateSelectizeInput(session,"Method_load_name",choices=dir("methods/"))
+  }
+  
 })
 observeEvent(input$Method_load,{
   withProgress(message = "Processing", value=0, {
@@ -209,11 +254,11 @@ output$Method_plot = renderPlot({
   )
   if(!is.null(input$Method_steps)){
     Method$l[[as.numeric(input$Method_steps)]]$plot()
-    if(!is.null(input$Chrom_upload)){
-      rasterImage(f.read.image(input$Chrom_upload$datapath),xleft = 0,xright = 100,ybottom = 0,ytop = 100)
-      par(new=T)
-      Method$l[[as.numeric(input$Method_steps)]]$plot()
-    } 
+    # if(!is.null(input$Chrom_upload)){ ## just for DART
+    #   rasterImage(f.read.image(input$Chrom_upload$datapath),xleft = 0,xright = 100,ybottom = 0,ytop = 100)
+    #   par(new=T)
+    #   Method$l[[as.numeric(input$Method_steps)]]$plot()
+    # } 
   }
 })
 output$Method_step_feedback = renderText({
@@ -249,65 +294,43 @@ output$Method_gcode_download <- downloadHandler(
   }
 )
 observeEvent(input$Method_step_stop,{
-  validate(need(!input$Serial_windows,"not on windows"))
-  if(!is.null(rv$id$pid)){
-    tools::pskill(rv$id$pid)
-    Method_feedback$text = paste0("Step ",input$Method_steps," stoped. Process ",rv$id$pid," killed")
-    rv$id <- list()
-    # put it in the log
-    write(paste0(format(Sys.time(),"%Y%m%d_%H:%M:%S"),";",Method$l[[as.numeric(input$Method_steps)]]$type,";","Emergency stop","; LOG",";",connect$Visa,";",input$Plate),file="log/log.txt",append = T)
-  }
+  shinyalert(title = "stupid dev",text = "Feature not working",type="error",closeOnClickOutside = T, showCancelButton = F)
+  # validate(need(!input$Serial_windows,"not on windows"))
+  # if(!is.null(rv$id$pid)){
+  #   tools::pskill(rv$id$pid)
+  #   Method_feedback$text = paste0("Step ",input$Method_steps," stoped. Process ",rv$id$pid," killed")
+  #   rv$id <- list()
+  #   # put it in the log
+  #   write(paste0(format(Sys.time(),"%Y%m%d_%H:%M:%S"),";",Method$l[[as.numeric(input$Method_steps)]]$type,";","Emergency stop","; LOG",";",connect$Visa,";",input$Plate),file="log/log.txt",append = T)
+  # }
 })
 observeEvent(input$Method_step_home,{
-  # create the gcode
-  test_ink_file = "gcode/test_ink_cmd.gcode"
-  Log = test_ink_file
-  fileConn<-file(test_ink_file)
-  writeLines("G28 Y0", fileConn)
-  close(fileConn)  # send the gcode
-  main$send_gcode(test_ink_file)
-  test_ink_file = "gcode/test_ink_cmd.gcode"
-  Log = test_ink_file
-  fileConn<-file(test_ink_file)
-  writeLines("G28 X0", fileConn)
-  close(fileConn)  # send the gcode
-  main$send_gcode(test_ink_file)
+  if(connect$board){
+    main$send_gcode("gcode/Method_step_home.gcode")
+  }else{
+    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+  }
 })
 observeEvent(input$Method_step_parking,{
-  # create the gcode
-  test_ink_file = "gcode/test_ink_cmd.gcode"
-  Log = test_ink_file
-  fileConn<-file(test_ink_file)
-  writeLines("G1 X 130", fileConn)
-  close(fileConn)  # send the gcode
-  main$send_gcode(test_ink_file)
+  if(connect$board){
+    main$send_gcode("gcode/Method_step_parking.gcode")
+  }else{
+    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+  }
 })
 observeEvent(input$Method_DART_parking,{
-  # create the gcode
-  test_ink_file = "gcode/test_ink_cmd.gcode"
-  Log = test_ink_file
-  fileConn<-file(test_ink_file)
-  writeLines("G1 Y 100 F3600", fileConn)
-  close(fileConn)  # send the gcode
-  main$send_gcode(test_ink_file)
+  if(connect$board){
+    main$send_gcode("gcode/Method_DART_parking.gcode")
+  }else{
+    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+  }
 })
 observeEvent(input$Method_nozzle_test,{
-  I = 20 ; L = 5## cahnge here to input different pulse and I
-  gcode = c("G91",paste0("M700 P0 I",I," L",L," S",4095)) 
-  for(i in seq(12)){
-    S=rep(0,12);S[i] = 1;S = BinToDec(S)
-    for(j in seq(10)){gcode = c(gcode,paste0("G1 X",0.25),"M400",paste0("M700 P0 I",I," L",L," S",S))}
+  if(connect$board){
+    main$send_gcode("gcode/Method_nozzle_test.gcode")
+  }else{
+    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
   }
-  gcode = c(gcode,paste0("G1 X",2),"M400",paste0("M700 P0 I",I," L",L," S",4095))
-  gcode = c(gcode,"G90","M84")
-  test_ink_file = paste0("gcode/","test_ink",".gcode")
-  Log = test_ink_file
-  fileConn<-file(test_ink_file)
-  writeLines(gcode, fileConn)
-  close(fileConn)
-  # send the gcode
-  main$send_gcode(test_ink_file)
-  
 })
 
 ## part for emergency stop
@@ -315,30 +338,31 @@ rv <- reactiveValues(
   id=list()
 )
 observeEvent(input$Method_step_exec,{
-  if(board){ ## when no arduino connected, just testing
-    if(!is.null(rv$id$pid)) return()
-    write(paste0(format(Sys.time(),"%Y%m%d_%H:%M:%S"),";",Method$l[[as.numeric(input$Method_steps)]]$type,";Methods",";","Log",";",connect$Visa,";",input$Plate),file="log/log.txt",append = T)
-    rv$id <- mcparallel({ main$test_stop()}) #
-    Method_feedback$text = paste0("Step ",input$Method_steps," started. Process ",rv$id$pid)
+  step = as.numeric(input$Method_steps)
+  if(length(Method$l) == 0){
+    shinyalert(title = "stupid user",text = "No step selected",type="error",closeOnClickOutside = T, showCancelButton = F)
+  }else if(connect$board){
+    if(Method$l[[step]]$type != "Documentation"){
+      print("test")
+      # create the gcode
+      # Method_file = paste0("gcode/",format(Sys.time(),"%Y%m%d_%H:%M:%S"),"Method",".gcode")
+      Method_file = paste0("gcode/","Method",".gcode")
+      Log = Method_file
+      fileConn<-file(Method_file)
+      writeLines(Method$l[[step]]$gcode, fileConn)
+      close(fileConn)
+      # put it in the log
+      write(paste0(format(Sys.time(),"%Y%m%d_%H:%M:%S"),";",Method$l[[step]]$type,";",Log,";",Log,";",connect$Visa,";",input$Plate),file="log/log.txt",append = T)
+      # send the gcode
+      main$send_gcode(Method_file)
+      
+      Method_feedback$text = paste0("Step ",input$Method_steps," started")
+    }else{
+      Method$l[[step]]$exec(Method$l[[step]],input$Plate)
+    }
   }else{
-    # create the gcode
-    # Method_file = paste0("gcode/",format(Sys.time(),"%Y%m%d_%H:%M:%S"),"Method",".gcode")
-    Method_file = paste0("gcode/","Method",".gcode")
-    Log = Method_file
-    fileConn<-file(Method_file)
-    writeLines(Method$l[[as.numeric(input$Method_steps)]]$gcode, fileConn)
-    close(fileConn)
-    # put it in the log
-    write(paste0(format(Sys.time(),"%Y%m%d_%H:%M:%S"),";",Method$l[[as.numeric(input$Method_steps)]]$type,";",Log,";",Log,";",connect$Visa,";",input$Plate),file="log/log.txt",append = T)
-    # send the gcode
-    # if(!is.null(rv$id$pid)) return()
-    # if(input$Serial_windows){
-    main$send_gcode(Method_file)
-    # }else{
-    #   rv$id <- mcparallel({ main$send_gcode(Method_file)}) #python.call("test_stop")
-    # }
-    
-    Method_feedback$text = paste0("Step ",input$Method_steps," started. Process ",rv$id$pid)
+    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
   }
+    
   
 })

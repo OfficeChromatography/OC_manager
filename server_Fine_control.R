@@ -3,39 +3,106 @@
 output$ink_test_control_1 = renderUI({
   tagList(
     column(3,
-           h4("Inkjet"),
-           numericInput("test_ink_n","test_ink nbr of fire (rep)",10),
-           numericInput("test_ink_n_bis","test_ink nbr of fire bis (N)",2),
-           numericInput("test_ink_L","pulse length",5),
-           checkboxGroupInput("test_ink_S","S",choices = seq(12),inline = T,selected = seq(12)),
-           # numericInput("test_ink_S","S",4095),
-           actionButton("test_ink_action",label = "Et boom !!! c'est le choc !!!"),
-           actionButton("test_ink_nozzle_test",label = "Nozzle testing process")
-    ),
-    column(3,
            h4("General"),
-           textInput("test_ink_cmd","test_ink_cmd","G1 X10"),
-           actionButton("test_ink_cmd_button","test_ink_cmd_button"),
+           textInput("test_ink_cmd","Command","G1 X10"),
+           actionButton("test_ink_cmd_button","Launch GCODE"),
            actionButton("test_ink_G28_X0","Home X"),
            actionButton("test_ink_G28_Y0","Home Y"),
            actionButton("test_ink_G28_Z0","Home Z"),
            actionButton("test_ink_M84","Disable Motors"),
-           uiOutput("temp_1"),
-           actionButton("test_ink_LED","LED gcode in pin 63"),
-           actionButton("test_ink_LED_stop","Stop_LED")
+           # uiOutput("temp_1"),
+           actionButton("test_ink_LED","LED gcode in pin 63 (for testing only)"),
+           actionButton("test_ink_LED_stop","Stop_LED (for testing only)")
     ),
+    column(3,
+           h4("Inkjet"),
+           numericInput("test_ink_n","Number of fire (repetition)",10),
+           numericInput("test_ink_n_bis","Number of fire bis (I)",2),
+           numericInput("test_ink_L","Pulse length",5),
+           checkboxGroupInput("test_ink_S","Nozzles to fire",choices = seq(12),inline = T,selected = seq(12)),
+           # numericInput("test_ink_S","S",4095),
+           actionButton("test_ink_action",label = "Fire selected nozzles"),
+           actionButton("test_ink_nozzle_test",label = "Nozzle testing process")
+    ),
+    
     column(3,
            h4("Layer printing"),
            actionButton("test_ink_extrude_1mm","Extrude 1 mm"),
            actionButton("test_ink_extrude_5mm","Extrude 5 mm"),
            actionButton("test_ink_retract_5mm","Retract 5 mm"),
-           numericInput("test_ink_bed_temp","bed temperature (Prusa only)",105),
+           numericInput("test_ink_bed_temp","Bed temperature (Prusa only)",105),
            actionButton("test_ink_bed_set","Set bed temperature")
     ),
     column(3,
+           p("For testing only"),
            plotOutput("test_ink_plot",click="test_ink_plot_click")
+    ),
+    column(3,
+           h4("Gcode upload"),
+           fileInput("test_ink_gcode_file","Upload a GCODE file"),
+           actionButton("test_ink_gcode_file_action","Launch the GCODE file")
+    ),
+    column(3,
+           h4("Documentation"),
+           actionButton("test_ink_visu_position","Go in position"),
+           actionButton("test_ink_red","Red light"),
+           actionButton("test_ink_green","Green light"),
+           actionButton("test_ink_blue","Blue light"),
+           actionButton("test_ink_white","White light"),
+           actionButton("test_ink_254","254 nm light")
     )
   )
+})
+
+observeEvent(input$test_ink_visu_position,{
+  if(connect$board){
+    main$send_gcode("gcode/Visu_position.gcode")
+  }else{
+    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+  }
+})
+observeEvent(input$test_ink_red,{
+  if(connect$board){
+    main$send_gcode("gcode/Red.gcode")
+  }else{
+    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+  }
+})
+observeEvent(input$test_ink_green,{
+  if(connect$board){
+    main$send_gcode("gcode/Green.gcode")
+  }else{
+    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+  }
+})
+observeEvent(input$test_ink_blue,{
+  if(connect$board){
+    main$send_gcode("gcode/Blue.gcode")
+  }else{
+    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+  }
+})
+observeEvent(input$test_ink_white,{
+  if(connect$board){
+    main$send_gcode("gcode/White.gcode")
+  }else{
+    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+  }
+})
+observeEvent(input$test_ink_254,{
+  if(connect$board){
+    main$send_gcode("gcode/254 nm.gcode")
+  }else{
+    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+  }
+})
+
+observeEvent(input$test_ink_gcode_file_action,{
+  if(connect$board){
+    main$send_gcode(input$test_ink_gcode_file$datapath)
+  }else{
+    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+  }
 })
 
 test_TempInvalidate <- reactiveTimer(2000)

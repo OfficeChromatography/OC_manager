@@ -2385,3 +2385,51 @@ Time;Step;File;Log;Visa;Plate
 20180214_12:05:24;Deriv_vert;gcode/Method.gcode;gcode/Method.gcode;;test
 20180214_12:06:27;Deriv_3;gcode/Method.gcode;gcode/Method.gcode;;test
 20180214_12:07:28;Connection;NA;Board disconnection;;test
+20180214_16:03:31;Connection;NA;Board connection;;test
+20180214_16:04:04;Connection;NA;Board connection;;test
+20180214_16:05:05;Connection;NA;Board connection;;test
+20180214_16:07:03;Connection;NA;Board disconnection;;test
+20180214_16:19:07;Connection;NA;Board connection;;test
+20180214_16:22:04;SA_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20180214_16:22:24;Connection;NA;Board disconnection;;test
+20180214_16:22:26;Connection;NA;Board connection;;test
+20180214_16:22:37;SA_in_X;gcode/Method.gcode;gcode/Method.gcode;;test
+20180214_16:53:19;Connection;NA;Board disconnection;;test
+20180215_09:53:05;Connection;NA;Board connection;;test
+20180215_09:53:18;Connection;NA;Board disconnection;;test
+20180215_09:53:22;Connection;NA;Board connection;;test
+20180215_10:28:00;Deriv_3;gcode/Method.gcode;gcode/Method.gcode;;test
+20180215_10:51:13;Deriv_3;gcode/Method.gcode;gcode/Method.gcode;;test
+20180215_10:57:38;Deriv_3;gcode/Method.gcode;gcode/Method.gcode;;test
+20180215_11:12:02;Deriv_3;gcode/Method.gcode;gcode/Method.gcode;;test
+20180215_11:12:41;Connection;NA;Board connection;;test
+20180215_11:12:45;Connection;NA;Board disconnection;;test
+20180215_11:12:46;Connection;NA;Board connection;;test
+20180215_11:12:55;Connection;NA;Board disconnection;;test
+20180215_11:12:56;Connection;NA;Board connection;;test
+20180215_11:14:39;Connection;NA;Board connection;;test
+20180215_11:15:24;Connection;NA;Board connection;;test
+20180215_11:15:30;Connection;NA;Board disconnection;;test
+20180215_11:15:32;Connection;NA;Board connection;;test
+20180215_11:17:14;Connection;NA;Board connection;;test
+20180215_11:17:29;Deriv_3;gcode/Method.gcode;gcode/Method.gcode;;test
+20180215_11:19:34;Deriv_3;gcode/Method.gcode;gcode/Method.gcode;;test
+20180215_11:20:15;Deriv_3;gcode/Method.gcode;gcode/Method.gcode;;test
+20180215_11:21:16;Deriv_3;gcode/Method.gcode;gcode/Method.gcode;;test
+20180215_11:31:11;Deriv;gcode/Method.gcode;gcode/Method.gcode;;test
+20180215_11:40:41;Deriv_3;gcode/Method.gcode;gcode/Method.gcode;;test
+20180215_11:42:29;Connection;NA;Board connection;;test
+20180215_11:43:10;Connection;NA;Board disconnection;;test
+20180216_14:56:56;Deriv_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20180216_14:56:58;Deriv_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20180216_14:56:58;Deriv_2;gcode/Method.gcode;gcode/Method.gcode;;test
+20180216_15:27:05;Connection;NA;Board connection;;test
+20180216_15:27:06;Connection;NA;Board disconnection;;test
+20180216_15:28:11;Connection;NA;Board connection;;test
+20180216_21:23:29;TLC_MS;gcode/Method.gcode;gcode/Method.gcode;;test
+20180216_21:23:31;TLC_MS;gcode/Method.gcode;gcode/Method.gcode;;test
+20180216_21:23:31;TLC_MS;gcode/Method.gcode;gcode/Method.gcode;;test
+20180216_21:23:31;TLC_MS;gcode/Method.gcode;gcode/Method.gcode;;test
+20180216_21:23:32;TLC_MS;gcode/Method.gcode;gcode/Method.gcode;;test
+20180224_09:17:23;Connection;NA;Board connection;;test
+20180224_09:18:14;Connection;NA;Board connection;;test

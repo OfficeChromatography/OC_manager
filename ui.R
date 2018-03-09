@@ -8,6 +8,7 @@
 library(shiny)
 library(shinydashboard)
 library(shinyBS)
+library(shinyalert)
 dbHeader <- dashboardHeader(title = "OC_manager")
 # dbHeader$children[[2]]$children <-  tags$a(href='http://oc-lab.com',
 #                                            tags$img(src='www/OCLAB-logo-pattern-alb.png',height='60',width='200'))
@@ -51,7 +52,8 @@ dashboardPage(
               column(4,
                      h4("Login"),
                      uiOutput("Login"),
-                     textInput("Plate","Plate info: project, id or whatever","test")
+                     textInput("Plate","Plate info: project, id or whatever","test"),
+                     useShinyalert()
               ),
               column(4,
                      h4("Board"),
@@ -60,7 +62,7 @@ dashboardPage(
                      uiOutput("Serial_portUI"), # show the /dev directory
                      uiOutput("Serial_port_connectUI") # show an actionButton only if connect$login is TRUE and set connect$board to TRUE
               ),
-              fileInput("Chrom_upload","Chromatograms upload (jpg)"),
+              # fileInput("Chrom_upload","Chromatograms upload (jpg)"),## just for DART
               actionButton("Shutdown","Shutdown"),
               actionButton("Reboot","Reboot")#,
               # actionButton("Serial_port_disconnect_bis","Disconnect the board bis")
