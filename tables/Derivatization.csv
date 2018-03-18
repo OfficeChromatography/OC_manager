@@ -1,0 +1,14 @@
+Option;Value
+Development direction (X: 0, Y: 1);dev_dir;0
+Plate X [mm];plate_x;100
+Plate Y [mm];plate_y;50
+Distance to lower edge [mm];dist_bottom;5
+Derivatization lenght;deriv_length;80
+First application position [mm];dist_gauche;7
+Track distance [mm];gap;8
+Numbre of bands;nbr_band;5
+Speed [mm/s];speed;50
+Number of paths;path;10
+Pulse delay [µs] (<20);L;5
+Delay between path [s];wait;0
+Used Nozzle (0 for all);nozzle;1

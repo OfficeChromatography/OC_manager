@@ -94,12 +94,12 @@ dashboardPage(
               p("incoming")
       ),
       tabItem("About",
-              tabsetPanel(
-                tabPanel("Steps",
-                         tableOutput("About_table_inventory")
-                         )
-              )
-              # includeMarkdown("README.md")
+              # tabsetPanel(
+              #   tabPanel("Steps",
+              #            tableOutput("About_table_inventory")
+              #            )
+              # )
+              includeMarkdown("README.md")
       )
     )
   )

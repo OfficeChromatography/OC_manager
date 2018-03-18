@@ -3,10 +3,8 @@ eat_table = list()
 for(i in dir("eat_tables/") %>% gsub(x=.,pattern=".R",replacement="")){
   eat_table[[i]] = source(paste0("eat_tables/",i,".R"))$value
 }
-source("eat_tables/need_appli.R")
 
-steps_choices = dir("tables/") %>% gsub(x=.,pattern=".csv",replacement="")
-# steps_choices = c("Scan_dart")
+steps_choices = dir("tables/",pattern=".csv") %>% gsub(x=.,pattern=".csv",replacement="")
 
 output$Method_control_1 = renderUI({
   tagList(
@@ -44,6 +42,7 @@ output$Method_control_1 = renderUI({
 })
 
 
+
 output$Method_feedback = renderText({
   Method_feedback$text
 })
@@ -63,37 +62,17 @@ output$Method_control_3 = renderUI({
     need(length(Method$l) > 0 ,"Add a step or load a saved method")
   )
   if(!is.null(input$Method_steps)){
-    if(Method$l[[as.numeric(input$Method_steps)]]$type %in% need_appli){
-      tagList(
-        column(5,
-               actionButton("Method_step_update","Update step",icon=icon("gears")),
-               downloadButton("Method_gcode_download","Download Gcode"),
-               rHandsontableOutput("Method_step_option")
-        ),
-        column(5,
-               rHandsontableOutput("Method_step_appli_table"),
-               verbatimTextOutput("Method_step_feedback")
-        )
-        
+    tagList(
+      column(5,
+             actionButton("Method_step_update","Update step",icon=icon("gears")),
+             downloadButton("Method_gcode_download","Download Gcode"),
+             rHandsontableOutput("Method_step_option")
+      ),
+      column(5,
+             if(!is.null(Method$l[[as.numeric(input$Method_steps)]]$appli_table)){rHandsontableOutput("Method_step_appli_table")},
+             verbatimTextOutput("Method_step_feedback")
       )
-    }else{
-      tagList(
-        column(5,
-               # if(Method$l[[as.numeric(input$Method_steps)]]$type != "Documentation"){
-               #   tagList(
-                   actionButton("Method_step_update","Update step",icon=icon("gears")),
-                   downloadButton("Method_gcode_download","Download Gcode"),
-                 #   )
-                 # },
-               rHandsontableOutput("Method_step_option"),
-               verbatimTextOutput("Method_step_feedback")
-        ),
-        column(5,
-               plotOutput("Method_plot",width="400px",height="400px")
-               )
-        
-      )
-    }
+    )
   }
 })
 output$Method_control_4 = renderUI({
@@ -101,10 +80,6 @@ output$Method_control_4 = renderUI({
     need(!board,"not in DPE"),
     need(connect$board,"Please connect the board")
   )
-  # TempInvalidate() ## called in server.R to invalidate every 2 secondes
-  # full = python.call("get_temp")
-  # full = gsub(pattern = "ok T:499.5 /0.0 B:",x = full,replacement = "Bed temp: ")
-  # full = gsub(pattern = "T0:499.5 /0.0 @:0 B@:0 ",x = full,replacement = "°C")
   tagList(
     h6("no temp")
   )
@@ -114,16 +89,12 @@ output$Method_control_5 = renderUI({
     need(length(Method$l) > 0 ,"Add a step or load a saved method")
   )
   if(!is.null(input$Method_steps)){
-    if(Method$l[[as.numeric(input$Method_steps)]]$type %in% need_appli){
-      tagList(
-        column(12,
-               column(6,DT::dataTableOutput("Method_gcode")),
-               column(6,plotOutput("Method_plot",width="400px",height="400px"))
-        )
+    tagList(
+      column(12,
+         column(6,DT::dataTableOutput("Method_gcode")),
+         column(6,plotOutput("Method_plot",width="400px",height="400px"))
       )
-    }else{
-      DT::dataTableOutput("Method_gcode")
-    }
+    )
   }
 })
 output$Method_load_names = renderUI({
@@ -142,19 +113,11 @@ observeEvent(input$Method_step_add,{
                           plot=function(){plot(x=1,y=1,type="n",main="Update to visualize")},
                           info = "Update to see the info",
                           Done = F)
-  if(input$Method_step_new %in% need_appli && input$Method_step_new != "Documentation"){
-    nbr_band=data[data[,1] == "nbr_band",2]
-    Method$l[[step]]$appli_table = data.frame(Band = seq(nbr_band),Vial = rep(1,nbr_band),Repeat = rep(1,nbr_band),I = rep(10,nbr_band),Content = rep("water",nbr_band),Use = rep(T,nbr_band))
-    Method$l[[step]]$appli_table$Content = as.character(Method$l[[step]]$appli_table$Content) ## for rhansontable modif
-  }
   if(input$Method_step_new == "Documentation"){ ## pict table, special for Documentation
     nbr_pict=data[data[,1] == "nbr_pict",2]
-    Method$l[[step]]$appli_table = data.frame(Exposure = rep(100,nbr_pict),ISO = rep(100,nbr_pict),Light = rep("Red",nbr_pict))
-    Method$l[[step]]$appli_table$Light = factor(Method$l[[step]]$appli_table$Light,levels = c("Red","Green","Blue","White","254 nm")) ## for rhansontable modif
-    Method$l[[step]]$info = c(Method$l[[step]]$info,"\nSet the exposure or ISO to 0 for automatique")
     Method$l[[step]]$exec = source("eat_tables/Documentation_exec.R")$value
   }
-  Method_feedback$text = paste0("Step ",input$Method_step_new," added")
+  Method_feedback$text = paste0("Step ",input$Method_step_new," added; please update to continue")
   Method$selected = length(Method$l)
 })
 observeEvent(input$Method_step_delete,{
@@ -173,21 +136,10 @@ observeEvent(input$Method_step_update,{
   print(step)
   data = hot_to_r(input$Method_step_option)
   Method$l[[step]]$table=data
-  ## update SA_table if appicable
-  if(Method$l[[step]]$type %in% need_appli && Method$l[[step]]$type != "Documentation"){
-    appli_data = hot_to_r(input$Method_step_appli_table)
-    nbr_band = data[data[,1] == "nbr_band",2]
-    if(nbr_band != nrow(appli_data)){ ## make a new one if applicable
-      appli_data = data.frame(Band = seq(nbr_band),Vial = rep(1,nbr_band),Repeat = rep(1,nbr_band),I = rep(10,nbr_band),Content = rep("water",nbr_band),Use = rep(T,nbr_band))
+    if(!is.null(Method$l[[as.numeric(input$Method_steps)]]$appli_table)){
+      appli_data = hot_to_r(input$Method_step_appli_table)
+      Method$l[[step]]$appli_table=appli_data
     }
-    Method$l[[step]]$appli_table=appli_data
-    Method$l[[step]]$appli_table$Content = as.character(Method$l[[step]]$appli_table$Content) ## coercion. 
-  }
-  if(Method$l[[step]]$type == "Documentation"){
-    appli_data = hot_to_r(input$Method_step_appli_table)
-    Method$l[[step]]$appli_table=appli_data
-  }
-  
   ## eat tables
   withProgress(message = "Processing", value=0, { ## do not work well, don't know why
     Method$l[[step]] = Method$l[[step]]$eat_table(Method$l[[step]])
@@ -241,6 +193,9 @@ observeEvent(input$Method_save,{
 observeEvent(input$Method_load,{
   withProgress(message = "Processing", value=0, {
     load(paste0("methods/",input$Method_load_name))
+    if(sum(unlist(lapply(l,function(x){if(!(x$type %in% steps_choices)){return(T)}else{return(F)}}))) != 0){
+      shinyalert(title = "Warning",text = "Old method, update may not work",type="warning",closeOnClickOutside = T, showCancelButton = F)
+    }
     Method$l = l
     Method$selected = 1
     Method_feedback$text = paste0("Method ",input$Method_load_name," loaded")
@@ -254,11 +209,6 @@ output$Method_plot = renderPlot({
   )
   if(!is.null(input$Method_steps)){
     Method$l[[as.numeric(input$Method_steps)]]$plot()
-    # if(!is.null(input$Chrom_upload)){ ## just for DART
-    #   rasterImage(f.read.image(input$Chrom_upload$datapath),xleft = 0,xright = 100,ybottom = 0,ytop = 100)
-    #   par(new=T)
-    #   Method$l[[as.numeric(input$Method_steps)]]$plot()
-    # } 
   }
 })
 output$Method_step_feedback = renderText({
@@ -355,10 +305,9 @@ observeEvent(input$Method_step_exec,{
       write(paste0(format(Sys.time(),"%Y%m%d_%H:%M:%S"),";",Method$l[[step]]$type,";",Log,";",Log,";",connect$Visa,";",input$Plate),file="log/log.txt",append = T)
       # send the gcode
       main$send_gcode(Method_file)
-      
-      Method_feedback$text = paste0("Step ",input$Method_steps," started")
+            Method_feedback$text = paste0("Step ",input$Method_steps," started")
     }else{
-      Method$l[[step]]$exec(Method$l[[step]],input$Plate)
+      Method$l[[step]]$exec(Method$l[[step]],input$Plate,main)
     }
   }else{
     shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)

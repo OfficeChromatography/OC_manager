@@ -1,5 +1,5 @@
 ## Documentation exec
-function(step,Plate){
+function(step,Plate,main){
   ## Go in position
   main$send_gcode("gcode/Visu_position.gcode")
   # print("gcode/Visu_position.gcode")
@@ -8,7 +8,7 @@ function(step,Plate){
   appli_table = appli_table[!duplicated(appli_table),]
   ## start loop
   withProgress(message = "Processing", value=0,min=0,max=nrow(appli_table)+1, {
-    path = paste0("www/pictures/",format(Sys.time(), "%Y%b%d_%H_%M_%S_"),Plate)
+    path = paste0("www/pictures/",format(Sys.time(), "%Y%m%d_%H_%M_%S_"),Plate)
     dir.create(path)
     incProgress(1,message="Directory created")
     for(i in seq(nrow(appli_table))){
@@ -30,9 +30,10 @@ function(step,Plate){
       }
       command = paste0(command," -o ",Visu_file)
       system(command)
-      # print(command)
+      print(command)
       incProgress(1,message=command)
     }
+    main$send_gcode("gcode/light_off.gcode")
   })
   
 }

@@ -11,11 +11,13 @@ Implementing a new method for OC_manger can be done without touching the main co
 
 This document describe the procedure, knowledge of GCODE and R is necessary. 
 
+[http://reprap.org/wiki/G-code](http://reprap.org/wiki/G-code)
+
 If the step can be done by a succession of GCODE and options can be supplied in a simple table, a method can be created.
 
-In some case, an application table (```appli_tabli```) is necessary, for sample application and derivatization steps. This is also taken care off in the code but the table will be static with only the number of rows changing.
+In some cases, an application table (```appli_tabli```) is necessary, for sample application and derivatization steps. This is also taken care off in the code.
 
-The ```Documentation``` method is the only exception because it need to use the shell to take pictures wil the rpi camera.
+The ```Documentation``` method is the only exception because it need to use the shell to take pictures wil the rpi camera. It is still in the Method module but with a lot of hacks to make it work. In the case of the TLC-MS, it had to be in a separate module as too complex (image interaction).
 
 As example, a step of plate heating will be implemented.
 
@@ -40,6 +42,9 @@ Temperature (°C);Temperature;100
 Time (min);Time;10
 ```
 
+Other files for inspiration can be found in GitHub. 
+
+[https://github.com/DimitriF/OC_manager/tree/master/tables](https://github.com/DimitriF/OC_manager/tree/master/tables)
 
 \pagebreak
 
@@ -88,24 +93,32 @@ function(step){
 
 ```
 
+Other files for inspiration can be found in GitHub.
+
+[https://github.com/DimitriF/OC_manager/tree/master/eat_tables](https://github.com/DimitriF/OC_manager/tree/master/eat_tables)
+
 ## Server side
 
 Everything happens in the server_Method.R file.
 
-When the user click on the ```+``` button (```input$Method_step_add```), the selected step is added to the Method list. This step is also in the form of a list with different element, _i.e_ ```table```,```eat_table``` (the function we created),```plot```,```gcode``` etc... Optionnaly, an other element named ```appli_table``` is added.
+When the user click on the ```+``` button (```input$Method_step_add```), the selected step is added to the Method list. This step is also in the form of a list with different element, _i.e_ ```table```,```eat_table``` (the function we created),```plot```,```gcode``` etc...
 
 When the user update the step (```input$Method_step_update```), the step is fed to the ```eat_table``` function.
-
-Additionnaly, it is possible to delete a step but also save and load the method as a whole for later use.
 
 ```
 Method$l[[step]] = Method$l[[step]]$eat_table(Method$l[[step]])
 ```
 
-Finally, when the user execute the step (```input$Method_step_exec```), the gcode is written in the file ```gcode/Method.gcode``` and launch (```main$send_gcode(Method_file)```).
+When the user execute the step (```input$Method_step_exec```), the gcode is written in the file ```gcode/Method.gcode``` and launch (```main$send_gcode(Method_file)```).
+
+Additionnaly, it is possible to delete a step and also save and load the method as a whole for later use.
 
 ## UI side
 
 On the UI side, still in the server_Method.R file, the user select a step with the radioButton ```input$Method_steps```, the server will render tables, plot, gcode and info corresponding to this step. When one of the button will be clicked, it will just concern this step.
 
-There is a known bug when step with and without appli_table are mixed, the step without are not accessible anymore, in this case, create separate methods.
+## Special case of appli_table
+
+If an appli_table is present in the list ```step```, it will be rendered in the UI. Update and creation must be made in the eat_table function.
+
+

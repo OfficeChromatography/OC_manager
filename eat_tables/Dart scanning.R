@@ -48,6 +48,7 @@ function(step){
   }
   
   # replace the parts
+  if(!is.null(step$appli_table)){step$appli_table = NULL} ## bug, bug, bug
   step$gcode = gcode
   step$plot = plot_step
   step$info = "Calcul from the middle of the band (ATS4 convention)\nBe carefull with X and Y inversion"

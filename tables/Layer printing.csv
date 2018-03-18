@@ -1,0 +1,12 @@
+Option;Value
+First application [mm];first_appli;10
+Bottom distance [mm];bottom_dist;2
+Y length [mm];Y_length;70
+Gap between sample [mm];gap;5
+Number of track;nbr_track;5
+Number of path per track;nbr_path;2
+Path gap [mm];gap_path;0.5
+µL per dm;microL_per_dm;30
+Speed [mm/s];speed;40
+Syring ratio [mm/mL] (5 = 10 mL, 57 = 1 mL);syringe_ratio;5
+X bias [mm];X_bias;28

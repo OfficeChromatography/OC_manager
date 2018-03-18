@@ -79,6 +79,7 @@ function(step){
   
   
   # replace the parts
+  # if(!is.null(step$appli_table)){step$appli_table = NULL} ## bug, bug, bug
   step$gcode = gcode
   step$plot = plot_step
   step$info = c(paste0("Track are ",(nbr_path-1)*gap_path," mm large (without counting the outside)\n"),

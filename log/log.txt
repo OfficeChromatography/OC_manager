@@ -2433,3 +2433,26 @@ Time;Step;File;Log;Visa;Plate
 20180216_21:23:32;TLC_MS;gcode/Method.gcode;gcode/Method.gcode;;test
 20180224_09:17:23;Connection;NA;Board connection;;test
 20180224_09:18:14;Connection;NA;Board connection;;test
+20180316_11:25:56;Connection;NA;Board connection;;test
+20180316_11:26:04;Connection;NA;Board disconnection;;test
+20180316_11:26:08;Connection;NA;Board connection;;test
+20180316_11:26:27;Connection;NA;Board disconnection;;test
+20180318_18:15:44;Connection;NA;Sign out;;test
+20180318_18:15:48;Connection;NA;Connection attempt;admin;test
+20180318_18:15:50;Connection;NA;Connection attempt;admin;test
+20180318_18:15:50;Connection;NA;Connection attempt;admin;test
+20180318_18:15:50;Connection;NA;Connection attempt;admin;test
+20180318_18:15:50;Connection;NA;Connection attempt;admin;test
+20180318_18:15:51;Connection;NA;Connection attempt;admin;test
+20180318_18:15:51;Connection;NA;Connection attempt;admin;test
+20180318_18:15:52;Connection;NA;Connection attempt;admin;test
+20180318_18:15:53;Connection;NA;Connection attempt;admin;test
+20180318_18:15:53;Connection;NA;Connection attempt;admin;test
+20180318_18:15:53;Connection;NA;Connection attempt;admin;test
+20180318_18:15:53;Connection;NA;Connection attempt;admin;test
+20180318_18:15:53;Connection;NA;Connection attempt;admin;test
+20180318_18:15:54;Connection;NA;Connection attempt;admin;test
+20180318_18:15:54;Connection;NA;Connection attempt;admin;test
+20180318_18:15:55;Connection;NA;Connection attempt;admin;test
+20180318_18:16:27;Connection;NA;Sign out;;test
+20180318_18:16:32;Connection;NA;Sign in;admin;test

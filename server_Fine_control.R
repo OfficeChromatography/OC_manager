@@ -49,7 +49,8 @@ output$ink_test_control_1 = renderUI({
            actionButton("test_ink_green","Green light"),
            actionButton("test_ink_blue","Blue light"),
            actionButton("test_ink_white","White light"),
-           actionButton("test_ink_254","254 nm light")
+           actionButton("test_ink_254","254 nm light"),
+           actionButton("test_ink_light_off","Turn light off")
     )
   )
 })
@@ -92,6 +93,13 @@ observeEvent(input$test_ink_white,{
 observeEvent(input$test_ink_254,{
   if(connect$board){
     main$send_gcode("gcode/254 nm.gcode")
+  }else{
+    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+  }
+})
+observeEvent(input$test_ink_light_off,{
+  if(connect$board){
+    main$send_gcode("gcode/light_off.gcode")
   }else{
     shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
   }

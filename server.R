@@ -157,9 +157,9 @@ shinyServer(function(input, output,session) {
   })
   
 
-  output$About_table_inventory = renderTable({
-    read.csv("tables/inventory.csv",header=T,sep=";")
-  })
+  # output$About_table_inventory = renderTable({
+  #   read.csv("tables/inventory.csv",header=T,sep=";")
+  # })
   
   
 })
