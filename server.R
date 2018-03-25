@@ -66,10 +66,18 @@ shinyServer(function(input, output,session) {
   
 
   observeEvent(input$Shutdown,{
-    system("sudo shutdown now")
+    if(getwd() == "/home/pi/OC_manager"){
+      system("sudo shutdown now")
+    }else{
+      shinyalert(title = "stupid user",text = "No shudown, bad user",type="error")
+    }
   })
   observeEvent(input$Reboot,{
-    system("sudo reboot")
+    if(getwd() == "/home/pi/OC_manager"){
+      system("sudo reboot")
+    }else{
+      shinyalert(title = "stupid user",text = "No reboot, bad user",type="error")
+    }
   })
   observeEvent(input$Login_connect,{
     load("login.Rdata")

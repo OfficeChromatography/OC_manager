@@ -18,7 +18,7 @@ shiny::runApp(launch.browser = T,host = "0.0.0.0",port=5571)
 
 
 ## change secu before !!!
-# sudo rsync -a -v /home/clau/Documents/Dropbox_true/Dropbox/OC/Software/OC_manager  dimitri@134.176.7.66:/srv/shiny-server/
+# sudo rsync -a -v /home/clau/MEGA/OC/Software/OC_manager/  dimitri@134.176.7.66:/srv/shiny-server/OC_manager
 
 
 ## scan local network:

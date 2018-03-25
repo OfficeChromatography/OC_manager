@@ -2,8 +2,9 @@
 ##
 TLC_MS_x_width = 2000
 TLC_MS_y_height = 1000
-TLC_MS_x_bias = 4.5
-TLC_MS_y_bias = 7+1
+
+
+
 
 TLC_pins = c(laser=59,rheodyn=66,heading=64,rinsing=44) ## just reminder, not used in the code...
 
@@ -41,9 +42,11 @@ G4 P2000
 G1 X100 Y130 Z130
 M84"
 
-TLC_MS_manual = reactiveValues(LED=F,head=F,elution=F)
 
 
+# config_tlcms = read.csv("config_tlcms.ms")
+# TLC_MS_x_bias = config_tlcms[,1]#4.5
+# TLC_MS_y_bias = config_tlcms[,2]
 
 output$TLC_MS_control_1 = renderUI({
   
@@ -52,6 +55,7 @@ output$TLC_MS_control_1 = renderUI({
              sidebarLayout(
                sidebarPanel(width = 3,
                  fileInput("TLC_MS_fileInput",label = "picture(s) file(s)",multiple = T),
+                 downloadButton("TLC_MS_down_csv","Download CSV"),
                  numericInput("TLC_MS_elution_time","Elution time in ms",20000),
                  numericInput("TLC_MS_rinsing_time","After rinsing time in ms",20000),
                  actionButton("TLC_MS_manual", "Manual control",icon = icon("edit")),
@@ -101,17 +105,65 @@ output$TLC_MS_control_1 = renderUI({
   )
 })
 
+TLC_MS_manual = reactiveValues(LED=F,head=F,elution=F,
+                               TLC_MS_x_bias=if(file.exists("config_tlcms.csv")){read.csv("config_tlcms.csv")[,1]}else{4},
+                               TLC_MS_y_bias=if(file.exists("config_tlcms.csv")){read.csv("config_tlcms.csv")[,2]}else{1})
+
 output$TLC_MS_control_manual = renderUI({
-  tagList(if(!TLC_MS_manual$LED){actionButton("TLC_MS_manual_LED_on","LED on")}else{actionButton("TLC_MS_manual_LED_off","LED off")},hr(),
-          if(!TLC_MS_manual$head){actionButton("TLC_MS_manual_head_down","Head down")}else{actionButton("TLC_MS_manual_head_up","Head up")},hr(),
-          if(!TLC_MS_manual$head){actionButton("TLC_MS_manual_rinsing","Purge head")},hr(),
-          if(TLC_MS_manual$elution){actionButton("TLC_MS_manual_Valve_bypass","Valve bypass")}else{actionButton("TLC_MS_manual_Valve_elution","Valve elution")},hr(),
-          actionButton("TLC_MS_Home_X","Home X"),
-          actionButton("TLC_MS_Home_YZ","Home Y and Home Z")
+  tagList(
+    column(6,
+      if(!TLC_MS_manual$LED){actionButton("TLC_MS_manual_LED_on","LED on")}else{actionButton("TLC_MS_manual_LED_off","LED off")},hr(),
+      if(!TLC_MS_manual$head){actionButton("TLC_MS_manual_head_down","Head down")}else{actionButton("TLC_MS_manual_head_up","Head up")},hr(),
+      if(!TLC_MS_manual$head){actionButton("TLC_MS_manual_rinsing","Purge head")},hr(),
+      if(TLC_MS_manual$elution){actionButton("TLC_MS_manual_Valve_bypass","Valve bypass")}else{actionButton("TLC_MS_manual_Valve_elution","Valve elution")},hr(),
+      actionButton("TLC_MS_Home_X","Home X"),
+      actionButton("TLC_MS_Home_YZ","Home Y and Home Z")
+      ),
+    column(6,
+           numericInput("TLC_MS_x_bias","x bias",TLC_MS_manual$TLC_MS_x_bias),
+           numericInput("TLC_MS_y_bias","y bias",TLC_MS_manual$TLC_MS_y_bias),
+           verbatimTextOutput("TLC_MS_biases"),
+           numericInput("TLC_MS_manual_go_X","X",100),
+           numericInput("TLC_MS_manual_go_Y","Y",50),
+           actionButton("TLC_MS_manual_go","Go (home first)")
+           )
+      
   )
   
 })
 
+observeEvent(input$TLC_MS_manual_go,{
+  if(connect$board){
+    gcode = paste0("G1 X",input$TLC_MS_manual_go_X+TLC_MS_manual$TLC_MS_x_bias,
+                   " Y",input$TLC_MS_manual_go_Y+TLC_MS_manual$TLC_MS_y_bias,
+                   " Z",input$TLC_MS_manual_go_Y+TLC_MS_manual$TLC_MS_y_bias)
+    test_ink_file = paste0("gcode/","test_ink",".gcode")
+    Log = test_ink_file
+    fileConn<-file(test_ink_file)
+    writeLines(gcode, fileConn)
+    close(fileConn)
+    # send the gcode
+    main$send_gcode(test_ink_file)
+  }else{
+    # gcode = paste0("G1 X",input$TLC_MS_manual_go_X+TLC_MS_manual$TLC_MS_x_bias," Y",input$TLC_MS_manual_go_Y+TLC_MS_manual$TLC_MS_y_bias," Z",input$TLC_MS_manual_go_Y+TLC_MS_manual$TLC_MS_y_bias)
+    # print(gcode)
+    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+  }
+})
+
+output$TLC_MS_biases = renderPrint({
+  print(paste0("x: ",TLC_MS_manual$TLC_MS_x_bias," - y: ",TLC_MS_manual$TLC_MS_y_bias))
+})
+observeEvent(input$TLC_MS_y_bias,{
+  TLC_MS_manual$TLC_MS_y_bias = input$TLC_MS_y_bias
+  data = data.frame(TLC_MS_x_bias=input$TLC_MS_x_bias,TLC_MS_y_bias=input$TLC_MS_y_bias)
+  write.csv(data,"config_tlcms.csv",row.names = F)
+})
+observeEvent(input$TLC_MS_x_bias,{
+  TLC_MS_manual$TLC_MS_x_bias = input$TLC_MS_x_bias
+  data = data.frame(TLC_MS_x_bias=input$TLC_MS_x_bias,TLC_MS_y_bias=input$TLC_MS_y_bias)
+  write.csv(data,"config_tlcms.csv",row.names = F)
+})
 observeEvent(input$TLC_MS_profiles,{
   if(input$TLC_MS_profiles == "Default"){
     updateTextAreaInput(session,"TLC_MS_batch_before",value = TLC_MS_before)
@@ -429,8 +481,8 @@ TLC_MS_gcode = reactive({
   ## head loop
   for(i in seq(length(TLC_MS_coord$x))){
     ## moving to position
-    gcode = c(gcode,paste0("G1 Z",TLC_MS_coord$y[i]+TLC_MS_y_bias," Y",TLC_MS_coord$y[i]+TLC_MS_y_bias))
-    gcode = c(gcode,paste0("G1 X",TLC_MS_coord$x[i]+TLC_MS_x_bias))
+    gcode = c(gcode,paste0("G1 Z",TLC_MS_coord$y[i]+TLC_MS_manual$TLC_MS_y_bias," Y",TLC_MS_coord$y[i]+TLC_MS_manual$TLC_MS_y_bias))
+    gcode = c(gcode,paste0("G1 X",TLC_MS_coord$x[i]+TLC_MS_manual$TLC_MS_x_bias))
     gcode = c(gcode,"M400")
     gcode = c(gcode,"G4 P1000")
     ## between
@@ -479,3 +531,12 @@ observeEvent(input$TLC_MS_batch_stop,{
   # }
   main$cancel(Method_file)
 })
+
+
+output$TLC_MS_down_csv = downloadHandler(
+  filename = "TLCMS.csv",
+  content = function(file) {
+    write.csv(TLC_MS_table.dim(),file="TLCMS.csv",sep = ",")
+    file.copy("TLCMS.csv", file)
+  }
+)

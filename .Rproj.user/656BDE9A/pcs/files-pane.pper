@@ -1,8 +1,8 @@
 {
-    "path" : "~/MEGA/OC/Software/OC_manager/tables",
+    "path" : "~/MEGA/OC/Software/OC_manager",
     "sortOrder" : [
         {
-            "ascending" : true,
+            "ascending" : false,
             "columnIndex" : 2
         }
     ]
