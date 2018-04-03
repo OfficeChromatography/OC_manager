@@ -56,6 +56,7 @@ output$TLC_MS_control_1 = renderUI({
                sidebarPanel(width = 3,
                  fileInput("TLC_MS_fileInput",label = "picture(s) file(s)",multiple = T),
                  downloadButton("TLC_MS_down_csv","Download CSV"),
+                 downloadButton("TLC_MS_down_gcode","Download gcode"),
                  numericInput("TLC_MS_elution_time","Elution time in ms",20000),
                  numericInput("TLC_MS_rinsing_time","After rinsing time in ms",20000),
                  actionButton("TLC_MS_manual", "Manual control",icon = icon("edit")),
@@ -481,6 +482,11 @@ TLC_MS_gcode = reactive({
   ## head loop
   for(i in seq(length(TLC_MS_coord$x))){
     ## moving to position
+    if(i == 1){
+      gcode = c(gcode,"G1 Z0.25 Y0.25;compensate Y backslash")
+    }else if(TLC_MS_coord$y[i] < TLC_MS_coord$y[i-1]){
+      gcode = c(gcode,"G1 Z0.25 Y0.25;compensate Y backslash")
+    }
     gcode = c(gcode,paste0("G1 Z",TLC_MS_coord$y[i]+TLC_MS_manual$TLC_MS_y_bias," Y",TLC_MS_coord$y[i]+TLC_MS_manual$TLC_MS_y_bias))
     gcode = c(gcode,paste0("G1 X",TLC_MS_coord$x[i]+TLC_MS_manual$TLC_MS_x_bias))
     gcode = c(gcode,"M400")
@@ -538,5 +544,17 @@ output$TLC_MS_down_csv = downloadHandler(
   content = function(file) {
     write.csv(TLC_MS_table.dim(),file="TLCMS.csv",sep = ",")
     file.copy("TLCMS.csv", file)
+  }
+)
+
+output$TLC_MS_down_gcode <- downloadHandler(
+  filename = "OC_manager.gcode",
+  content = function(file) {
+    Method_file = paste0("gcode/","Method",".gcode")
+    Log = Method_file
+    fileConn<-file(Method_file)
+    writeLines(TLC_MS_gcode(), fileConn)
+    close(fileConn)
+    file.copy(paste0("gcode/","Method",".gcode"), file)
   }
 )

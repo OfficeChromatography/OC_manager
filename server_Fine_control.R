@@ -129,34 +129,41 @@ output$temp_1 = renderUI({
 })
 
 observeEvent(input$test_ink_nozzle_test,{
-  gcode = c("G91",paste0("M700 P0 I",input$test_ink_n_bis," L",input$test_ink_L," S",4095))
-  for(i in seq(12)){
-    S=rep(0,12);S[i] = 1;S = BinToDec(S)
-    for(j in seq(10)){gcode = c(gcode,paste0("G1 X",0.25),"M400",paste0("M700 P0 I",input$test_ink_n_bis," L",input$test_ink_L," S",S))}
+  if(connect$board){
+    gcode = c("G91",paste0("M700 P0 I",input$test_ink_n_bis," L",input$test_ink_L," S",4095))
+    for(i in seq(12)){
+      S=rep(0,12);S[i] = 1;S = BinToDec(S)
+      for(j in seq(10)){gcode = c(gcode,paste0("G1 X",0.25),"M400",paste0("M700 P0 I",input$test_ink_n_bis," L",input$test_ink_L," S",S))}
+    }
+    gcode = c(gcode,paste0("G1 X",2),"M400",paste0("M700 P0 I",input$test_ink_n_bis," L",input$test_ink_L," S",4095))
+    gcode = c(gcode,"G90","M84")
+    test_ink_file = paste0("gcode/","test_ink",".gcode")
+    Log = test_ink_file
+    fileConn<-file(test_ink_file)
+    writeLines(gcode, fileConn)
+    close(fileConn)
+    # send the gcode
+    main$send_gcode(test_ink_file)
+  }else{
+    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
   }
-  gcode = c(gcode,paste0("G1 X",2),"M400",paste0("M700 P0 I",input$test_ink_n_bis," L",input$test_ink_L," S",4095))
-  gcode = c(gcode,"G90","M84")
-  test_ink_file = paste0("gcode/","test_ink",".gcode")
-  Log = test_ink_file
-  fileConn<-file(test_ink_file)
-  writeLines(gcode, fileConn)
-  close(fileConn)
-  # send the gcode
-  main$send_gcode(test_ink_file)
-  
 })
 observeEvent(input$test_ink_action,{
-  # create the gcode
-  # test_ink_file = paste0("gcode/",format(Sys.time(),"%Y%m%d_%H:%M:%S"),"test_ink",".gcode")
-  test_ink_file = paste0("gcode/","test_ink",".gcode")
-  Log = test_ink_file
-  fileConn<-file(test_ink_file)
-  writeLines(test_ink_gcode(), fileConn)
-  close(fileConn)
-  # put it in the log
-  write(paste0(format(Sys.time(),"%Y%m%d_%H:%M:%S"),";","test_ink;",test_ink_file,";",Log,";",connect$Visa,";",input$Plate),file="log/log.txt",append = T)
-  # send the gcode
-  main$send_gcode(test_ink_file)
+  if(connect$board){
+    # create the gcode
+    # test_ink_file = paste0("gcode/",format(Sys.time(),"%Y%m%d_%H:%M:%S"),"test_ink",".gcode")
+    test_ink_file = paste0("gcode/","test_ink",".gcode")
+    Log = test_ink_file
+    fileConn<-file(test_ink_file)
+    writeLines(test_ink_gcode(), fileConn)
+    close(fileConn)
+    # put it in the log
+    write(paste0(format(Sys.time(),"%Y%m%d_%H:%M:%S"),";","test_ink;",test_ink_file,";",Log,";",connect$Visa,";",input$Plate),file="log/log.txt",append = T)
+    # send the gcode
+    main$send_gcode(test_ink_file)
+  }else{
+    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+  }
 })
 test_ink_gcode <- reactive({
   # paste0("M700 P0 I",input$test_ink_n_bis," S",input$test_ink_S)
@@ -166,13 +173,17 @@ test_ink_gcode <- reactive({
   rep(paste0("M700 P0 I",input$test_ink_n_bis," L",input$test_ink_L," S",S),input$test_ink_n)
 })
 observeEvent(input$test_ink_cmd_button,{
-  # create the gcode
-  test_ink_file = "gcode/test_ink_cmd.gcode"
-  Log = test_ink_file
-  fileConn<-file(test_ink_file)
-  writeLines(input$test_ink_cmd, fileConn)
-  close(fileConn)  # send the gcode
-  main$send_gcode(test_ink_file)
+  if(connect$board){
+    # create the gcode
+    test_ink_file = "gcode/test_ink_cmd.gcode"
+    Log = test_ink_file
+    fileConn<-file(test_ink_file)
+    writeLines(input$test_ink_cmd, fileConn)
+    close(fileConn)  # send the gcode
+    main$send_gcode(test_ink_file)
+  }else{
+    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+  }
 })
 output$test_ink_plot = renderPlot({
   x = c(0,130)
@@ -182,33 +193,34 @@ output$test_ink_plot = renderPlot({
   abline(h=seq(from=0,to=200,by = 10),v=seq(from=0,to=200,by = 10))
 })
 observeEvent(input$test_ink_plot_click,{
-  if(!is.null(input$test_ink_plot_click)){
-    truc = paste0("G1 X",round(input$test_ink_plot_click$x,4)," Y",round(input$test_ink_plot_click$y,4))
-    print(truc)
-    # create the gcode
-    test_ink_file = "gcode/test_ink_plot.gcode"
-    fileConn<-file(test_ink_file)
-    writeLines(truc, fileConn)
-    close(fileConn)
-    # send the gcode
-    main$send_gcode(test_ink_file)
+  if(connect$board){
+    if(!is.null(input$test_ink_plot_click)){
+      truc = paste0("G1 X",round(input$test_ink_plot_click$x,4)," Y",round(input$test_ink_plot_click$y,4))
+      print(truc)
+      # create the gcode
+      test_ink_file = "gcode/test_ink_plot.gcode"
+      fileConn<-file(test_ink_file)
+      writeLines(truc, fileConn)
+      close(fileConn)
+      # send the gcode
+      main$send_gcode(test_ink_file)
+    }
+  }else{
+    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
   }
 })
 observeEvent(input$test_ink_LED,{
-  # if(input$Serial_windows){
-    # python.call("send_gcode","gcode/LED.gcode") ## py
+  if(connect$board){
     main$send_gcode("gcode/LED.gcode")
-  # }else{
-  #   rv$id <- mcparallel({
-  #     python.call("send_gcode","gcode/LED.gcode") ## py
-  #     # main$send_gcode("gcode/LED.gcode")
-  #   })
-  # }
+    # py_run_file("send_gcode.py")
+  }else{
+    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+  }
 })
-# observeEvent(input$test_ink_LED_stop,{
-#   python.call("cancelprint") ## py
-#   # main$cancelprint()
-# })
+observeEvent(input$test_ink_LED_stop,{
+  main$cancelprint() ## py
+  # main$cancelprint()
+})
 # observeEvent(input$test_ink_LED_stop,{
 #   validate(need(!input$Serial_windows,"not on windows"))
 #   if(!is.null(rv$id$pid)){
@@ -217,6 +229,7 @@ observeEvent(input$test_ink_LED,{
 #   }
 # })
 observeEvent(input$test_ink_G28_X0,{
+  if(connect$board){
   # create the gcode
   test_ink_file = "gcode/test_ink_cmd.gcode"
   Log = test_ink_file
@@ -224,8 +237,12 @@ observeEvent(input$test_ink_G28_X0,{
   writeLines("G28 X0", fileConn)
   close(fileConn)  # send the gcode
   main$send_gcode(test_ink_file)
+  }else{
+    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+  }
 })
 observeEvent(input$test_ink_G28_Y0,{
+  if(connect$board){
   # create the gcode
   test_ink_file = "gcode/test_ink_cmd.gcode"
   Log = test_ink_file
@@ -233,8 +250,12 @@ observeEvent(input$test_ink_G28_Y0,{
   writeLines("G28 Y0", fileConn)
   close(fileConn)  # send the gcode
   main$send_gcode(test_ink_file)
+  }else{
+    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+  }
 })
 observeEvent(input$test_ink_G28_Z0,{
+  if(connect$board){
   # create the gcode
   test_ink_file = "gcode/test_ink_cmd.gcode"
   Log = test_ink_file
@@ -242,9 +263,13 @@ observeEvent(input$test_ink_G28_Z0,{
   writeLines("G28 Z0", fileConn)
   close(fileConn)  # send the gcode
   main$send_gcode(test_ink_file)
+  }else{
+    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+  }
 })
 
 observeEvent(input$test_ink_M84,{
+  if(connect$board){
   # create the gcode
   test_ink_file = "gcode/test_ink_cmd.gcode"
   Log = test_ink_file
@@ -252,8 +277,12 @@ observeEvent(input$test_ink_M84,{
   writeLines("M84", fileConn)
   close(fileConn)  # send the gcode
   main$send_gcode(test_ink_file)
+  }else{
+    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+  }
 })
 observeEvent(input$test_ink_extrude_1mm,{
+  if(connect$board){
   # create the gcode
   test_ink_file = "gcode/test_ink_cmd.gcode"
   Log = test_ink_file
@@ -261,8 +290,12 @@ observeEvent(input$test_ink_extrude_1mm,{
   writeLines(c("G92 E0","G1 E1"), fileConn)
   close(fileConn)  # send the gcode
   main$send_gcode(test_ink_file)
+  }else{
+    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+  }
 })
 observeEvent(input$test_ink_extrude_5mm,{
+  if(connect$board){
   # create the gcode
   test_ink_file = "gcode/test_ink_cmd.gcode"
   Log = test_ink_file
@@ -270,8 +303,12 @@ observeEvent(input$test_ink_extrude_5mm,{
   writeLines(c("G92 E0","G1 E5"), fileConn)
   close(fileConn)  # send the gcode
   main$send_gcode(test_ink_file)
+  }else{
+    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+  }
 })
 observeEvent(input$test_ink_retract_5mm,{
+  if(connect$board){
   # create the gcode
   test_ink_file = "gcode/test_ink_cmd.gcode"
   Log = test_ink_file
@@ -279,8 +316,12 @@ observeEvent(input$test_ink_retract_5mm,{
   writeLines(c("G92 E0","G1 E-5"), fileConn)
   close(fileConn)  # send the gcode
   main$send_gcode(test_ink_file)
+  }else{
+    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+  }
 })
 observeEvent(input$test_ink_bed_set,{
+  if(connect$board){
   # create the gcode
   test_ink_file = "gcode/test_ink_cmd.gcode"
   Log = test_ink_file
@@ -288,4 +329,7 @@ observeEvent(input$test_ink_bed_set,{
   writeLines(paste0("M140 S",input$test_ink_bed_temp), fileConn)
   close(fileConn)  # send the gcode
   main$send_gcode(test_ink_file)
+  }else{
+    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+  }
 })

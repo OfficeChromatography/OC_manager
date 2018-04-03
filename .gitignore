@@ -8,5 +8,6 @@ gcode/Method.gcode
 tables_old/
 eat_tables_old/
 
+admin\.R
 
 \.Rhistory

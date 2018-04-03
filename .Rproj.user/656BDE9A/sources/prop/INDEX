@@ -60,6 +60,7 @@
 ~%2FMEGA%2FOC%2FSoftware%2FOC_manager%2Fgcode%2Ftest_ink_cmd.gcode="A73152B6"
 ~%2FMEGA%2FOC%2FSoftware%2FOC_manager%2Flog%2Flog.txt="C169EBFD"
 ~%2FMEGA%2FOC%2FSoftware%2FOC_manager%2Fprintrun%2Fprintcore.py="8B6C65C8"
+~%2FMEGA%2FOC%2FSoftware%2FOC_manager%2Fsend_gcode.py="E308989D"
 ~%2FMEGA%2FOC%2FSoftware%2FOC_manager%2Fserver.R="E877A2F4"
 ~%2FMEGA%2FOC%2FSoftware%2FOC_manager%2Fserver_Fine_control.R="52356985"
 ~%2FMEGA%2FOC%2FSoftware%2FOC_manager%2Fserver_Method.R="CDA872CC"
