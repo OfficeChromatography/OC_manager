@@ -5,6 +5,12 @@ Shiny app to operate apparatus of office chromatography
 
 ## Dependencies
 
+### Linux 
+
+```r
+sudo apt-get install libtiff5-dev libssl-dev libcurl4-openssl-dev
+
+```
 
 ### R
 
