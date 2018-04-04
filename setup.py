@@ -31,12 +31,9 @@ def send_gcode(file):
   # time.sleep(1)
   gcode=[i.strip() for i in open(file)] # or pass in your own array of gcode lines instead of reading from a file
   gcode = gcoder.LightGCode(gcode)
-  truc = p.startprint(gcode)
-  time.sleep(10)
-  return(truc) # this will start a print
-
-  # while p.printing:
-  #   time.sleep(0.1)
+  p.startprint(gcode)
+  while p.printing:
+    time.sleep(0.1)
 
 
 def send_cmd(cmd):
