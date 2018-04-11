@@ -69,6 +69,7 @@
 ~%2FMEGA%2FOC%2FSoftware%2FOC_manager%2Fserver_TLC_MS_old.R="3A55FF1D"
 ~%2FMEGA%2FOC%2FSoftware%2FOC_manager%2Fserver_ink_test.R="23489CF4"
 ~%2FMEGA%2FOC%2FSoftware%2FOC_manager%2Fserver_visu.R="FEF7DEAE"
+~%2FMEGA%2FOC%2FSoftware%2FOC_manager%2Fserver_visu_old.R="BA5E0703"
 ~%2FMEGA%2FOC%2FSoftware%2FOC_manager%2Fsetup.py="23518CF4"
 ~%2FMEGA%2FOC%2FSoftware%2FOC_manager%2Fsetup_old.py="2B2D033E"
 ~%2FMEGA%2FOC%2FSoftware%2FOC_manager%2Fsetup_simple.py="354EFDDF"
@@ -100,4 +101,5 @@
 ~%2FMEGA%2FOC%2FSoftware%2FOC_manager%2Ftests%2Fserial_from_R.R="79AC7840"
 ~%2FMEGA%2FOC%2FSoftware%2FOC_manager%2Ftests%2Ftlcms.R="53D91EE3"
 ~%2FMEGA%2FOC%2FSoftware%2FOC_manager%2Fui.R="F668E2EA"
+~%2FMEGA%2FOC%2FWriting%2FIntroduction%2FIntroduction.Rmd="BCB56657"
 ~%2FMEGA%2Fsandbox%2FATS-4%20not%20linear.Rmd="D6217509"
