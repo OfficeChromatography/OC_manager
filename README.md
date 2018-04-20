@@ -73,11 +73,17 @@ Add this line in:
 @reboot Rscript /home/pi/OC_manager/app_exec.R
 ```
 
-### Directly from R
+### Directly from R (in case of problem to catch the errors)
 
 From the folder (use `setwd()`) 
 
 ```r
 shiny::runApp()
 ```
+
+## Documentation
+
+A pdf is available in the folder ```Doc``` and should cover basic usage.
+
+For implementing a new method, a pdf is also available in the same folder.
 

@@ -19,7 +19,7 @@ library(shinyalert)
 
 shinyServer(function(input, output,session) {
   source("config.R")
-  login = T ## change to F to enable login, see the login.csv file to add users
+  
   connect = reactiveValues(login = login, board = board,Visa = NULL)
   # connect = reactiveValues(login = login, board = board,Visa = "admin")
   source("functions.R")
@@ -40,6 +40,7 @@ shinyServer(function(input, output,session) {
   })
   
   output$Login = renderUI({
+    load("login.Rdata")
     if(!connect$login){
       tagList(
         textInput("Visa","Visa","admin"),
@@ -49,21 +50,58 @@ shinyServer(function(input, output,session) {
     }else{
       tagList(
         h6(paste0(connect$Visa," connected")),
-        actionButton("Login_disconnect","disconnect")#,
-        # actionButton("Login_options","Manage users",icon = icon("edit")),
-        # bsModal("Login_Modal", "Login_options", "Login_options", size = "small",
-        #   if(connect$Visa == "admin"){
-        #     textInput("Visa","Visa","admin"),
-        #     passwordInput("parola","password",value = ""),
-        #     actionButton("Login_connect","connect")
-        #   }else{
-        #     p("Only admin can change password and add users")
-        #   }
-        # )
+        actionButton("Login_disconnect","disconnect"),
+        actionButton("Login_options","Manage users",icon = icon("edit")),
+        bsModal("Login_Modal", "Login_options", "Login_options", size = "small",
+          if(connect$Visa == "admin"){
+            tagList(
+              column(6,
+                     h6("Add users or change passwords"),
+                     textInput("Login_add_Visa","New visa","admin"),
+                     passwordInput("Login_add_parola","New password",value = ""),
+                     actionButton("Login_add","add user")
+                     ),
+              column(6,
+                     h6("Delete users"),
+                     selectizeInput("Login_delete_select","Select user",choices = t[t[,1]!="admin",1]),
+                     actionButton("Login_delete","delete user")
+                     )
+              
+            )
+          }else{
+            p("Only admin can change password and add users")
+          }
+        )
       )
     }
   })
-  
+  observeEvent(input$Login_add,{
+    load("login.Rdata")
+    if(input$Login_add_Visa %in% t$Visa){## user already exist
+      shinyalert(title = "User exist",text = "Overwrite",type="warning",closeOnClickOutside = T, showCancelButton = T,
+                 callbackR = function(x){
+                   if(x != FALSE){
+                     t[t$Visa == input$Login_add_Visa,2] = input$Login_add_parola
+                     print(t)
+                     save(t,file="login.Rdata")
+                   }
+                 })
+      write(paste0(format(Sys.time(),"%Y%m%d_%H:%M:%S"),";","Connection;",NA,";","User ", input$Login_add_Visa, " pw modifed",";",input$Visa,";",input$Plate),file="log/log.txt",append = T)
+    }else{## add new user
+      t = rbind(t,c(input$Login_add_Visa,input$Login_add_parola))
+      updateSelectizeInput(session,"Login_delete_select",choices = t[t$Visa!="admin",1])
+      save(t,file="login.Rdata")
+      write(paste0(format(Sys.time(),"%Y%m%d_%H:%M:%S"),";","Connection;",NA,";","User ", input$Login_add_Visa, " added",";",input$Visa,";",input$Plate),file="log/log.txt",append = T)
+    }
+    
+  })
+  observeEvent(input$Login_delete,{
+    load("login.Rdata")
+    t = t[t$Visa != input$Login_delete_select,]
+    updateSelectizeInput(session,"Login_delete_select",choices = t[t$Visa!="admin",1])
+    save(t,file="login.Rdata")
+    write(paste0(format(Sys.time(),"%Y%m%d_%H:%M:%S"),";","Connection;",NA,";","User ", input$Login_delete_select, "  deleted",";",input$Visa,";",input$Plate),file="log/log.txt",append = T)
+  })
 
   observeEvent(input$Shutdown,{
     if(getwd() == "/home/pi/OC_manager"){
@@ -81,7 +119,9 @@ shinyServer(function(input, output,session) {
   })
   observeEvent(input$Login_connect,{
     load("login.Rdata")
-    if(t[t$Visa == input$Visa,2] == input$parola){
+    if(!input$Visa %in% t$Visa){
+      shinyalert(title = "No user",type="warning",closeOnClickOutside = T, showCancelButton = T)
+    }else if(t[t$Visa == input$Visa,2] == input$parola){
       connect$login = T
       connect$Visa = input$Visa
       # put it in the log
@@ -89,7 +129,7 @@ shinyServer(function(input, output,session) {
     }else{
       # put it in the log
       write(paste0(format(Sys.time(),"%Y%m%d_%H:%M:%S"),";","Connection;",NA,";","Connection attempt",";",input$Visa,";",input$Plate),file="log/log.txt",append = T)
-      
+      shinyalert(title = "Wrong password",type="warning",closeOnClickOutside = T, showCancelButton = T)
     }
   })
   observeEvent(input$Login_disconnect,{
