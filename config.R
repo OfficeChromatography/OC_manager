@@ -1,5 +1,7 @@
 ## config.R file for OC_manager
 
+## change here for the python version
+# use_python("/usr/bin/python3.5", required = T)
 
 login = F ## change to F to enable login, see the login.csv file to add users
 

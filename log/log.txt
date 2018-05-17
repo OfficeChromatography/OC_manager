@@ -2526,3 +2526,9 @@ Time;Step;File;Log;Visa;Plate
 20180416_13:15:17;Connection;NA;Connection attempt;admin;test
 20180416_13:15:22;Connection;NA;Sign in;admin;test
 20180416_13:15:24;Connection;NA;User pi  deleted;admin;test
+20180421_14:47:37;Connection;NA;Connection attempt;admin;test
+20180421_14:48:00;Connection;NA;Sign in;admin;test
+20180421_14:48:06;Connection;NA;User admin pw modifed;admin;test
+20180421_14:48:13;Connection;NA;Sign out;admin;test
+20180421_14:48:17;Connection;NA;Sign in;admin;test
+20180421_14:48:27;Connection;NA;Sign out;admin;test

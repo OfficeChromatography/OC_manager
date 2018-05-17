@@ -3,7 +3,7 @@
 TLC_MS_x_width = 2000
 TLC_MS_y_height = 1000
 
-
+nogo = list(x=c(10,190),y=c(5,90))
 
 
 TLC_pins = c(laser=59,rheodyn=66,heading=64,rinsing=44) ## just reminder, not used in the code...
@@ -54,21 +54,21 @@ output$TLC_MS_control_1 = renderUI({
     tabPanel("Input/output",
              sidebarLayout(
                sidebarPanel(width = 3,
-                 fileInput("TLC_MS_fileInput",label = "picture(s) file(s)",multiple = T),
-                 downloadButton("TLC_MS_down_csv","Download CSV"),
-                 downloadButton("TLC_MS_down_gcode","Download gcode"),
-                 numericInput("TLC_MS_elution_time","Elution time in ms",20000),
-                 numericInput("TLC_MS_rinsing_time","After rinsing time in ms",20000),
-                 actionButton("TLC_MS_manual", "Manual control",icon = icon("edit")),
-                 bsModal("TLC_MS_manualModal", "TLC_MS_manual", "TLC_MS_manual", size = "large",
-                         uiOutput("TLC_MS_control_manual")
-                 ),
-                 textOutput("TLC_MS_batch_feedback"),
-                 actionButton("TLC_MS_delete_last","Delete last"),
-                 actionButton("TLC_MS_delete_all","Delete all"),
-                 actionButton("TLC_MS_batch_action","Run batch"),
-                 # actionButton("TLC_MS_batch_stop","Emergency stop"),
-                 tableOutput("TLC_MS_table")
+                            fileInput("TLC_MS_fileInput",label = "picture(s) file(s)",multiple = T),
+                            downloadButton("TLC_MS_down_csv","Download CSV"),
+                            downloadButton("TLC_MS_down_gcode","Download gcode"),
+                            numericInput("TLC_MS_elution_time","Elution time in ms",20000),
+                            numericInput("TLC_MS_rinsing_time","After rinsing time in ms",20000),
+                            actionButton("TLC_MS_manual", "Manual control",icon = icon("edit")),
+                            bsModal("TLC_MS_manualModal", "TLC_MS_manual", "TLC_MS_manual", size = "large",
+                                    uiOutput("TLC_MS_control_manual")
+                            ),
+                            textOutput("TLC_MS_batch_feedback"),
+                            actionButton("TLC_MS_delete_last","Delete last"),
+                            actionButton("TLC_MS_delete_all","Delete all"),
+                            actionButton("TLC_MS_batch_action","Run batch"),
+                            # actionButton("TLC_MS_batch_stop","Emergency stop"),
+                            tableOutput("TLC_MS_table")
                ),
                mainPanel(width=9,
                          column(6,
@@ -83,16 +83,16 @@ output$TLC_MS_control_1 = renderUI({
                                 plotOutput("TLC_MS_pict.3.zoom",click="TLC_MS_click.pict",height = 300),
                                 plotOutput("TLC_MS_pict.4.zoom",click="TLC_MS_click.pict",height = 300)
                          )
-                 
+                         
                )
              )
-             ),
+    ),
     tabPanel("Options",
              column(6,
                     textAreaInput("TLC_MS_batch_before","Before batch",value = TLC_MS_before,height = "200px"),
                     textAreaInput("TLC_MS_batch_between","Between head",value = TLC_MS_between,height = "200px"),
                     textAreaInput("TLC_MS_batch_after","After batch",value = TLC_MS_after,height = "200px")
-                    ),
+             ),
              column(6,
                     textInput("TLC_MS_color","Color on plots","red"),
                     # numericInput("TLC_MS_x_bias","TLC_MS_x_bias",-5),
@@ -100,9 +100,9 @@ output$TLC_MS_control_1 = renderUI({
                     textInput("TLC_MS_profile_name","Profile name to save",""),
                     actionButton("TLC_MS_profile_save","Save profile"),
                     selectInput("TLC_MS_profiles","Profile name to load",choices = c("Default",dir("tlcms_profile/")))
-                    )
-                    
-         )
+             )
+             
+    )
   )
 })
 
@@ -111,26 +111,81 @@ TLC_MS_manual = reactiveValues(LED=F,head=F,elution=F,
                                TLC_MS_y_bias=if(file.exists("config_tlcms.csv")){read.csv("config_tlcms.csv")[,2]}else{1})
 
 output$TLC_MS_control_manual = renderUI({
-  tagList(
-    column(6,
-      if(!TLC_MS_manual$LED){actionButton("TLC_MS_manual_LED_on","LED on")}else{actionButton("TLC_MS_manual_LED_off","LED off")},hr(),
-      if(!TLC_MS_manual$head){actionButton("TLC_MS_manual_head_down","Head down")}else{actionButton("TLC_MS_manual_head_up","Head up")},hr(),
-      if(!TLC_MS_manual$head){actionButton("TLC_MS_manual_rinsing","Purge head")},hr(),
-      if(TLC_MS_manual$elution){actionButton("TLC_MS_manual_Valve_bypass","Valve bypass")}else{actionButton("TLC_MS_manual_Valve_elution","Valve elution")},hr(),
-      actionButton("TLC_MS_Home_X","Home X"),
-      actionButton("TLC_MS_Home_YZ","Home Y and Home Z")
-      ),
-    column(6,
-           numericInput("TLC_MS_x_bias","x bias",TLC_MS_manual$TLC_MS_x_bias),
-           numericInput("TLC_MS_y_bias","y bias",TLC_MS_manual$TLC_MS_y_bias),
-           verbatimTextOutput("TLC_MS_biases"),
-           numericInput("TLC_MS_manual_go_X","X",100),
-           numericInput("TLC_MS_manual_go_Y","Y",50),
-           actionButton("TLC_MS_manual_go","Go (home first)")
-           )
-      
-  )
   
+  tagList(
+    column(4,
+           if(!TLC_MS_manual$LED){actionButton("TLC_MS_manual_LED_on","LED on")}else{actionButton("TLC_MS_manual_LED_off","LED off")},hr(),
+           if(!TLC_MS_manual$head){actionButton("TLC_MS_manual_head_down","Head down")}else{actionButton("TLC_MS_manual_head_up","Head up")},hr(),
+           if(!TLC_MS_manual$head){actionButton("TLC_MS_manual_rinsing","Purge head")},hr(),
+           if(TLC_MS_manual$elution){actionButton("TLC_MS_manual_Valve_bypass","Valve bypass")}else{actionButton("TLC_MS_manual_Valve_elution","Valve elution")},hr(),
+           actionButton("TLC_MS_Home_X","Home X"),
+           actionButton("TLC_MS_Home_YZ","Home Y and Home Z")
+    ),
+    column(4,
+           uiOutput("TLC_MS_control_manual_2")
+    ),
+    column(4,
+           uiOutput("TLC_MS_control_manual_3")
+    )
+  )
+})
+
+output$TLC_MS_control_manual_2 = renderUI({
+  position = as.numeric(input$TLC_MS_manual_calib_selectize)
+  tagList(numericInput("TLC_MS_x_bias","x bias",TLC_MS_manual$TLC_MS_x_bias),
+          numericInput("TLC_MS_y_bias","y bias",TLC_MS_manual$TLC_MS_y_bias),
+          verbatimTextOutput("TLC_MS_biases"),
+          numericInput("TLC_MS_manual_go_X","X",if(length(TLC_MS_coord$x) == 0){100}else{TLC_MS_coord$x[position]}),
+          numericInput("TLC_MS_manual_go_Y","Y",if(length(TLC_MS_coord$y) == 0){50}else{TLC_MS_coord$y[position]}),
+          actionButton("TLC_MS_manual_go","Go (home first)"))
+})
+output$TLC_MS_control_manual_3 = renderUI({
+  tagList(plotOutput("TLC_MS_manual_calib_plot",click = "TLC_MS_manual_calib_plot_click"),
+          selectizeInput("TLC_MS_manual_calib_selectize","Select position",choices = seq_len(length(TLC_MS_coord$x))),#improve may be
+          plotOutput("TLC_MS_manual_calib_raster"))
+})
+observeEvent(input$TLC_MS_manual_calib_selectize,{
+  position = as.numeric(input$TLC_MS_manual_calib_selectize)
+  updateNumericInput(session,"TLC_MS_manual_go_X",value = TLC_MS_coord$x[position])
+  updateNumericInput(session,"TLC_MS_manual_go_Y",value = TLC_MS_coord$y[position])
+})
+output$TLC_MS_manual_calib_plot = renderPlot({
+  # validate(length(TLC_MS_coord$x) >= 1,"Select at least one position")## need first point in the table selected to have a target
+  position = as.numeric(input$TLC_MS_manual_calib_selectize)
+  par(mar = c(0,0,2.5,0))
+  plot(c(-2.5,2.5),c(-2.5,2.5),type="n",
+       xlab="X (mm)",ylab="Y (mm)",xaxt="n",yaxt="n",
+       main=paste0("Stamp ",position,":\ntarget X: ",TLC_MS_coord$x[position],
+                   " - target Y: ",TLC_MS_coord$y[position])
+  )
+  text(y=c(-2,-1,1,2),x=rep(0,4),label=c("-1","-0.1","+0.1","+1"))
+  text(x=c(-2,-1,1,2),y=rep(0,4),label=c("-1","-0.1","+0.1","+1"))
+  symbols(y=c(-2,-1,1,2),x=rep(0,4),inches = F,add = T,rectangles = cbind(rep(0.8,4),rep(0.8,4)),lwd=2)
+  symbols(x=c(-2,-1,1,2),y=rep(0,4),inches = F,add = T,rectangles = cbind(rep(0.8,4),rep(0.8,4)),lwd=2)
+})
+observeEvent(input$TLC_MS_manual_calib_plot_click,{
+  x = round(input$TLC_MS_manual_calib_plot_click$x)
+  y = round(input$TLC_MS_manual_calib_plot_click$y)
+  if(y == 0){y = 0}else if(y > 0){y = - 10^(y-2)}else{y = 10^(abs(y)-2)}
+  if(x == 0){x = 0}else if(x > 0){x = 10^(x-2)}else{x = - 10^(abs(x)-2)}
+  updateNumericInput(session,"TLC_MS_x_bias","x bias",TLC_MS_manual$TLC_MS_x_bias+x)
+  updateNumericInput(session,"TLC_MS_y_bias","y bias",TLC_MS_manual$TLC_MS_y_bias+y)
+  if(connect$board){
+    gcode = paste0("G1 X",input$TLC_MS_manual_go_X+TLC_MS_manual$TLC_MS_x_bias,
+                   " Y",input$TLC_MS_manual_go_Y+TLC_MS_manual$TLC_MS_y_bias,
+                   " Z",input$TLC_MS_manual_go_Y+TLC_MS_manual$TLC_MS_y_bias)
+    test_ink_file = paste0("gcode/","test_ink",".gcode")
+    Log = test_ink_file
+    fileConn<-file(test_ink_file)
+    writeLines(gcode, fileConn)
+    close(fileConn)
+    # send the gcode
+    main$send_gcode(test_ink_file)
+  }else{
+    #     gcode = paste0("G1 X",input$TLC_MS_manual_go_X+TLC_MS_manual$TLC_MS_x_bias," Y",input$TLC_MS_manual_go_Y+TLC_MS_manual$TLC_MS_y_bias," Z",input$TLC_MS_manual_go_Y+TLC_MS_manual$TLC_MS_y_bias)
+    #     print(gcode)
+    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+  }
 })
 
 observeEvent(input$TLC_MS_manual_go,{
@@ -341,8 +396,12 @@ TLC_MS_zoom <- reactiveValues(x=c(0,TLC_MS_x_width),y=c(0,TLC_MS_y_height))
 observeEvent(input$TLC_MS_click.pict,{
   x = round(input$TLC_MS_click.pict$x,1)/10
   y = round(input$TLC_MS_click.pict$y,1)/10
-  TLC_MS_coord$x <- c(TLC_MS_coord$x,x)
-  TLC_MS_coord$y <- c(TLC_MS_coord$y,y)
+  if(x < nogo$x[1] | x > nogo$x[2] | y < nogo$y[1] | y > nogo$y[2]){
+    shinyalert(type="error",title="stupid user",text = paste0("Do not click in the no go zone: x < ",nogo$x[1]," | x > ",nogo$x[2]," | y < ",nogo$y[1]," | y > ",nogo$y[2]))
+  }else{
+    TLC_MS_coord$x <- c(TLC_MS_coord$x,x)
+    TLC_MS_coord$y <- c(TLC_MS_coord$y,y)
+  }
 })
 
 observeEvent(input$TLC_MS_dblclick.pict,{
@@ -525,7 +584,7 @@ observeEvent(input$TLC_MS_batch_action,{
   }else{
     shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
   }
-
+  
   
 })
 observeEvent(input$TLC_MS_batch_stop,{

@@ -29,6 +29,7 @@ shinyServer(function(input, output,session) {
   source("server_Method.R",local = T)  
 
   # main = py_run_file("setup_old.py")
+  
   main = py_run_file("setup.py")
   # python.load("setup.py")
   # python.load("setup_old.py")

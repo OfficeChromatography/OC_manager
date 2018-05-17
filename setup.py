@@ -9,6 +9,7 @@ import atexit
 import os
 import sys
 sys.path.append(os.getcwd())
+# sys.path.append("/usr/local/lib/python3.5")
 import time
 
 from printrun.printcore import printcore

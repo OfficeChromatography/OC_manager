@@ -41,15 +41,26 @@ install.packages("serial")
 install.packages("reticulate")
 install.packages("DT")
 install.packages("shinyBS")
+install.packages("shinyalert")
+```
+
+
+For DLC, the package rgl could be a problem and can be installed from the CLI:
+
+```
+sudo apt-get install r-cran-rgl
 ```
 
 ### Python
 
-Python should be installed by default in all linux system, the serial library is necessary though
+Python3 should be installed by default in all linux system, the serial library is necessary though.
 
 ```
-sudo apt-get install python-serial
+sudo apt-get install python3-serial
 ```
+
+Also in the ```config.R``` file, you may need to change the python version. Use ```whereis python3``` from the command line to find the version of your system.
+
 
 ### Clone the repo
 

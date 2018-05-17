@@ -7,6 +7,7 @@ output:
   html_document: default
 header-includes:
 - \renewcommand{\floatpagefraction}{.6}%
+urlcolor: blue
 ---
 
 For preview, a version of OC_manager without device connected can be accessed online: [134.176.7.66/OC_manager](134.176.7.66/OC_manager).
@@ -20,7 +21,7 @@ For preview, a version of OC_manager without device connected can be accessed on
 
 ## Turning ON the device
 
-![Electronic](elec_box.jpg){width=50%}
+![Electronic](figure/elec_box.jpg){width=50%}
 
 Those connections can be made with any order but this one is preferable.
 
@@ -37,7 +38,7 @@ Those connections can be made with any order but this one is preferable.
 
 ### Connection
 
-![Connection tab](Connection_edited.png)
+![Connection tab](figure/Connection_edited.png)
 
 The device does not connect automatically.
 
@@ -51,7 +52,7 @@ The device does not connect automatically.
 
 ### Method
 
-![Method tab](Method_edited.png)
+![Method tab](figure/Method_edited.png)
 
 The core of  OC_manager, this is where GCODE sequences are created, updated and sent to the machines.
 
@@ -72,7 +73,7 @@ The core of  OC_manager, this is where GCODE sequences are created, updated and 
 
 ### Fine control
 
-![Fine control tab](Fine_control_edited.png)
+![Fine control tab](figure/Fine_control_edited.png)
 
 As this device is a prototype, it is often necessary to control it more in detail.
 
@@ -89,7 +90,7 @@ As this device is a prototype, it is often necessary to control it more in detai
 
 ### Visualization
 
-![Visualization tab](Visualization_edited.png)
+![Visualization tab](figure/Visualization_edited.png)
 
 This tab allows to access the pictures chromatograms that were captured. Those files are also available in the pictures folder in the OC_manager folder.
 
@@ -103,7 +104,7 @@ This tab allows to access the pictures chromatograms that were captured. Those f
 
 ### Log
 
-![Log tab](Log.png)
+![Log tab](figure/Log.png)
 
 In OC_mannager, all action are logged in a csv file which can be observed in this tab.
 
