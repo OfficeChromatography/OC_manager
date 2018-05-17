@@ -1,8 +1,3 @@
----
-output:
-  html_document: default
-  pdf_document: default
----
 OC_manager
 ===========
 
@@ -94,7 +89,7 @@ shiny::runApp()
 
 ## Documentation
 
-A pdf is available in the folder ```Doc``` and should cover basic usage.
+A pdf is available in the folder ```Instruction```.
 
 For implementing a new method, a pdf is also available in the same folder.
 
