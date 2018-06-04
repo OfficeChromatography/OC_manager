@@ -9,61 +9,48 @@ Shiny app to operate apparatus of office chromatography.
 
 In fine, we want to directly supply a RPI image, in the mean time you will have to go through the installation manually.
 
-### Dependencies
+Tested on rasbian lite downloaded 05-04-2018
 
-Some dependencies can be missing, feedback are welcome. 
+## First opening
 
-### Linux 
-
-```
-sudo apt-get install libtiff5-dev libssl-dev libcurl4-openssl-dev git
-
-```
-
-### R
-
-Download and install R:
-http://cran.r-project.org/
-
-
-launch R with sudo and install the R packages, possible missing package, please tell us.
+expand file system
+enable camera, ssh, vnc, gpio, i2c
+set wifi passwd or static IP
 
 ```
-install.packages('devtools')
-devtools::install_github('DimitriF/DLC')
-devtools::install_github("rhandsontable","jrowen")
-install.packages("serial")
-install.packages("reticulate")
-install.packages("DT")
-install.packages("shinyBS")
-install.packages("shinyalert")
+sudo apt-get update
+sudo apt-get upgrade
+sudo reboot
 ```
 
+## Dependencies
 
-For DLC, the package rgl could be a problem and can be installed from the CLI:
+sudo apt-get install r-base 
+sudo apt-get install libssl-dev libcurl4-openssl-dev r-cran-rgl libtiff5-dev python-serial git
+sudo apt-get install libssh2-1-dev ## not sure about this one...
+sudo apt-get install libpython2.7 ## may not be needed on classic raspbian
 
-```
-sudo apt-get install r-cran-rgl
-```
-
-### Python
-
-Python3 should be installed by default in all linux system, the serial library is necessary though.
+## R packages installation
 
 ```
-sudo apt-get install python3-serial
+sudo su - -c "R -e \"install.packages('devtools', repos='http://cran.rstudio.com/')\""
+sudo su - -c "R -e \"devtools::install_github('rstudio/httpuv')\""
+sudo su - -c "R -e \"devtools::install_github('rstudio/shiny')\""
+sudo su - -c "R -e \"install.packages('serial', repos='http://cran.rstudio.com/')\""
+sudo su - -c "R -e \"install.packages('reticulate', repos='http://cran.rstudio.com/')\""
+sudo su - -c "R -e \"install.packages('DT', repos='http://cran.rstudio.com/')\""
+sudo su - -c "R -e \"install.packages('shinyBS', repos='http://cran.rstudio.com/')\""
+sudo su - -c "R -e \"install.packages('shinyalert', repos='http://cran.rstudio.com/')\""
+sudo su - -c "R -e \"devtools::install_github('DimitriF/DLC')\""
+sudo su - -c "R -e \"devtools::install_github('rhandsontable','jrowen')\""
+sudo reboot
 ```
 
-Also in the ```config.R``` file, you may need to change the python version. Use ```whereis python3``` from the command line to find the version of your system.
-
-
-### Clone the repo
+## Clone this github repository
 
 ```
 git clone https://github.com/DimitriF/OC_manager.git
 ```
-
-The repo must have the following path: /home/pi/OC_manager
 
 ## Run
 
