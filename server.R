@@ -41,7 +41,7 @@ shinyServer(function(input, output,session) {
   })
   
   output$Login = renderUI({
-    load("login.Rdata")
+    load("www/login.Rdata")
     if(!connect$login){
       tagList(
         textInput("Visa","Visa","admin"),
