@@ -14,7 +14,9 @@ Tested on rasbian lite downloaded 05-04-2018
 ## First opening
 
 expand file system
+
 enable camera, ssh, vnc, gpio, i2c
+
 set wifi passwd or static IP
 
 ```
@@ -25,10 +27,12 @@ sudo reboot
 
 ## Dependencies
 
+```
 sudo apt-get install r-base 
 sudo apt-get install libssl-dev libcurl4-openssl-dev r-cran-rgl libtiff5-dev python-serial git
 sudo apt-get install libssh2-1-dev ## not sure about this one...
 sudo apt-get install libpython2.7 ## may not be needed on classic raspbian
+```
 
 ## R packages installation
 
