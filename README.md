@@ -26,7 +26,7 @@ Download and install R:
 http://cran.r-project.org/
 
 
-launch R and install the R packages, possible missing package, please tell us.
+launch R with sudo and install the R packages, possible missing package, please tell us.
 
 ```
 install.packages('devtools')
