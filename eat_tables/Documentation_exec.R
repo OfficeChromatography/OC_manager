@@ -5,7 +5,7 @@ function(step,Plate,main){
   # print("gcode/Visu_position.gcode")
   appli_table = step$appli_table
   ## remove duplicate
-  appli_table = appli_table[!duplicated(appli_table),]
+  # appli_table = appli_table[!duplicated(appli_table),]
   ## start loop
   withProgress(message = "Processing", value=0,min=0,max=nrow(appli_table)+1, {
     path = paste0("www/pictures/",format(Sys.time(), "%Y%m%d_%H_%M_%S_"),Plate)

@@ -50,7 +50,9 @@ output$ink_test_control_1 = renderUI({
            actionButton("test_ink_blue","Blue light"),
            actionButton("test_ink_white","White light"),
            actionButton("test_ink_254","254 nm light"),
-           actionButton("test_ink_light_off","Turn light off")
+           actionButton("test_ink_light_off","Turn light off")#,
+           # actionButton("test_ink_ring_on","ring on"),
+           # actionButton("test_ink_ring_off","ring off")
     )
   )
 })
@@ -59,49 +61,49 @@ observeEvent(input$test_ink_visu_position,{
   if(connect$board){
     main$send_gcode("gcode/Visu_position.gcode")
   }else{
-    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+    shinyalert(title = "Error",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
   }
 })
 observeEvent(input$test_ink_red,{
   if(connect$board){
     main$send_gcode("gcode/Red.gcode")
   }else{
-    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+    shinyalert(title = "Error",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
   }
 })
 observeEvent(input$test_ink_green,{
   if(connect$board){
     main$send_gcode("gcode/Green.gcode")
   }else{
-    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+    shinyalert(title = "Error",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
   }
 })
 observeEvent(input$test_ink_blue,{
   if(connect$board){
     main$send_gcode("gcode/Blue.gcode")
   }else{
-    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+    shinyalert(title = "Error",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
   }
 })
 observeEvent(input$test_ink_white,{
   if(connect$board){
     main$send_gcode("gcode/White.gcode")
   }else{
-    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+    shinyalert(title = "Error",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
   }
 })
 observeEvent(input$test_ink_254,{
   if(connect$board){
     main$send_gcode("gcode/254 nm.gcode")
   }else{
-    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+    shinyalert(title = "Error",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
   }
 })
 observeEvent(input$test_ink_light_off,{
   if(connect$board){
     main$send_gcode("gcode/light_off.gcode")
   }else{
-    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+    shinyalert(title = "Error",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
   }
 })
 
@@ -109,7 +111,7 @@ observeEvent(input$test_ink_gcode_file_action,{
   if(connect$board){
     main$send_gcode(input$test_ink_gcode_file$datapath)
   }else{
-    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+    shinyalert(title = "Error",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
   }
 })
 
@@ -145,7 +147,7 @@ observeEvent(input$test_ink_nozzle_test,{
     # send the gcode
     main$send_gcode(test_ink_file)
   }else{
-    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+    shinyalert(title = "Error",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
   }
 })
 observeEvent(input$test_ink_action,{
@@ -162,7 +164,7 @@ observeEvent(input$test_ink_action,{
     # send the gcode
     main$send_gcode(test_ink_file)
   }else{
-    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+    shinyalert(title = "Error",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
   }
 })
 test_ink_gcode <- reactive({
@@ -182,7 +184,7 @@ observeEvent(input$test_ink_cmd_button,{
     close(fileConn)  # send the gcode
     main$send_gcode(test_ink_file)
   }else{
-    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+    shinyalert(title = "Error",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
   }
 })
 output$test_ink_plot = renderPlot({
@@ -206,7 +208,7 @@ observeEvent(input$test_ink_plot_click,{
       main$send_gcode(test_ink_file)
     }
   }else{
-    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+    shinyalert(title = "Error",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
   }
 })
 observeEvent(input$test_ink_LED,{
@@ -214,7 +216,7 @@ observeEvent(input$test_ink_LED,{
     main$send_gcode("gcode/LED.gcode")
     # py_run_file("send_gcode.py")
   }else{
-    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+    shinyalert(title = "Error",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
   }
 })
 observeEvent(input$test_ink_LED_stop,{
@@ -228,6 +230,24 @@ observeEvent(input$test_ink_LED_stop,{
 #     rv$id <- list()
 #   }
 # })
+
+# observeEvent(input$test_ink_ring_on,{
+#   # if(connect$board){
+#     # main$send_gcode("gcode/LED.gcode")
+#     main$colorWipe(255L,0)
+#   # }else{
+#   #   shinyalert(title = "Error",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+#   # }
+# })
+# observeEvent(input$test_ink_ring_off,{
+#   # if(connect$board){
+#     # main$send_gcode("gcode/LED.gcode")
+#     main$colorWipe(0L,0)
+#   # }else{
+#   #   shinyalert(title = "Error",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+#   # }
+# })
+
 observeEvent(input$test_ink_G28_X0,{
   if(connect$board){
   # create the gcode
@@ -238,7 +258,7 @@ observeEvent(input$test_ink_G28_X0,{
   close(fileConn)  # send the gcode
   main$send_gcode(test_ink_file)
   }else{
-    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+    shinyalert(title = "Error",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
   }
 })
 observeEvent(input$test_ink_G28_Y0,{
@@ -251,7 +271,7 @@ observeEvent(input$test_ink_G28_Y0,{
   close(fileConn)  # send the gcode
   main$send_gcode(test_ink_file)
   }else{
-    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+    shinyalert(title = "Error",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
   }
 })
 observeEvent(input$test_ink_G28_Z0,{
@@ -264,7 +284,7 @@ observeEvent(input$test_ink_G28_Z0,{
   close(fileConn)  # send the gcode
   main$send_gcode(test_ink_file)
   }else{
-    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+    shinyalert(title = "Error",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
   }
 })
 
@@ -278,7 +298,7 @@ observeEvent(input$test_ink_M84,{
   close(fileConn)  # send the gcode
   main$send_gcode(test_ink_file)
   }else{
-    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+    shinyalert(title = "Error",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
   }
 })
 observeEvent(input$test_ink_extrude_1mm,{
@@ -291,7 +311,7 @@ observeEvent(input$test_ink_extrude_1mm,{
   close(fileConn)  # send the gcode
   main$send_gcode(test_ink_file)
   }else{
-    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+    shinyalert(title = "Error",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
   }
 })
 observeEvent(input$test_ink_extrude_5mm,{
@@ -304,7 +324,7 @@ observeEvent(input$test_ink_extrude_5mm,{
   close(fileConn)  # send the gcode
   main$send_gcode(test_ink_file)
   }else{
-    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+    shinyalert(title = "Error",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
   }
 })
 observeEvent(input$test_ink_retract_5mm,{
@@ -317,7 +337,7 @@ observeEvent(input$test_ink_retract_5mm,{
   close(fileConn)  # send the gcode
   main$send_gcode(test_ink_file)
   }else{
-    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+    shinyalert(title = "Error",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
   }
 })
 observeEvent(input$test_ink_bed_set,{
@@ -330,6 +350,6 @@ observeEvent(input$test_ink_bed_set,{
   close(fileConn)  # send the gcode
   main$send_gcode(test_ink_file)
   }else{
-    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+    shinyalert(title = "Error",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
   }
 })

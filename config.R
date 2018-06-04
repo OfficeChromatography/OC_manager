@@ -10,4 +10,4 @@ board = F ## set to T for development purpose if you are not connected to the ar
 
 Drop_vol = 0.15 # in nL, use to calculate volume in Methods
 
-Visu_roi = "0.27,0.2,0.6,0.6"
+Visu_roi = "0.25,0.2,0.6,0.6"
