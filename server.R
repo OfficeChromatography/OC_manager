@@ -77,7 +77,7 @@ shinyServer(function(input, output,session) {
     }
   })
   observeEvent(input$Login_add,{
-    load("login.Rdata")
+    load("www/parola.Rdata")
     if(input$Login_add_Visa %in% t$Visa){## user already exist
       shinyalert(title = "User exist",text = "Overwrite",type="warning",closeOnClickOutside = T, showCancelButton = T,
                  callbackR = function(x){
@@ -97,7 +97,7 @@ shinyServer(function(input, output,session) {
     
   })
   observeEvent(input$Login_delete,{
-    load("login.Rdata")
+    load("www/parola.Rdata")
     t = t[t$Visa != input$Login_delete_select,]
     updateSelectizeInput(session,"Login_delete_select",choices = t[t$Visa!="admin",1])
     save(t,file="login.Rdata")
@@ -119,7 +119,7 @@ shinyServer(function(input, output,session) {
     }
   })
   observeEvent(input$Login_connect,{
-    load("login.Rdata")
+    load("www/parola.Rdata")
     if(!input$Visa %in% t$Visa){
       shinyalert(title = "No user",type="warning",closeOnClickOutside = T, showCancelButton = T)
     }else if(t[t$Visa == input$Visa,2] == input$parola){
