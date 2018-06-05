@@ -271,92 +271,43 @@ observeEvent(input$TLC_MS_Home_YZ,{
 })
 observeEvent(input$TLC_MS_manual_LED_on,{
   validate(need(connect$login,"Please login"))
-  gcode = c("M42 P59 S255")
-  test_ink_file = paste0("gcode/","test_ink",".gcode")
-  Log = test_ink_file
-  fileConn<-file(test_ink_file)
-  writeLines(gcode, fileConn)
-  close(fileConn)
-  # send the gcode
-  main$send_gcode(test_ink_file)
+  main$send_gcode("gcode/TLC_MS_LED_on.gcode")
   TLC_MS_manual$LED = T
 })
 
 observeEvent(input$TLC_MS_manual_LED_off,{
   validate(need(connect$login,"Please login"))
-  gcode = c("M42 P59 S0")
-  test_ink_file = paste0("gcode/","test_ink",".gcode")
-  Log = test_ink_file
-  fileConn<-file(test_ink_file)
-  writeLines(gcode, fileConn)
-  close(fileConn)
-  # send the gcode
-  main$send_gcode(test_ink_file)
+  main$send_gcode("gcode/TLC_MS_LED_off.gcode")
   TLC_MS_manual$LED = F
 })
 
 observeEvent(input$TLC_MS_manual_head_down,{
   validate(need(connect$login,"Please login"))
-  gcode = c("M42 P64 S255")
-  test_ink_file = paste0("gcode/","test_ink",".gcode")
-  Log = test_ink_file
-  fileConn<-file(test_ink_file)
-  writeLines(gcode, fileConn)
-  close(fileConn)
-  # send the gcode
-  main$send_gcode(test_ink_file)
+  main$send_gcode("gcode/TLC_MS_head_down.gcode")
   TLC_MS_manual$head = T
 })
 
 observeEvent(input$TLC_MS_manual_head_up,{
   validate(need(connect$login,"Please login"))
-  gcode = c("M42 P64 S0")
-  test_ink_file = paste0("gcode/","test_ink",".gcode")
-  Log = test_ink_file
-  fileConn<-file(test_ink_file)
-  writeLines(gcode, fileConn)
-  close(fileConn)
-  # send the gcode
-  main$send_gcode(test_ink_file)
+  main$send_gcode("gcode/TLC_MS_head_up.gcode")
   TLC_MS_manual$head = F
 })
 observeEvent(input$TLC_MS_manual_Valve_bypass,{
   validate(need(connect$login,"Please login"))
-  gcode = c("M42 P66 S0")
-  test_ink_file = paste0("gcode/","test_ink",".gcode")
-  Log = test_ink_file
-  fileConn<-file(test_ink_file)
-  writeLines(gcode, fileConn)
-  close(fileConn)
-  # send the gcode
-  main$send_gcode(test_ink_file)
+  main$send_gcode("gcode/TLC_MS_valve_bypass.gcode")
   TLC_MS_manual$elution = F
 })
 
 observeEvent(input$TLC_MS_manual_Valve_elution,{
   validate(need(connect$login,"Please login"))
-  gcode = c("M42 P66 S255")
-  test_ink_file = paste0("gcode/","test_ink",".gcode")
-  Log = test_ink_file
-  fileConn<-file(test_ink_file)
-  writeLines(gcode, fileConn)
-  close(fileConn)
-  # send the gcode
-  main$send_gcode(test_ink_file)
+  main$send_gcode("gcode/TLC_MS_valve_elution.gcode")
   TLC_MS_manual$elution = T
 })
 
 observeEvent(input$TLC_MS_manual_rinsing,{
   validate(need(!TLC_MS_manual$head,"Head down"),
            need(connect$login,"Please login"))
-  gcode = c("M42 P44 S255","G4 P2000","M42 P44 S0")
-  test_ink_file = paste0("gcode/","test_ink",".gcode")
-  Log = test_ink_file
-  fileConn<-file(test_ink_file)
-  writeLines(gcode, fileConn)
-  close(fileConn)
-  # send the gcode
-  main$send_gcode(test_ink_file)
+  main$send_gcode("gcode/TLC_MS_manual_rinsing.gcode")
 })
 
 

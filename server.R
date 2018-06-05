@@ -20,8 +20,8 @@ library(shinyalert)
 shinyServer(function(input, output,session) {
   source("config.R")
   
-  connect = reactiveValues(login = login, board = board,Visa = NULL)
-  # connect = reactiveValues(login = login, board = board,Visa = "admin")
+  # connect = reactiveValues(login = login, board = board,Visa = NULL)
+  connect = reactiveValues(login = login, board = board,Visa = "admin")
   source("functions.R")
   source("server_visu.R",local = T)
   source("server_TLC_MS.R",local = T)
