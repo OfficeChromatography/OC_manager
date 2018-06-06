@@ -9,7 +9,9 @@ Shiny app to operate apparatus of office chromatography.
 
 In fine, we want to directly supply a RPI image, in the mean time you will have to go through the installation manually.
 
-Tested on rasbian lite downloaded 05-04-2018
+This procedure was tested on rasbian lite downloaded 05-04-2018.
+
+
 
 ## First opening
 
@@ -25,30 +27,15 @@ sudo apt-get upgrade
 sudo reboot
 ```
 
-## Dependencies
+## Installation script
+
+This will download the installation script and exectute it.
 
 ```
-sudo apt-get install r-base 
-sudo apt-get install libssl-dev libcurl4-openssl-dev r-cran-rgl libtiff5-dev python-serial git
-sudo apt-get install libssh2-1-dev ## not sure about this one...
-sudo apt-get install libpython2.7 ## may not be needed on classic raspbian
+wget  -P /home/pi/Documents/ https://github.com/DimitriF/OC_Mangager/oc-manager-install.sh
+bash Documents/oc-manager-install.sh |& tee Documents/oc-install.txt
 ```
 
-## R packages installation
-
-```
-sudo su - -c "R -e \"install.packages('devtools', repos='http://cran.rstudio.com/')\""
-sudo su - -c "R -e \"devtools::install_github('rstudio/httpuv')\""
-sudo su - -c "R -e \"devtools::install_github('rstudio/shiny')\""
-sudo su - -c "R -e \"install.packages('serial', repos='http://cran.rstudio.com/')\""
-sudo su - -c "R -e \"install.packages('reticulate', repos='http://cran.rstudio.com/')\""
-sudo su - -c "R -e \"install.packages('DT', repos='http://cran.rstudio.com/')\""
-sudo su - -c "R -e \"install.packages('shinyBS', repos='http://cran.rstudio.com/')\""
-sudo su - -c "R -e \"install.packages('shinyalert', repos='http://cran.rstudio.com/')\""
-sudo su - -c "R -e \"devtools::install_github('DimitriF/DLC')\""
-sudo su - -c "R -e \"devtools::install_github('rhandsontable','jrowen')\""
-sudo reboot
-```
 
 ## Clone this github repository
 
@@ -60,11 +47,13 @@ git clone https://github.com/DimitriF/OC_manager.git
 
 ### Started at reboot with crontab (the best)
 
+Crontab is a job scheduler for UNIX-like system. The file can be accessed with the following commands and the lines inside will be executed at the appropriate moment.
+
 ```
 sudo crontab -e
 ```
 
-Add this line in:
+Once in the editor, add this line which will launch the application at reboot, if the static IP had been set, the application will be available at the IP of the raspberry pi:
 
 ```
 @reboot Rscript /home/pi/OC_manager/app_exec.R
