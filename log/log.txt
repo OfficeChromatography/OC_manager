@@ -2536,3 +2536,5 @@ Time;Step;File;Log;Visa;Plate
 20180605_12:59:12;Connection;NA;User admin pw modifed;;test
 20180606_10:07:23;Connection;NA;Board connection;admin;test
 20180606_10:07:25;Connection;NA;Board disconnection;admin;test
+20180608_17:28:20;Connection;NA;Board connection;admin;test
+20180608_17:29:48;Connection;NA;Board disconnection;admin;test
