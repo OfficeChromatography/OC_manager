@@ -32,7 +32,7 @@ sudo reboot
 This will download the installation script and exectute it.
 
 ```
-wget  -P /home/pi/Documents/ https://github.com/DimitriF/OC_manager/blob/master/oc-manager-install.sh
+wget  -P /home/pi/Documents/ https://github.com/DimitriF/OC_manager/raw/master/oc-manager-install.sh
 bash Documents/oc-manager-install.sh |& tee Documents/oc-install.txt
 ```
 
