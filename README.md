@@ -5,13 +5,13 @@ Shiny app to operate apparatus of office chromatography.
 
 ![OC_manager screenshot](OC_manager.png)
 
-## Installation
+## Raspberry pi image
 
-In fine, we want to directly supply a RPI image, in the mean time you will have to go through the installation manually.
+Follow [this link](https://jlubox.uni-giessen.de/getlink/fiLFUwBzvcCbUtiws9tct3df/RPI_OC_20180605.img.gz) to download an image of rasbian with the OC_manager set-up, last update: 20180605.
 
-This procedure was tested on rasbian lite downloaded 05-04-2018.
+## Manual Installation
 
-
+This procedure was tested on rasbian lite and desktop, downloaded 05-04-2018.
 
 ## First opening
 

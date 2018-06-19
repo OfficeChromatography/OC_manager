@@ -120,6 +120,7 @@ observeEvent(input$Method_step_add,{
   Method_feedback$text = paste0("Step ",input$Method_step_new," added; please update to continue")
   Method$selected = length(Method$l)
 })
+
 observeEvent(input$Method_step_delete,{
   if(length(Method$l) == 0){
     shinyalert(title = "stupid user",text = "no step to delete",type="error",closeOnClickOutside = T, showCancelButton = F)

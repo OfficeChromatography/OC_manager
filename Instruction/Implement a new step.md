@@ -1,23 +1,19 @@
 ---
 output:
   pdf_document: default
-  html_document: default
 ---
 
-New methods for OC_manager
+New step for OC_manager
 ===========
 
-Implementing a new method for OC_manger can be done without touching the main code by adding files in different folders.
+Implementing a new step for OC_manger can be done without touching the main code by adding files in different folders.
 
 This document describe the procedure, knowledge of GCODE and R is necessary. 
 
 [http://reprap.org/wiki/G-code](http://reprap.org/wiki/G-code)
 
-If the step can be done by a succession of GCODE and options can be supplied in a simple table, a method can be created.
+If the step can be done by a succession of GCODE and options can be supplied in a simple table, a step can be created.
 
-In some cases, an application table (```appli_tabli```) is necessary, for sample application and derivatization steps. This is also taken care off in the code.
-
-The ```Documentation``` method is the only exception because it need to use the shell to take pictures wil the rpi camera. It is still in the Method module but with a lot of hacks to make it work. In the case of the TLC-MS, it had to be in a separate module as too complex (image interaction).
 
 As example, a step of plate heating will be implemented.
 
@@ -30,9 +26,8 @@ In the table folder, a CSV file must be created with the following constraints:
 * The name must finish with __.csv__.
 * Column names must be __Option__ and __Value__.
 * Row names must be present, the names have no influence though and are here to inform the user.
-* The __Option__ column contain the options names that the method function will later catch (more later).
+* The __Option__ column contain the options names that the step function will later catch (more later).
 * The __Value__ column contain the default values for the options.
-* If an application table is needed, an option named ```nbr_band``` must be set in the table.
 
 For plate heating, two options are needed: temperature and time. The file will look like that:
 
@@ -53,7 +48,7 @@ Other files for inspiration can be found in GitHub.
 
 In the eat_tables folder, a R script must be created:
 
-* This R script contain a function that will take a step object and update it, _i.e._ modify the ```gcode```, ```info``` and ```plot``` elements.
+* This R script contain a function that will take a step list and update it, _i.e._ modify the ```gcode```, ```info``` and ```plot``` elements.
 * The R script must have the same name as the CSV file
 * The R script must return the step object
 
@@ -101,13 +96,21 @@ Other files for inspiration can be found in GitHub.
 
 Everything happens in the server_Method.R file.
 
+When the web page is loaded, the server will look inside the ```eat_table``` and ```tables``` folder to store the list of available steps and let the user select among them for a method creation.
+
+### Method_step_add
+
 When the user click on the ```+``` button (```input$Method_step_add```), the selected step is added to the Method list. This step is also in the form of a list with different element, _i.e_ ```table```,```eat_table``` (the function we created),```plot```,```gcode``` etc...
+
+### Method_step_update
 
 When the user update the step (```input$Method_step_update```), the step is fed to the ```eat_table``` function.
 
 ```
 Method$l[[step]] = Method$l[[step]]$eat_table(Method$l[[step]])
 ```
+
+### Method_step_exec
 
 When the user execute the step (```input$Method_step_exec```), the gcode is written in the file ```gcode/Method.gcode``` and launch (```main$send_gcode(Method_file)```).
 
@@ -119,6 +122,9 @@ On the UI side, still in the server_Method.R file, the user select a step with t
 
 ## Special case of appli_table
 
-If an appli_table is present in the list ```step```, it will be rendered in the UI. Update and creation must be made in the eat_table function.
+In some case, a complementary table is needed for a more granular control of the step, _e.g._ sample application, derivatization. 
+The ```appli_table``` is not present by default in the step and must be added to the list when the update take place. The UI will then be able to detect the presence of the ```appli_table``` in the step list and display it for further editing and use during the update.
 
+## Special case of the Documentaion step
 
+The ```Documentation``` method is special because it need to use the shell to take pictures with the rpi camera. It is still in the Method module but need a complementary file (```Documentation_exec.R```) to be executed, in this case, an other object ```exec``` is added to the step list. It also need an appli_table to choose light , exposure time and ISO speed (even though this is not an application anymore, the name ```appli_table``` had been kept).
