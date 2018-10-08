@@ -9,28 +9,23 @@ library(shiny)
 library(shinydashboard)
 library(shinyBS)
 library(shinyalert)
-dbHeader <- dashboardHeader(title = "OC_manager")
-# dbHeader$children[[2]]$children <-  tags$a(href='http://oc-lab.com',
-#                                            tags$img(src='www/OCLAB-logo-pattern-alb.png',height='60',width='200'))
 
+dbHeader <- dashboardHeader(title = "OC_LabSoft")
 
 dashboardPage(
   dbHeader,
-  dashboardSidebar(
-    sidebarMenu(
+  dashboardSidebar(width=125, 
+    sidebarMenu(style = "position: fixed; overflow: visible;",
                 menuItem("Connection", tabName = "Connect",icon=icon("home")),
-                menuItem("Method", tabName = "Method",icon=icon("tasks")),
                 menuItem("Fine control", tabName = "test_ink",icon=icon("wrench")),
-                menuItem("Visualization",tabName = "Visu",icon=icon("camera")),
-                menuItem("TLC-MS",tabName = "TLC_MS",icon=icon("spoon")),
-                menuItem("Log",tabName = "Log",icon=icon("newspaper-o")),
-                menuItem("Report",tabName = "Report",icon=icon("print")),
-                menuItem("About",tabName = "About",icon=icon("info"))
+                menuItem("Method", tabName = "Method",icon=icon("tasks")),
+                menuItem("Visualization",tabName = "Visu",icon=icon("camera"))
     )
   ),
   
   dashboardBody(
     tags$script(HTML("$('body').addClass('sidebar-mini');")),
+    fluidRow(
     tabItems(
       tabItem(
         tags$head(tags$style(type="text/css", "tfoot {display: table-header-group}")),
@@ -42,12 +37,6 @@ dashboardPage(
       ),
       # First tab content
       tabItem(tabName = "Connect",
-              column(4,
-                     h4("Login"),
-                     uiOutput("Login"),
-                     textInput("Plate","Plate info: project, id or whatever","test"),
-                     useShinyalert()
-              ),
               column(4,
                      h4("Board"),
                      actionButton("Serial_port_refresh","Refresh serial port",icon=icon("refresh")),
@@ -70,21 +59,8 @@ dashboardPage(
 
       tabItem(tabName = "Visu",
               uiOutput("Visu_control_1")
-      ),
-      tabItem(tabName = "TLC_MS",
-              uiOutput("TLC_MS_control_1")
-      ),
-
-      tabItem(tabName = "Log",
-              actionButton("Log_refresh","refresh"),
-              dataTableOutput("Log")
-      ),
-      tabItem("Report",
-              p("incoming")
-      ),
-      tabItem("About",
-              includeMarkdown("README.md")
       )
     )
+  )
   )
 )

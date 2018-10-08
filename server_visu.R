@@ -1,5 +1,6 @@
 ## server_visu for OC_manager
 # may be better in config.R ???
+# todo: extract String constants as Variables to specific file
 #angle = 0.25
 Visu_roi = "0.27,0.2,0.6,0.6"
 

@@ -55,14 +55,8 @@ class PyLightLine(object):
     def __getattr__(self, name):
         return None
 
-try:
-    import gcoder_line
-    Line = gcoder_line.GLine
-    LightLine = gcoder_line.GLightLine
-except Exception, e:
-    logging.warning("Memory-efficient GCoder implementation unavailable: %s" % e)
-    Line = PyLine
-    LightLine = PyLightLine
+Line = PyLine
+LightLine = PyLightLine
 
 def find_specific_code(line, code):
     exp = specific_exp % code

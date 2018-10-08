@@ -17,7 +17,7 @@
 
 __version__ = "1.6.0"
 
-from serialWrapper import Serial, SerialException, PARITY_ODD, PARITY_NONE
+from printrun.serialWrapper import Serial, SerialException, PARITY_ODD, PARITY_NONE
 from select import error as SelectError
 import threading
 from Queue import Queue, Empty as QueueEmpty
@@ -36,9 +36,14 @@ import re
 from functools import wraps
 from collections import deque
 from printrun import gcoder
-from .utils import install_locale, decode_utf8
+from printrun.utils import install_locale, decode_utf8
 install_locale('pronterface')
 from printrun.plugins import PRINTCORE_HANDLER
+# add
+def gcode_reader(file):
+  gcode=[i.strip() for i in open(file)] # or pass in your own array of gcode lines instead of reading from a file
+  gcode = gcoder.LightGCode(gcode)
+  return (gcode)
 
 def locked(f):
     @wraps(f)
@@ -238,7 +243,7 @@ class printcore():
                 try: handler.on_connect()
                 except: logging.error(traceback.format_exc())
             self.stop_read_thread = False
-            self.read_thread = threading.Thread(target = self._listen)
+            self.read_thread = threading.Thread(target = self.listen)
             self.read_thread.start()
             self._start_sender()
 
@@ -288,21 +293,21 @@ class printcore():
             self.logError(_(u"Can't read from printer (disconnected?) (OS Error {0}): {1}").format(e.errno, e.strerror))
             return None
 
-    def _listen_can_continue(self):
+    def listen_can_continue(self):
         if self.printer_tcp:
             return not self.stop_read_thread and self.printer
         return (not self.stop_read_thread
                 and self.printer
                 and self.printer.isOpen())
 
-    def _listen_until_online(self):
-        while not self.online and self._listen_can_continue():
+    def listen_until_online(self):
+        while not self.online and self.listen_can_continue():
             self._send("M105")
             if self.writefailures >= 4:
                 logging.error(_("Aborting connection attempt after 4 failed writes."))
                 return
             empty_lines = 0
-            while self._listen_can_continue():
+            while self.listen_can_continue():
                 line = self._readline()
                 if line is None: break  # connection problem
                 # workaround cases where M105 was sent before printer Serial
@@ -329,13 +334,13 @@ class printcore():
                         except: self.logError(traceback.format_exc())
                     return
 
-    def _listen(self):
+    def listen(self):
         """This function acts on messages from the firmware
         """
         self.clear = True
         if not self.printing:
-            self._listen_until_online()
-        while self._listen_can_continue():
+            self.listen_until_online()
+        while self.listen_can_continue():
             line = self._readline()
             if line is None:
                 break
@@ -414,7 +419,7 @@ class printcore():
             return True
         self.clear = False
         resuming = (startindex != 0)
-        self.print_thread = threading.Thread(target = self._print,
+        self.print_thread = threading.Thread(target = self.Print,
                                              kwargs = {"resuming": resuming})
         self.print_thread.start()
         return True
@@ -494,7 +499,7 @@ class printcore():
 
         self.paused = False
         self.printing = True
-        self.print_thread = threading.Thread(target = self._print,
+        self.print_thread = threading.Thread(target = self.Print,
                                              kwargs = {"resuming": True})
         self.print_thread.start()
 
@@ -518,7 +523,7 @@ class printcore():
         else:
             self.logError(_("Not connected to printer."))
 
-    def _print(self, resuming = False):
+    def Print(self, resuming = False):
         self._stop_sender()
         try:
             for handler in self.event_handler:
@@ -619,7 +624,7 @@ class printcore():
                 self._send(tline, self.lineno, True)
                 self.lineno += 1
                 for handler in self.event_handler:
-                    try: handler.on_printsend(gline)
+                    try: handler.onPrintsend(gline)
                     except: logging.error(traceback.format_exc())
                 if self.printsendcb:
                     try: self.printsendcb(gline)
