@@ -84,8 +84,10 @@ observeEvent(input$test_ink_cmd_button,{ # event handler
 })
 
 observeEvent(input$xleft,{
-	printer$send("G91\nG1 X-5")
-	printer$Print()
+    print(ocDriver)
+    fineControlDriver = ocDriver$get_fine_control_driver()
+    fineControlDriver$goXRight()
+
 })
 
 observeEvent(input$xhome,{

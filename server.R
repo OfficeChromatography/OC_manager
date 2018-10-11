@@ -17,20 +17,27 @@ library(shinyalert)
 
 
 shinyServer(function(input, output,session) {
+
   source("config.R")
   source("server_visu.R",local = T)
   source("server_Fine_control.R",local = T)
   source("server_Method.R",local = T)  
+  ocdriverPackage <- import_from_path("OCDriver", path='oc_driver', convert = TRUE)
+  connectionString =  "/dev//ttyACM0"
+  baudRate = 115200
+  ocDriver <- ocdriverPackage$OCDriver(connectionString, baudRate)
+
   
 # connect with the hardware and use printcore to control
   connect = reactiveValues(board = board)
   gcode_sender<-py_run_file("gcode_sender.py")
-  source_python("printrun/printcore.py")
+  source_python("oc_driver/printrun/printcore.py")
   printer=printcore()
   printer$connect("/dev//ttyACM0",115200)
   printer$listen_until_online()
+  
   if (printer$online){
-    # create the test gcode
+#      create the test gcode
       print("Connected")
       connect$board=TRUE
       }
@@ -88,6 +95,7 @@ shinyServer(function(input, output,session) {
   })
   
   observeEvent(input$Serial_port_disconnect,{
+      
     printer$disconnect()
     if (!printer$online){
     # create the test gcode

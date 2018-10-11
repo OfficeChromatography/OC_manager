@@ -1,0 +1,9 @@
+from distutils.core import setup
+
+
+setup(
+    name='OC Driver',
+    version='0.0',
+    license='no version no license'
+
+    )

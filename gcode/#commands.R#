@@ -1,0 +1,37 @@
+customGcode <- function(gcode) {
+    printer$send(toupper(gcode))
+}
+
+
+go <- function() {
+    return "G1"
+}
+
+goXMinus <- function(steps = 5) {
+    return paste0(go() , "X-", steps)
+}
+
+
+goXPlus <- function(steps = 5) {
+    return paste0(go() ,"X", steps)
+}
+
+setReference <- function() {
+    return "G91"
+}
+
+setAbsolutePos <- function() {
+    return "G90"
+}
+
+home <-function() {
+    return "G28"
+}
+
+goYPlus <- function(steps = 5) {
+    return paste0(go() ,"Y", steps)
+}
+
+goYMinus <- function(steps = 5) {
+    return paste0(go() ,"Y-", steps)
+}
