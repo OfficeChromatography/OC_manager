@@ -21,7 +21,9 @@ shinyServer(function(input, output,session) {
   source("config.R")
   source("server_visu.R",local = T)
   source("server_Fine_control.R",local = T)
-  source("server_Method.R",local = T)  
+  source("server_Method.R",local = T)
+
+  use_virtualenv("py_virtual_env", required=T)
   ocdriverPackage <- import_from_path("OCDriver", path='oc_driver', convert = TRUE)
   connectionString =  "/dev//ttyACM0"
   baudRate = 115200
