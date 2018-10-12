@@ -14,6 +14,64 @@ library(parallel)
 library(shinyBS)
 library(shinyalert)
 
+testConnection  <- function(){
+  if (ocDriver$is_connected()){
+      print("connected")
+      connect$board=TRUE
+  } else {
+      print("try again")
+  }
+}
+
+throwError  <- function(msg){
+    shinyalert(title = "An Error has occurred",text = "No shudown, bad user",type="error")
+}
+
+setupEventHandler  <- function(input){
+ observeEvent(input$Shutdown,{
+    if(getwd() == "/home/pi/OC_manager"){
+      system("sudo shutdown now")
+    }else{
+      throwError("No shutdown, bad user")      
+    }
+  })
+  observeEvent(input$Reboot,{
+    if(getwd() == "/home/pi/OC_manager"){
+      system("sudo reboot")
+    }else{
+      throwError("No reboot, bad user")
+    }
+  })
+ observeEvent(input$Serial_port_connect,{
+     if(nchar(input$Serial_port) == 0){
+         throwError("No board selected")
+     }else{
+         print("Connecting")
+         ocDriver$connect(input$Serial_port,115200)## py
+
+         if (ocDriver$is_connected()){
+                                        # create the test gcode
+             print("Connected")
+             connect$board=TRUE
+         } else {
+             print("try again")
+         }
+     }
+  })
+  
+  observeEvent(input$Serial_port_disconnect,{
+      
+      ocDriver$disconnect()
+      
+    if (!ocDriver$is_connected()){
+    # create the test gcode
+      connect$board=FALSE
+      print("disconnected")
+    } else {
+        print("try again")
+    }
+  })
+}
 
 shinyServer(function(input, output,session) {
 
@@ -22,42 +80,20 @@ shinyServer(function(input, output,session) {
   source("server_visu.R",local = T)
   source("server_Fine_control.R",local = T)
   source("server_Method.R",local = T)
-
-
-  print("???????????????")
-  print(ocDriver)
   
   # connect with the hardware and use printcore to control
   connect = reactiveValues(board = board)
 
   source_python("oc_driver/printrun/printcore.py")
-  if (ocDriver$is_connected()){
-  # create the test gcode
-      print("Connected")
-      connect$board=TRUE
-      }
-  else {print("try again")}
-  
 
+  testConnection()
+    
   session$onSessionEnded(function() {
     ocDriver$disconnect() ## py
   })
 
-  observeEvent(input$Shutdown,{
-    if(getwd() == "/home/pi/OC_manager"){
-      system("sudo shutdown now")
-    }else{
-      shinyalert(title = "stupid user",text = "No shudown, bad user",type="error")
-    }
-  })
-  observeEvent(input$Reboot,{
-    if(getwd() == "/home/pi/OC_manager"){
-      system("sudo reboot")
-    }else{
-      shinyalert(title = "stupid user",text = "No reboot, bad user",type="error")
-    }
-  })
- 
+  setupEventHandler(input)  
+    
   output$Serial_portUI = renderUI({
     input$Serial_port_refresh
     if(input$Serial_windows){
@@ -73,31 +109,7 @@ shinyServer(function(input, output,session) {
       actionButton("Serial_port_disconnect","Disconnect the board")
     }
   })
-  observeEvent(input$Serial_port_connect,{
-    if(nchar(input$Serial_port) == 0){
-      shinyalert(title = "stupid user",text = "No board selected",type="error")
-    }else{
-      print("Connecting")
-      ocDriver$connect(input$Serial_port,115200)## py
-      if (ocDriver$is_connected()){
-    # create the test gcode
-      print("Connected")
-      connect$board=TRUE
-      }
-      else {print("try again")}
-    }
-  })
   
-  observeEvent(input$Serial_port_disconnect,{
-      
-    ocDriver$disconnect()
-    if (!ocDriver$is_connected()){
-    # create the test gcode
-      connect$board=FALSE
-      print("disconnected")
-    }
-      else {print("try again")}
-  })
 
   
   TempInvalidate <- reactiveTimer(2000)
