@@ -18,23 +18,21 @@ library(shinyalert)
 shinyServer(function(input, output,session) {
 
   source("config.R")
+  source("./OCDriverLoader.R", local = F)
   source("server_visu.R",local = T)
   source("server_Fine_control.R",local = T)
   source("server_Method.R",local = T)
 
-  use_virtualenv("./oc_driver/py_virtual_env", required=T)
-  ocdriverPackage <- import_from_path("OCDriver", path='oc_driver', convert = TRUE)
-  connectionString =  "/dev//ttyACM0"
-  baudRate = 115200
-  ocDriver <- ocdriverPackage$OCDriver(connectionString, baudRate)
 
+  print("???????????????")
+  print(ocDriver)
   
-# connect with the hardware and use printcore to control
+  # connect with the hardware and use printcore to control
   connect = reactiveValues(board = board)
-  gcode_sender<-py_run_file("gcode_sender.py")
+
   source_python("oc_driver/printrun/printcore.py")
-  if (ocDriver$is_connected){
-#      create the test gcode
+  if (ocDriver$is_connected()){
+  # create the test gcode
       print("Connected")
       connect$board=TRUE
       }
@@ -81,7 +79,7 @@ shinyServer(function(input, output,session) {
     }else{
       print("Connecting")
       ocDriver$connect(input$Serial_port,115200)## py
-      if (ocDriver$is_connected){
+      if (ocDriver$is_connected()){
     # create the test gcode
       print("Connected")
       connect$board=TRUE
@@ -93,7 +91,7 @@ shinyServer(function(input, output,session) {
   observeEvent(input$Serial_port_disconnect,{
       
     ocDriver$disconnect()
-    if (!ocDriver$is_connected){
+    if (!ocDriver$is_connected()){
     # create the test gcode
       connect$board=FALSE
       print("disconnected")
