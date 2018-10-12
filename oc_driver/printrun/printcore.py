@@ -20,14 +20,13 @@ __version__ = "1.6.0"
 from printrun.serialWrapper import Serial, SerialException, PARITY_ODD, PARITY_NONE
 from select import error as SelectError
 import threading
-from queue import Queue, Empty as QueueEmpty
+from Queue import Queue, Empty as QueueEmpty
 import time
 import platform
 import os
 import sys
-from importlib import reload
 stdin, stdout, stderr = sys.stdin, sys.stdout, sys.stderr
-
+reload(sys).setdefaultencoding('utf8')
 sys.stdin, sys.stdout, sys.stderr = stdin, stdout, stderr
 import logging
 import traceback
@@ -455,7 +454,7 @@ class printcore():
         # might be calling it from the thread itself
         try:
             self.print_thread.join()
-        except RuntimeError as e:
+        except RuntimeError, e:
             if e.message == "cannot join current thread":
                 pass
             else:
