@@ -1,6 +1,3 @@
-# todo: this file should only contain ui description and event handler bindings#
-# todo: extract printer logic into new software layer
-
 # GUI
 output$ink_test_control_1 = renderUI({
   tagList(
@@ -65,66 +62,46 @@ output$ink_test_control_1 = renderUI({
 #---------------------------------------------------------------------------------------
 #function
 #---------
-## motor control
-# e.g.
-# printerSendTestInc(input) {
-#   printer$send(toupper(input$test_ink_cmd))
-#   printer$Print()
-# }
-# restEndpointTestInk(cmd) {
-#   printerSendTestInc(cmd)
-#   
-# }
 
-observeEvent(input$test_ink_cmd_button,{ # event handler
-  # should call our new printer core library
-  # printerSendTestInc(String) : steuert
-	printer$send(toupper(input$test_ink_cmd))
-	printer$Print()
+fineControlDriver = ocDriver$get_fine_control_driver()
+
+observeEvent(input$test_ink_cmd_button,{ 
+    fineControlDriver$customCommand(toupper(input$test_ink_cmd))
+
 })
 
 observeEvent(input$xleft,{
-    print(ocDriver)
-    fineControlDriver = ocDriver$get_fine_control_driver()
-    fineControlDriver$goXRight()
-
+    fineControlDriver$goXLeft()
 })
-
 observeEvent(input$xhome,{
-	printer$send("G28 X0\nG90")
-	printer$Print()
+    fineControlDriver$goHome()
 })
 
 observeEvent(input$xright,{
-	printer$send("G91\nG1 X5")
-	printer$Print()
+        fineControlDriver$goXRight()
 })
 
 observeEvent(input$yup,{
-    	printer$send("G91\nG1 Y5")
-    	printer$Print()
+        fineControlDriver$goYUp()
 })
 
 observeEvent(input$yhome,{
-    	printer$send("G28 Y0\nG90")
-    	printer$Print()
+        fineControlDriver$goHome()
 })
 
 observeEvent(input$ydown,{
-	printer$send("G91\nG1 Y-5")
-        printer$Print()
+        fineControlDriver$goYDown()
 })
 
 observeEvent(input$stop,{
-	printer$send("M18")
-        printer$Print()
+        fineControlDriver$stop()
 })
 
 
 #---------------------------------------------------------------------------------------
 #Inkjet
 #-------
-
+# TODO REFACTOR
 observeEvent(input$test_ink_nozzle_test,{
     gcode = c("G91",paste0("M700 P0 I",input$test_ink_n_bis," L",input$test_ink_L," S",4095))
     for(i in seq(12)){
@@ -138,8 +115,9 @@ observeEvent(input$test_ink_nozzle_test,{
     fileConn<-file(test_ink_file)
     writeLines(gcode, fileConn)
     close(fileConn)
-    # send the gcode
-    gcode_sender$send_gcode(test_ink_file,printer)
+                                        # send the gcode
+    ocDriver$send_light_gcode_from_file(test_ink_file)
+
 })
 
 observeEvent(input$test_ink_action,{
@@ -150,8 +128,8 @@ observeEvent(input$test_ink_action,{
     close(fileConn)
     # put it in the log
     write(paste0(format(Sys.time(),"%Y%m%d_%H:%M:%S"),";","test_ink;",test_ink_file,";",Log,";",connect$Visa,";",input$Plate),file="log/log.txt",append = T)
-    # send the gcode
-    gcode_sender$send_gcode(test_ink_file,printer)
+                                        # send the gcode
+    ocDriver$send_light_gcode_from_file(test_ink_file)
 })
 test_ink_gcode <- reactive({
   S=rep(0,12)
@@ -161,19 +139,16 @@ test_ink_gcode <- reactive({
 
 #----------------------------------------------------------------------------------------
 #Gcode
-
-
-
 observeEvent(input$test_ink_gcode_file_action,{
- # send the gcode
- gcode_sender$send_gcode(input$test_ink_gcode_file$datapath, printer)
+    # send the gcode
+    ocDriver$send_light_gcode_from_file(input$test_ink_gcode_file$datapath)
 })
 
 #----------------------------------------------------------------------------------------
 #Docu
 
 observeEvent(input$test_ink_visu_position,{
-      gcode_sender$send_gcode("gcode/Visu_position.gcode")
+      ocDriver$send_light_gcode_from_file("gcode/Visu_position.gcode")
   })
 
 observeEvent(input$test_ink_ring_on,{
