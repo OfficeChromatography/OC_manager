@@ -47,12 +47,11 @@ setupEventHandler  <- function(input){
          throwError("No board selected")
      }else{
          print("Connecting")
-         ocDriver$connect(input$Serial_port,115200)## py
+         ocDriver$connect()
 
          if (ocDriver$is_connected()){
                                         # create the test gcode
              print("Connected")
-             connect$board=TRUE
          } else {
              print("try again")
          }
@@ -65,7 +64,6 @@ setupEventHandler  <- function(input){
       
     if (!ocDriver$is_connected()){
     # create the test gcode
-      connect$board=FALSE
       print("disconnected")
     } else {
         print("try again")
