@@ -14,23 +14,23 @@ observeEvent(input$xhome,{
 })
 
 observeEvent(input$xright,{
-        fineControlDriver$goXRight()
+    fineControlDriver$goXRight()
 })
 
 observeEvent(input$yup,{
-        fineControlDriver$goYUp()
+    fineControlDriver$goYUp()
 })
 
 observeEvent(input$yhome,{
-        fineControlDriver$goHome()
+    fineControlDriver$goHome()
 })
 
 observeEvent(input$ydown,{
-        fineControlDriver$goYDown()
+    fineControlDriver$goYDown()
 })
 
 observeEvent(input$stop,{
-        fineControlDriver$stop()
+    fineControlDriver$stop()
 })
 
 

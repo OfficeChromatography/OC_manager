@@ -1,38 +1,24 @@
-from printrun import printcore, gcoder
-import time
-
+from FineControlDriver import FineControlDriver
+from communication import Communication
 
 class OCDriver:
-    def __init__(self, connectionString, baudRate):        
-         self.printcore = printcore.printcore()
-         self.connectionString = connectionString
-         self.baudRate = baudRate
+    def __init__(self, connection_string, baud_rate):        
+        self.communication = Communication(connection_string, baud_rate)
+        self.fine_control_driver = FineControlDriver(self.communication)
 
+    def get_fine_control_driver(self):
+        return self.fine_control_driver
+        
     def connect(self):
-         self.printcore.connect(self.connectionString, self.baudRate)
-         self.printcore.listen_until_online()
+        self.communication.connect()
 
     def is_connected(self):
-         return self.printcore.online
+        return self.communication.printcore.online
 
     def disconnect(self):
-        self.printcore.disconnect()
+        self.communication.disconnect()
 
-    def send_light_gcode_from_file(self, file):
-        print (gcoder)
-        gcode=[i.strip() for i in open(file)] # or pass in your own array of gcode lines instead of reading from a file
-        self.send(gcode)
+    def send_from_file(self, path):
+        self.communication.send_from_file(path)
         # while (self.printcore.printing):
         #    time.sleep(0.1)
-    
-    
-    def send(self, codes):
-        gcode = gcoder.LightGCode(codes)    
-        is_printing = OCDriver.printcore.startprint(codes)
-        if(is_printing):
-            print ("Start printing...")
-        else:
-            print ("Cannot print...")
-
-        
-    
