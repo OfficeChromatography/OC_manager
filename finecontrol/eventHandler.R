@@ -10,7 +10,7 @@ observeEvent(input$xleft,{
     fineControlDriver$goXLeft()
 })
 observeEvent(input$xhome,{
-    fineControlDriver$goHome()
+    fineControlDriver$goXHome()
 })
 
 observeEvent(input$xright,{
@@ -22,7 +22,7 @@ observeEvent(input$yup,{
 })
 
 observeEvent(input$yhome,{
-    fineControlDriver$goHome()
+    fineControlDriver$goYHome()
 })
 
 observeEvent(input$ydown,{
@@ -60,7 +60,7 @@ createNozzleTestGCODE  <- function(input){
 observeEvent(input$test_ink_nozzle_test,{
     gcode = createNozzleTestGCODE(input)
     writeFile("gcode/test_ink.gcode", gcode)
-    ocDriver$send_light_gcode_from_file(test_ink_file)
+    ocDriver$send_from_file(test_ink_file)
 
 })
 
@@ -70,7 +70,7 @@ observeEvent(input$test_ink_action,{
     writeFile(test_ink_file, test_ink_gcode())
     # put it in the log
     write(paste0(format(Sys.time(),"%Y%m%d_%H:%M:%S"),";","test_ink;",test_ink_file,";",Log,";",connect$Visa,";",input$Plate),file="log/log.txt",append = T)
-    ocDriver$send_light_gcode_from_file(test_ink_file)
+    ocDriver$send_from_file(test_ink_file)
 })
 test_ink_gcode <- reactive({
   S=rep(0,12)
@@ -83,7 +83,7 @@ test_ink_gcode <- reactive({
 observeEvent(input$test_ink_gcode_file_action,{
 
     print(input$test_ink_gcode_file$datapath)
-    ocDriver$send_light_gcode_from_file(input$test_ink_gcode_file$datapath)
+    ocDriver$send_from_file(input$test_ink_gcode_file$datapath)
 })
 
 observeEvent(input$pause,{
@@ -100,7 +100,7 @@ observeEvent(input$resume,{
 #Docu
 
 observeEvent(input$test_ink_visu_position,{
-      ocDriver$send_light_gcode_from_file("gcode/Visu_position.gcode")
+      ocDriver$send_from_file("gcode/Visu_position.gcode")
   })
 
 observeEvent(input$test_ink_ring_on,{

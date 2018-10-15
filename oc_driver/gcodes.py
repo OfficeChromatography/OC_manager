@@ -15,6 +15,10 @@ DISABLE_STEPPER_MOTORS = "M18"
 
 GO_TO_ORIGIN = "G28"
 
+GO_TO_ORIGIN_X = "G28 X0"
+
+GO_TO_ORIGIN_Y = "G28 Y0"
+
 def goXMinus(steps = "5"):
     return GO_X_MINUS + steps
 

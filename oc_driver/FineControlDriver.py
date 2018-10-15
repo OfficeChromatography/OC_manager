@@ -22,9 +22,15 @@ class FineControlDriver:
     def customCommand(self, command):
         self.communication.send([command])
 
-    def goHome(self):
+    def goYHome(self):
         self.communication.send([
-            GCODES.GO_TO_ORIGIN,
+            GCODES.GO_TO_ORIGIN_Y,
+            GCODES.SET_ABSOLUTE_POS
+        ])
+
+    def goXHome(self):
+        self.communication.send([
+            GCODES.GO_TO_ORIGIN_X,
             GCODES.SET_ABSOLUTE_POS
         ])
 
