@@ -20,5 +20,15 @@ class OCDriver:
 
     def send_from_file(self, path):
         self.communication.send_from_file(path)
-        # while (self.printcore.printing):
-        #    time.sleep(0.1)
+
+    def pause(self):
+        self.communication.pause()
+
+    def stop(self):
+        self.communication.stop()
+
+    def resume(self):
+        self.communication.resume()
+
+
+        

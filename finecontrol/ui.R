@@ -31,10 +31,14 @@ output$ink_test_control_1 = renderUI({
         )
       )),
      fluidRow( 
-     box(title = "Gcode upload", width = "50 %", heigth ="50 %", solidHeader = TRUE,status = "primary",
+     box(title = "GCode upload", width = "50 %", heigth ="50 %", solidHeader = TRUE,status = "primary",
                     fileInput("test_ink_gcode_file","Upload a GCODE file"),
-                    actionButton("test_ink_gcode_file_action","Launch the GCODE file")
-       )),
+         actionButton("test_ink_gcode_file_action","Launch the GCODE file"),
+                    actionButton("pause","Pause Printing"),
+           actionButton("resume","Resume Printing")
+
+         )
+     ),
      fluidRow(
      box(title = "Documentation", width = "50 %", heigth ="50 %", solidHeader = TRUE,status = "primary",
                     actionButton("test_ink_visu_position","Go in position"),
