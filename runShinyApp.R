@@ -13,6 +13,5 @@
 #   system2(CMD, args=ARGS, wait=FALSE)
 #   NULL
 # }
-library(reticulate)
-use_python("C:/Python27", required = FALSE)
+
 shiny::runApp(launch.browser=T)
