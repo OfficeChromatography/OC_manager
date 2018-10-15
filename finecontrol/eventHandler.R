@@ -82,6 +82,7 @@ test_ink_gcode <- reactive({
 #Gcode
 observeEvent(input$test_ink_gcode_file_action,{
     # send the gcode
+    print(input$test_ink_gcode_file$datapath)
     ocDriver$send_light_gcode_from_file(input$test_ink_gcode_file$datapath)
 })
 

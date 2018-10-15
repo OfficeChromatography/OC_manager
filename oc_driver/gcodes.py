@@ -5,7 +5,7 @@ GO_X = GO + "X"
 GO_X_MINUS = GO_X + "-"
 
 GO_Y = GO + "Y"
-GO_Y_MINUS = GO_X + "-"
+GO_Y_MINUS = GO_Y + "-"
 
 SET_REFERENCE = "G91"
 

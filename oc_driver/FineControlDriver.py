@@ -1,53 +1,47 @@
 import gcodes as GCODES 
-
+import OCDriver.OCDriver
 
 class FineControlDriver:
 
-    def __init__(self, printcore):
-        self.printcore = printcore
-
-    def send(self, codes):
-        for code in codes:
-            self.printcore.send(code)
-        self.printcore.Print()
+    def __init__(OCDriver):
 
     def goXLeft(self):
-        self.send( [
+        OCDriver.send( [
             GCODES.SET_REFERENCE,
             GCODES.goXMinus()
         ])
         
 
     def goXRight(self):
-        self.send( [
+        OCDriver.send( [
             GCODES.SET_REFERENCE,
             GCODES.goXPlus()
         ])
         
 
     def customCommand(self, command):
-        self.send([command])
+        OCDriver.send([command])
 
     def goHome(self):
-        self.send([
+        OCDriver.send([
             GCODES.GO_TO_ORIGIN,
             GCODES.SET_ABSOLUTE_POS
         ])
 
     def goYUp(self):
-        self.send( [
+        OCDriver.send( [
             GCODES.SET_REFERENCE,
             GCODES.goYPlus()
         ])
         
     def goYDown(self):
-        self.send( [
+        OCDriver.send( [
             GCODES.SET_REFERENCE,
             GCODES.goYMinus()
         ])
 
     def stop(self):
-        return self.send([GCODES.DISABLE_STEPPER_MOTORS])
+        return OCDriver.send([GCODES.DISABLE_STEPPER_MOTORS])
         
 
     
