@@ -6,7 +6,7 @@
 steps_choices = dir("tables/",pattern=".csv") %>% gsub(x=.,pattern=".csv",replacement="")
 Method_feedback = reactiveValues(text="No feedback yet")
 
-METHOD_DIR='method/rdata/'
+
 #-----------------------------------------------------------------------------------------
 
 ## methods
@@ -119,7 +119,6 @@ observeEvent(input$Method_save,{
 observeEvent(input$Method_load,{
   withProgress(message = "Processing", value=0, {
       load(paste0(METHOD_DIR,input$Method_load_name))
-      print( paste0(METHOD_DIR,input$Method_load_name))
     Method$settings = settings
     for (step in 1:length(settings)){
       Method$control[[step]] = list(type= Method$settings[[step]]$type,

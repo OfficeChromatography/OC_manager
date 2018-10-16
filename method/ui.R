@@ -141,7 +141,7 @@ output$Method_step_appli_table = renderRHandsontable({
 })
 
 output$Method_load_names = renderUI({
-  selectizeInput("Method_load_name","Method to load",choices=dir("methods/"))
+  selectizeInput("Method_load_name","Method to load",choices=dir(METHOD_DIR))
 })
 
 ## feedback
