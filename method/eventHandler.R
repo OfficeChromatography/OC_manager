@@ -117,12 +117,8 @@ observeEvent(input$Method_save,{
 observeEvent(input$Method_load,{
   withProgress(message = "Processing", value=0, {
     load(paste0("methods/",input$Method_load_name))
-    if(sum(unlist(lapply(settings,function(x){if(!(x$type %in% steps_choices)){return(T)}else{return(F)}}))) != 0){
-      shinyalert(title = "Warning",text = "Old method, update may not work",type="warning",closeOnClickOutside = T, showCancelButton = F)
-    }
     Method$settings = settings
     for (step in 1:length(settings)){
-      print(step)
       Method$control[[step]] = list(type= Method$settings[[step]]$type,
                             table=Method$settings[[step]]$table,
 			    appli_table=Method$settings[[step]]$appli_table,
