@@ -2538,3 +2538,87 @@ Time;Step;File;Log;Visa;Plate
 20180606_10:07:25;Connection;NA;Board disconnection;admin;test
 20180608_17:28:20;Connection;NA;Board connection;admin;test
 20180608_17:29:48;Connection;NA;Board disconnection;admin;test
+20180614_12:05:59;Connection;NA;Sign out;admin;test
+20180614_12:06:04;Connection;NA;Sign in;admin;test
+20180926_22:38:24;Connection;NA;Board connection;admin;test
+20180926_23:00:57;Connection;NA;Board connection;admin;test
+20180926_23:04:28;Connection;NA;Board connection;admin;test
+20180926_23:04:54;Connection;NA;Board disconnection;admin;test
+20180926_23:04:54;Connection;NA;Board disconnection;admin;test
+                                                                                                                                                                                                                                                   20180926_23:06:34;Connection;NA;Board connection;admin;test
+20180926_23:21:35;Connection;NA;Board connection;admin;test
+20180926_23:29:31;Connection;NA;Board disconnection;admin;test
+20180926_23:29:34;Connection;NA;Board connection;admin;test
+20180926_23:34:46;Connection;NA;Board connection;admin;test
+20180927_09:47:52;Connection;NA;Board connection;admin;test
+20180927_17:27:04;Connection;NA;Board connection;admin;test
+20180927_17:46:25;Connection;NA;Board connection;admin;test
+20180927_18:47:19;Connection;NA;Board connection;admin;test
+                                                            20180927_22:46:19;Connection;NA;Board connection;admin;test
+20180927_23:14:45;Connection;NA;Board connection;admin;test
+20180928_10:39:35;Connection;NA;Board connection;admin;test
+20180928_12:35:53;Connection;NA;Board connection;admin;test
+20180928_13:17:13;Connection;NA;Board connection;admin;test
+20180928_13:18:27;Connection;NA;Board disconnection;admin;test
+20180928_13:22:43;Connection;NA;Board connection;admin;test
+20181008_16:38:47;Connection;NA;Board connection;admin;test
+20181008_17:43:44;Connection;NA;Board connection;admin;test
+20181008_17:46:36;TLC_MS;gcode/Method.gcode;gcode/Method.gcode;admin;test
+20181008_17:58:54;TLC_MS;gcode/Method.gcode;gcode/Method.gcode;admin;test
+20181008_18:00:59;TLC_MS;gcode/Method.gcode;gcode/Method.gcode;admin;test
+20181008_18:04:45;TLC_MS;gcode/Method.gcode;gcode/Method.gcode;admin;test
+20181008_18:06:15;TLC_MS;gcode/Method.gcode;gcode/Method.gcode;admin;test
+20181008_18:07:21;TLC_MS;gcode/Method.gcode;gcode/Method.gcode;admin;test
+20181008_18:08:50;TLC_MS;gcode/Method.gcode;gcode/Method.gcode;admin;test
+20181008_18:11:53;Connection;NA;Board connection;admin;test
+20181008_18:18:14;TLC_MS;gcode/Method.gcode;gcode/Method.gcode;admin;test
+20181008_18:20:36;TLC_MS;gcode/Method.gcode;gcode/Method.gcode;admin;test
+20181008_18:32:40;Connection;NA;Board disconnection;admin;test
+20181008_18:40:38;Connection;NA;Board connection;admin;test
+20181008_18:42:22;Connection;NA;Board connection;admin;test
+20181008_18:47:29;TLC_MS;gcode/Method.gcode;gcode/Method.gcode;admin;test
+20181008_18:48:14;Connection;NA;Board disconnection;admin;test
+20181008_18:57:34;Connection;NA;Board connection;admin;test
+20181008_18:58:06;TLC_MS;gcode/Method.gcode;gcode/Method.gcode;admin;test
+20181008_19:00:16;TLC_MS;gcode/Method.gcode;gcode/Method.gcode;admin;test
+20181008_19:01:18;TLC_MS;gcode/Method.gcode;gcode/Method.gcode;admin;test
+20181008_19:02:41;TLC_MS;gcode/Method.gcode;gcode/Method.gcode;admin;test
+                                                                          20181008_19:06:01;Connection;NA;Board connection;admin;test
+20181008_19:08:57;TLC_MS;gcode/Method.gcode;gcode/Method.gcode;admin;test
+20181008_19:12:23;Connection;NA;Board disconnection;admin;test
+20181008_19:17:08;Connection;NA;Board connection;admin;test
+                                                            20181008_19:21:37;Connection;NA;Board connection;admin;test
+20181008_19:24:46;Connection;NA;Board connection;admin;test
+20181008_19:28:42;Connection;NA;Board connection;admin;test
+20181008_19:34:12;Connection;NA;Board disconnection;admin;test
+20181008_19:36:42;Connection;NA;Board connection;admin;test
+20181008_19:42:44;TLC_MS;gcode/Method.gcode;gcode/Method.gcode;admin;test
+20181008_19:44:59;TLC_MS;gcode/Method.gcode;gcode/Method.gcode;admin;test
+20181008_19:50:05;TLC_MS;gcode/Method.gcode;gcode/Method.gcode;admin;test
+20181008_19:51:29;TLC_MS;gcode/Method.gcode;gcode/Method.gcode;admin;test
+20181008_19:52:15;Connection;NA;Board disconnection;admin;test
+20181008_19:56:32;Connection;NA;Board connection;admin;test
+20181008_20:06:17;Connection;NA;Board connection;admin;test
+20181008_20:10:34;Connection;NA;Board disconnection;admin;test
+20181008_20:15:46;Connection;NA;Board connection;admin;test
+                                                            20181008_20:19:23;Connection;NA;Board connection;admin;test
+20181008_20:22:26;Connection;NA;Board connection;admin;test
+20181008_20:25:27;TLC_MS;gcode/Method.gcode;gcode/Method.gcode;admin;test
+20181008_20:29:57;TLC_MS;gcode/Method.gcode;gcode/Method.gcode;admin;test
+20181008_20:32:25;TLC_MS;gcode/Method.gcode;gcode/Method.gcode;admin;test
+20181008_20:34:22;TLC_MS;gcode/Method.gcode;gcode/Method.gcode;admin;test
+20181009_09:54:29;Connection;NA;Board connection;admin;test
+20181009_16:23:26;Connection;NA;Board connection;admin;test
+20181011_10:27:54;Connection;NA;Board connection;admin;test
+20181012_09:22:42;Connection;NA;Board connection;admin;test
+20181012_12:55:36;Connection;NA;Board connection;admin;test
+20181012_13:24:40;Connection;NA;Board connection;admin;test
+20181012_13:31:45;Connection;NA;Board connection;admin;test
+20181012_13:32:56;Connection;NA;Board connection;admin;test
+20181012_13:35:11;Connection;NA;Board connection;admin;test
+20181012_13:35:36;Connection;NA;Board disconnection;admin;test
+20181012_13:37:03;Connection;NA;Board connection;admin;test
+20181012_14:23:23;Connection;NA;Board connection;admin;test
+20181015_14:20:25;Connection;NA;Board connection;admin;test
+20181016_10:49:37;Connection;NA;Board connection;admin;test
+20181016_10:53:27;Connection;NA;Board connection;admin;test

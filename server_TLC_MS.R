@@ -106,7 +106,7 @@ output$TLC_MS_control_1 = renderUI({
   )
 })
 
-TLC_MS_manual = reactiveValues(LED=F,head=F,elution=F,
+TLC_MS_manual = reactiveValues(LED=F,head=F,elution=F,drawer=F,plate=F,purging=F,## need one more
                                TLC_MS_x_bias=if(file.exists("config_tlcms.csv")){read.csv("config_tlcms.csv")[,1]}else{4},
                                TLC_MS_y_bias=if(file.exists("config_tlcms.csv")){read.csv("config_tlcms.csv")[,2]}else{1})
 
@@ -115,9 +115,46 @@ output$TLC_MS_control_manual = renderUI({
   tagList(
     column(4,
            if(!TLC_MS_manual$LED){actionButton("TLC_MS_manual_LED_on","LED on")}else{actionButton("TLC_MS_manual_LED_off","LED off")},hr(),
-           if(!TLC_MS_manual$head){actionButton("TLC_MS_manual_head_down","Head down")}else{actionButton("TLC_MS_manual_head_up","Head up")},hr(),
-           if(!TLC_MS_manual$head){actionButton("TLC_MS_manual_rinsing","Purge head")},hr(),
-           if(TLC_MS_manual$elution){actionButton("TLC_MS_manual_Valve_bypass","Valve bypass")}else{actionButton("TLC_MS_manual_Valve_elution","Valve elution")},hr(),
+           if(!TLC_MS_manual$plate & !TLC_MS_manual$head & !TLC_MS_manual$drawer & !TLC_MS_manual$elution & !TLC_MS_manual$purging){actionButton("TLC_MS_manual_plate_gaz_on","plate_gaz_on")}else{
+             if(!TLC_MS_manual$head & !TLC_MS_manual$drawer  & !TLC_MS_manual$elution & !TLC_MS_manual$purging){actionButton("TLC_MS_manual_plate_gaz_off","plate_gaz_off")}else{
+               if(TLC_MS_manual$drawer){actionButton("Stop_this","no plate gaz control if drawer out",style = "background-color: tomato")}
+               else if(TLC_MS_manual$head){actionButton("Stop_this","no plate gaz control if head down",style = "background-color: tomato")}
+               else if(TLC_MS_manual$elution){actionButton("Stop_this","no plate gaz control if elution valve",style = "background-color: tomato")}
+               else if(TLC_MS_manual$purging){actionButton("Stop_this","no plate gaz control if purging",style = "background-color: tomato")}
+             } 
+             },hr(), ## plate
+           if(!TLC_MS_manual$plate & !TLC_MS_manual$head & !TLC_MS_manual$drawer & !TLC_MS_manual$elution ) #& !TLC_MS_manual$purging)
+		{actionButton("TLC_MS_cleaning","head cleaning")}
+		#else{
+             #if(!TLC_MS_manual$head & !TLC_MS_manual$plate  & !TLC_MS_manual$elution & !TLC_MS_manual$purging){actionButton("TLC_MS_manual_drawer_in","drawer_in")}
+		else{
+               if(TLC_MS_manual$head){actionButton("Stop_this","no drawer out if head down",style = "background-color: tomato")}
+               else if(TLC_MS_manual$plate){actionButton("Stop_this","no drawer out if plate gaz",style = "background-color: tomato")}
+               else if(TLC_MS_manual$elution){actionButton("Stop_this","no drawer out if elution valve",style = "background-color: tomato")}
+              # else if(TLC_MS_manual$purging){actionButton("Stop_this","no drawer in control if purging",style = "background-color: tomato")}
+             #} 
+           },hr(), ## drawer
+           if(!TLC_MS_manual$plate & !TLC_MS_manual$head & !TLC_MS_manual$drawer & !TLC_MS_manual$elution & !TLC_MS_manual$purging){actionButton("TLC_MS_manual_head_down","Head down")}else{
+             if(!TLC_MS_manual$drawer & !TLC_MS_manual$plate  & !TLC_MS_manual$elution & !TLC_MS_manual$purging){actionButton("TLC_MS_manual_head_up","Head up")}else{
+               if(TLC_MS_manual$drawer){actionButton("Stop_this","no head control if drawer out",style = "background-color: tomato")}
+               else if(TLC_MS_manual$plate){actionButton("Stop_this","no head control if plate gaz",style = "background-color: tomato")}
+               else if(TLC_MS_manual$elution){actionButton("Stop_this","no head control if elution valve",style = "background-color: tomato")}
+               else if(TLC_MS_manual$purging){actionButton("Stop_this","no head control control if purging",style = "background-color: tomato")}
+             } 
+           },#hr(), ## head
+           #if(!TLC_MS_manual$plate & !TLC_MS_manual$head & TLC_MS_manual$drawer & !TLC_MS_manual$elution & !TLC_MS_manual$purging){actionButton("TLC_MS_manual_purging_on","purging_on")}else{
+             #if(TLC_MS_manual$drawer & !TLC_MS_manual$plate  & !TLC_MS_manual$elution & !TLC_MS_manual$head){actionButton("TLC_MS_manual_purging_off","purging_off")}else{
+               #if(!TLC_MS_manual$drawer){actionButton("Stop_this","no purging control if drawer in",style = "background-color: tomato")}
+               #else if(TLC_MS_manual$plate){actionButton("Stop_this","no purging control if plate gaz",style = "background-color: tomato")}
+               #else if(TLC_MS_manual$elution){actionButton("Stop_this","no purging control if elution valve",style = "background-color: tomato")}
+               #else if(TLC_MS_manual$head){actionButton("Stop_this","no purging control if head down",style = "background-color: tomato")}
+            # } 
+           #},
+	hr(), ## purging
+           # if(!TLC_MS_manual$plate & !TLC_MS_manual$head & !TLC_MS_manual$drawer & !TLC_MS_manual$elution){actionButton("TLC_MS_manual_rinsing","Purge head")},hr(),
+           if(TLC_MS_manual$head & !TLC_MS_manual$elution){actionButton("TLC_MS_manual_Valve_elution","Valve elution")}
+             else if(TLC_MS_manual$head & TLC_MS_manual$elution){actionButton("TLC_MS_manual_Valve_bypass","Valve bypass")}
+             else{actionButton("Stop_this","no valve control if head up",style = "background-color: tomato")},hr(), ## elution
            actionButton("TLC_MS_Home_X","Home X"),
            actionButton("TLC_MS_Home_YZ","Home Y and Home Z")
     ),
@@ -130,6 +167,39 @@ output$TLC_MS_control_manual = renderUI({
   )
 })
 
+observeEvent(input$TLC_MS_manual_purging_on,{
+  validate(need(connect$login,"Please login"))
+  main$send_gcode("gcode/TLC_MS_purging_on.gcode")
+  TLC_MS_manual$purging = T
+})
+observeEvent(input$TLC_MS_manual_purging_off,{
+  validate(need(connect$login,"Please login"))
+  main$send_gcode("gcode/TLC_MS_purging_off.gcode")
+  TLC_MS_manual$purging = F
+})
+
+observeEvent(input$TLC_MS_cleaning,{
+  validate(need(connect$login,"Please login"))
+  main$send_gcode("gcode/TLC_MS_cleaning.gcode")
+})
+
+observeEvent(input$TLC_MS_manual_drawer_in,{
+  validate(need(connect$login,"Please login"))
+  main$send_gcode("gcode/TLC_MS_drawer_in.gcode")
+  TLC_MS_manual$drawer = F
+})
+
+observeEvent(input$TLC_MS_manual_plate_gaz_on,{
+  validate(need(connect$login,"Please login"))
+  main$send_gcode("gcode/TLC_MS_plate_gaz_on.gcode")
+  TLC_MS_manual$plate = T
+})
+observeEvent(input$TLC_MS_manual_plate_gaz_off,{
+  validate(need(connect$login,"Please login"))
+  main$send_gcode("gcode/TLC_MS_plate_gaz_off.gcode")
+  TLC_MS_manual$plate = F
+})
+
 output$TLC_MS_control_manual_2 = renderUI({
   position = as.numeric(input$TLC_MS_manual_calib_selectize)
   tagList(numericInput("TLC_MS_x_bias","x bias",TLC_MS_manual$TLC_MS_x_bias),
@@ -137,7 +207,9 @@ output$TLC_MS_control_manual_2 = renderUI({
           verbatimTextOutput("TLC_MS_biases"),
           numericInput("TLC_MS_manual_go_X","X",if(length(TLC_MS_coord$x) == 0){100}else{TLC_MS_coord$x[position]}),
           numericInput("TLC_MS_manual_go_Y","Y",if(length(TLC_MS_coord$y) == 0){50}else{TLC_MS_coord$y[position]}),
-          actionButton("TLC_MS_manual_go","Go (home first)"))
+          actionButton("TLC_MS_manual_go","Go (home first)"),
+	  actionButton("start_MS","Start")
+)
 })
 output$TLC_MS_control_manual_3 = renderUI({
   tagList(plotOutput("TLC_MS_manual_calib_plot",click = "TLC_MS_manual_calib_plot_click"),
@@ -203,6 +275,16 @@ observeEvent(input$TLC_MS_manual_go,{
   }else{
     # gcode = paste0("G1 X",input$TLC_MS_manual_go_X+TLC_MS_manual$TLC_MS_x_bias," Y",input$TLC_MS_manual_go_Y+TLC_MS_manual$TLC_MS_y_bias," Z",input$TLC_MS_manual_go_Y+TLC_MS_manual$TLC_MS_y_bias)
     # print(gcode)
+    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
+  }
+})
+
+observeEvent(input$start_MS,{
+  if(connect$board){
+    test_ink_file = paste0("gcode/","start_MS",".gcode")
+    # send the gcode
+    main$send_gcode(test_ink_file)
+  }else{
     shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
   }
 })
