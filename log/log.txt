@@ -2622,3 +2622,5 @@ Time;Step;File;Log;Visa;Plate
 20181015_14:20:25;Connection;NA;Board connection;admin;test
 20181016_10:49:37;Connection;NA;Board connection;admin;test
 20181016_10:53:27;Connection;NA;Board connection;admin;test
+20181016_13:19:14;Connection;NA;Board connection;admin;test
+20181016_13:19:39;Connection;NA;Board disconnection;admin;test

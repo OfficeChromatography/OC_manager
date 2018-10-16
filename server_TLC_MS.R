@@ -54,11 +54,11 @@ output$TLC_MS_control_1 = renderUI({
     tabPanel("Input/output",
              sidebarLayout(
                sidebarPanel(width = 3,
-                            fileInput("TLC_MS_fileInput",label = "picture(s) file(s)",multiple = T),
+                            fileInput("TLC_MS_fileInput",label = "Picture(s) file(s)",multiple = T),
                             downloadButton("TLC_MS_down_csv","Download CSV"),
                             downloadButton("TLC_MS_down_gcode","Download gcode"),
-                            numericInput("TLC_MS_elution_time","Elution time in ms",20000),
-                            numericInput("TLC_MS_rinsing_time","After rinsing time in ms",20000),
+                            numericInput("TLC_MS_elution_time","Elution [s]",20),
+                            numericInput("TLC_MS_rinsing_time","Pausing [s]",20),
                             actionButton("TLC_MS_manual", "Manual control",icon = icon("edit")),
                             bsModal("TLC_MS_manualModal", "TLC_MS_manual", "TLC_MS_manual", size = "large",
                                     uiOutput("TLC_MS_control_manual")
@@ -66,7 +66,8 @@ output$TLC_MS_control_1 = renderUI({
                             textOutput("TLC_MS_batch_feedback"),
                             actionButton("TLC_MS_delete_last","Delete last"),
                             actionButton("TLC_MS_delete_all","Delete all"),
-                            actionButton("TLC_MS_batch_action","Run batch"),
+                            actionButton("TLC_MS_batch_action","Run batch",
+                                         style="color: #fff; background-color: #337ab7; border-color: #2e6da4"),
                             # actionButton("TLC_MS_batch_stop","Emergency stop"),
                             tableOutput("TLC_MS_table")
                ),
@@ -115,8 +116,8 @@ output$TLC_MS_control_manual = renderUI({
   tagList(
     column(4,
            if(!TLC_MS_manual$LED){actionButton("TLC_MS_manual_LED_on","LED on")}else{actionButton("TLC_MS_manual_LED_off","LED off")},hr(),
-           if(!TLC_MS_manual$plate & !TLC_MS_manual$head & !TLC_MS_manual$drawer & !TLC_MS_manual$elution & !TLC_MS_manual$purging){actionButton("TLC_MS_manual_plate_gaz_on","plate_gaz_on")}else{
-             if(!TLC_MS_manual$head & !TLC_MS_manual$drawer  & !TLC_MS_manual$elution & !TLC_MS_manual$purging){actionButton("TLC_MS_manual_plate_gaz_off","plate_gaz_off")}else{
+           if(!TLC_MS_manual$plate & !TLC_MS_manual$head & !TLC_MS_manual$drawer & !TLC_MS_manual$elution & !TLC_MS_manual$purging){actionButton("TLC_MS_manual_plate_gaz_on","Plate gas on")}else{
+             if(!TLC_MS_manual$head & !TLC_MS_manual$drawer  & !TLC_MS_manual$elution & !TLC_MS_manual$purging){actionButton("TLC_MS_manual_plate_gaz_off","Plate gas off")}else{
                if(TLC_MS_manual$drawer){actionButton("Stop_this","no plate gaz control if drawer out",style = "background-color: tomato")}
                else if(TLC_MS_manual$head){actionButton("Stop_this","no plate gaz control if head down",style = "background-color: tomato")}
                else if(TLC_MS_manual$elution){actionButton("Stop_this","no plate gaz control if elution valve",style = "background-color: tomato")}
@@ -124,7 +125,7 @@ output$TLC_MS_control_manual = renderUI({
              } 
              },hr(), ## plate
            if(!TLC_MS_manual$plate & !TLC_MS_manual$head & !TLC_MS_manual$drawer & !TLC_MS_manual$elution ) #& !TLC_MS_manual$purging)
-		{actionButton("TLC_MS_cleaning","head cleaning")}
+		{actionButton("TLC_MS_cleaning","Purge head")}
 		#else{
              #if(!TLC_MS_manual$head & !TLC_MS_manual$plate  & !TLC_MS_manual$elution & !TLC_MS_manual$purging){actionButton("TLC_MS_manual_drawer_in","drawer_in")}
 		else{
@@ -154,9 +155,9 @@ output$TLC_MS_control_manual = renderUI({
            # if(!TLC_MS_manual$plate & !TLC_MS_manual$head & !TLC_MS_manual$drawer & !TLC_MS_manual$elution){actionButton("TLC_MS_manual_rinsing","Purge head")},hr(),
            if(TLC_MS_manual$head & !TLC_MS_manual$elution){actionButton("TLC_MS_manual_Valve_elution","Valve elution")}
              else if(TLC_MS_manual$head & TLC_MS_manual$elution){actionButton("TLC_MS_manual_Valve_bypass","Valve bypass")}
-             else{actionButton("Stop_this","no valve control if head up",style = "background-color: tomato")},hr(), ## elution
+             else{actionButton("Stop_this","No valve control if head up",style = "background-color: tomato")},hr(), ## elution
            actionButton("TLC_MS_Home_X","Home X"),
-           actionButton("TLC_MS_Home_YZ","Home Y and Home Z")
+           actionButton("TLC_MS_Home_YZ","Home Y/Z")
     ),
     column(4,
            uiOutput("TLC_MS_control_manual_2")
@@ -207,8 +208,8 @@ output$TLC_MS_control_manual_2 = renderUI({
           verbatimTextOutput("TLC_MS_biases"),
           numericInput("TLC_MS_manual_go_X","X",if(length(TLC_MS_coord$x) == 0){100}else{TLC_MS_coord$x[position]}),
           numericInput("TLC_MS_manual_go_Y","Y",if(length(TLC_MS_coord$y) == 0){50}else{TLC_MS_coord$y[position]}),
-          actionButton("TLC_MS_manual_go","Go (home first)"),
-	  actionButton("start_MS","Start")
+          actionButton("TLC_MS_manual_go","Go (validate)"),
+	  actionButton("start_MS","Start MS")
 )
 })
 output$TLC_MS_control_manual_3 = renderUI({
@@ -307,8 +308,8 @@ observeEvent(input$TLC_MS_profiles,{
     updateTextAreaInput(session,"TLC_MS_batch_before",value = TLC_MS_before)
     updateTextAreaInput(session,"TLC_MS_batch_between",value = TLC_MS_between)
     updateTextAreaInput(session,"TLC_MS_batch_after",value = TLC_MS_after)
-    updateNumericInput(session,"TLC_MS_elution_time",value = 20000)
-    updateNumericInput(session,"TLC_MS_rinsing_time",value = 20000)
+    updateNumericInput(session,"TLC_MS_elution_time",value = 20)
+    updateNumericInput(session,"TLC_MS_rinsing_time",value = 20)
   }else{
     load(paste0("tlcms_profile/",input$TLC_MS_profiles))
     updateTextAreaInput(session,"TLC_MS_batch_before",value = data$TLC_MS_before)
@@ -325,8 +326,8 @@ observeEvent(input$TLC_MS_profile_save,{
     TLC_MS_before = input$TLC_MS_batch_before,
     TLC_MS_between = input$TLC_MS_batch_between,
     TLC_MS_after = input$TLC_MS_batch_after,
-    TLC_MS_elution_time = input$TLC_MS_elution_time,
-    TLC_MS_rinsing_time = input$TLC_MS_rinsing_time
+    TLC_MS_elution_time = input$TLC_MS_elution_time * 1000,
+    TLC_MS_rinsing_time = input$TLC_MS_rinsing_time * 1000
   )
   if(nchar(input$TLC_MS_profile_name) == 0){
     shinyalert(type="error",title="stupid user",text = "Give a name to the profile to save")
@@ -466,12 +467,12 @@ observeEvent(input$TLC_MS_delete_all,{
 
 
 output$TLC_MS_pict.1 <- renderPlot({
-  par(mar=c(0,0,3,0))
-  raster(TLC_MS_files()[[1]],main=TLC_MS_files_name()[1],xlim=c(0,TLC_MS_x_width),ylim=c(0,TLC_MS_y_height))
+  par(mar=c(0,0,0,0))
+  raster(TLC_MS_files()[[1]],xlim=c(0,TLC_MS_x_width),ylim=c(0,TLC_MS_y_height))
 })
 output$TLC_MS_pict.1.zoom <- renderPlot({
-  par(mar=c(0,0,3,0))
-  raster(TLC_MS_files()[[1]],main=TLC_MS_files_name()[1],xlim=TLC_MS_zoom$x,ylim=TLC_MS_zoom$y)
+  par(mar=c(0,0,0,0))
+  raster(TLC_MS_files()[[1]],xlim=TLC_MS_zoom$x,ylim=TLC_MS_zoom$y)
   if(!is.null(TLC_MS_coord$x)){
     text(x=TLC_MS_coord$x*10,y=TLC_MS_coord$y*10-10,label=seq(length(TLC_MS_coord$x)),col=input$TLC_MS_color,pos = 3,cex=0.5)
     symbols(x=TLC_MS_coord$x*10,y=TLC_MS_coord$y*10,fg=input$TLC_MS_color,inches = F,add = T,rectangles = cbind(rep(4*10,length(TLC_MS_coord$x)),rep(2*10,length(TLC_MS_coord$x))))
@@ -481,14 +482,14 @@ output$TLC_MS_pict.2 <- renderPlot({
   validate(
     need(length(TLC_MS_files()) > 1, "Not enough pictures")
   )
-  par(mar=c(0,0,3,0))
+  par(mar=c(0,0,0,0))
   raster(TLC_MS_files()[[2]],main=TLC_MS_files_name()[2],xlim=c(0,TLC_MS_x_width),ylim=c(0,TLC_MS_y_height))
 })
 output$TLC_MS_pict.2.zoom <- renderPlot({
   validate(
     need(length(TLC_MS_files()) > 1, "Not enough pictures")
   )
-  par(mar=c(0,0,3,0))
+  par(mar=c(0,0,0,0))
   raster(TLC_MS_files()[[2]],main=TLC_MS_files_name()[2],xlim=TLC_MS_zoom$x,ylim=TLC_MS_zoom$y)
   if(!is.null(TLC_MS_coord$x)){
     text(x=TLC_MS_coord$x*10,y=TLC_MS_coord$y*10,label=seq(length(TLC_MS_coord$x)),col=input$TLC_MS_color,pos = 3)
@@ -499,14 +500,14 @@ output$TLC_MS_pict.3 <- renderPlot({
   validate(
     need(length(TLC_MS_files()) > 2, "Not enough pictures")
   )
-  par(mar=c(0,0,3,0))
+  par(mar=c(0,0,0,0))
   raster(TLC_MS_files()[[3]],main=TLC_MS_files_name()[3],xlim=c(0,TLC_MS_x_width),ylim=c(0,TLC_MS_y_height))
 })
 output$TLC_MS_pict.3.zoom <- renderPlot({
   validate(
     need(length(TLC_MS_files()) > 2, "Not enough pictures")
   )
-  par(mar=c(0,0,3,0))
+  par(mar=c(0,0,0,0))
   raster(TLC_MS_files()[[3]],main=TLC_MS_files_name()[3],xlim=TLC_MS_zoom$x,ylim=TLC_MS_zoom$y)
   if(!is.null(TLC_MS_coord$x)){
     text(x=TLC_MS_coord$x*10,y=TLC_MS_coord$y*10,label=seq(length(TLC_MS_coord$x)),col=input$TLC_MS_color,pos = 3)
@@ -517,14 +518,14 @@ output$TLC_MS_pict.4 <- renderPlot({
   validate(
     need(length(TLC_MS_files()) > 3, "Not enough pictures")
   )
-  par(mar=c(0,0,3,0))
+  par(mar=c(0,0,0,0))
   raster(TLC_MS_files()[[4]],main=TLC_MS_files_name()[4],xlim=c(0,TLC_MS_x_width),ylim=c(0,TLC_MS_y_height))
 })
 output$TLC_MS_pict.4.zoom <- renderPlot({
   validate(
     need(length(TLC_MS_files()) > 3, "Not enough pictures")
   )
-  par(mar=c(0,0,3,0))
+  par(mar=c(0,0,0,0))
   raster(TLC_MS_files()[[4]],main=TLC_MS_files_name()[4],xlim=TLC_MS_zoom$x,ylim=TLC_MS_zoom$y)
   if(!is.null(TLC_MS_coord$x)){
     text(x=TLC_MS_coord$x*10,y=TLC_MS_coord$y*10,label=seq(length(TLC_MS_coord$x)),col=input$TLC_MS_color,pos = 3)
@@ -538,8 +539,8 @@ TLC_MS_table.dim <- reactive({
   )
   data <- data.frame(pictX = TLC_MS_coord$x, pictY = TLC_MS_coord$y)
   data$extraction = seq(nrow(data))
-  data$x_mm = data$pictX# * x_resolution
-  data$y_mm = data$pictY# * y_resolution
+  data[["x [mm]"]] = data$pictX# * x_resolution
+  data[["y [mm]"]] = data$pictY# * y_resolution
   # data$reverse_y = 100 - data$y
   # data$Rt = rep(" ",nrow(data))
   # data$mz_pos = rep(" ",nrow(data))
@@ -552,7 +553,7 @@ output$TLC_MS_table <- renderTable({
   TLC_MS_table.dim()
 })
 
-TLC_MS_feedback = reactiveValues(text="no feedback yet")
+TLC_MS_feedback = reactiveValues(text="No feedback yet")
 output$TLC_MS_batch_feedback = renderText({
   TLC_MS_feedback$text
 })
