@@ -5,6 +5,8 @@
 ##Variable
 steps_choices = dir("tables/",pattern=".csv") %>% gsub(x=.,pattern=".csv",replacement="")
 Method_feedback = reactiveValues(text="No feedback yet")
+
+METHOD_DIR='method/rdata/'
 #-----------------------------------------------------------------------------------------
 
 ## methods
@@ -90,16 +92,16 @@ output$Method_gcode_download <- downloadHandler(
 ## save
 
 observeEvent(input$Method_save,{
-  if(paste0(input$Method_save_name,".Rdata") %in% dir("methods/")){
+  if(paste0(input$Method_save_name,".Rdata") %in% dir(METHOD_DIR)){
     shinyalert(title = "Method exist",text = "Overwrite",type="warning",closeOnClickOutside = T, showCancelButton = T,
                callbackR = function(x){
                  if(x != FALSE){
                    withProgress(message = "Processing", value=0, {
                      settings = Method$settings
-                     save(settings,file=paste0("methods/",input$Method_save_name,".Rdata"))
+                     save(settings,file=paste0(METHOD_DIR,input$Method_save_name,".Rdata"))
                      Method_feedback$text = paste0("Method ",input$Method_save_name," saved")
                    })
-                   updateSelectizeInput(session,"Method_load_name",choices=dir("methods/"))
+                   updateSelectizeInput(session,"Method_load_name",choices=dir(METHOD_DIR))
                  }else{
                    Method_feedback$text = paste0("Method ","not"," saved")
                  }
@@ -107,16 +109,17 @@ observeEvent(input$Method_save,{
   }else{
     withProgress(message = "Processing", value=0, {
       settings = Method$settings
-      save(settings,file=paste0("methods/",input$Method_save_name,".Rdata"))
+      save(settings,file=paste0(METHOD_DIR,input$Method_save_name,".Rdata"))
       Method_feedback$text = paste0("Method ",input$Method_save_name," saved")
     })
-    updateSelectizeInput(session,"Method_load_name",choices=dir("methods/"))
+    updateSelectizeInput(session,"Method_load_name",choices=dir(METHOD_DIR))
   }
   
 })
 observeEvent(input$Method_load,{
   withProgress(message = "Processing", value=0, {
-    load(paste0("methods/",input$Method_load_name))
+      load(paste0(METHOD_DIR,input$Method_load_name))
+      print( paste0(METHOD_DIR,input$Method_load_name))
     Method$settings = settings
     for (step in 1:length(settings)){
       Method$control[[step]] = list(type= Method$settings[[step]]$type,
