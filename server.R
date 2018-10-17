@@ -73,7 +73,6 @@ setupEventHandler  <- function(input){
 
 shinyServer(function(input, output,session) {
 
-  source("config.R")
   source("./OCDriverLoader.R", local = F)
   source("server_visu.R",local = T)
   source("server_Fine_control.R",local = T)

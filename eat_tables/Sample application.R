@@ -12,6 +12,7 @@
 # 
 # }'
 
+sampleApplicationDriver = ocDriver$get_sample_application_driver()
 
 # generates Table withe applied volume
 appli_Table<-function(step){
@@ -80,60 +81,20 @@ generate_gcode<-function(step){
   L=table[table[,1] == "Pulse delay [µs] (<20)",2]
   nbr_band = table[table[,1] == "Number of bands",2]
 
-
-  ## deal with plate dimension
-  dist_x = xlevel+dist_x + 50-plate_x/2
-  dist_y = ylevel+dist_y + 50-plate_y/2
-  
-
-  #gcode start
-  start_gcode = c("G28 X0",
-                  "G28 Y0",
-                  "G21",
-                  "G90",
-                  paste0("G1 F",60*speed),
-                  paste0("G1 X",dist_x) 
-  )
-  #gcode end
-  end_gcode = c("G28 X0",
-                "G28 Y0",
-                "M84 ")
-
-  Vol_band=band_length/reso*I*Drop_vol/1000
-  
-  #course
-  band_start=seq(from=dist_y,by=gap,length.out = nbr_band)
-  band_end=seq(from=dist_y+gap,by=gap,length.out = nbr_band)
-  nozzle= step$appli_table$nozzle
-  repSpray=step$appli_table$Vol_real/Vol_band
-  
-  gcode=c()
-  #gcode creator
-  for (j in seq(nbr_band))
-  {
-    # calculate each nozzle as binary Code because of the gcode 
-    #S= 3 -> 000000000011 -> nozzle 1 and 2 fire
-    # nozzle 3 -> 000000000100 -> S= 4
-    S = rep(0,12)
-    for(l in seq(12)){if(l %in% as.numeric(nozzle[j])){S[l] = 1}};
-    S=sum(2^(which(S== 1)-1))
+  config = list(
+      bandLength = band_length,
+      distY = dist_y,
+      distX = dist_x,
+      plateY = plate_y,
+      plateX = plate_x,
+      gap = gap,
+      numberOfFire = I,
+      steed = speed,
+      pulseDelay = L,
+      numberOfBands = nbr_band)
     
-    # shift because of selected nozzle
-    shift = round((1 - nozzle[j])*reso,3)
-    # gcode per band
-    number_of_steps= band_length/reso
-    gcode_band= c()
-    for (i in seq(from=band_start[j]+shift, by=reso, length.out = number_of_steps))
-    {
-    gcode_band=c(gcode_band,paste0("G1 Y",i),                    # go in Position
-                                  "M400",                        # wait until fire
-                            paste0("M700 P0 I",I," L",L," S",S), # fire 
-				  "M400")			 # wait
-    }
-    # repeat gcode per band to applie Vol_wish
-    n=as.integer(repSpray[j])
-    gcode=c(gcode,rep(gcode_band,n))
-  }
+  gcode  <- sampleApplicationDriver$generate_gcode(config)
+   
   gcode=c(start_gcode,gcode,end_gcode)
   return(gcode)
 }
@@ -148,7 +109,9 @@ plot_step<-function(step) {
   dist_y = table[table[,1] == "application position Y [mm]",2]
   plate_y = table[table[,1] == "Plate Y [mm]",2]
   plate_x = table[table[,1] == "Plate X [mm]",2]    
-  
+
+
+    
   ## deal with plate dimension
   dist_x = dist_x + 50-plate_x/2
   dist_y = dist_y + 50-plate_y/2

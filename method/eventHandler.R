@@ -11,7 +11,8 @@ Method_feedback = reactiveValues(text="No feedback yet")
 
 ## methods
 observeEvent(input$Method_step_add,{
-  step = length(Method$control)+1
+    print("Method_step_add")
+    step = length(Method$control)+1
   data = read.table(paste0("tables/",input$Method_step_new,".csv"),header=T,sep=";")
   Method$control[[step]] = list(type=input$Method_step_new,
                                 table=data,                          
@@ -29,7 +30,8 @@ observeEvent(input$Method_step_add,{
 })
 
 observeEvent(input$Method_step_delete,{
-  if(length(Method$control) == 0){
+    print("Method_step_delete")
+    if(length(Method$control) == 0){
     shinyalert(title = "stupid user",text = "no step to delete",type="error",closeOnClickOutside = T, showCancelButton = F)
   }else{
     Method_feedback$text = paste0("Step ",input$Method_steps," deleted")
@@ -41,7 +43,8 @@ observeEvent(input$Method_step_delete,{
 })
 
 observeEvent(input$Method_steps,{
-  step <- as.numeric(input$Method_steps)
+    print("Method_steps")
+    step <- as.numeric(input$Method_steps)
   if(step > 0){
     path=paste0("eat_tables/",Method$control[[step]]$type,".R")
     source(path)
@@ -55,7 +58,8 @@ observeEvent(input$Method_steps,{
 
 ## start
 observeEvent(input$Method_step_exec,{
-  step = as.numeric(input$Method_steps)
+    print("Method_step_exec")
+    step = as.numeric(input$Method_steps)
   if(Method$control[[step]]$type != "Documentation"){
       # read the gcode
       Method_file = paste0("gcode/","Method",".gcode")
@@ -92,7 +96,8 @@ output$Method_gcode_download <- downloadHandler(
 ## save
 
 observeEvent(input$Method_save,{
-  if(paste0(input$Method_save_name,".Rdata") %in% dir(METHOD_DIR)){
+    print("Method_save")
+    if(paste0(input$Method_save_name,".Rdata") %in% dir(METHOD_DIR)){
     shinyalert(title = "Method exist",text = "Overwrite",type="warning",closeOnClickOutside = T, showCancelButton = T,
                callbackR = function(x){
                  if(x != FALSE){
@@ -117,7 +122,8 @@ observeEvent(input$Method_save,{
   
 })
 observeEvent(input$Method_load,{
-  withProgress(message = "Processing", value=0, {
+    print("Method_load")
+    withProgress(message = "Processing", value=0, {
       load(paste0(METHOD_DIR,input$Method_load_name))
     Method$settings = settings
     for (step in 1:length(settings)){
@@ -137,6 +143,7 @@ observeEvent(input$Method_load,{
 
 
 observeEvent(input$Method_step_update,{
+    print("Method_step_update")
   step = as.numeric(input$Method_steps)
   #update Settings
   data = hot_to_r(input$Method_step_option)

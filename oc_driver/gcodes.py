@@ -1,3 +1,5 @@
+def new_lines(arr):
+    return "\n".join(arr)
 
 GO  = "G1"
 
@@ -19,6 +21,12 @@ GO_TO_ORIGIN_X = "G28 X0"
 
 GO_TO_ORIGIN_Y = "G28 Y0"
 
+SET_UNITS_IN_MM = "G21"
+
+STOP_IDLE_HOLD = "M84"
+
+END = new_lines([GO_TO_ORIGIN_X, GO_TO_ORIGIN_Y, STOP_IDLE_HOLD ])
+
 def goXMinus(steps = "5"):
     return GO_X_MINUS + steps
 
@@ -30,5 +38,18 @@ def goYMinus(steps = "5"):
 
 def goYPlus(steps = "5"):
     return GO_Y + steps
+
+def go_speed(speed):
+    return GO+" F "+speed
+
+def start(speed, distX):
+    return new_lines([
+        GO_TO_ORIGIN,
+        GO_TO_ORIGIN_Y,
+        SET_UNITS_IN_MM,
+        SET_ABSOLUTE_POS,
+        go_speed(speed),
+        GO_X + distX]) # maybe needs a refactor
+
 
 
