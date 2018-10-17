@@ -33,6 +33,10 @@ __pycache__
 # RStudio files
 .Rproj.user/
 
+#R history files
+.Rhistory
+
+
 # produced vignettes
 vignettes/*.html
 vignettes/*.pdf
