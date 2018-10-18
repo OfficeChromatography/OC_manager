@@ -1,9 +1,9 @@
-import gcodes as GCODES 
+from oc_driver import gcodes as GCODES 
 
 class FineControlDriver:
 
     def __init__(self, communication):
-        self.communication = communication
+        self.compFinemunication = communication
 
     def goXLeft(self):
         self.communication.send( [
