@@ -1,4 +1,4 @@
-from oc_driver.printrun import printcore, gcoder
+from printrun import printcore, gcoder
 
 import time
 

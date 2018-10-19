@@ -1,8 +1,8 @@
-from oc_driver import FineControlDriver
-from oc_driver import SampleApplicationDriver 
-from oc_driver.plate_config import Plate
-from oc_driver.communication import Communication
-from oc_driver.print_head_config import PrinterHead
+import FineControlDriver
+import SampleApplicationDriver 
+
+from communication import Communication
+
     # TODO default values!
 
 DEFAULT_CONFIG = {
@@ -36,29 +36,10 @@ class OCDriver:
         
 
     
-    def get_sample_application_driver(self, band_config, plate_config, head_config):
-        """
-        plate_config: dict {
-        'gap': number,              plate
-        'plateX': number,           plate
-        'plateY': number,           plate
-        'bandLength': number,       plate
-        'distY': number,            plate
-        'distX': number,            plate 
-        'drop_vol' : float          plate }
-
-        head_config: dict {
-        'speed': number,            head
-        'numberOfFire': number,     head
-        'pulseDelay': number,       head
-        }
-        """
-        calibration_x = self.config.get('calibration_x')
-        calibration_y = self.config.get('calibration_y')
-        plate = Plate(plate_config, calibration_x, calibration_y)
-
-        printer_head = PrinterHead(head_config)
-        return SampleApplicationDriver.SampleApplicationDriver(self.communication, band_config, plate, printer_head)
+    def get_sample_application_driver(self):
+        return SampleApplicationDriver.SampleApplicationDriver(communication=self.communication, \
+                 calibration_x=self.config.get('calibration_x'), \
+                 calibration_y=self.config.get('calibration_y'))
     
 
                            

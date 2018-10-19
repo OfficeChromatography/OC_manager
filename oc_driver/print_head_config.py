@@ -7,7 +7,7 @@ class Nozzle:
 
     def get_shift(self, printer_head_resolution):
         "calculates the nozzle's shift (relative offset to next nozzle), returns float"
-        return float(round((1- self.nozzle_id * printer_head_resolution), 3))
+        return float(round(( ( 12 - self.nozzle_id ) * printer_head_resolution), 3))
 
     def get_address(self):
         "get binary address of nozzle as a string"
@@ -20,13 +20,13 @@ class PrinterHead:
 
     # setup the nozzle channels as wanted. Checkout the binary signal documentation for your print head
     NOZZLE_CHANNEL = {
-        1 : format(1, '016b'),
-        2 : format(2, '016b'),
-        3 : format(4, '016b'),
-        4 : format(8, '016b'),
-        5 : format(16, '016b'),
-        6 : format(32, '016b'),
-        7 : format(64, '016b'),
+        1 : "1",
+        2 : "2",
+        3 : "4",
+        4 : "8",
+        5 : "16",
+        6 : "32",
+        7 : "64"
     }
 
             
@@ -83,4 +83,4 @@ class PrinterHead:
 
     def get_number_of_fire(self):
         "number of printing actions on each print position"
-        return self.get_number_of_fire
+        return self.number_of_fire

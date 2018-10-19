@@ -13,16 +13,24 @@ class Plate:
         'relative_band_distance_x': number,            
         'drop_vol' : float          
         """
+        self.calibration_x = calibration_x
+        self.calibration_y = calibration_y 
+
+        
         self.gap = plate_config.get('gap')
         self.plate_width_x = plate_config.get('plate_width_x')
         self.plate_height_y = plate_config.get('plate_height_y')
         self.relative_band_distance_x = plate_config.get('relative_band_distance_x')  
         self.relative_band_distance_y = plate_config.get('relative_band_distance_y') 
-        self.calibration_x = calibration_x
-        self.calibration_y = calibration_y 
         self.drop_vol = plate_config.get('drop_vol')  
         self.band_length = plate_config.get('band_length')
 
+    def get_calibration_x(self):
+        return self.calibration_x
+    
+    def get_calibration_y(self):
+        return self.calibration_y
+    
     def get_band_offset_x(self):
         'band offset from the plate in x direction'
         return self.calibration_x + \
@@ -45,3 +53,5 @@ class Plate:
     def get_drop_volume(self):
         "volume for each liquid drop"
         return self.drop_vol
+
+

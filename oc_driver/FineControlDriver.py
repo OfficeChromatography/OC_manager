@@ -1,4 +1,4 @@
-from oc_driver import gcodes as GCODES 
+import gcodes as GCODES 
 
 class FineControlDriver:
 

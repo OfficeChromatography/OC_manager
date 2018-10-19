@@ -1,4 +1,4 @@
-from oc_driver import gcodes as GCODES 
+import gcodes as GCODES 
 import numpy as np
 
 class Band:
@@ -22,7 +22,7 @@ class Band:
     
     
 class BandConfig:
-    def __init__(self, band_config_dict, printer_head, plate):
+    def __init__(self, band_config_dict, printer_head, platkae):
         """
 
         represents which band should use which nozzle in order to apply a given ammount 
@@ -59,7 +59,7 @@ class BandConfig:
     def calculate_number_of_reps(self, band_config):
         "Calculates the number of application per band by a given volume"
         volume_set = band_config.get('volume_set')
-        return round(volume_set / self.volume_per_band())
+        return round(float(volume_set) / self.volume_per_band())
         
     
     def init_bands(self):
@@ -80,19 +80,21 @@ class BandConfig:
     
     def to_gcode(self):
         "generates the gcode containing commands for applying bands of liquid on a plate"
-        step_width = self.plate.get_band_length / self.printer_head.get_resolution()
         fire_rate = self.printer_head.get_number_of_fire()
         pulse_delay = self.printer_head.get_pulse_delay()
+        step_range = self.printer_head.get_step_range()
         gcode = []
-        for idx, band in self.bands:
+        for idx, band in enumerate(self.bands):
+            gcode_band = []
             start = band.get_start()
             end = band.get_end()
-            drops = np.arange(start, end, step_width)
+            drops = np.arange(start, end, step_range)
             nozzle_id = self.band_config[idx].get('nozzle_id')
             address = self.printer_head.get_address_for_nozzle(nozzle_id)
             for drop_position in drops:
-                gcode.append(GCODES.goYPlus(drop_position))
-                gcode.append(GCODES.fire(fire_rate, address, pulse_delay))
-            gcode = gcode * band.get_number_of_repitition()
+                drop_position_round = round(drop_position,3)
+                gcode_band.append(GCODES.goYPlus(drop_position_round))
+                gcode_band.append(GCODES.nozzle_fire(fire_rate, address, pulse_delay))
+            gcode = gcode + gcode_band * int(band.get_number_of_repitition()) 
                 
-        return gcode
+        return GCODES.new_lines(gcode)
