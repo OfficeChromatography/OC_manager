@@ -96,8 +96,7 @@ output$Method_control_infos = renderUI({
   if(!is.null(input$Method_steps)){
     tagList(
         column(6, plotOutput("Method_plot",width="400px",height="400px")),
-        column(6, rHandsontableOutput("band_config")),
-      
+        column(6, rHandsontableOutput("band_config"))
     )
   }
 })
@@ -147,14 +146,15 @@ output$plate_config = renderRHandsontable({
 })
 
 output$band_config = renderRHandsontable({
-#    if(!is.null(input$Method_steps)) {
-#        index = as.numeric(input$Method_steps)
+    if(!is.null(input$Method_steps)) {
+        index = as.numeric(input$Method_steps)
         
-#        config = Method$control[[index]]$band_config
-#        print(config)
-     #   rhandsontable(data.frame(config), rowHeaderWidth = 200) %>%
-     #       hot_cols(colWidth = 100)
- #   }
+        config = Method$control[[index]]$band_config
+        print(typeof(config))
+        frame = as.data.frame(matrix(unlist(config), nrow=length(unlist(config[1]))))
+        rhandsontable(t(frame), rowHeaderWidth = 200) %>%
+            hot_cols(colWidth = 100)
+    }
 })
 
 output$Method_load_names = renderUI({
