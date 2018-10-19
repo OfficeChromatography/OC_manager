@@ -6,7 +6,7 @@ output$Method_control_1 = renderUI({
         fluidRow(
         column(1, actionButton("Method_step_add","",icon=icon("plus"))),
         column(1,offset=1,actionButton("Method_step_delete","",icon = icon("window-close")))),
-        fluidRow(column(10,ofsett=1,selectizeInput("Method_step_new","",choices = steps_choices, width = "100%"))),
+        fluidRow(column(10,ofsett=1,selectizeInput("Method_step_new","",choices = c("Sample Application"), width = "100%"))),
         fluidRow(
         sidebarPanel( id = "Steps",style = "overflow-y:scroll; height: 175px; position:relative; ", width = 12,
           uiOutput("Method_control_methods")))
@@ -41,11 +41,11 @@ output$Method_control_1 = renderUI({
 
 output$Method_control_methods = renderUI({
   validate(
-    need(length(Method$settings) > 0 ,"Add a step or load a saved method")
+    need(length(Method$control) > 0 ,"Add a step or load a saved method")
   )
   # input$Method_step_add
-  truc = seq(length(Method$settings))
-  names(truc) = paste0("Step ",seq(length(Method$settings)),": ",lapply(Method$settings,function(x){x$type}))
+  truc = seq(length(Method$control))
+  names(truc) = paste0("Step ",truc,": ",lapply(Method$control,function(x){x$type}))
   radioButtons("Method_steps","Steps:",choices = truc,selected = Method$selected)
 })
 
@@ -66,16 +66,18 @@ output$Method_control_gcode = renderUI({
 
 ## settings
 output$Method_control_settings = renderUI({
-  validate(
+
+    print("render ui")
+    validate(
     need(length(Method$control) > 0 ,"Add a step or load a saved method")
-  )
+    )
+
   if(!is.null(input$Method_steps)){
     tagList(
       fluidPage(
         fluidRow(
-          column(6, rHandsontableOutput("Method_step_option")),
-          column(6,
-                 rHandsontableOutput("Method_step_appli_table")),
+          column(6, rHandsontableOutput("printer_head_config")),
+          column(6, rHandsontableOutput("plate_config")),
           fluidRow(
             column(5,offset=7, actionButton("Method_step_update","Update settings",icon=icon("gears"))))
           
@@ -93,27 +95,28 @@ output$Method_control_infos = renderUI({
   )
   if(!is.null(input$Method_steps)){
     tagList(
-      column(12,
-        plotOutput("Method_plot",width="400px",height="400px"))
+        column(6, plotOutput("Method_plot",width="400px",height="400px")),
+        column(6, rHandsontableOutput("band_config")),
+      
     )
   }
 })
 
 output$Method_plot = renderPlot({
-  validate(
-    need(length(Method$control) > 0 ,"add a step or load a saved method")
-  )
-  if(!is.null(input$Method_steps)){
-    step = as.numeric(input$Method_steps)
-    path=paste0("eat_tables/",Method$control[[step]]$type,".R")
-    source(path)
-    plot_step(Method$control[[step]])
+  #validate(
+  #  need(length(Method$control) > 0 ,"add a step or load a saved method")
+  #)
+  #if(!is.null(input$Method_steps)){
+  #  step = as.numeric(input$Method_steps)
+  #  path=paste0("eat_tables/",Method$control[[step]]$type,".R")
+  #  source(path)
+  #  plot_step(Method$control[[step]])
     
-  }
-  else
-  {
-    plot(x=1,y=1,type="n",main="Update to visualize")
-  }
+  #}
+  #else
+  #{
+  #  plot(x=1,y=1,type="n",main="Update to visualize")
+  #}
 })
 output$Method_step_feedback = renderText({
   validate(
@@ -122,22 +125,36 @@ output$Method_step_feedback = renderText({
   Method$control[[as.numeric(input$Method_steps)]]$info
 })
 
-output$Method_step_option = renderRHandsontable({
+output$printer_head_config = renderRHandsontable({
   validate(
-    need(length(Method$control) > 0 ,"add a step or load a saved method")
+    need(length(Method$control) > 0 ,"Please add a new step (for example: Sample Application)")
   )
-  data = Method$control[[as.numeric(input$Method_steps)]]$table
-  data$Value = as.numeric(data$Value)
-  rhandsontable(data)
+  index = as.numeric(input$Method_steps)
+  config = Method$control[[index]]$printer_head_config
+  rhandsontable(t(data.frame(config)), rowHeaderWidth = 200) %>%
+      hot_cols(colWidth = 100)
 })
 
-output$Method_step_appli_table = renderRHandsontable({
-  if(!is.null(input$Method_steps)){
-  data = Method$control[[as.numeric(input$Method_steps)]]$appli_table
-  rhandsontable(data)%>%
-    hot_col("Vol_real", readOnly = TRUE)%>%
-    hot_col("unit", readOnly = TRUE)
-  }
+output$plate_config = renderRHandsontable({
+    if(!is.null(input$Method_steps)) {
+        index = as.numeric(input$Method_steps)
+        
+        config = Method$control[[index]]$plate_config
+        
+        rhandsontable(t(data.frame(config)), rowHeaderWidth = 200) %>%
+            hot_cols(colWidth = 100)
+    }
+})
+
+output$band_config = renderRHandsontable({
+#    if(!is.null(input$Method_steps)) {
+#        index = as.numeric(input$Method_steps)
+        
+#        config = Method$control[[index]]$band_config
+#        print(config)
+     #   rhandsontable(data.frame(config), rowHeaderWidth = 200) %>%
+     #       hot_cols(colWidth = 100)
+ #   }
 })
 
 output$Method_load_names = renderUI({

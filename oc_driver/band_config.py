@@ -22,7 +22,7 @@ class Band:
     
     
 class BandConfig:
-    def __init__(self, band_config_dict, printer_head, platkae):
+    def __init__(self, band_config_dict, printer_head, plate):
         """
 
         represents which band should use which nozzle in order to apply a given ammount 

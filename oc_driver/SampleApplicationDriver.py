@@ -64,6 +64,15 @@ class SampleApplicationDriver:
         self.band_config = BandConfig(band_config, self.printer_head, self.plate)
         self.communication = communication
 
+    def get_default_printer_head_config(self):
+        return self.HEAD_CONFIG_DEFAULT
+
+    def get_default_plate_config(self):
+        return self.PLATE_CONFIG_DEFAULT
+
+    def get_default_band_config(self):
+        return self.BAND_CONFIG_DEFAULT
+        
     def set_configs(self, band_config=BAND_CONFIG_DEFAULT , \
                  plate_config=PLATE_CONFIG_DEFAULT, \
                  head_config=HEAD_CONFIG_DEFAULT):
