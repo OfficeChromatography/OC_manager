@@ -148,8 +148,9 @@ output$plate_config = renderRHandsontable({
 output$band_config = renderRHandsontable({
     if(!is.null(input$Method_steps)) {
         index = as.numeric(input$Method_steps)
-        
+
         config = Method$control[[index]]$band_config
+        save(config,file=paste0("conf.Rdata"))
         print(typeof(config))
         frame = as.data.frame(matrix(unlist(config), nrow=length(unlist(config[1]))))
         rhandsontable(t(frame), rowHeaderWidth = 200) %>%

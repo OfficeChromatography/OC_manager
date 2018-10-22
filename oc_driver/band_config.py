@@ -22,7 +22,9 @@ class Band:
     
     
 class BandConfig:
-    def __init__(self, band_config_dict, printer_head, plate):
+    
+
+    def __init__(self, create_config,  printer_head, plate):
         """
 
         represents which band should use which nozzle in order to apply a given ammount 
@@ -36,9 +38,24 @@ class BandConfig:
         """
         self.printer_head = printer_head
         self.plate = plate
-        self.band_config = band_config_dict
+        self.band_config = self.to_band_config(create_config)
         self.init_bands()
 
+    def set_band_config(self, band_config):
+        self.band_config = band_config
+        self.init_bands()
+        
+    def to_band_config(self, create_config):
+        "Transforms the create_config into a list list"
+        bands = []
+        for i in range(create_config['number_of_bands']):
+            bands.append({
+                'nozzle_id' : create_config['default_nozzle_id'],
+                'label' : create_config['default_label'],
+                'volume_set': self.volume_per_band()
+            })
+        return bands
+        
     def volume_per_band(self):
         "how much volume should be applied on a single band"
         return self.plate.get_band_length() / \
@@ -66,6 +83,7 @@ class BandConfig:
         "initializes all bands given by a band configuration"
         bands = []
         BEGIN_POS = 0
+        print("bandC", self.band_config)
         band_start = self.calculate_band_start(BEGIN_POS, self.band_config[0])
         band_end = self.calculate_band_end_from_start(band_start)
         for band_config in self.band_config:

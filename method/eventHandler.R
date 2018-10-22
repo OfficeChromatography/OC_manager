@@ -74,6 +74,12 @@ output$Method_gcode_download <- downloadHandler(
 ## save
 
 observeEvent(input$Method_save,{
+    filePath = paste0("./method/",input$Method_save_name,".Rdata")
+    print("????")
+    print(Method$control)
+    control = Method$control
+    save(control,file=filePath)
+    Method_feedback$text = paste0("Saved ", filePath)
 })
 observeEvent(input$Method_load,{
 })
