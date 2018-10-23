@@ -130,7 +130,7 @@ output$printer_head_config = renderRHandsontable({
   )
   index = as.numeric(input$Method_steps)
   config = Method$control[[index]]$printer_head_config
-  rhandsontable(t(data.frame(config)), rowHeaderWidth = 200) %>%
+  rhandsontable(data.frame(t(t(config))), rowHeaderWidth = 0) %>%
       hot_cols(colWidth = 100)
 })
 
@@ -139,8 +139,12 @@ output$plate_config = renderRHandsontable({
         index = as.numeric(input$Method_steps)
         
         config = Method$control[[index]]$plate_config
-        
-        rhandsontable(t(data.frame(config)), rowHeaderWidth = 200) %>%
+
+        frame = data.frame(stack(config))
+        beautyframevals = frame['values']
+        beautyframeind = frame['ind']
+        beautyframe = data.frame(beautyframeind, beautyframevals)
+        rhandsontable(beautyframe, idvar="drop_volume", rowHeaderWidth = 0) %>%
             hot_cols(colWidth = 100)
     }
 })
@@ -148,13 +152,11 @@ output$plate_config = renderRHandsontable({
 output$band_config = renderRHandsontable({
     if(!is.null(input$Method_steps)) {
         index = as.numeric(input$Method_steps)
-
         config = Method$control[[index]]$band_config
         save(config,file=paste0("conf.Rdata"))
-        print(typeof(config))
         frame = as.data.frame(matrix(unlist(config), nrow=length(unlist(config[1]))))
-        rhandsontable(t(frame), rowHeaderWidth = 200) %>%
-            hot_cols(colWidth = 100)
+        rhandsontable(t(frame), rowHeaderWidth = 0) %>%
+            hot_cols(colWidth = 0)
     }
 })
 

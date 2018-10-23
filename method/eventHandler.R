@@ -13,16 +13,26 @@ showInfo  <- function(msg) {
     Method_feedback$text = msg
 }
 
+getSelectedStep  <- function(){
+    return (as.numeric(input$Method_steps))
+}
+
+setApplicationConf  <- function(printer_head_config, plate_config, band_config, step){
+
+    Method$control[[step]] = list(type="Sample Application",
+                                  printer_head_config=printer_head_config,
+                                  plate_config = plate_config,
+                                  band_config = band_config$to_band_list())
+
+}
+# todo refactor
 renderSampleApplication  <- function(){
     step = length(Method$control) + 1
     default_printer_head_config = appl_driver$get_default_printer_head_config()
     default_plate_config = appl_driver$get_default_plate_config()
     default_band_config = appl_driver$create_band_config(5)
 
-    Method$control[[step]] = list(type="Sample Application",
-                                  printer_head_config=default_printer_head_config,
-                                  plate_config = default_plate_config,
-                                  band_config = default_band_config)
+    setApplicationConf(default_printer_head_config, default_plate_config, default_band_config, step)
     
     showInfo("Please configure your sample application proccess")
 
@@ -75,7 +85,6 @@ output$Method_gcode_download <- downloadHandler(
 
 observeEvent(input$Method_save,{
     filePath = paste0("./method/",input$Method_save_name,".Rdata")
-    print("????")
     print(Method$control)
     control = Method$control
     save(control,file=filePath)
@@ -86,8 +95,19 @@ observeEvent(input$Method_load,{
 
 
 
-observeEvent(input$Method_step_update,{})
 
+observeEvent(input$Method_step_update,{
+    step = getSelectedStep()
 
+    print(input$plate_config)
 
-
+    plate_conf = hot_to_r(input$plate_config)
+    head_conf = hot_to_r(input$printer_head_config)
+    
+    Method$control[[step]]$plate_config = plate_conf
+    Method$control[[step]]$head_config = head_conf
+        
+    appl_driver$set_configs(plate_conf, head_conf)
+    band_conf = appl_driver$create_band_config(5)
+    setApplicationConf(head_conf, plate_conf, band_conf, step)
+})
