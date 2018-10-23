@@ -17,7 +17,7 @@ renderSampleApplication  <- function(){
     step = length(Method$control) + 1
     default_printer_head_config = appl_driver$get_default_printer_head_config()
     default_plate_config = appl_driver$get_default_plate_config()
-    default_band_config = appl_driver$get_default_band_config()
+    default_band_config = appl_driver$create_band_config(5)
 
     Method$control[[step]] = list(type="Sample Application",
                                   printer_head_config=default_printer_head_config,

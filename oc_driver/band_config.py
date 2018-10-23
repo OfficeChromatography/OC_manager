@@ -2,7 +2,11 @@ import gcodes as GCODES
 import numpy as np
 
 class Band:
-    def __init__(self, start, end, number_of_reptitions, label):
+    def __init__(self, start, end, number_of_reptitions,\
+                 label, volume_set, nozzle_id, volume_real):
+        self.volume_real = volume_real
+        self.nozzle_id = nozzle_id
+        self.volume_set = volume_set
         self.start = start
         self.end = end
         self.number_of_reptition = number_of_reptitions
@@ -19,6 +23,17 @@ class Band:
     def get_end(self):
         "3d-printer position for band end"
         return self.end
+
+    def get_volume_real(self):
+        return self.volume_set * self.number_of_reptition
+
+    def get_nozzle_id(self):
+        return self.nozzle_id
+
+    def to_dict(self):
+        return {'start': self.start, 'end': self.end, \
+                'label' : self.label, 'nozzle_id': self.nozzle_id, \
+                'volume_set': self.volume_set, 'volume_real': self.volume_real}
     
     
 class BandConfig:
@@ -38,17 +53,17 @@ class BandConfig:
         """
         self.printer_head = printer_head
         self.plate = plate
-        self.band_config = self.to_band_config(create_config)
-        self.init_bands()
+        band_list = self.create_conf_to_band_list(create_config)        
+        self.build_bands_from_band_list(band_list)
 
-    def set_band_config(self, band_config):
-        self.band_config = band_config
-        self.init_bands()
+    def band_list_to_bands(self, band_list):
+        self.build_bands_from_band_list(band_list)
         
-    def to_band_config(self, create_config):
+    def create_conf_to_band_list(self, create_config):
         "Transforms the create_config into a list list"
         bands = []
-        for i in range(create_config['number_of_bands']):
+        number_of_bands = int(create_config['number_of_bands'])
+        for i in range(number_of_bands):
             bands.append({
                 'nozzle_id' : create_config['default_nozzle_id'],
                 'label' : create_config['default_label'],
@@ -65,35 +80,54 @@ class BandConfig:
 
     def calculate_band_end_from_start(self, start):
         "aux function to calculate the next 3d printer end pos"
-        return start + self.plate.get_band_length() + self.plate.get_gap()
+        return start + self.plate.get_band_length()
 
-    def calculate_band_start(self, start, band_config):
-        "aux function to calculate the next 3d printer start pos"
-        nozzle_id = band_config.get('nozzle_id')
-        shift = self.printer_head.get_shift_for_nozzle(nozzle_id)
-        return (start + self.plate.get_band_offset_y() + shift)
-
-    def calculate_number_of_reps(self, band_config):
+    def calculate_number_of_reps(self, volume_set):
         "Calculates the number of application per band by a given volume"
-        volume_set = band_config.get('volume_set')
         return round(float(volume_set) / self.volume_per_band())
-        
+
+    def calculate_volume_real(self, number_of_reptitions):
+        "Calculates the applied volume depending on volume_per_band"
+        return number_of_reptitions * self.volume_per_band()
+
+    def calculate_start_positions(self, number_of_bands):
+
+        start = self.plate.get_band_offset_y()
+        plate = self.plate 
+        start_pos_list = [start]
+        for i in range(number_of_bands):
+            start += plate.get_band_length() + plate.get_gap()
+            start_pos_list.append(start)
+
+        return start_pos_list
     
-    def init_bands(self):
+    def build_bands_from_band_list(self, band_list):
         "initializes all bands given by a band configuration"
+        if len(band_list) <= 0:
+            return 
         bands = []
-        BEGIN_POS = 0
-        print("bandC", self.band_config)
-        band_start = self.calculate_band_start(BEGIN_POS, self.band_config[0])
-        band_end = self.calculate_band_end_from_start(band_start)
-        for band_config in self.band_config:
-            number_of_reptitions = self.calculate_number_of_reps(band_config)
+        band_start_list = self.calculate_start_positions(len(band_list))
+
+        for idx, band_config in enumerate(band_list):
+            nozzle_id = band_config.get('nozzle_id')
+            shift = self.printer_head.get_shift_for_nozzle(nozzle_id)
+            band_start = band_start_list[idx] + shift
+            band_end = self.calculate_band_end_from_start(band_start)
+            volume_set = band_config.get('volume_set')
+            number_of_reptitions = self.calculate_number_of_reps(volume_set)
+            volume_real = self.calculate_volume_real(number_of_reptitions)
             label = band_config.get('label')
             # add new band
-            bands.append(Band(band_start, band_end, number_of_reptitions, label))
-            band_start = self.calculate_band_start(band_start, band_config)
-            band_end = self.calculate_band_end_from_start(band_start)
+            bands.append(Band(band_start, band_end, number_of_reptitions, \
+                              label, volume_set, nozzle_id, volume_real))
         self.bands = bands
+
+    def to_band_list(self):
+        band_list = []
+        for band in self.bands:
+            band_list.append(band.to_dict())
+        print(band_list)
+        return band_list
             
     
     def to_gcode(self):
@@ -106,8 +140,8 @@ class BandConfig:
             gcode_band = []
             start = band.get_start()
             end = band.get_end()
-            drops = np.arange(start, end, step_range)
-            nozzle_id = self.band_config[idx].get('nozzle_id')
+            drops = np.arange(start, end + step_range, step_range)
+            nozzle_id = band.get_nozzle_id()
             address = self.printer_head.get_address_for_nozzle(nozzle_id)
             for drop_position in drops:
                 drop_position_round = round(drop_position,3)
