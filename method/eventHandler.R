@@ -90,6 +90,10 @@ observeEvent(input$Method_steps,{
 
 ## start
 observeEvent(input$Method_step_exec,{
+    bandlistTable = hot_to_r(input$band_config)
+    bandlistpy = bandConfSettingsTableFormatToPython(bandlistTable)
+    appl_driver$set_band_config(bandlistpy)
+    appl_driver$generate_gcode_and_send()
 })
 
 
@@ -117,6 +121,7 @@ observeEvent(input$Method_save,{
     Method_feedback$text = paste0("Saved ", filePath)
 })
 observeEvent(input$Method_load,{
+
 })
 
 
@@ -133,7 +138,8 @@ observeEvent(input$Method_step_update,{
 
     
     appl_driver$setup(pyPlate, pyHead)
-    band_conf = appl_driver$create_band_config(5)
+    numberOfBands = input$number_of_bands
+    band_conf = appl_driver$create_band_config(numberOfBands)
     bandList = band_conf$to_band_list()
 
     setApplicationConf(pyHead, pyPlate, bandList, step)

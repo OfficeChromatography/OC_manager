@@ -9,7 +9,7 @@ ocDriver <- ocdriverPackage$OCDriver() # use default config
 toRSettingsTableFormat <- function(pythonDict, labels, units){
     valuesWithSpaces = as.matrix(stack(pythonDict))[, c(2, 1)][, "values"]
     values = stri_replace_all_charclass(valuesWithSpaces, "\\p{WHITE_SPACE}", "")
-    f = data.frame(values, units)
+    f = data.frame(values, units, stringsAsFactors = FALSE)
     rownames(f) = labels
     return (f)
 }

@@ -66,9 +66,12 @@ class SampleApplicationDriver:
         
     def create_band_config(self, number_of_bands=CREATE_BAND_CONFIG['number_of_bands']):
         create_conf = self.CREATE_BAND_CONFIG
-        create_conf['number_of_bands'] = number_of_bands
+        create_conf['number_of_bands'] = int(number_of_bands)
         self.band_config = BandConfig(create_conf, self.printer_head, self.plate)
         return self.band_config
+
+    def set_band_config(self, band_list):
+        self.band_config.band_list_to_bands(band_list)
         
     def get_default_printer_head_config(self):
         return self.HEAD_CONFIG_DEFAULT
@@ -93,6 +96,10 @@ class SampleApplicationDriver:
         return (gcode_start + "\n" + gcode_for_bands + "\n" + gcode_end)
 
 
+    def generate_gcode_and_send(self):
+        gcode = self.generate_gcode()
+        self.communication.send(gcode)
+    
     
     def volume_per_band(self):
         "how much volume should be applied on a single band"

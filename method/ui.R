@@ -74,17 +74,28 @@ output$Method_control_settings = renderUI({
     tagList(
       fluidPage(
         fluidRow(
-          column(6, rHandsontableOutput("printer_head_config")),
-          column(6, rHandsontableOutput("plate_config")),
-          fluidRow(
-            column(5,offset=7, actionButton("Method_step_update","Update settings",icon=icon("gears"))))
-          
+          column(5, rHandsontableOutput("printer_head_config")),
+          column(5,  rHandsontableOutput("plate_config")),
+          column(2, fluidRow(
+                        getNumberOfBandsButton(),
+                        actionButton("Method_step_update","Update settings",icon=icon("gears"))
+                    )
+                 )
         )
       )
     )
   }
 })
 
+
+getNumberOfBandsButton  <- function(){
+    numberOfBands = input$number_of_bands
+    if (is.null ( numberOfBands )) {
+        numberOfBands = 5    
+
+    }
+    textInput("number_of_bands", "Number of bands", numberOfBands, width="100%")
+}
 
 ## information
 output$Method_control_infos = renderUI({
@@ -129,18 +140,21 @@ output$printer_head_config = renderRHandsontable({
   index = as.numeric(input$Method_steps)
   config = Method$control[[index]]$printer_head_config
   table = toTableHeadRFormat(config)
+
   rhandsontable(table, rowHeaderWidth = 200) %>%
-      hot_cols(colWidth = 100)
+      hot_cols(colWidth = 100)  %>%
+            hot_col("units", readOnly = TRUE) 
 })
 
 output$plate_config = renderRHandsontable({
     if(!is.null(input$Method_steps)) {
-        index = as.numeric(input$Method_steps)
-        
+        index = as.numeric(input$Method_steps)        
         config = Method$control[[index]]$plate_config
         table = toTablePlateRFormat(config)
-        rhandsontable(table, idvar="drop_volume", rowHeaderWidth = 200) %>%
-            hot_cols(colWidth = 100)
+        rhandsontable(table, rowHeaderWidth = 200) %>%
+            hot_cols(colWidth = 100) %>%
+            hot_col("units", readOnly = TRUE) 
+
     }
 })
 
@@ -149,8 +163,15 @@ output$band_config = renderRHandsontable({
         index = as.numeric(input$Method_steps)
         bandlist = Method$control[[index]]$band_config
         table = bandConfToRSettingsTableFormat( bandlist)
+        if (!  is.matrix(table))  {
+            table = t(as.matrix(table))
+
+        }
         rhandsontable(table, rowHeaderWidth = 200) %>%
-            hot_cols(colWidth = 100)
+            hot_cols(colWidth = 100) %>%
+            hot_col("Approximate Band Start" , readOnly = TRUE) %>%
+            hot_col("Approximate Band End", readOnly = TRUE) %>%
+            hot_col("Volume Real", readOnly = TRUE) 
     }
 })
 
