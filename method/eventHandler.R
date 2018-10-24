@@ -26,6 +26,30 @@ setApplicationConf  <- function(printer_head_config, plate_config, band_config, 
 
 }
 
+setApplicationPlot <- function ( plate_config, numberOfBands){
+    plate_width_x = as.numeric (plate_config$plate_width_x)
+    plate_heigth_y = as.numeric (plate_config$plate_heigth_y)
+    band_length = as.numeric (plate_config$band_length)
+    relative_band_distance_x = as.numeric (plate_config$relative_band_distance_x) + 50 - plate_width_x/2
+    relative_band_distance_y = as.numeric (plate_config$relative_band_distance_y) + 50 - plate_heigth_y/2
+    gap = as.numeric (plate_config$gap)
+
+    plot(c(1,100),c(1,100),
+         type="n",xaxt = 'n',
+         xlim=c(0,100),ylim=c(100,0),
+         xlab="",ylab="Application direction (X) ")
+
+    axis(3)
+    mtext("Migration direction (Y)", side=3, line=3)
+    numberOfBands=as.numeric(numberOfBands)
+    for(band in seq(1,numberOfBands)){
+        segments(x0 = relative_band_distance_y,
+                 y0 = relative_band_distance_x+(band-1)*gap,
+                 y1 = relative_band_distance_x+(band-1)*gap+band_length)
+    }
+    symbols(x=50,y=50,add = T,inches = F,rectangles = rbind(c(plate_heigth_y,plate_width_x)),lty=2)
+    }
+
 toTableHeadRFormat  <- function(pythonHeadConf){
     labels = c("Speed", "Pulse Delay", "Number of Fire", "Step Range", "Printer Head Resolution")
     units = c("mm/m", "μs", "", "mm", "mm")
@@ -56,12 +80,14 @@ renderSampleApplication  <- function(){
     headConf = appl_driver$get_default_printer_head_config()
     plateConf = appl_driver$get_default_plate_config()
     bandConf = appl_driver$create_band_config(5)
-    
+
     bandList = bandConf$to_band_list()
-                    
+
     setApplicationConf(headConf, plateConf, bandList, step)
-    
+
     showInfo("Please configure your sample application proccess")
+
+
 
 }
 
@@ -70,9 +96,9 @@ observeEvent(input$Method_step_add,{
 
     if(input$Method_step_new == "Sample Application") {
         renderSampleApplication()
-    } 
-    
-           
+    }
+
+
 })
 
 observeEvent(input$Method_step_delete,{
@@ -132,15 +158,16 @@ observeEvent(input$Method_step_update,{
 
     plateTable = hot_to_r(input$plate_config)
     headTable = hot_to_r(input$printer_head_config)
-    
+
     pyHead = toPythonTableHeadFormat(headTable)
     pyPlate = toPythonTablePlateFormat(plateTable)
 
-    
+
     appl_driver$setup(pyPlate, pyHead)
     numberOfBands = input$number_of_bands
     band_conf = appl_driver$create_band_config(numberOfBands)
     bandList = band_conf$to_band_list()
 
     setApplicationConf(pyHead, pyPlate, bandList, step)
+    setApplicationPlot(pyPlate,numberOfBands)
 })

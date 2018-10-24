@@ -12,7 +12,7 @@ output$Method_control_1 = renderUI({
           uiOutput("Method_control_methods")))
         ),
     box( title = "Save & Load",width = "15%", height = "10%",solidHeader = TRUE,status = "primary",
-         fluidRow(    
+         fluidRow(
          column(9,textInput("Method_save_name","Saving name","Sandbox", width = "100%")),
              column(1,actionButton("Method_save","",icon=icon("save")))
          ),
@@ -29,7 +29,7 @@ output$Method_control_1 = renderUI({
         uiOutput("Method_control_gcode"))
     ),
     column(9,
-    box(title = "Settings", width = "85%", height = "45%",status = "warning",
+    box(title = "Settings", width = "85%", height = "45%",status = "primary",
       uiOutput("Method_control_settings")),
     box(title = "Information", width = "85%", height = "45%",status = "warning",
       uiOutput("Method_control_infos"))
@@ -73,17 +73,19 @@ output$Method_control_settings = renderUI({
   if(!is.null(input$Method_steps)){
     tagList(
       fluidPage(
-        fluidRow(
-          column(5, rHandsontableOutput("printer_head_config")),
-          column(5,  rHandsontableOutput("plate_config")),
-          column(2, fluidRow(
-                        getNumberOfBandsButton(),
-                        actionButton("Method_step_update","Update settings",icon=icon("gears"))
+          fluidRow(
+          column(5,box(title = "Printerhead ", width = "33%", height = "45%",status = "warning",
+          rHandsontableOutput("printer_head_config"))),
+          column(5,box(title = "Plate Design", width = "33%", height = "45%",status = "warning",
+          rHandsontableOutput("plate_config"))),
+          column(2,box(title = "Update Settings", width = "33%", height = "45%",status = "warning",
+              fluidRow( getNumberOfBandsButton()),
+              fluidRow( actionButton("Method_step_update","Update settings",icon=icon("gears")))
                     )
                  )
         )
       )
-    )
+      )
   }
 })
 
@@ -91,7 +93,7 @@ output$Method_control_settings = renderUI({
 getNumberOfBandsButton  <- function(){
     numberOfBands = input$number_of_bands
     if (is.null ( numberOfBands )) {
-        numberOfBands = 5    
+        numberOfBands = 5
 
     }
     textInput("number_of_bands", "Number of bands", numberOfBands, width="100%")
@@ -119,7 +121,7 @@ output$Method_plot = renderPlot({
   #  path=paste0("eat_tables/",Method$control[[step]]$type,".R")
   #  source(path)
   #  plot_step(Method$control[[step]])
-    
+
   #}
   #else
   #{
@@ -143,17 +145,17 @@ output$printer_head_config = renderRHandsontable({
 
   rhandsontable(table, rowHeaderWidth = 200) %>%
       hot_cols(colWidth = 100)  %>%
-            hot_col("units", readOnly = TRUE) 
+            hot_col("units", readOnly = TRUE)
 })
 
 output$plate_config = renderRHandsontable({
     if(!is.null(input$Method_steps)) {
-        index = as.numeric(input$Method_steps)        
+        index = as.numeric(input$Method_steps)
         config = Method$control[[index]]$plate_config
         table = toTablePlateRFormat(config)
         rhandsontable(table, rowHeaderWidth = 200) %>%
             hot_cols(colWidth = 100) %>%
-            hot_col("units", readOnly = TRUE) 
+            hot_col("units", readOnly = TRUE)
 
     }
 })
@@ -171,7 +173,7 @@ output$band_config = renderRHandsontable({
             hot_cols(colWidth = 100) %>%
             hot_col("Approximate Band Start" , readOnly = TRUE) %>%
             hot_col("Approximate Band End", readOnly = TRUE) %>%
-            hot_col("Volume Real", readOnly = TRUE) 
+            hot_col("Volume Real", readOnly = TRUE)
     }
 })
 

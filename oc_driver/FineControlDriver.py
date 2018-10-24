@@ -3,7 +3,7 @@ import gcodes as GCODES
 class FineControlDriver:
 
     def __init__(self, communication):
-        self.compFinemunication = communication
+        self.communication = communication
 
     def goXLeft(self):
         self.communication.send( [
