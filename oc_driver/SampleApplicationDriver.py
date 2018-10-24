@@ -53,13 +53,17 @@ class SampleApplicationDriver:
         }
         """
 
-        calibration_x = calibration_x
-        calibration_y = calibration_y
-        self.plate = Plate(plate_config, calibration_x, calibration_y)
-        self.printer_head = PrinterHead(head_config)
-        self.band_config = self.create_band_config()
+        self.calibration_x = calibration_x
+        self.calibration_y = calibration_y
+        self.setup(plate_config, head_config)
         self.communication = communication
 
+    def setup(self, plate_config, head_config):
+        self.plate = Plate(plate_config, self.calibration_x, self.calibration_y)
+        self.printer_head = PrinterHead(head_config)
+        self.band_config = self.create_band_config()
+        
+        
     def create_band_config(self, number_of_bands=CREATE_BAND_CONFIG['number_of_bands']):
         create_conf = self.CREATE_BAND_CONFIG
         create_conf['number_of_bands'] = number_of_bands

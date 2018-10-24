@@ -17,13 +17,13 @@ class Plate:
         self.calibration_y = calibration_y 
 
         
-        self.gap = plate_config.get('gap')
-        self.plate_width_x = plate_config.get('plate_width_x')
-        self.plate_height_y = plate_config.get('plate_height_y')
-        self.relative_band_distance_x = plate_config.get('relative_band_distance_x')  
-        self.relative_band_distance_y = plate_config.get('relative_band_distance_y') 
-        self.drop_vol = plate_config.get('drop_vol')  
-        self.band_length = plate_config.get('band_length')
+        self.gap = float(plate_config.get('gap'))
+        self.plate_width_x = float(plate_config.get('plate_width_x'))
+        self.plate_height_y = float(plate_config.get('plate_height_y'))
+        self.relative_band_distance_x =float( plate_config.get('relative_band_distance_x')  )
+        self.relative_band_distance_y = float(plate_config.get('relative_band_distance_y') )
+        self.drop_vol = float(plate_config.get('drop_vol')  )
+        self.band_length = float(plate_config.get('band_length'))
 
     def get_calibration_x(self):
         return self.calibration_x

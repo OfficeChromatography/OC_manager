@@ -66,8 +66,6 @@ output$Method_control_gcode = renderUI({
 
 ## settings
 output$Method_control_settings = renderUI({
-
-    print("render ui")
     validate(
     need(length(Method$control) > 0 ,"Add a step or load a saved method")
     )
@@ -130,7 +128,8 @@ output$printer_head_config = renderRHandsontable({
   )
   index = as.numeric(input$Method_steps)
   config = Method$control[[index]]$printer_head_config
-  rhandsontable(data.frame(t(t(config))), rowHeaderWidth = 0) %>%
+  table = toTableHeadRFormat(config)
+  rhandsontable(table, rowHeaderWidth = 200) %>%
       hot_cols(colWidth = 100)
 })
 
@@ -139,12 +138,8 @@ output$plate_config = renderRHandsontable({
         index = as.numeric(input$Method_steps)
         
         config = Method$control[[index]]$plate_config
-
-        frame = data.frame(stack(config))
-        beautyframevals = frame['values']
-        beautyframeind = frame['ind']
-        beautyframe = data.frame(beautyframeind, beautyframevals)
-        rhandsontable(beautyframe, idvar="drop_volume", rowHeaderWidth = 0) %>%
+        table = toTablePlateRFormat(config)
+        rhandsontable(table, idvar="drop_volume", rowHeaderWidth = 200) %>%
             hot_cols(colWidth = 100)
     }
 })
@@ -152,11 +147,10 @@ output$plate_config = renderRHandsontable({
 output$band_config = renderRHandsontable({
     if(!is.null(input$Method_steps)) {
         index = as.numeric(input$Method_steps)
-        config = Method$control[[index]]$band_config
-        save(config,file=paste0("conf.Rdata"))
-        frame = as.data.frame(matrix(unlist(config), nrow=length(unlist(config[1]))))
-        rhandsontable(t(frame), rowHeaderWidth = 0) %>%
-            hot_cols(colWidth = 0)
+        bandlist = Method$control[[index]]$band_config
+        table = bandConfToRSettingsTableFormat( bandlist)
+        rhandsontable(table, rowHeaderWidth = 200) %>%
+            hot_cols(colWidth = 100)
     }
 })
 

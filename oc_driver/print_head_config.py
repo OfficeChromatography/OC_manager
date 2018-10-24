@@ -40,11 +40,11 @@ class PrinterHead:
         'printer_head_resolution: float '
         'step_range'
         } """
-        self.speed = head_config.get('speed')
-        self.number_of_fire = head_config.get('number_of_fire')
-        self.pulse_delay = head_config.get('pulse_delay')
-        self.step_range = head_config.get('step_range')
-        self.printer_head_resolution = head_config.get('printer_head_resolution')
+        self.speed = float(head_config.get('speed'))
+        self.number_of_fire = float(head_config.get('number_of_fire'))
+        self.pulse_delay = float(head_config.get('pulse_delay'))
+        self.step_range = float(head_config.get('step_range'))
+        self.printer_head_resolution = float(head_config.get('printer_head_resolution'))
         self.init_with_default_settings()
 
     def get_pulse_delay(self):

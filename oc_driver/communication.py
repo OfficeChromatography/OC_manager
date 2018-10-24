@@ -28,7 +28,6 @@ class Communication:
         self.printcore.disconnect()
         
     def send_from_file(self, path):
-        print(gcoder)
         gcode = [i.strip() for i in open(path)]
         self.send(gcode)
         # while (.printcore.printing):

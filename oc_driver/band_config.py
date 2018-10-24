@@ -88,7 +88,7 @@ class BandConfig:
 
     def calculate_volume_real(self, number_of_reptitions):
         "Calculates the applied volume depending on volume_per_band"
-        return number_of_reptitions * self.volume_per_band()
+        return round(number_of_reptitions * self.volume_per_band(), 3)
 
     def calculate_start_positions(self, number_of_bands):
 
@@ -109,14 +109,14 @@ class BandConfig:
         band_start_list = self.calculate_start_positions(len(band_list))
 
         for idx, band_config in enumerate(band_list):
-            nozzle_id = band_config.get('nozzle_id')
+            nozzle_id = int(band_config.get('nozzle_id'))
             shift = self.printer_head.get_shift_for_nozzle(nozzle_id)
             band_start = band_start_list[idx] + shift
             band_end = self.calculate_band_end_from_start(band_start)
-            volume_set = band_config.get('volume_set')
+            volume_set = float(band_config.get('volume_set'))
             number_of_reptitions = self.calculate_number_of_reps(volume_set)
             volume_real = self.calculate_volume_real(number_of_reptitions)
-            label = band_config.get('label')
+            label = str(band_config.get('label'))
             # add new band
             bands.append(Band(band_start, band_end, number_of_reptitions, \
                               label, volume_set, nozzle_id, volume_real))
@@ -126,7 +126,6 @@ class BandConfig:
         band_list = []
         for band in self.bands:
             band_list.append(band.to_dict())
-        print(band_list)
         return band_list
             
     

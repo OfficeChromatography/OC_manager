@@ -22,17 +22,44 @@ setApplicationConf  <- function(printer_head_config, plate_config, band_config, 
     Method$control[[step]] = list(type="Sample Application",
                                   printer_head_config=printer_head_config,
                                   plate_config = plate_config,
-                                  band_config = band_config$to_band_list())
+                                  band_config = band_config)
 
 }
+
+toTableHeadRFormat  <- function(pythonHeadConf){
+    labels = c("Speed", "Pulse Delay", "Number of Fire", "Step Range", "Printer Head Resolution")
+    units = c("mm/m", "μs", "", "mm", "mm")
+    return (toRSettingsTableFormat(pythonHeadConf, labels, units))
+}
+
+toTablePlateRFormat  <- function(pythonPlateConf) {
+    labels = c("Relative Band Distance [Y]", "Relative Band Distance [X]", "Plate Height [Y]", "Plate Height [X]", "Drop Volume", "Band Length", "Gap")
+    units = c("mm", "mm", "mm", "mm", "nl", "mm", "mm")
+    return (toRSettingsTableFormat(pythonPlateConf, labels, units))
+}
+
+toPythonTableHeadFormat  <- function(tableHeadConf) {
+    keysTable = c("speed", "pulse_delay"  , "number_of_fire" , "step_range", "printer_head_resolution" )
+    return (settingsTabletoPythonDict(tableHeadConf, keysTable))
+}
+
+toPythonTablePlateFormat  <- function(tablePlateConf) {
+    keysPlate = c("relative_band_distance_y", "relative_band_distance_x"  , "plate_height_y" , "plate_width_x", "drop_vol", "band_length", "gap" )
+    return (settingsTabletoPythonDict(tablePlateConf, keysPlate))
+}
+
+
 # todo refactor
 renderSampleApplication  <- function(){
     step = length(Method$control) + 1
-    default_printer_head_config = appl_driver$get_default_printer_head_config()
-    default_plate_config = appl_driver$get_default_plate_config()
-    default_band_config = appl_driver$create_band_config(5)
 
-    setApplicationConf(default_printer_head_config, default_plate_config, default_band_config, step)
+    headConf = appl_driver$get_default_printer_head_config()
+    plateConf = appl_driver$get_default_plate_config()
+    bandConf = appl_driver$create_band_config(5)
+    
+    bandList = bandConf$to_band_list()
+                    
+    setApplicationConf(headConf, plateConf, bandList, step)
     
     showInfo("Please configure your sample application proccess")
 
@@ -85,7 +112,6 @@ output$Method_gcode_download <- downloadHandler(
 
 observeEvent(input$Method_save,{
     filePath = paste0("./method/",input$Method_save_name,".Rdata")
-    print(Method$control)
     control = Method$control
     save(control,file=filePath)
     Method_feedback$text = paste0("Saved ", filePath)
@@ -99,15 +125,16 @@ observeEvent(input$Method_load,{
 observeEvent(input$Method_step_update,{
     step = getSelectedStep()
 
-    print(input$plate_config)
-
-    plate_conf = hot_to_r(input$plate_config)
-    head_conf = hot_to_r(input$printer_head_config)
+    plateTable = hot_to_r(input$plate_config)
+    headTable = hot_to_r(input$printer_head_config)
     
-    Method$control[[step]]$plate_config = plate_conf
-    Method$control[[step]]$head_config = head_conf
-        
-    appl_driver$set_configs(plate_conf, head_conf)
+    pyHead = toPythonTableHeadFormat(headTable)
+    pyPlate = toPythonTablePlateFormat(plateTable)
+
+    
+    appl_driver$setup(pyPlate, pyHead)
     band_conf = appl_driver$create_band_config(5)
-    setApplicationConf(head_conf, plate_conf, band_conf, step)
+    bandList = band_conf$to_band_list()
+
+    setApplicationConf(pyHead, pyPlate, bandList, step)
 })
