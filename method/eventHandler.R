@@ -24,6 +24,10 @@ setApplicationConf  <- function(printer_head_config, plate_config, band_config, 
                                   plate_config = plate_config,
                                   band_config = band_config)
 
+#    applicationPlot = createApplicationPlot(plate_config, numberOfBands)
+    
+#    Method$pagePlot = applicationPlot
+
 }
 
 setApplicationPlot <- function ( plate_config, numberOfBands){
@@ -119,6 +123,8 @@ observeEvent(input$Method_step_exec,{
     bandlistTable = hot_to_r(input$band_config)
     bandlistpy = bandConfSettingsTableFormatToPython(bandlistTable)
     appl_driver$set_band_config(bandlistpy)
+    gcode = appl_driver$generate_gcode()
+    write(gcode, file="gcodeData.txt")
     appl_driver$generate_gcode_and_send()
 })
 
@@ -169,5 +175,5 @@ observeEvent(input$Method_step_update,{
     bandList = band_conf$to_band_list()
 
     setApplicationConf(pyHead, pyPlate, bandList, step)
-    setApplicationPlot(pyPlate,numberOfBands)
+#    setApplicationPlot(pyPlate,numberOfBands)
 })

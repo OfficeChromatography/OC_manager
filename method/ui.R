@@ -80,7 +80,7 @@ output$Method_control_settings = renderUI({
           rHandsontableOutput("plate_config"))),
           column(2,box(title = "Update Settings", width = "33%", height = "45%",status = "warning",
               fluidRow( getNumberOfBandsButton()),
-              fluidRow( actionButton("Method_step_update","Update settings",icon=icon("gears")))
+              fluidRow( actionButton("Method_step_update","Update settings",icon=icon("gears"), width="100%"))
                     )
                  )
         )

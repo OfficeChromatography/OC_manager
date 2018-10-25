@@ -40,6 +40,7 @@ class Communication:
             print("Start printing...")
             while (self.printcore.printing):
                 time.sleep(0.1)
+            print("Printing finished!")
         else:
             print("Cannot print...")
             
