@@ -98,7 +98,8 @@ class SampleApplicationDriver:
 
     def generate_gcode_and_send(self):
         gcode = self.generate_gcode()
-        self.communication.send(gcode)
+        gcode_list = gcode.split('\n')
+        self.communication.send(gcode_list)
     
     
     def volume_per_band(self):
