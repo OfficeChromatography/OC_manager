@@ -24,19 +24,21 @@ setApplicationConf  <- function(printer_head_config, plate_config, band_config, 
                                   plate_config = plate_config,
                                   band_config = band_config)
 
-#    applicationPlot = createApplicationPlot(plate_config, numberOfBands)
-    
-#    Method$pagePlot = applicationPlot
+    numberOfBands = getNumberOfBands()
+    applicationPlot = createApplicationPlot(plate_config, numberOfBands)
+
+    Method$pagePlot = applicationPlot
 
 }
 
-setApplicationPlot <- function ( plate_config, numberOfBands){
+createApplicationPlot <- function ( plate_config, numberOfBands){
     plate_width_x = as.numeric (plate_config$plate_width_x)
-    plate_heigth_y = as.numeric (plate_config$plate_heigth_y)
+    plate_height_y = as.numeric (plate_config$plate_height_y)
     band_length = as.numeric (plate_config$band_length)
     relative_band_distance_x = as.numeric (plate_config$relative_band_distance_x) + 50 - plate_width_x/2
-    relative_band_distance_y = as.numeric (plate_config$relative_band_distance_y) + 50 - plate_heigth_y/2
+    relative_band_distance_y = as.numeric (plate_config$relative_band_distance_y) + 50 - plate_height_y/2
     gap = as.numeric (plate_config$gap)
+    numberOfBands=numberOfBands
 
     plot(c(1,100),c(1,100),
          type="n",xaxt = 'n',
@@ -44,15 +46,24 @@ setApplicationPlot <- function ( plate_config, numberOfBands){
          xlab="",ylab="Application direction (X) ")
 
     axis(3)
+    start=relative_band_distance_x
     mtext("Migration direction (Y)", side=3, line=3)
-    numberOfBands=as.numeric(numberOfBands)
     for(band in seq(1,numberOfBands)){
+        end=start + band_length
         segments(x0 = relative_band_distance_y,
-                 y0 = relative_band_distance_x+(band-1)*gap,
-                 y1 = relative_band_distance_x+(band-1)*gap+band_length)
+                 y0 = start,
+                 y1 = end
+                 )
+        start=end + gap
     }
-    symbols(x=50,y=50,add = T,inches = F,rectangles = rbind(c(plate_heigth_y,plate_width_x)),lty=2)
-    }
+    symbols(x=50,y=50,add = T,inches = F,rectangles = rbind(c(plate_height_y,plate_width_x)),lty=2)
+    plot= recordPlot()
+    dev.off()
+    return (plot)
+}
+
+
+
 
 toTableHeadRFormat  <- function(pythonHeadConf){
     labels = c("Speed", "Pulse Delay", "Number of Fire", "Step Range", "Printer Head Resolution")
@@ -175,5 +186,4 @@ observeEvent(input$Method_step_update,{
     bandList = band_conf$to_band_list()
 
     setApplicationConf(pyHead, pyPlate, bandList, step)
-#    setApplicationPlot(pyPlate,numberOfBands)
 })

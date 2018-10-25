@@ -1,4 +1,5 @@
 
+
 output$Method_control_1 = renderUI({
   tagList(
     fluidPage(
@@ -31,7 +32,7 @@ output$Method_control_1 = renderUI({
     column(9,
     box(title = "Settings", width = "85%", height = "45%",status = "primary",
       uiOutput("Method_control_settings")),
-    box(title = "Information", width = "85%", height = "45%",status = "warning",
+    box(title = "Information", width = "85%", height = "45%",status = "primary",
       uiOutput("Method_control_infos"))
   )
   )
@@ -57,7 +58,8 @@ output$Method_control_gcode = renderUI({
   )
   if(!is.null(input$Method_steps)){
     tagList(
-      fluidPage(
+
+        fluidPage(
         fluidRow(downloadButton("Method_gcode_download","Download Gcode"))
       )
     )
@@ -79,25 +81,25 @@ output$Method_control_settings = renderUI({
           column(5,box(title = "Plate Design", width = "33%", height = "45%",status = "warning",
           rHandsontableOutput("plate_config"))),
           column(2,box(title = "Update Settings", width = "33%", height = "45%",status = "warning",
-              fluidRow( getNumberOfBandsButton()),
-              fluidRow( actionButton("Method_step_update","Update settings",icon=icon("gears"), width="100%"))
-                    )
-                 )
-        )
+          fluidRow(textInput("number_of_bands", "Number of bands", getNumberOfBands(),width="100%")),
+          fluidRow(actionButton("Method_step_update","Update settings",icon=icon("gears"), width="100%"))                                )
+                   )
+                  )
       )
       )
   }
 })
 
 
-getNumberOfBandsButton  <- function(){
+getNumberOfBands  <- function(){
     numberOfBands = input$number_of_bands
     if (is.null ( numberOfBands )) {
         numberOfBands = 5
 
     }
-    textInput("number_of_bands", "Number of bands", numberOfBands, width="100%")
+    return (numberOfBands)
 }
+
 
 ## information
 output$Method_control_infos = renderUI({
@@ -106,27 +108,22 @@ output$Method_control_infos = renderUI({
   )
   if(!is.null(input$Method_steps)){
     tagList(
-        column(6, plotOutput("Method_plot",width="400px",height="400px")),
-        column(6, rHandsontableOutput("band_config"))
+        column(5,box(title = "Plate Plot ", width = "33%", height = "45%",status = "warning",
+        plotOutput("Method_plot",width="400px",height="400px"))),
+        column(7,box(title = "Appli Table ", width = "33%", height = "45%",status = "warning",
+        rHandsontableOutput("band_config")))
     )
   }
 })
 
 output$Method_plot = renderPlot({
-  #validate(
-  #  need(length(Method$control) > 0 ,"add a step or load a saved method")
-  #)
-  #if(!is.null(input$Method_steps)){
-  #  step = as.numeric(input$Method_steps)
-  #  path=paste0("eat_tables/",Method$control[[step]]$type,".R")
-  #  source(path)
-  #  plot_step(Method$control[[step]])
-
-  #}
-  #else
-  #{
-  #  plot(x=1,y=1,type="n",main="Update to visualize")
-  #}
+  if(!is.null(Method$pagePlot)){
+    Method$pagePlot
+  }
+  else
+  {
+    plot(x=1,y=1,type="n",main="Update to visualize")
+  }
 })
 output$Method_step_feedback = renderText({
   validate(
@@ -143,7 +140,7 @@ output$printer_head_config = renderRHandsontable({
   config = Method$control[[index]]$printer_head_config
   table = toTableHeadRFormat(config)
 
-  rhandsontable(table, rowHeaderWidth = 200) %>%
+  rhandsontable(table, rowHeaderWidth = 160) %>%
       hot_cols(colWidth = 100)  %>%
             hot_col("units", readOnly = TRUE)
 })
@@ -153,7 +150,7 @@ output$plate_config = renderRHandsontable({
         index = as.numeric(input$Method_steps)
         config = Method$control[[index]]$plate_config
         table = toTablePlateRFormat(config)
-        rhandsontable(table, rowHeaderWidth = 200) %>%
+        rhandsontable(table, rowHeaderWidth = 160) %>%
             hot_cols(colWidth = 100) %>%
             hot_col("units", readOnly = TRUE)
 
@@ -169,7 +166,7 @@ output$band_config = renderRHandsontable({
             table = t(as.matrix(table))
 
         }
-        rhandsontable(table, rowHeaderWidth = 200) %>%
+        rhandsontable(table, rowHeaderWidth = 160) %>%
             hot_cols(colWidth = 100) %>%
             hot_col("Approximate Band Start" , readOnly = TRUE) %>%
             hot_col("Approximate Band End", readOnly = TRUE) %>%
