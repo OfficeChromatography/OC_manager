@@ -27,7 +27,7 @@ setApplicationConf  <- function(printer_head_config, plate_config, band_config, 
     numberOfBands = getNumberOfBands()
     applicationPlot = createApplicationPlot(plate_config, numberOfBands)
 
-    Method$pagePlot = applicationPlot
+    Method$control[[step]]$pagePlot = applicationPlot
 
 }
 
@@ -101,8 +101,11 @@ renderSampleApplication  <- function(){
     setApplicationConf(headConf, plateConf, bandList, step)
 
     showInfo("Please configure your sample application proccess")
+}
 
-
+getBandConfigFromTable <- function(){
+    bandlistTable= hot_to_r(input$band_config)
+    return (bandConfSettingsTableFormatToPython(bandlistTable))
 
 }
 
@@ -117,7 +120,7 @@ observeEvent(input$Method_step_add,{
 })
 
 observeEvent(input$Method_step_delete,{
-    index = as.numeric(input$Method_steps)
+    index = getSelectedStep()
     if(index > 0) {
         Method$control[[as.numeric(input$Method_steps)]] = NULL
     }
@@ -131,14 +134,12 @@ observeEvent(input$Method_steps,{
 
 ## start
 observeEvent(input$Method_step_exec,{
-    bandlistTable = hot_to_r(input$band_config)
-    bandlistpy = bandConfSettingsTableFormatToPython(bandlistTable)
+    bandlistpy =  getBandConfigFromTable()
     appl_driver$set_band_config(bandlistpy)
     gcode = appl_driver$generate_gcode()
     write(gcode, file="gcodeData.txt")
     appl_driver$generate_gcode_and_send()
 })
-
 
 output$Method_gcode_download <- downloadHandler(
   filename = function(x){paste0("OC_Lab_",
@@ -158,19 +159,24 @@ output$Method_gcode_download <- downloadHandler(
 ## save
 
 observeEvent(input$Method_save,{
-    filePath = paste0("./method/",input$Method_save_name,".Rdata")
+    filePath = paste0("./method/method_to_load/",input$Method_save_name,".Rdata")
+
     control = Method$control
     save(control,file=filePath)
     Method_feedback$text = paste0("Saved ", filePath)
 })
-observeEvent(input$Method_load,{
 
+observeEvent(input$Method_load,{
+    path = input$Method_load_name$datapath
+    load(path)
+    Method$control=control
+    Method_feedback$text = "Method loaded"
 })
 
 
 
 
-observeEvent(input$Method_step_update,{
+observeEvent(input$Method_settings_update,{
     step = getSelectedStep()
 
     plateTable = hot_to_r(input$plate_config)
@@ -186,4 +192,10 @@ observeEvent(input$Method_step_update,{
     bandList = band_conf$to_band_list()
 
     setApplicationConf(pyHead, pyPlate, bandList, step)
+})
+
+observeEvent (input$Method_apply_table,{
+    bandlist = getBandConfigFromTable()
+    index = getSelectedStep()
+    Method$control[[index]]$band_config = bandlist
 })

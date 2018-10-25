@@ -18,7 +18,7 @@ output$Method_control_1 = renderUI({
              column(1,actionButton("Method_save","",icon=icon("save")))
          ),
          fluidRow(
-             column(9,uiOutput("Method_load_names", width = "100%")),
+             column(9,fileInput("Method_load_name","Select Method", width = "100%")),
              column(1,actionButton("Method_load","",icon=icon("folder-o")))
         )),
     box(title = "Start", width = "15%", height = "10%",solidHeader = TRUE,status = "primary",
@@ -82,7 +82,9 @@ output$Method_control_settings = renderUI({
           rHandsontableOutput("plate_config"))),
           column(2,box(title = "Update Settings", width = "33%", height = "45%",status = "warning",
           fluidRow(textInput("number_of_bands", "Number of bands", getNumberOfBands(),width="100%")),
-          fluidRow(actionButton("Method_step_update","Update settings",icon=icon("gears"), width="100%"))                                )
+          fluidRow(actionButton("Method_settings_update","Update settings",icon=icon("gears"), width="100%")),
+          fluidRow(actionButton("Method_band_config_update","Update apply table",icon=icon("gears"), width="100%"))
+          )
                    )
                   )
       )
@@ -117,8 +119,10 @@ output$Method_control_infos = renderUI({
 })
 
 output$Method_plot = renderPlot({
-  if(!is.null(Method$pagePlot)){
-    Method$pagePlot
+  index = getSelectedStep()
+  current_plot = Method$control[[index]]$pagePlot
+  if(!is.null(current_plot)){
+    current_plot
   }
   else
   {
@@ -136,7 +140,7 @@ output$printer_head_config = renderRHandsontable({
   validate(
     need(length(Method$control) > 0 ,"Please add a new step (for example: Sample Application)")
   )
-  index = as.numeric(input$Method_steps)
+  index = getSelectedStep()
   config = Method$control[[index]]$printer_head_config
   table = toTableHeadRFormat(config)
 
@@ -147,7 +151,7 @@ output$printer_head_config = renderRHandsontable({
 
 output$plate_config = renderRHandsontable({
     if(!is.null(input$Method_steps)) {
-        index = as.numeric(input$Method_steps)
+        index = getSelectedStep()
         config = Method$control[[index]]$plate_config
         table = toTablePlateRFormat(config)
         rhandsontable(table, rowHeaderWidth = 160) %>%
@@ -159,7 +163,7 @@ output$plate_config = renderRHandsontable({
 
 output$band_config = renderRHandsontable({
     if(!is.null(input$Method_steps)) {
-        index = as.numeric(input$Method_steps)
+        index = getSelectedStep()
         bandlist = Method$control[[index]]$band_config
         table = bandConfToRSettingsTableFormat( bandlist)
         if (!  is.matrix(table))  {
@@ -172,10 +176,6 @@ output$band_config = renderRHandsontable({
             hot_col("Approximate Band End", readOnly = TRUE) %>%
             hot_col("Volume Real", readOnly = TRUE)
     }
-})
-
-output$Method_load_names = renderUI({
-  selectizeInput("Method_load_name","Method to load",choices=dir(METHOD_DIR))
 })
 
 ## feedback
