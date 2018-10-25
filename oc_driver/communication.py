@@ -28,13 +28,15 @@ class Communication:
         self.printcore.disconnect()
         
     def send_from_file(self, path):
-        gcode = [i.strip() for i in open(path)]
-        self.send(gcode)
-        # while (.printcore.printing):
-        #    time.sleep(0.1)
-        
+        with open(path, 'r') as gcode_file:
+            content = gcode_file.read()
+            self.send(content)
+    
+    
     def send(self, codes):
-        gcode = gcoder.LightGCode(codes)    
+        split = codes.split('\n')
+        no_spaces_code = [i.strip() for i in split]
+        gcode = gcoder.LightGCode(no_spaces_code)
         is_printing = self.printcore.startprint(gcode)
         if(is_printing):
             print("Start printing...")
