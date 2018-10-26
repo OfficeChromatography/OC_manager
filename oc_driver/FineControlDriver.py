@@ -4,7 +4,7 @@ class FineControlDriver:
 
     def __init__(self, communication):
         self.communication = communication
-
+ 
     def goXLeft(self):
         self.communication.send( [
             GCODES.SET_REFERENCE,
@@ -48,3 +48,16 @@ class FineControlDriver:
 
     def stop(self):
         return self.communication.send([GCODES.DISABLE_STEPPER_MOTORS])
+
+    def fire_selected_nozzles(self, fire_rate, puls_delay, selected_nozzles):
+        nozzle_value = 0
+        if type(selected_nozzles) == list:
+            for nozzle in selected_nozzles:
+                nozzle_value += 2 ** (nozzle-1)
+        else:
+            nozzle_value = 2 ** (selected_nozzles -1) 
+        nozzle_address= str(int(nozzle_value))
+        print (nozzle_address)
+        self.communication.send([
+            GCODES.nozzle_fire(fire_rate, nozzle_address, puls_delay)
+        ])

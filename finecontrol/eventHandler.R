@@ -1,7 +1,7 @@
 
 fineControlDriver = ocDriver$get_fine_control_driver()
 
-observeEvent(input$test_ink_cmd_button,{ 
+observeEvent(input$test_ink_cmd_button,{
     fineControlDriver$customCommand(toupper(input$test_ink_cmd))
 
 })
@@ -64,19 +64,14 @@ observeEvent(input$test_ink_nozzle_test,{
 
 })
 
-observeEvent(input$test_ink_action,{
-    test_ink_file = "gcode/test_ink.gcode"
-    Log = test_ink_file
-    writeFile(test_ink_file, test_ink_gcode())
-    # put it in the log
-    write(paste0(format(Sys.time(),"%Y%m%d_%H:%M:%S"),";","test_ink;",test_ink_file,";",Log,";",connect$Visa,";",input$Plate),file="log/log.txt",append = T)
-    ocDriver$send_from_file(test_ink_file)
+observeEvent(input$test_ink_fire_selected_nozzles,{
+    puls_delay = input$test_ink_puls_delay
+    fire_rate = input$test_ink_fire_rate
+    selected_nozzles= as.numeric (input$test_ink_selected_nozzles)
+    fineControlDriver$fire_selected_nozzles(fire_rate, puls_delay, selected_nozzles)
 })
-test_ink_gcode <- reactive({
-  S=rep(0,12)
-  for(i in seq(12)){if(i %in% as.numeric(input$test_ink_S)){S[i] = 1}};S = S=sum(2^(which(S== 1)-1))
-  rep(paste0("M700 P0 I",input$test_ink_n_bis," L",input$test_ink_L," S",S),input$test_ink_n)
-})
+
+
 
 #----------------------------------------------------------------------------------------
 #Gcode

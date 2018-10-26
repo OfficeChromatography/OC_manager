@@ -20,13 +20,13 @@ class PrinterHead:
 
     # setup the nozzle channels as wanted. Checkout the binary signal documentation for your print head
     NOZZLE_CHANNEL = {
-        1 : "1",
-        2 : "2",
-        3 : "4",
-        4 : "8",
-        5 : "16",
-        6 : "32",
-        7 : "64"
+        1 : "3",
+        2 : "4",
+        3 : "5",
+        4 : "1",
+        5 : "2",
+        6 : "11",
+        7 : "12"
     }
 
             
