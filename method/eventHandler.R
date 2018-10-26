@@ -191,7 +191,8 @@ observeEvent(input$Method_settings_update,{
 })
 
 observeEvent (input$Method_band_config_update,{
-    bandlist = getBandConfigFromTable()
+    band_list = getBandConfigFromTable()
+    update_band_list = appl_driver$update_band_list(band_list)
     index = getSelectedStep()
-    Method$control[[index]]$band_config = bandlist
+    Method$control[[index]]$band_config = update_band_list
 })

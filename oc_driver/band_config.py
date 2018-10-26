@@ -24,9 +24,6 @@ class Band:
         "3d-printer position for band end"
         return self.end
 
-    def get_volume_real(self):
-        return self.volume_set * self.number_of_reptition
-
     def get_nozzle_id(self):
         return self.nozzle_id
 
@@ -67,7 +64,7 @@ class BandConfig:
             bands.append({
                 'nozzle_id' : create_config['default_nozzle_id'],
                 'label' : create_config['default_label'],
-                'volume_set': self.volume_per_band()
+                'volume_set': round(self.volume_per_band(),3)
             })
         return bands
         
@@ -121,7 +118,7 @@ class BandConfig:
             bands.append(Band(band_start, band_end, number_of_reptitions, \
                               label, volume_set, nozzle_id, volume_real))
         self.bands = bands
-
+        
     def to_band_list(self):
         band_list = []
         for band in self.bands:

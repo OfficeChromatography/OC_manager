@@ -61,8 +61,7 @@ class SampleApplicationDriver:
     def setup(self, plate_config, head_config):
         self.plate = Plate(plate_config, self.calibration_x, self.calibration_y)
         self.printer_head = PrinterHead(head_config)
-        self.band_config = self.create_band_config()
-        
+        self.band_config = self.create_band_config()        
         
     def create_band_config(self, number_of_bands=CREATE_BAND_CONFIG['number_of_bands']):
         create_conf = self.CREATE_BAND_CONFIG
@@ -72,6 +71,11 @@ class SampleApplicationDriver:
 
     def set_band_config(self, band_list):
         self.band_config.band_list_to_bands(band_list)
+
+    def update_band_list(self, band_list):
+        self.band_config.band_list_to_bands(band_list)
+        update_band_list = self.band_config.to_band_list()
+        return update_band_list
         
     def get_default_printer_head_config(self):
         return self.HEAD_CONFIG_DEFAULT
