@@ -1,3 +1,4 @@
+
 ## server_Method.R
 #-----------------------------------------------------------------------------------
 # function
@@ -24,10 +25,6 @@ setApplicationConf  <- function(printer_head_config, plate_config, band_config, 
                                   plate_config = plate_config,
                                   band_config = band_config)
 
-    numberOfBands = getNumberOfBands()
-    applicationPlot = createApplicationPlot(plate_config, numberOfBands)
-
-    Method$control[[step]]$pagePlot = applicationPlot
 
 }
 
@@ -57,9 +54,6 @@ createApplicationPlot <- function ( plate_config, numberOfBands){
         start=end + gap
     }
     symbols(x=50,y=50,add = T,inches = F,rectangles = rbind(c(plate_height_y,plate_width_x)),lty=2)
-    plot= recordPlot()
-    dev.off()
-    return (plot)
 }
 
 
@@ -67,7 +61,7 @@ createApplicationPlot <- function ( plate_config, numberOfBands){
 
 toTableHeadRFormat  <- function(pythonHeadConf){
     labels = c("Speed", "Pulse Delay", "Number of Fire", "Step Range", "Printer Head Resolution")
-    units = c("mm/m", "Î¼s", "", "mm", "mm")
+    units = c("mm/m", "µm", "", "mm", "mm")
     return (toRSettingsTableFormat(pythonHeadConf, labels, units))
 }
 
@@ -127,9 +121,6 @@ observeEvent(input$Method_step_delete,{
 
 })
 
-observeEvent(input$Method_steps,{
-})
-
 
 
 ## start
@@ -168,9 +159,14 @@ observeEvent(input$Method_save,{
 
 observeEvent(input$Method_load,{
     path = input$Method_load_name$datapath
-    load(path)
-    Method$control=control
-    Method_feedback$text = "Method loaded"
+    if (!is.null(path)){
+        load(path)
+        Method$control=control
+        Method_feedback$text = "Method loaded"
+    }
+    else{
+        Method_feedback$text = "Method can´t load, no file selected"
+    }
 })
 
 
@@ -194,7 +190,7 @@ observeEvent(input$Method_settings_update,{
     setApplicationConf(pyHead, pyPlate, bandList, step)
 })
 
-observeEvent (input$Method_apply_table,{
+observeEvent (input$Method_band_config_update,{
     bandlist = getBandConfigFromTable()
     index = getSelectedStep()
     Method$control[[index]]$band_config = bandlist

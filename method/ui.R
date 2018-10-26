@@ -1,5 +1,6 @@
 
 
+
 output$Method_control_1 = renderUI({
   tagList(
     fluidPage(
@@ -66,6 +67,7 @@ output$Method_control_gcode = renderUI({
   }
 })
 
+
 ## settings
 output$Method_control_settings = renderUI({
     validate(
@@ -112,22 +114,26 @@ output$Method_control_infos = renderUI({
     tagList(
         column(5,box(title = "Plate Plot ", width = "33%", height = "45%",status = "warning",
         plotOutput("Method_plot",width="400px",height="400px"))),
-        column(7,box(title = "Appli Table ", width = "33%", height = "45%",status = "warning",
+        column(7,box(title = "Apply Table ", width = "33%", height = "45%",status = "warning",
         rHandsontableOutput("band_config")))
     )
   }
 })
 
 output$Method_plot = renderPlot({
-  index = getSelectedStep()
-  current_plot = Method$control[[index]]$pagePlot
-  if(!is.null(current_plot)){
-    current_plot
-  }
-  else
-  {
-    plot(x=1,y=1,type="n",main="Update to visualize")
-  }
+    index = getSelectedStep()
+    if (index > length(Method$control)){
+        index=1
+    }
+    currentMethod= Method$control[[index]]
+    if(!is.null(currentMethod)){
+        plate_config = currentMethod$plate_config
+        numberOfBands= length (currentMethod$band_config)
+        createApplicationPlot(plate_config, numberOfBands)
+    }
+    else{
+        plot(x=1,y=1,type="n",main="Update to visualize")
+    }
 })
 output$Method_step_feedback = renderText({
   validate(

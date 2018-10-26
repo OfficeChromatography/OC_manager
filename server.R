@@ -32,7 +32,7 @@ setupEventHandler  <- function(input){
     if(getwd() == "/home/pi/OC_manager"){
       system("sudo shutdown now")
     }else{
-      throwError("No shutdown, bad user")      
+      throwError("No shutdown, bad user")
     }
   })
   observeEvent(input$Reboot,{
@@ -42,7 +42,8 @@ setupEventHandler  <- function(input){
       throwError("No reboot, bad user")
     }
   })
- observeEvent(input$Serial_port_connect,{
+
+observeEvent(input$Serial_port_connect,{
      if(nchar(input$Serial_port) == 0){
          throwError("No board selected")
      }else{
@@ -57,11 +58,11 @@ setupEventHandler  <- function(input){
          }
      }
   })
-  
-  observeEvent(input$Serial_port_disconnect,{
-      
+
+observeEvent(input$Serial_port_disconnect,{
+
       ocDriver$disconnect()
-      
+
     if (!ocDriver$is_connected()){
     # create the test gcode
       print("disconnected")
@@ -71,26 +72,28 @@ setupEventHandler  <- function(input){
   })
 }
 
+
+
 shinyServer(function(input, output,session) {
 
   source("./OCDriverLoader.R", local = F)
   source("server_visu.R",local = T)
   source("server_Fine_control.R",local = T)
   source("server_Method.R",local = T)
-  
+
   # connect with the hardware and use printcore to control
   connect = reactiveValues(board = board)
 
   source_python("oc_driver/printrun/printcore.py")
 
   testConnection()
-    
+
   session$onSessionEnded(function() {
     ocDriver$disconnect() ## py
   })
 
-  setupEventHandler(input)  
-    
+  setupEventHandler(input)
+
   output$Serial_portUI = renderUI({
     input$Serial_port_refresh
     if(input$Serial_windows){
@@ -99,6 +102,7 @@ shinyServer(function(input, output,session) {
       selectizeInput("Serial_port","Select serial port",choices = dir("/dev/",pattern = "ACM",full.names = T))
     }
   })
+
   output$Serial_port_connectUI = renderUI({
     if(!connect$board){
       actionButton("Serial_port_connect","Connect the board")
@@ -106,14 +110,22 @@ shinyServer(function(input, output,session) {
       actionButton("Serial_port_disconnect","Disconnect the board")
     }
   })
-  
 
-  
+
+
   TempInvalidate <- reactiveTimer(2000)
 
   output$Log = renderDataTable({
     input$Log_refresh
     read.table("log/log.txt",header = T,sep = ";")
   })
-  
+
+ #close function
+    session$onSessionEnded(function() {
+        stopApp()
 })
+
+
+})
+
+
