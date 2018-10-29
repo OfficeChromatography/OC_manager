@@ -1,3 +1,4 @@
+
 class Nozzle:
     " represents a printer head's nozzle "
     
@@ -67,7 +68,10 @@ class PrinterHead:
 
 
     def get_address_for_nozzle(self, nozzle_id):
-        return self.nozzles.get(nozzle_id).get_address()
+        "calculate nozzle address and returns a string"
+        address = self.nozzles.get(nozzle_id).get_address()
+        address_as_binary_string = str ( 2 ** int (address) )
+        return address_as_binary_string
 
     def get_resolution(self):
         "absolute distance from each nozzle to another" 
@@ -84,3 +88,7 @@ class PrinterHead:
     def get_number_of_fire(self):
         "number of printing actions on each print position"
         return self.number_of_fire
+
+    def get_number_of_Nozzles(self):
+        "how many nozzle are used from the printer head"
+        return (len (self.NOZZLE_CHANNEL))

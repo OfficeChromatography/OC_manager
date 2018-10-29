@@ -1,4 +1,4 @@
-import gcodes as GCODES 
+import gcodes as GCODES
 
 class FineControlDriver:
 
@@ -53,10 +53,12 @@ class FineControlDriver:
         nozzle_value = 0
         if type(selected_nozzles) == list:
             for nozzle in selected_nozzles:
-                nozzle_value += 2 ** (nozzle-1)
+                address_int  = PrinterHead.get_address_for_nozzle(nozzle)
+                nozzle_value += int (address_int)
+            nozzle_address= str(int(nozzle_value))
         else:
-            nozzle_value = 2 ** (selected_nozzles -1) 
-        nozzle_address= str(int(nozzle_value))
+            nozzle_address = PrinterHead.get_address_for_nozzle(selected_nozzles)
+        
         print (nozzle_address)
         self.communication.send([
             GCODES.nozzle_fire(fire_rate, nozzle_address, puls_delay)
