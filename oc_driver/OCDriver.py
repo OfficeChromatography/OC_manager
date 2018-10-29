@@ -1,5 +1,5 @@
-import FineControlDriver
-import SampleApplicationDriver 
+from FineControlDriver import FineControlDriver
+from SampleApplicationDriver  import SampleApplicationDriver 
 
 from communication import Communication
 
@@ -32,19 +32,20 @@ class OCDriver:
                                            oc_driver_config['baud_rate'])
         self.config = oc_driver_config
         self.config['reso'] = round(self.INCHE / self.config['dpi'], 3)
-        self.fine_control_driver = FineControlDriver.FineControlDriver(self.communication)
+
         
 
     
     def get_sample_application_driver(self):
-        return SampleApplicationDriver.SampleApplicationDriver(communication=self.communication, \
+        return SampleApplicationDriver(communication=self.communication, \
                  calibration_x=self.config.get('calibration_x'), \
                  calibration_y=self.config.get('calibration_y'))
     
 
                            
-    def get_fine_control_driver(self):
-        return self.fine_control_driver
+    def get_fine_control_driver(self, printer_head_config):
+        
+        self.fine_control_driver = FineControlDriver(self.communication, printer_haed_config)
         
     def connect(self):
         self.communication.connect()

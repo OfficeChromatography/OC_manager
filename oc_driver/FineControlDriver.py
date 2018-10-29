@@ -1,9 +1,10 @@
 import gcodes as GCODES
-
+from print_head_config import PrinterHead
 class FineControlDriver:
 
-    def __init__(self, communication):
+    def __init__(self, communication, printer_head_config):
         self.communication = communication
+        self.printer_head = PrinterHead(printer_head_config)
  
     def goXLeft(self):
         self.communication.send( [
@@ -46,6 +47,9 @@ class FineControlDriver:
             GCODES.goYMinus()
         ])
 
+    def set_printer_head(self, printer_head_config):
+        self.printer_head = PrinterHead(printer_head_config)
+
     def stop(self):
         return self.communication.send([GCODES.DISABLE_STEPPER_MOTORS])
 
@@ -53,11 +57,11 @@ class FineControlDriver:
         nozzle_value = 0
         if type(selected_nozzles) == list:
             for nozzle in selected_nozzles:
-                address_int  = PrinterHead.get_address_for_nozzle(nozzle)
+                address_int  = self.printer_head.get_address_for_nozzle(nozzle)
                 nozzle_value += int (address_int)
             nozzle_address= str(int(nozzle_value))
         else:
-            nozzle_address = PrinterHead.get_address_for_nozzle(selected_nozzles)
+            nozzle_address = self.printer_head.get_address_for_nozzle(selected_nozzles)
         
         print (nozzle_address)
         self.communication.send([
