@@ -1,10 +1,12 @@
+
 import gcodes as GCODES
-from print_head_config import PrinterHead
+from SampleApplicationDriver import SampleApplicationDriver
+
 class FineControlDriver:
 
-    def __init__(self, communication, printer_head_config):
+    def __init__(self, communication):
         self.communication = communication
-        self.printer_head = PrinterHead(printer_head_config)
+        self.ApplicationDriver = SampleApplicationDriver(self.communication)
  
     def goXLeft(self):
         self.communication.send( [
@@ -48,22 +50,35 @@ class FineControlDriver:
         ])
 
     def set_printer_head(self, printer_head_config):
-        self.printer_head = PrinterHead(printer_head_config)
+        self.ApplicationDriver._set_configs(head_config=printer_head_config)
 
     def stop(self):
         return self.communication.send([GCODES.DISABLE_STEPPER_MOTORS])
 
-    def fire_selected_nozzles(self, fire_rate, puls_delay, selected_nozzles):
-        nozzle_value = 0
-        if type(selected_nozzles) == list:
-            for nozzle in selected_nozzles:
-                address_int  = self.printer_head.get_address_for_nozzle(nozzle)
-                nozzle_value += int (address_int)
-            nozzle_address= str(int(nozzle_value))
-        else:
-            nozzle_address = self.printer_head.get_address_for_nozzle(selected_nozzles)
-        
-        print (nozzle_address)
+    def fire_selected_nozzles(self, selected_nozzles):
+        printer_head = self.ApplicationDriver.printer_head        
+        nozzle_address = self.calculate_nozzle_adress_for_gcode(selected_nozzles, printer_head)
+        fire_rate = printer_head.get_number_of_fire()
+        puls_delay = printer_head.get_pulse_delay()
+        print (GCODES.nozzle_fire(fire_rate, nozzle_address, puls_delay))
         self.communication.send([
             GCODES.nozzle_fire(fire_rate, nozzle_address, puls_delay)
         ])
+
+    def calculate_nozzle_adress_for_gcode(self, selected_nozzles, printer_head):
+        nozzle_value = 0
+        if type(selected_nozzles) == list:
+            for nozzle in selected_nozzles:
+                address_int  = printer_head.get_address_for_nozzle(nozzle)
+                nozzle_value += int (address_int)
+            nozzle_address= str(int(nozzle_value))
+        else:
+            nozzle_address = printer_head.get_address_for_nozzle(selected_nozzles)
+        print (nozzle_address)
+        return nozzle_address
+
+    def get_default_printer_head_config(self):
+        return self.ApplicationDriver.get_default_printer_head_config()
+
+    def get_number_of_Nozzles(self):
+        return self.ApplicationDriver.printer_head.get_number_of_Nozzles()    

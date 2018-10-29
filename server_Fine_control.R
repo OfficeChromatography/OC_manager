@@ -1,3 +1,5 @@
+# load driver
+fineControlDriver = ocDriver$get_fine_control_driver()
 
 # load UI
 source("./finecontrol/ui.R", local=T)

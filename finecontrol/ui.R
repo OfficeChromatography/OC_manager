@@ -49,9 +49,10 @@ output$ink_test_control_1 = renderUI({
   ),
   column(6,
          box(title = "Inkjet", width = "50 %", heigth ="50 %", solidHeader = TRUE,status = "primary",
-           numericInput("test_ink_fire_rate","Fire rate",2),
-           numericInput("test_ink_puls_delay ","Pulse delay",5),
-           checkboxGroupInput("test_ink_selected_nozzles","Nozzles to fire",choices = seq(7),inline = T,selected = seq(7)),
+           rHandsontableOutput("application_settings"),
+           checkboxGroupInput("test_ink_selected_nozzles","Nozzles to fire",
+                              choices = seq(fineControlDriver$get_number_of_Nozzles()),
+                              inline = T,selected = 1),
            actionButton("test_ink_fire_selected_nozzles",label = "Fire selected nozzles"),
            actionButton("test_ink_nozzle_noozle_test",label = "Nozzle testing process")
     )

@@ -33,19 +33,13 @@ class OCDriver:
         self.config = oc_driver_config
         self.config['reso'] = round(self.INCHE / self.config['dpi'], 3)
 
-        
-
-    
     def get_sample_application_driver(self):
         return SampleApplicationDriver(communication=self.communication, \
                  calibration_x=self.config.get('calibration_x'), \
                  calibration_y=self.config.get('calibration_y'))
     
-
-                           
-    def get_fine_control_driver(self, printer_head_config):
-        
-        self.fine_control_driver = FineControlDriver(self.communication, printer_haed_config)
+    def get_fine_control_driver(self):    
+        return FineControlDriver(self.communication)
         
     def connect(self):
         self.communication.connect()

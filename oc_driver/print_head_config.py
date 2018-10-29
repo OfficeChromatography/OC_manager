@@ -59,8 +59,6 @@ class PrinterHead:
             nozzles[nozzle_id] = Nozzle(nozzle_id, address)
         self.nozzles = nozzles
 
-
-                
     def get_shift_for_nozzle(self, nozzle_id):
         "defines a relative offset for each nozzle specified by the printer head geometry"
         return self.nozzles.get(nozzle_id) \
@@ -70,7 +68,7 @@ class PrinterHead:
     def get_address_for_nozzle(self, nozzle_id):
         "calculate nozzle address and returns a string"
         address = self.nozzles.get(nozzle_id).get_address()
-        address_as_binary_string = str ( 2 ** int (address) )
+        address_as_binary_string = str ( 2 ** (int (address) -1 ) )
         return address_as_binary_string
 
     def get_resolution(self):
@@ -92,3 +90,4 @@ class PrinterHead:
     def get_number_of_Nozzles(self):
         "how many nozzle are used from the printer head"
         return (len (self.NOZZLE_CHANNEL))
+

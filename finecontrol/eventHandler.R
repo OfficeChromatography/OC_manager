@@ -1,6 +1,3 @@
-
-fineControlDriver = ocDriver$get_fine_control_driver()
-
 observeEvent(input$test_ink_cmd_button,{
     fineControlDriver$customCommand(toupper(input$test_ink_cmd))
 
@@ -44,18 +41,37 @@ writeFile  <- function(filePath, input){
     close(fileConn)
 }
 
-createNozzleTestGCODE  <- function(input){
-    inkBias <- input$test_ink_n_bis
-    testInkL  <- input$test_ink_L
-    gcode =c("G91",paste0("M700 P0 I",inkBias, " L",testInkL," S",4095))
-    for(i in seq(12)){
-      S=rep(0,12);S[i] = 1;S = S=sum(2^(which(S== 1)-1))
-      for(j in seq(10)){gcode = c(gcode,paste0("G1 X",0.25),"M400",paste0("M700 P0 I",inkBias," L",testInkL," S",S))}
-    }
-    gcode = c(gcode,paste0("G1 X",2),"M400",paste0("M700 P0 I",inkBias," L",testInkL," S",4095))
-    gcode = c(gcode,"G90","M84")
-    return (gcode)
+toTableApply_settings <- function (pythonHeadConf){
+    number_of_fire = pythonHeadConf[["number_of_fire"]]
+    pulse_delay = pythonHeadConf[["pulse_delay"]]
+    fineControl_printhead_dict = list (number_of_fire = number_of_fire ,
+                                       pulse_delay =pulse_delay)
+    print (fineControl_printhead_dict)
+    labels = c("Number of Fire", "Pulse Delay")
+    units = c("","µs")
+
+    return ( toRSettingsTableFormat(fineControl_printhead_dict, labels, units) )
 }
+
+toPythonTableApply_settings <- function (tableHeadConf, printer_head_config){
+    values = tableHeadConf[["values"]]
+    printer_head_config[["number_of_fire"]] = values[[1]]
+    printer_head_config[["pulse_delay"]] = values [[2]]
+
+    return (printer_head_config)
+}
+
+createNozzleTestGCODE  <- function(input){
+}
+
+output$application_settings = renderRHandsontable({
+  config= fineControlDriver$get_default_printer_head_config()
+  table = toTableApply_settings(config)
+  print("application_settings")
+  rhandsontable(table, rowHeaderWidth = 160) %>%
+      hot_cols(colWidth = 100)  %>%
+            hot_col("units", readOnly = TRUE)
+})
 
 observeEvent(input$test_ink_nozzle_test,{
     gcode = createNozzleTestGCODE(input)
@@ -65,10 +81,12 @@ observeEvent(input$test_ink_nozzle_test,{
 })
 
 observeEvent(input$test_ink_fire_selected_nozzles,{
-    puls_delay = input$test_ink_puls_delay
-    fire_rate = input$test_ink_fire_rate
-    selected_nozzles= as.numeric (input$test_ink_selected_nozzles)
-    fineControlDriver$fire_selected_nozzles(fire_rate, puls_delay, selected_nozzles)
+    selected_nozzles = as.numeric (input$test_ink_selected_nozzles)
+    headTable = hot_to_r(input$application_settings)
+    printer_head_config = fineControlDriver$get_default_printer_head_config()
+    updated_printer_head_config = toPythonTableApply_settings(headTable, printer_head_config)
+    fineControlDriver$set_printer_head(updated_printer_head_config)
+    fineControlDriver$fire_selected_nozzles(selected_nozzles)
 })
 
 
