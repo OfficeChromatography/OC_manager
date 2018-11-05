@@ -47,7 +47,7 @@ toTableApply_settings <- function (pythonHeadConf){
     fineControl_printhead_dict = list (number_of_fire = number_of_fire ,
                                        pulse_delay =pulse_delay)
     labels = c("Number of Fire", "Pulse Delay")
-    units = c("","µs")
+    units = c("","\U00B5s")
 
     return ( toRSettingsTableFormat(fineControl_printhead_dict, labels, units) )
 }

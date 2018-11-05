@@ -60,3 +60,11 @@ class AbstractApplicationDriver:
     @abstractmethod
     def generate_gcode(self):
         pass
+
+    @abstractmethod    
+    def get_default_printer_head_config(self):
+        pass
+
+    @abstractmethod
+    def get_default_plate_config(self):
+        pass

@@ -60,7 +60,7 @@ createApplicationPlot <- function ( plate_config, numberOfBands){
 
 toTableHeadRFormat  <- function(pythonHeadConf){
     labels = c("Speed", "Pulse Delay", "Number of Fire", "Step Range", "Printer Head Resolution")
-    units = c("mm/m", "µm", "", "mm", "mm")
+    units = c("mm/m", "\U00B5m", "", "mm", "mm")
     return (toRSettingsTableFormat(pythonHeadConf, labels, units))
 }
 
@@ -164,7 +164,7 @@ observeEvent(input$Method_load,{
         Method_feedback$text = "Method loaded"
     }
     else{
-        Method_feedback$text = "Method can´t load, no file selected"
+        Method_feedback$text = "Method can't load, no file selected"
     }
 })
 

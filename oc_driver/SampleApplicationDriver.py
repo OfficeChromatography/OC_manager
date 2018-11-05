@@ -30,7 +30,9 @@ class SampleApplicationDriver(AbstractApplicationDriver):
     def __init__(self, communication,
                  plate_config=PLATE_CONFIG_DEFAULT, \
                  head_config=HEAD_CONFIG_DEFAULT, calibration_x=1, calibration_y=10):
-        super(communication, plate_config, head_config, calibration_x, calibration_y)
+        super(SampleApplicationDriver, self) \
+            .__init__(communication, plate_config, head_config, calibration_x, calibration_y)
+
 
 
     def generate_gcode(self):
@@ -38,3 +40,9 @@ class SampleApplicationDriver(AbstractApplicationDriver):
         gcode_for_bands = self.band_config.to_gcode()
         gcode_end = GCODES.END
         return (gcode_start + "\n" + gcode_for_bands + "\n" + gcode_end)    
+
+    def get_default_printer_head_config(self):
+        return self.HEAD_CONFIG_DEFAULT
+
+    def get_default_plate_config(self):
+        return self.PLATE_CONFIG_DEFAULT

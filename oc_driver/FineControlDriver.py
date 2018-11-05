@@ -25,7 +25,8 @@ class FineControlDriver(AbstractApplicationDriver):
     def __init__(self, communication,
                  plate_config=PLATE_CONFIG_DEFAULT, \
                  head_config=HEAD_CONFIG_DEFAULT, calibration_x=1, calibration_y=10):
-        super(communication, plate_config, head_config, calibration_x, calibration_y)
+        super(FineControlDriver, self) \
+            .__init__(communication, plate_config, head_config, calibration_x, calibration_y)
 
     def goXLeft(self):
         self.communication.send( [
@@ -108,3 +109,7 @@ class FineControlDriver(AbstractApplicationDriver):
         gcode_for_bands = self.band_config.to_gcode()
         gcode_end = GCODES.END
         return (gcode_start + "\n" + gcode_for_bands + "\n" + gcode_end)
+
+
+    def get_default_plate_config(self):
+        return self.PLATE_CONFIG_DEFAULT
