@@ -1,19 +1,38 @@
 import gcodes as GCODES
-from SampleApplicationDriver import SampleApplicationDriver
+from AbstractApplicationDriver import AbstractApplicationDriver
 
-class FineControlDriver:
+class FineControlDriver(AbstractApplicationDriver):
 
-    def __init__(self, communication):
-        self.communication = communication
-        self.ApplicationDriver = SampleApplicationDriver(self.communication)
- 
+    PLATE_CONFIG_DEFAULT = {
+        'gap': 2,
+        'plate_width_x': 100,
+        'plate_height_y': 100,
+        'band_length': 6,
+        'relative_band_distance_x': 0,
+        'relative_band_distance_y': 0,
+        'drop_vol' : 0.15,
+    }
+
+
+    HEAD_CONFIG_DEFAULT = {
+        'speed': 3000,
+        'number_of_fire': 10,
+        'pulse_delay': 5,
+        'printer_head_resolution': 0.265,
+        'step_range': 0.265
+    }
+    
+    def __init__(self, communication,
+                 plate_config=PLATE_CONFIG_DEFAULT, \
+                 head_config=HEAD_CONFIG_DEFAULT, calibration_x=1, calibration_y=10):
+        super(communication, plate_config, head_config, calibration_x, calibration_y)
+
     def goXLeft(self):
         self.communication.send( [
             GCODES.SET_REFERENCE,
             GCODES.goXMinus()
         ])
         
-
     def goXRight(self):
         self.communication.send( [
             GCODES.SET_REFERENCE,
@@ -48,39 +67,44 @@ class FineControlDriver:
             GCODES.goYMinus()
         ])
 
-    def set_printer_head(self, printer_head_config):
-        self.ApplicationDriver._set_configs(head_config=printer_head_config)
+    def set_printer_head(self, printer_head_config):        
+        self.setup(head_config=printer_head_config)
 
     def stop(self):
         return self.communication.send([GCODES.DISABLE_STEPPER_MOTORS])
 
     def fire_selected_nozzles(self, selected_nozzles):
-        printer_head = self.ApplicationDriver.printer_head        
-        nozzle_address = self.calculate_nozzle_adress_for_gcode(selected_nozzles, printer_head)
-        fire_rate = printer_head.get_number_of_fire()
-        puls_delay = printer_head.get_pulse_delay()
+        nozzle_address = self.calculate_nozzle_address_for_gcode(selected_nozzles)
+        fire_rate = self.printer_head.get_number_of_fire()
+        puls_delay = self.printer_head.get_pulse_delay()
         self.communication.send([
             GCODES.nozzle_fire(fire_rate, nozzle_address, puls_delay)
         ])
 
-    def calculate_nozzle_adress_for_gcode(self, selected_nozzles, printer_head):
+    def calculate_nozzle_address_for_gcode(self, selected_nozzles):
         nozzle_value = 0
         if type(selected_nozzles) == list:
             for nozzle in selected_nozzles:
-                address_int  = printer_head.get_address_for_nozzle(nozzle)
+                address_int = self.printer_head.get_address_for_nozzle(nozzle)
                 nozzle_value += int (address_int)
-            nozzle_address= str(int(nozzle_value))
+            nozzle_address = str(int(nozzle_value))
         else:
-            nozzle_address = printer_head.get_address_for_nozzle(selected_nozzles)
+            nozzle_address = self.printer_head.get_address_for_nozzle(selected_nozzles)
         return nozzle_address
 
     def get_default_printer_head_config(self):
-        return self.ApplicationDriver.get_default_printer_head_config()
+        return self.HEAD_CONFIG_DEFAULT
 
     def get_number_of_Nozzles(self):
-        return self.ApplicationDriver.printer_head.get_number_of_Nozzles()    
+        return self.printer_head.get_number_of_Nozzles()
 
     def calculate_band_config_for_test (self, selected_nozzles):
         number_of_bands = len (selected_nozzles)
+        self.create_band_config(number_of_bands=number_of_bands )
+
         
-        ApplicationDriver.create_band_config(number_of_bands=number_of_bands )
+    def generate_gcode(self):
+        gcode_start = GCODES.SET_REFERENCE
+        gcode_for_bands = self.band_config.to_gcode()
+        gcode_end = GCODES.END
+        return (gcode_start + "\n" + gcode_for_bands + "\n" + gcode_end)
