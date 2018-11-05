@@ -34,8 +34,6 @@ class Band:
     
     
 class BandConfig:
-    
-
     def __init__(self, create_config,  printer_head, plate):
         """
 
@@ -88,14 +86,12 @@ class BandConfig:
         return round(number_of_reptitions * self.volume_per_band(), 3)
 
     def calculate_start_positions(self, number_of_bands):
-
         start = self.plate.get_band_offset_y()
         plate = self.plate 
         start_pos_list = [start]
         for i in range(number_of_bands):
             start += plate.get_band_length() + plate.get_gap()
             start_pos_list.append(start)
-
         return start_pos_list
     
     def build_bands_from_band_list(self, band_list):
@@ -104,7 +100,6 @@ class BandConfig:
             return 
         bands = []
         band_start_list = self.calculate_start_positions(len(band_list))
-
         for idx, band_config in enumerate(band_list):
             nozzle_id = int(band_config.get('nozzle_id'))
             shift = self.printer_head.get_shift_for_nozzle(nozzle_id)

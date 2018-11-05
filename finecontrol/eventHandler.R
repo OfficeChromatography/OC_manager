@@ -46,7 +46,6 @@ toTableApply_settings <- function (pythonHeadConf){
     pulse_delay = pythonHeadConf[["pulse_delay"]]
     fineControl_printhead_dict = list (number_of_fire = number_of_fire ,
                                        pulse_delay =pulse_delay)
-    print (fineControl_printhead_dict)
     labels = c("Number of Fire", "Pulse Delay")
     units = c("","µs")
 
@@ -57,7 +56,6 @@ toPythonTableApply_settings <- function (tableHeadConf, printer_head_config){
     values = tableHeadConf[["values"]]
     printer_head_config[["number_of_fire"]] = values[[1]]
     printer_head_config[["pulse_delay"]] = values [[2]]
-
     return (printer_head_config)
 }
 
@@ -67,29 +65,30 @@ createNozzleTestGCODE  <- function(input){
 output$application_settings = renderRHandsontable({
   config= fineControlDriver$get_default_printer_head_config()
   table = toTableApply_settings(config)
-  print("application_settings")
   rhandsontable(table, rowHeaderWidth = 160) %>%
       hot_cols(colWidth = 100)  %>%
             hot_col("units", readOnly = TRUE)
 })
 
 observeEvent(input$test_ink_nozzle_test,{
-    gcode = createNozzleTestGCODE(input)
-    writeFile("gcode/test_ink.gcode", gcode)
-    ocDriver$send_from_file(test_ink_file)
+    selected_nozzles = getUserInputforInkjet()
+    print (length (selected_nozzles) )
 
 })
 
 observeEvent(input$test_ink_fire_selected_nozzles,{
-    selected_nozzles = as.numeric (input$test_ink_selected_nozzles)
+    selected_nozzles = getUserInputforInkjet()
+    fineControlDriver$fire_selected_nozzles(selected_nozzles)
+})
+
+getUserInputforInkjet <- function (){
     headTable = hot_to_r(input$application_settings)
     printer_head_config = fineControlDriver$get_default_printer_head_config()
     updated_printer_head_config = toPythonTableApply_settings(headTable, printer_head_config)
     fineControlDriver$set_printer_head(updated_printer_head_config)
-    fineControlDriver$fire_selected_nozzles(selected_nozzles)
-})
-
-
+    selected_nozzles = as.numeric (input$test_ink_selected_nozzles)
+    return (selected_nozzles)
+    }
 
 #----------------------------------------------------------------------------------------
 #Gcode

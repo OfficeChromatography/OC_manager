@@ -1,4 +1,3 @@
-
 import gcodes as GCODES
 from SampleApplicationDriver import SampleApplicationDriver
 
@@ -60,7 +59,6 @@ class FineControlDriver:
         nozzle_address = self.calculate_nozzle_adress_for_gcode(selected_nozzles, printer_head)
         fire_rate = printer_head.get_number_of_fire()
         puls_delay = printer_head.get_pulse_delay()
-        print (GCODES.nozzle_fire(fire_rate, nozzle_address, puls_delay))
         self.communication.send([
             GCODES.nozzle_fire(fire_rate, nozzle_address, puls_delay)
         ])
@@ -74,7 +72,6 @@ class FineControlDriver:
             nozzle_address= str(int(nozzle_value))
         else:
             nozzle_address = printer_head.get_address_for_nozzle(selected_nozzles)
-        print (nozzle_address)
         return nozzle_address
 
     def get_default_printer_head_config(self):
@@ -82,3 +79,8 @@ class FineControlDriver:
 
     def get_number_of_Nozzles(self):
         return self.ApplicationDriver.printer_head.get_number_of_Nozzles()    
+
+    def calculate_band_config_for_test (self, selected_nozzles):
+        number_of_bands = len (selected_nozzles)
+        
+        ApplicationDriver.create_band_config(number_of_bands=number_of_bands )

@@ -92,19 +92,26 @@ class SampleApplicationDriver:
         self.printer_head = PrinterHead(head_config)
         self.band_config = BandConfig(band_config, self.printer_head, self.plate)
         
-    def generate_gcode(self):
-
-        gcode_end = GCODES.END
-        gcode_start = GCODES.start(self.printer_head.get_speed(), self.plate.get_band_offset_x())
+    def generate_gcode_end_and_band(self):
         gcode_for_bands = self.band_config.to_gcode()
-        return (gcode_start + "\n" + gcode_for_bands + "\n" + gcode_end)
+        gcode_end = GCODES.END
+        return (gcode_for_bands + "\n" + gcode_end)
+        
+    def generate_gcode(self):
+        gcode_start = GCODES.start(self.printer_head.get_speed(), self.plate.get_band_offset_x())
+        gcode = gocde_start + "\n" + generate_gcode_end_and_band()
+        return (gcode)
 
+    def generate_gcode_from_current_position_and_send(self):
+        gcode_start = GCODES.SET_REFERENCE
+        gcode = gocde_start + "\n" + generate_gcode_end_and_band()
+        gcode_list = gcode.split('\n')
+        self.communication.send(gcode_list)
 
     def generate_gcode_and_send(self):
         gcode = self.generate_gcode()
         gcode_list = gcode.split('\n')
         self.communication.send(gcode_list)
-    
     
     def volume_per_band(self):
         "how much volume should be applied on a single band"

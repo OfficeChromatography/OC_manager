@@ -58,5 +58,5 @@ def start(speed, distX):
         SET_UNITS_IN_MM,
         SET_ABSOLUTE_POS,
         go_speed(speed),
-        goXPlus(distX)]) # maybe needs a refactor
+        goXPlus(distX)]) # maybe needs a refactor, go(direction, axis)
 

@@ -19,7 +19,6 @@ getSelectedStep  <- function(){
 }
 
 setApplicationConf  <- function(printer_head_config, plate_config, band_config, step){
-
     Method$control[[step]] = list(type="Sample Application",
                                   printer_head_config=printer_head_config,
                                   plate_config = plate_config,

@@ -54,7 +54,7 @@ output$ink_test_control_1 = renderUI({
                               choices = seq(fineControlDriver$get_number_of_Nozzles()),
                               inline = T,selected = 1),
            actionButton("test_ink_fire_selected_nozzles",label = "Fire selected nozzles"),
-           actionButton("test_ink_nozzle_noozle_test",label = "Nozzle testing process")
+           actionButton("test_ink_nozzle_test",label = "Nozzle testing process")
     )
   )
   )

@@ -54,4 +54,6 @@ class Plate:
         "volume for each liquid drop"
         return self.drop_vol
 
+    def set_band_offset_y(self, band_offset_y):
+        self.band_offset_y = float (band_offset_y)
 
