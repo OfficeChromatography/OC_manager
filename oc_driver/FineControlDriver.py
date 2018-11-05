@@ -73,7 +73,7 @@ class FineControlDriver(AbstractApplicationDriver):
 
     def stop(self):
         return self.communication.send([GCODES.DISABLE_STEPPER_MOTORS])
-
+    
     def fire_selected_nozzles(self, selected_nozzles):
         nozzle_address = self.calculate_nozzle_address_for_gcode(selected_nozzles)
         fire_rate = self.printer_head.get_number_of_fire()
@@ -84,13 +84,10 @@ class FineControlDriver(AbstractApplicationDriver):
 
     def calculate_nozzle_address_for_gcode(self, selected_nozzles):
         nozzle_value = 0
-        if type(selected_nozzles) == list:
-            for nozzle in selected_nozzles:
-                address_int = self.printer_head.get_address_for_nozzle(nozzle)
-                nozzle_value += int (address_int)
-            nozzle_address = str(int(nozzle_value))
-        else:
-            nozzle_address = self.printer_head.get_address_for_nozzle(selected_nozzles)
+        for nozzle in selected_nozzles:
+            address_str = self.printer_head.get_address_for_nozzle(nozzle)
+            nozzle_value += int (address_str)
+        nozzle_address = str(nozzle_value)
         return nozzle_address
 
     def get_default_printer_head_config(self):
@@ -102,14 +99,20 @@ class FineControlDriver(AbstractApplicationDriver):
     def calculate_band_config_for_test (self, selected_nozzles):
         number_of_bands = len (selected_nozzles)
         self.create_band_config(number_of_bands=number_of_bands )
+        for idx, Band in enumerate(self.band_config):
+            Band.nozzle_id = selected_nozzles[idx]
 
-        
+    def nozzle_testing_process(self, selected_nozzles):
+        self.calculate_band_config_for_test(selected_nozzles)
+        gcode = self.generate_gcode()
+        print (gcode)
+        self.generate_gcode_and_send(gcode)
+
     def generate_gcode(self):
         gcode_start = GCODES.SET_REFERENCE
         gcode_for_bands = self.band_config.to_gcode()
         gcode_end = GCODES.END
         return (gcode_start + "\n" + gcode_for_bands + "\n" + gcode_end)
-
 
     def get_default_plate_config(self):
         return self.PLATE_CONFIG_DEFAULT

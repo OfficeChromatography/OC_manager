@@ -1,3 +1,4 @@
+
 observeEvent(input$test_ink_cmd_button,{
     fineControlDriver$customCommand(toupper(input$test_ink_cmd))
 
@@ -72,7 +73,7 @@ output$application_settings = renderRHandsontable({
 
 observeEvent(input$test_ink_nozzle_test,{
     selected_nozzles = getUserInputforInkjet()
-    print (length (selected_nozzles) )
+    fineControlDriver$nozzle_testing_process(selected_nozzles)
 
 })
 
@@ -87,6 +88,9 @@ getUserInputforInkjet <- function (){
     updated_printer_head_config = toPythonTableApply_settings(headTable, printer_head_config)
     fineControlDriver$set_printer_head(updated_printer_head_config)
     selected_nozzles = as.numeric (input$test_ink_selected_nozzles)
+    print (class (selected_nozzles))
+    if (class(selected_nozzles)== "numeric"){selected_nozzles = as.list(selected_nozzles)}
+    print (class (selected_nozzles))
     return (selected_nozzles)
     }
 

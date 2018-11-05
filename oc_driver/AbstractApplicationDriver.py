@@ -29,8 +29,6 @@ class AbstractApplicationDriver:
             self.printer_head = PrinterHead(head_config)
         self.band_config = self.create_band_config()    
 
-    
-    
     def create_band_config(self, number_of_bands=CREATE_BAND_CONFIG['number_of_bands']):
         create_conf = self.CREATE_BAND_CONFIG
         create_conf['number_of_bands'] = int(number_of_bands)

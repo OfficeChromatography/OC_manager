@@ -65,7 +65,7 @@ class BandConfig:
                 'volume_set': round(self.volume_per_band(),3)
             })
         return bands
-        
+
     def volume_per_band(self):
         "how much volume should be applied on a single band"
         return self.plate.get_band_length() / \
