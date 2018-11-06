@@ -78,11 +78,11 @@ output$Method_control_settings = renderUI({
     tagList(
       fluidPage(
           fluidRow(
-          column(5,box(title = "Printerhead ", width = "33%", height = "45%",status = "warning",
+          column(4,box(title = "Printerhead ", width = "33%", height = "45%",status = "warning",
           rHandsontableOutput("printer_head_config"))),
-          column(5,box(title = "Plate Design", width = "33%", height = "45%",status = "warning",
+          column(4,box(title = "Plate Design", width = "33%", height = "45%",status = "warning",
           rHandsontableOutput("plate_config"))),
-          column(2,box(title = "Update Settings", width = "33%", height = "45%",status = "warning",
+          column(4,box(title = "Update Settings", width = "33%", height = "45%",status = "warning",
           fluidRow(textInput("number_of_bands", "Number of bands", getNumberOfBands(),width="100%")),
           fluidRow(actionButton("Method_settings_update","Update settings",icon=icon("gears"), width="100%")),
           fluidRow(actionButton("Method_band_config_update","Update apply table",icon=icon("gears"), width="100%"))
@@ -112,9 +112,9 @@ output$Method_control_infos = renderUI({
   )
   if(!is.null(input$Method_steps)){
     tagList(
-        column(5,box(title = "Plate Plot ", width = "33%", height = "45%",status = "warning",
+        column(6,box(title = "Plate Plot ", width = "33%", height = "45%",status = "warning",
         plotOutput("Method_plot",width="400px",height="400px"))),
-        column(7,box(title = "Apply Table ", width = "33%", height = "45%",status = "warning",
+        column(6,box(title = "Apply Table ", width = "33%", height = "45%",status = "warning",
         rHandsontableOutput("band_config")))
     )
   }
@@ -151,7 +151,7 @@ output$printer_head_config = renderRHandsontable({
   table = toTableHeadRFormat(config)
 
   rhandsontable(table, rowHeaderWidth = 160) %>%
-      hot_cols(colWidth = 100)  %>%
+      hot_cols(colWidth = 50)  %>%
             hot_col("units", readOnly = TRUE)
 })
 
@@ -161,7 +161,7 @@ output$plate_config = renderRHandsontable({
         config = Method$control[[index]]$plate_config
         table = toTablePlateRFormat(config)
         rhandsontable(table, rowHeaderWidth = 160) %>%
-            hot_cols(colWidth = 100) %>%
+            hot_cols(colWidth = 50) %>%
             hot_col("units", readOnly = TRUE)
 
     }
@@ -177,7 +177,7 @@ output$band_config = renderRHandsontable({
 
         }
         rhandsontable(table, rowHeaderWidth = 160) %>%
-            hot_cols(colWidth = 100) %>%
+            hot_cols(colWidth = 50) %>%
             hot_col("Approximate Band Start" , readOnly = TRUE) %>%
             hot_col("Approximate Band End", readOnly = TRUE) %>%
             hot_col("Volume Real", readOnly = TRUE)

@@ -1,4 +1,5 @@
 
+
 # This is the user-interface definition of a Shiny web application.
 # You can find out more about building applications with Shiny here:
 #
@@ -14,7 +15,7 @@ dbHeader <- dashboardHeader(title = "OC_LabSoft")
 
 dashboardPage(
   dbHeader,
-  dashboardSidebar(width=125, 
+  dashboardSidebar(width=125,
     sidebarMenu(style = "position: fixed; overflow: visible;",
                 menuItem("Connection", tabName = "Connect",icon=icon("home")),
                 menuItem("Fine control", tabName = "test_ink",icon=icon("wrench")),
@@ -22,7 +23,7 @@ dashboardPage(
                 menuItem("Visualization",tabName = "Visu",icon=icon("camera"))
     )
   ),
-  
+
   dashboardBody(
     tags$script(HTML("$('body').addClass('sidebar-mini');")),
     fluidRow(
@@ -43,18 +44,14 @@ dashboardPage(
                      checkboxInput("Serial_windows","Windows ??",F),
                      uiOutput("Serial_portUI"), # show the /dev directory
                      uiOutput("Serial_port_connectUI") # show an actionButton only if connect$login is TRUE and set connect$board to TRUE
-              ),
-              actionButton("Shutdown","Shutdown"),
-              actionButton("Reboot","Reboot")#,
-              
-              ),
+              )),
       # First tab content
       tabItem(tabName = "test_ink",
               uiOutput("ink_test_control_1")
       ),
       tabItem(tabName = "Method",
               uiOutput("Method_control_1")
-              
+
       ),
 
       tabItem(tabName = "Visu",
