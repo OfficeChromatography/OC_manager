@@ -106,7 +106,6 @@ class FineControlDriver(AbstractApplicationDriver):
     def nozzle_testing_process(self, selected_nozzles):
         self.calculate_band_config_for_test(selected_nozzles)
         gcode = self.generate_gcode()
-        print (gcode)
         self.generate_gcode_and_send()
 
     def generate_gcode(self):
