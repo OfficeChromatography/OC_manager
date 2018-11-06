@@ -29,6 +29,8 @@ WAIT_UNTIL_FIRE = "M400"
 
 FIRE = "M700"
 
+GET_POSITION = "M114"
+
 END = new_lines([GO_TO_ORIGIN_X, GO_TO_ORIGIN_Y, STOP_IDLE_HOLD ])
 
 def nozzle_fire(fire_rate, nozzle_address, puls_delay):

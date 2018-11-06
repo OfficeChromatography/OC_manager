@@ -32,8 +32,7 @@ class Communication:
         self.send(gcode)
         # while (.printcore.printing):
         #    time.sleep(0.1)
-    
-    
+        
     def send(self, code_list):
         gcode = gcoder.LightGCode(code_list)
         is_printing = self.printcore.startprint(gcode)
@@ -44,4 +43,7 @@ class Communication:
             print("Printing finished!")
         else:
             print("Cannot print...")
+
+    def listen(self):
+        return self.printcore._readline()
             

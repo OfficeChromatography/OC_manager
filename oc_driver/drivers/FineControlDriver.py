@@ -116,3 +116,11 @@ class FineControlDriver(AbstractApplicationDriver):
 
     def get_default_plate_config(self):
         return self.PLATE_CONFIG_DEFAULT
+
+    def get_current_position(self):
+        self.communication.send( [
+            GCODES.GET_POSITION
+            ])
+        line = self.communication.listen()
+        print (line)
+        
