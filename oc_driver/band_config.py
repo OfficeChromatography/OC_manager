@@ -27,6 +27,10 @@ class Band:
     def get_nozzle_id(self):
         return self.nozzle_id
 
+    def set_nozzle_id(self, nozzle_id):
+        self.nozzle_id = nozzle_id
+        
+
     def to_dict(self):
         return {'start': self.start, 'end': self.end, \
                 'label' : self.label, 'nozzle_id': self.nozzle_id, \
@@ -141,3 +145,6 @@ class BandConfig:
             gcode = gcode + gcode_band * int(band.get_number_of_repitition()) 
                 
         return GCODES.new_lines(gcode)
+
+    def get_bands(self):
+        return self.bands

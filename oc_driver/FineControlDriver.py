@@ -1,3 +1,4 @@
+
 import gcodes as GCODES
 from AbstractApplicationDriver import AbstractApplicationDriver
 
@@ -99,14 +100,15 @@ class FineControlDriver(AbstractApplicationDriver):
     def calculate_band_config_for_test (self, selected_nozzles):
         number_of_bands = len (selected_nozzles)
         self.create_band_config(number_of_bands=number_of_bands )
-        for idx, Band in enumerate(self.band_config):
-            Band.nozzle_id = selected_nozzles[idx]
+        bands = self.band_config.get_bands()
+        for idx, Band in enumerate(bands):
+            Band.set_nozzle_id(selected_nozzles[idx])
 
     def nozzle_testing_process(self, selected_nozzles):
         self.calculate_band_config_for_test(selected_nozzles)
         gcode = self.generate_gcode()
         print (gcode)
-        self.generate_gcode_and_send(gcode)
+        self.generate_gcode_and_send()
 
     def generate_gcode(self):
         gcode_start = GCODES.SET_REFERENCE
