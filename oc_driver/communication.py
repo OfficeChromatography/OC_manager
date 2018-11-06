@@ -1,4 +1,4 @@
-from lib.printrun import printcore, gcoder
+from vendor.printrun import printcore, gcoder
 
 import time
 
