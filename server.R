@@ -82,7 +82,7 @@ shinyServer(function(input, output,session) {
   source("server_Method.R",local = T)
 
   # connect with the hardware and use printcore to control
-  connect = reactiveValues(board = board)y
+  connect = reactiveValues(board = board)
 
   testConnection()
 

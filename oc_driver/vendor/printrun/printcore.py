@@ -17,7 +17,7 @@
 
 __version__ = "1.6.0"
 
-from printrun.serialWrapper import Serial, SerialException, PARITY_ODD, PARITY_NONE
+from serialWrapper import Serial, SerialException, PARITY_ODD, PARITY_NONE
 from select import error as SelectError
 import threading
 from Queue import Queue, Empty as QueueEmpty
@@ -35,10 +35,10 @@ import socket
 import re
 from functools import wraps
 from collections import deque
-from printrun import gcoder
-from printrun.utils import install_locale, decode_utf8
+import gcoder
+from utils import install_locale, decode_utf8
 install_locale('pronterface')
-from printrun.plugins import PRINTCORE_HANDLER
+from plugins import PRINTCORE_HANDLER
 # add
 def gcode_reader(file):
   gcode=[i.strip() for i in open(file)] # or pass in your own array of gcode lines instead of reading from a file
