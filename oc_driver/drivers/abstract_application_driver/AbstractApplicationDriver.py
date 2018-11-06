@@ -1,8 +1,8 @@
 from abc import ABCMeta, abstractmethod
-import oc_driver.drivers.gcodes as GCODES
-from oc_driver.config.band_config import BandConfig
-from oc_driver.config.plate_config import Plate
-from oc_driver.config.print_head_config import PrinterHead
+import drivers.gcodes as GCODES
+from config.band_config import BandConfig
+from config.plate_config import Plate
+from config.print_head_config import PrinterHead
 
 class AbstractApplicationDriver:
     __metaclass__ = ABCMeta

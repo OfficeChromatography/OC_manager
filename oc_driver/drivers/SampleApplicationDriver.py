@@ -1,5 +1,5 @@
-import OCDriver.drivers.gcodes as GCODES
-from OCDriver.drivers.AbstractApplicationDriver import AbstractApplicationDriver
+import drivers.gcodes as GCODES
+from drivers.abstract_application_driver.AbstractApplicationDriver import AbstractApplicationDriver
 
 class SampleApplicationDriver(AbstractApplicationDriver):
 

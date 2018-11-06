@@ -1,4 +1,4 @@
-import gcodes as GCODES 
+import drivers.gcodes as GCODES 
 import numpy as np
 
 class Band:

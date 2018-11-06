@@ -1,5 +1,5 @@
-import gcodes as GCODES
-from abstract_application_driver.AbstractApplicationDriver import AbstractApplicationDriver
+import drivers.gcodes as GCODES
+from drivers.abstract_application_driver.AbstractApplicationDriver import AbstractApplicationDriver
 
 class FineControlDriver(AbstractApplicationDriver):
 
