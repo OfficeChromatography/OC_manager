@@ -104,9 +104,10 @@ class FineControlDriver(AbstractApplicationDriver):
             Band.set_nozzle_id(selected_nozzles[idx])
 
     def nozzle_testing_process(self, selected_nozzles):
-        self.calculate_band_config_for_test(selected_nozzles)
-        gcode = self.generate_gcode()
-        self.generate_gcode_and_send()
+        self.get_current_position()
+        #self.calculate_band_config_for_test(selected_nozzles)
+        #gcode = self.generate_gcode()
+        #self.generate_gcode_and_send()
 
     def generate_gcode(self):
         gcode_start = GCODES.SET_REFERENCE
@@ -118,9 +119,10 @@ class FineControlDriver(AbstractApplicationDriver):
         return self.PLATE_CONFIG_DEFAULT
 
     def get_current_position(self):
-        self.communication.send( [
+        self.communication.send([
             GCODES.GET_POSITION
             ])
         line = self.communication.listen()
-        print (line)
+        print ("listen")
+        print(str (line))
         
