@@ -1,5 +1,4 @@
-
-                                        # This is the server logic for a Shiny web application.
+# This is the server logic for a Shiny web application.
 # You can find out more about building applications with Shiny here:
 #
 # http://shiny.rstudio.com
@@ -61,7 +60,7 @@ shinyServer(function(input, output,session) {
   })
 
   output$Serial_port_connectUI = renderUI({
-    if(ocDriver$is_connected()){
+    if(!ocDriver$is_connected()){
       actionButton("Serial_port_connect","Connect the board")
     }else{
       actionButton("Serial_port_disconnect","Disconnect the board")

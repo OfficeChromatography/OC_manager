@@ -178,6 +178,7 @@ output$band_config = renderRHandsontable({
         }
         rhandsontable(table, rowHeaderWidth = 160) %>%
             hot_cols(colWidth = 50) %>%
+	    hot_col("Label", width = 100) %>%
             hot_col("Approximate Band Start" , readOnly = TRUE) %>%
             hot_col("Approximate Band End", readOnly = TRUE) %>%
             hot_col("Volume Real", readOnly = TRUE)
