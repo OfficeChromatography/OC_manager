@@ -1,4 +1,5 @@
 
+
 observeEvent(input$test_ink_cmd_button,{
     fineControlDriver$customCommand(toupper(input$test_ink_cmd))
 

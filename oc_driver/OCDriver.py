@@ -1,5 +1,5 @@
-from FineControlDriver import FineControlDriver
-from SampleApplicationDriver  import SampleApplicationDriver 
+from drivers.FineControlDriver import FineControlDriver
+from drivers.SampleApplicationDriver  import SampleApplicationDriver 
 
 from communication import Communication
 

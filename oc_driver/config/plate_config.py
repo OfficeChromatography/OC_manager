@@ -57,3 +57,8 @@ class Plate:
     def set_band_offset_y(self, band_offset_y):
         self.band_offset_y = float (band_offset_y)
 
+    def get_plate_width_x(self):
+        return self.plate_width_x
+
+    def get_plate_height_y(self):
+        return self.plate_height_y

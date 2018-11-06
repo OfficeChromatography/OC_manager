@@ -1,10 +1,8 @@
 from abc import ABCMeta, abstractmethod
-import gcodes as GCODES
-from band_config import BandConfig
-from plate_config import Plate
-from print_head_config import PrinterHead
-
-
+import oc_driver.drivers.gcodes as GCODES
+from oc_driver.config.band_config import BandConfig
+from oc_driver.config.plate_config import Plate
+from oc_driver.config.print_head_config import PrinterHead
 
 class AbstractApplicationDriver:
     __metaclass__ = ABCMeta
@@ -54,6 +52,13 @@ class AbstractApplicationDriver:
         gcode = self.generate_gcode()
         gcode_list = gcode.split('\n')
         self.communication.send(gcode_list)
+
+    def control_configs (self, number_of_bands):
+        plate = self.plate
+        plate_width_x = plate.get_plate_width_x()
+        track_length = plate.get_band_length() + plate.get_gap()
+        offset = plate.get_offset_x()
+        
     
     @abstractmethod
     def generate_gcode(self):

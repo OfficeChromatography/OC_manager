@@ -1,8 +1,5 @@
-import gcodes as GCODES
-from band_config import BandConfig
-from plate_config import Plate
-from print_head_config import PrinterHead
-from AbstractApplicationDriver import AbstractApplicationDriver
+import OCDriver.drivers.gcodes as GCODES
+from OCDriver.drivers.AbstractApplicationDriver import AbstractApplicationDriver
 
 class SampleApplicationDriver(AbstractApplicationDriver):
 
