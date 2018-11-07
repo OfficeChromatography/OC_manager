@@ -370,7 +370,7 @@ class printcore():
                         self.resendfrom = toresend
                         break
                     except:
-                        passx
+                        pass
                 self.clear = True
         self.clear = True
 

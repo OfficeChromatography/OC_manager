@@ -30,6 +30,9 @@ class Band:
     def set_nozzle_id(self, nozzle_id):
         self.nozzle_id = nozzle_id
         
+    def set_number_of_reptition(self, number_of_reptition):
+        self.number_of_reptition = number_of_reptition
+        
 
     def to_dict(self):
         return {'start': self.start, 'end': self.end, \

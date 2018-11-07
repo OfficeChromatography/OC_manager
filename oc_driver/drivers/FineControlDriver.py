@@ -102,6 +102,7 @@ class FineControlDriver(AbstractApplicationDriver):
         bands = self.band_config.get_bands()
         for idx, Band in enumerate(bands):
             Band.set_nozzle_id(selected_nozzles[idx])
+            Band.set_number_of_reptition(3)
 
     def nozzle_testing_process(self, selected_nozzles):
         #self.get_current_position()
@@ -110,7 +111,7 @@ class FineControlDriver(AbstractApplicationDriver):
         self.generate_gcode_and_send()
 
     def generate_gcode(self):
-        speed = self.print_head.get_speed()
+        speed = self.printer_head.get_speed()
         gcode_start = GCODES.start(speed, 10)
         gcode_for_bands = self.band_config.to_gcode()
         gcode_end = GCODES.END

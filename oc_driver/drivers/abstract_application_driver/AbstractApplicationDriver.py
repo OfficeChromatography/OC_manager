@@ -51,8 +51,6 @@ class AbstractApplicationDriver:
     
     def generate_gcode_and_send(self):
         gcode = self.generate_gcode()
-        print ("Appli-Driver")
-        print (gcode)
         gcode_list = gcode.split('\n')
         self.communication.send(gcode_list)
 
