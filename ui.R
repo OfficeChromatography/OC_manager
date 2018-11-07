@@ -1,5 +1,3 @@
-
-
 # This is the user-interface definition of a Shiny web application.
 # You can find out more about building applications with Shiny here:
 #
@@ -11,16 +9,15 @@ library(shinydashboard)
 library(shinyBS)
 library(shinyalert)
 
-dbHeader <- dashboardHeader(title = "OC_LabSoft")
+dbHeader <- dashboardHeader(title = "OC Manager")
 
 dashboardPage(
   dbHeader,
   dashboardSidebar(width=125,
     sidebarMenu(style = "position: fixed; overflow: visible;",
                 menuItem("Connection", tabName = "Connect",icon=icon("home")),
-                menuItem("Fine control", tabName = "test_ink",icon=icon("wrench")),
-                menuItem("Method", tabName = "Method",icon=icon("tasks")),
-                menuItem("Visualization",tabName = "Visu",icon=icon("camera"))
+                menuItem("Fine control", tabName = "Fine_Control", icon=icon("wrench")),
+                menuItem("Method", tabName = "Method",icon=icon("tasks"))
     )
   ),
 
@@ -38,24 +35,15 @@ dashboardPage(
       ),
       # First tab content
       tabItem(tabName = "Connect",
-              column(4,
-                     h4("Board"),
-                     actionButton("Serial_port_refresh","Refresh serial port",icon=icon("refresh")),
-                     checkboxInput("Serial_windows","Windows ??",F),
-                     uiOutput("Serial_portUI"), # show the /dev directory
-                     uiOutput("Serial_port_connectUI") # show an actionButton only if connect$login is TRUE and set connect$board to TRUE
-              )),
+              uiOutput("server_connection")
+       ),
       # First tab content
-      tabItem(tabName = "test_ink",
-              uiOutput("ink_test_control_1")
+      tabItem(tabName = "Fine_Control",
+              uiOutput("server_Fine_control")
       ),
       tabItem(tabName = "Method",
-              uiOutput("Method_control_1")
+              uiOutput("server_method")
 
-      ),
-
-      tabItem(tabName = "Visu",
-              uiOutput("Visu_control_1")
       )
     )
   )

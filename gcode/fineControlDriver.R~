@@ -1,4 +1,0 @@
-customGcode <- function(gcode) {
-    printer$send(toupper(gcode))
-    printer$Print()
-}
