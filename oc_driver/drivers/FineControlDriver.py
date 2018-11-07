@@ -110,7 +110,7 @@ class FineControlDriver(AbstractApplicationDriver):
         #self.generate_gcode_and_send()
 
     def generate_gcode(self):
-        gcode_start = GCODES.SET_REFERENCE
+        gcode_start = GCODES.start(speed, 10)
         gcode_for_bands = self.band_config.to_gcode()
         gcode_end = GCODES.END
         return (gcode_start + "\n" + gcode_for_bands + "\n" + gcode_end)
