@@ -1,5 +1,0 @@
-# load UI
-source("./connection/ui.R", local=T)
-
-# load EvendHandler
-source("./connection/eventHandler.R", local=T)
