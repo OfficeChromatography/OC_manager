@@ -104,12 +104,13 @@ class FineControlDriver(AbstractApplicationDriver):
             Band.set_nozzle_id(selected_nozzles[idx])
 
     def nozzle_testing_process(self, selected_nozzles):
-        self.get_current_position()
-        #self.calculate_band_config_for_test(selected_nozzles)
-        #gcode = self.generate_gcode()
-        #self.generate_gcode_and_send()
+        #self.get_current_position()
+        self.calculate_band_config_for_test(selected_nozzles)
+        gcode = self.generate_gcode()
+        self.generate_gcode_and_send()
 
     def generate_gcode(self):
+        speed = self.print_head.get_speed()
         gcode_start = GCODES.start(speed, 10)
         gcode_for_bands = self.band_config.to_gcode()
         gcode_end = GCODES.END
