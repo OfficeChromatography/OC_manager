@@ -1,16 +1,15 @@
-methodsUI <- {
+output$sample_application = renderUI ({
     fluidPage(
     fluidRow(
-        box(title = "Settings", width = "85%", height = "45%",status = "primary",
-            fluidRow(actionButton("Method_settings_update","Update settings",icon=icon("gears"), width="100%")))
+    box(title = "Settings", width = "85%", height = "45%",status = "primary",
+        uiOutput("Method_control_settings"))
     ),
     fluidRow(
     box(title = "Information", width = "85%", height = "45%",status = "primary",
         uiOutput("Method_control_infos"))
     )
     )
-}
-
+})
 
 
 ## settings
@@ -18,7 +17,7 @@ output$Method_control_settings = renderUI({
     validate(
     need(length(Method$control) > 0 ,"Add a step or load a saved method")
     )
-    print ("settings")
+
   if(!is.null(input$Method_steps)){
     tagList(
       fluidPage(
@@ -28,7 +27,6 @@ output$Method_control_settings = renderUI({
           column(4,box(title = "Plate Design", width = "33%", height = "45%",status = "warning",
           rHandsontableOutput("plate_config"))),
           column(4,box(title = "Update Settings", width = "33%", height = "45%",status = "warning",
-          fluidRow(textInput("number_of_bands", "Number of bands", getNumberOfBands(),width="100%")),
           fluidRow(actionButton("Method_settings_update","Update settings",icon=icon("gears"), width="100%")),
           fluidRow(actionButton("Method_band_config_update","Update apply table",icon=icon("gears"), width="100%"))
           )
@@ -38,17 +36,6 @@ output$Method_control_settings = renderUI({
       )
   }
 })
-
-
-getNumberOfBands  <- function(){
-    numberOfBands = input$number_of_bands
-    if (is.null ( numberOfBands )) {
-        numberOfBands = 5
-
-    }
-    return (numberOfBands)
-}
-
 
 ## information
 output$Method_control_infos = renderUI({
@@ -74,7 +61,7 @@ output$Method_plot = renderPlot({
     if(!is.null(currentMethod)){
         plate_config = currentMethod$plate_config
         numberOfBands= length (currentMethod$band_config)
-        createApplicationPlot(plate_config, numberOfBands)
+        createApplicationPlot(plate_config, 1)
     }
     else{
         plot(x=1,y=1,type="n",main="Update to visualize")

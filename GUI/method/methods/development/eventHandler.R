@@ -1,12 +1,13 @@
+#abstract
 setApplicationConf  <- function(printer_head_config, plate_config, band_config, step){
-    Method$control[[step]] = list(type="Sample Application",
+    Method$control[[step]] = list(type="Documentation",
                                   printer_head_config=printer_head_config,
                                   plate_config = plate_config,
                                   band_config = band_config)
 
 
 }
-
+# Application
 createApplicationPlot <- function ( plate_config, numberOfBands){
     plate_width_x = as.numeric (plate_config$plate_width_x)
     plate_height_y = as.numeric (plate_config$plate_height_y)
@@ -37,33 +38,36 @@ createApplicationPlot <- function ( plate_config, numberOfBands){
 
 
 
-
+#abstract
 toTableHeadRFormat  <- function(pythonHeadConf){
     labels = c("Speed", "Pulse Delay", "Number of Fire", "Step Range", "Printer Head Resolution")
     units = c("mm/m", "\U00B5m", "", "mm", "mm")
     return (toRSettingsTableFormat(pythonHeadConf, labels, units))
 }
 
+#abstract
 toTablePlateRFormat  <- function(pythonPlateConf) {
-    labels = c("Relative Band Distance [Y]", "Relative Band Distance [X]", "Plate Height [Y]", "Plate Width [X]", "Drop Volume", "Band Length", "Gap")
-    units = c("mm", "mm", "mm", "mm", "nl", "mm", "mm")
+    labels = c("Relative Band Distance [Y]", "Relative Band Distance [X]", "Plate Height [Y]", "Plate Width [X]", "Drop Volume")
+    units = c("mm", "mm", "mm", "mm", "nl")
     return (toRSettingsTableFormat(pythonPlateConf, labels, units))
 }
-
+#abstract
 toPythonTableHeadFormat  <- function(tableHeadConf) {
     keysTable = c("speed", "pulse_delay"  , "number_of_fire" , "step_range", "printer_head_resolution" )
     return (settingsTabletoPythonDict(tableHeadConf, keysTable))
 }
-
+#abstract
 toPythonTablePlateFormat  <- function(tablePlateConf) {
-    keysPlate = c("relative_band_distance_y", "relative_band_distance_x"  , "plate_height_y" , "plate_width_x", "drop_vol", "band_length", "gap" )
+    keysPlate = c("relative_band_distance_y", "relative_band_distance_x"  , "plate_height_y" , "plate_width_x", "drop_vol")
     return (settingsTabletoPythonDict(tablePlateConf, keysPlate))
 }
 
 
-# todo refactor
+
+# abstract
 renderSampleApplication  <- function(){
     step = length(Method$control) + 1
+
     headConf = appl_driver$get_default_printer_head_config()
     plateConf = appl_driver$get_default_plate_config()
     bandConf = appl_driver$create_band_config(5)
@@ -75,13 +79,14 @@ renderSampleApplication  <- function(){
     showInfo("Please configure your sample application proccess")
 }
 
+# Application
 getBandConfigFromTable <- function(){
     bandlistTable= hot_to_r(input$band_config)
     return (bandConfSettingsTableFormatToPython(bandlistTable))
 
 }
 
-
+#abstract
 observeEvent(input$Method_settings_update,{
     step = getSelectedStep()
 
@@ -100,6 +105,7 @@ observeEvent(input$Method_settings_update,{
     setApplicationConf(pyHead, pyPlate, bandList, step)
 })
 
+# Application
 observeEvent (input$Method_band_config_update,{
     band_list = getBandConfigFromTable()
     update_band_list = appl_driver$update_band_list(band_list)

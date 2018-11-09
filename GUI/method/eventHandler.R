@@ -1,3 +1,29 @@
+renderMethodsUI <- function (){
+    #step = getSelectedStep ()
+    type = "sample_application"
+    path = "./GUI/method/methods/"
+    switch (type,
+            "sample_application" = {
+                ## load UI
+                source(paste0 (path,"sample_application/ui.R"), local=ui_methods)
+                ##load event Handler
+                source(paste0 (path,"sample_application/eventHandler.R"), local=eventHandler_methods)
+                ##load driver
+                appl_driver = ocDriver$get_sample_application_driver()
+                },
+            "development" = {
+                ## load UI
+                source(paste0 (path,"development/ui.R"), local=ui_methods)
+                ##load event Handler
+                source(paste0 (path,"development/eventHandler.R"), local=eventHandler_methods)
+                ##load driver
+                appl_driver = ocDriver$get_sample_application_driver()
+                },
+            "documentation" = {}
+            )
+}
+
+
 
 showInfo  <- function(msg) {
     Method_feedback$text = msg
@@ -8,21 +34,20 @@ getSelectedStep  <- function(){
 }
 
 
+
 ## methods
 observeEvent(input$Method_step_add,{
-
-    if(input$Method_step_new == "Sample Application") {
-        renderSampleApplication()
-    }
-
+    renderMethodsUI()
+    eventHandler_methods$renderSampleApplication()
 
 })
 
 observeEvent(input$Method_step_delete,{
     index = getSelectedStep()
     if(index > 0) {
-        Method$control[[as.numeric(input$Method_steps)]] = NULL
+        Method$control[[index]] = NULL
     }
+    renderMethodsUI()
 
 })
 
@@ -30,21 +55,20 @@ observeEvent(input$Method_step_delete,{
 
 ## start
 observeEvent(input$Method_step_exec,{
-    bandlistpy =  getBandConfigFromTable()
+    bandlistpy =  eventHandler_methods$getBandConfigFromTable()
     appl_driver$set_band_config(bandlistpy)
     gcode = appl_driver$generate_gcode()
-    write(gcode, file="gcodeData.txt")
     appl_driver$generate_gcode_and_send()
 })
 
 output$Method_gcode_download <- downloadHandler(
-  filename = function(x){paste0("OC_Lab_",
+  filename = function(x){paste0("OC_manager_",
                                 Method$control[[as.numeric(input$Method_steps)]]$type,
                                 "_",
                                 paste0(Method$control[[as.numeric(input$Method_steps)]]$table[,2],collapse = "_"),
-                                '.gcode')},##"OC_manager.gcode",
+                                '.gcode')},
   content = function(file) {
-    Method_file = paste0("gcode/","Method",".gcode")
+    Method_file = paste0("./method/method_to_load/",".gcode")
     Log = Method_file
     fileConn<-file(Method_file)
     writeLines(Method$control[[as.numeric(input$Method_steps)]]$gcode, fileConn)

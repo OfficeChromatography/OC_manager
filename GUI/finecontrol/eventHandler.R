@@ -61,8 +61,6 @@ toPythonTableApply_settings <- function (tableHeadConf, printer_head_config){
     return (printer_head_config)
 }
 
-createNozzleTestGCODE  <- function(input){
-}
 
 output$application_settings = renderRHandsontable({
   config= fineControlDriver$get_default_printer_head_config()

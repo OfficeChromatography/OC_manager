@@ -1,3 +1,4 @@
+
 output$server_method = renderUI({
   tagList(
     fluidPage(
@@ -5,7 +6,11 @@ output$server_method = renderUI({
         fluidRow(
         column(1, actionButton("Method_step_add","",icon=icon("plus"))),
         column(1,offset=1,actionButton("Method_step_delete","",icon = icon("window-close")))),
-        fluidRow(column(10,ofsett=1,selectizeInput("Method_step_new","",choices = c("Sample Application"), width = "100%"))),
+        fluidRow(column(10,ofsett=1,selectizeInput("Method_step_new","",
+                                                   choices = c("Sample Application",
+                                                               "Development",
+                                                               "Documentation"
+                                                               ), width = "100%"))),
         fluidRow(
         sidebarPanel( id = "Steps",style = "overflow-y:scroll; height: 175px; position:relative; ", width = 12,
           uiOutput("Method_control_methods")))
@@ -27,12 +32,12 @@ output$server_method = renderUI({
     box(title = "Gcode viewer", width = "15%",solidHeader = TRUE,status = "primary",
         uiOutput("Method_control_gcode"))
     ),
-    column(9, uiOutput ("sample_application")
-  )
+    column(9, ui_methods$methodsUI)
   )
   )
 })
 
+output$methods_ui = renderUI (ui_methods$methodsUI)
 
 output$Method_control_methods = renderUI({
   validate(
@@ -52,7 +57,6 @@ output$Method_control_gcode = renderUI({
   )
   if(!is.null(input$Method_steps)){
     tagList(
-
         fluidPage(
         fluidRow(downloadButton("Method_gcode_download","Download Gcode"))
       )
@@ -65,4 +69,5 @@ output$Method_control_gcode = renderUI({
 output$Method_feedback = renderText({
   Method_feedback$text
 })
+
 
