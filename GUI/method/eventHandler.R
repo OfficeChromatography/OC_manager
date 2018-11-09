@@ -1,46 +1,54 @@
-renderMethodsUI <- function (){
-    #step = getSelectedStep ()
-    type = "sample_application"
+renderMethodsUI <- function (type){
     path = "./GUI/method/methods/"
+    renderMethods = ""
     switch (type,
-            "sample_application" = {
+            "Sample Application" = {
                 ## load UI
                 source(paste0 (path,"sample_application/ui.R"), local=T)
                 ##load event Handler
                 source(paste0 (path,"sample_application/eventHandler.R"), local=T)
-                output$methodUI  <- methodsUI
+                output$methodUI  <- methodsUI_sample_application
                 ##load driver
-                appl_driver = ocDriver$get_sample_application_driver()
+                appl_driver <<- ocDriver$get_sample_application_driver()
                 },
-            "development" = {
+            "Development" = {
                 ## load UI
-                source(paste0 (path,"development/ui.R"))
+                source(paste0 (path,"development/ui.R"), local=T)
+                output$methodUI <- methodsUI_development
                 ##load event Handler
-                source(paste0 (path,"development/eventHandler.R"))
+                source(paste0 (path,"development/eventHandler.R"), local=T)
                 ##load driver
-                appl_driver = ocDriver$get_sample_application_driver()
+                appl_driver <<- ocDriver$get_development_driver()
                 },
-            "documentation" = {}
+            "Documentation" = {}
             )
+    step_add_Methods <<- add_step
+
 }
 
 
 
-showInfo  <- function(msg) {
+showInfo  <<- function(msg) {
     Method_feedback$text = msg
 }
 
-getSelectedStep  <- function(){
+getSelectedStep  <<- function(){
     return (as.numeric(input$Method_steps))
+}
+
+get_Method_type <<- function () {
+    index = getSelectedStep()
+    return (Method$control[[index]]$type)
 }
 
 
 
 ## methods
 observeEvent(input$Method_step_add,{
-    renderMethodsUI()
-#    eventHandler_methods$renderSampleApplication()
-
+    type = input$Method_step_new
+    renderMethodsUI(type)
+    step_add_Methods()
+    Method$selected = length(Method$control)
 })
 
 observeEvent(input$Method_step_delete,{
@@ -48,7 +56,7 @@ observeEvent(input$Method_step_delete,{
     if(index > 0) {
         Method$control[[index]] = NULL
     }
-    renderMethodsUI()
+    Method$selected = length (Method$control)
 
 })
 
@@ -56,7 +64,7 @@ observeEvent(input$Method_step_delete,{
 
 ## start
 observeEvent(input$Method_step_exec,{
-    bandlistpy =  eventHandler_methods$getBandConfigFromTable()
+    bandlistpy =  getBandConfigFromTable()
     appl_driver$set_band_config(bandlistpy)
     gcode = appl_driver$generate_gcode()
     appl_driver$generate_gcode_and_send()
@@ -97,6 +105,12 @@ observeEvent(input$Method_load,{
     else{
         Method_feedback$text = "Method can't load, no file selected"
     }
+    Method$selected = 1
 })
 
 
+observeEvent(input$Method_steps,{
+    type = get_Method_type()
+    renderMethodsUI(type)
+    Method$selected = getSelectedStep()
+ })

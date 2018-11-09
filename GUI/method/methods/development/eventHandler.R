@@ -1,6 +1,6 @@
 #abstract
 setApplicationConf  <- function(printer_head_config, plate_config, band_config, step){
-    Method$control[[step]] = list(type="Documentation",
+    Method$control[[step]] = list(type="Development",
                                   printer_head_config=printer_head_config,
                                   plate_config = plate_config,
                                   band_config = band_config)
@@ -47,6 +47,8 @@ toTableHeadRFormat  <- function(pythonHeadConf){
 
 #abstract
 toTablePlateRFormat  <- function(pythonPlateConf) {
+    pythonPlateConf$gap = NULL
+    pythonPlateConf$band_length = NULL
     labels = c("Relative Band Distance [Y]", "Relative Band Distance [X]", "Plate Height [Y]", "Plate Width [X]", "Drop Volume")
     units = c("mm", "mm", "mm", "mm", "nl")
     return (toRSettingsTableFormat(pythonPlateConf, labels, units))
@@ -58,20 +60,23 @@ toPythonTableHeadFormat  <- function(tableHeadConf) {
 }
 #abstract
 toPythonTablePlateFormat  <- function(tablePlateConf) {
-    keysPlate = c("relative_band_distance_y", "relative_band_distance_x"  , "plate_height_y" , "plate_width_x", "drop_vol")
-    return (settingsTabletoPythonDict(tablePlateConf, keysPlate))
+    band_length_value = appl_driver$calculate_band_length()
+    append_dataFrame = data.frame(row.names=c("Band Length","Gap"),
+                                  "values"= c(band_length_value,0), "units" = c("mm","mm"))
+    tablePlateConf_appended = rbind(tablePlateConf,append_dataFrame)
+    keysPlate = c("relative_band_distance_y", "relative_band_distance_x"  , "plate_height_y" , "plate_width_x", "drop_vol","band_length","gap")
+    return (settingsTabletoPythonDict(tablePlateConf_appended, keysPlate))
 }
 
 
 
 # abstract
-renderSampleApplication  <- function(){
+add_step  <- function(){
     step = length(Method$control) + 1
-
+    number_of_bands = 1
     headConf = appl_driver$get_default_printer_head_config()
     plateConf = appl_driver$get_default_plate_config()
-    bandConf = appl_driver$create_band_config(5)
-
+    bandConf = appl_driver$create_band_config(number_of_bands)
     bandList = bandConf$to_band_list()
 
     setApplicationConf(headConf, plateConf, bandList, step)
@@ -87,7 +92,7 @@ getBandConfigFromTable <- function(){
 }
 
 #abstract
-observeEvent(input$Method_settings_update,{
+observeEvent(input$development_settings_update,{
     step = getSelectedStep()
 
     plateTable = hot_to_r(input$plate_config)
@@ -98,7 +103,7 @@ observeEvent(input$Method_settings_update,{
 
 
     appl_driver$setup(pyPlate, pyHead)
-    numberOfBands = input$number_of_bands
+    numberOfBands = 1
     band_conf = appl_driver$create_band_config(numberOfBands)
     bandList = band_conf$to_band_list()
 
@@ -106,7 +111,7 @@ observeEvent(input$Method_settings_update,{
 })
 
 # Application
-observeEvent (input$Method_band_config_update,{
+observeEvent (input$development_band_config_update,{
     band_list = getBandConfigFromTable()
     update_band_list = appl_driver$update_band_list(band_list)
     index = getSelectedStep()

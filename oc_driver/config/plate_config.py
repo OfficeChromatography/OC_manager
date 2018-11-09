@@ -30,6 +30,9 @@ class Plate:
     
     def get_calibration_y(self):
         return self.calibration_y
+
+    def get_relative_band_offset_x(self):
+        return self.relative_band_distance_x
     
     def get_band_offset_x(self):
         'band offset from the plate in x direction'

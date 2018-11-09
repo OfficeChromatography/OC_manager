@@ -1,23 +1,22 @@
-methodsUI <- renderUI({
+methodsUI_sample_application <- renderUI({
     fluidPage(
     fluidRow(
         box(title = "Settings", width = "85%", height = "45%",status = "primary",
-            fluidRow(actionButton("Method_settings_update","Update settings",icon=icon("gears"), width="100%")))
+           uiOutput("sample_application_control_settings"))
     ),
     fluidRow(
     box(title = "Information", width = "85%", height = "45%",status = "primary",
-        uiOutput("Method_control_infos"))
+        uiOutput("sample_application_control_infos"))
     )
     )
 })
 
 
 ## settings
-output$Method_control_settings = renderUI({
+output$sample_application_control_settings = renderUI({
     validate(
     need(length(Method$control) > 0 ,"Add a step or load a saved method")
     )
-    print ("settings")
   if(!is.null(input$Method_steps)){
     tagList(
       fluidPage(
@@ -28,8 +27,8 @@ output$Method_control_settings = renderUI({
           rHandsontableOutput("plate_config"))),
           column(4,box(title = "Update Settings", width = "33%", height = "45%",status = "warning",
           fluidRow(textInput("number_of_bands", "Number of bands", getNumberOfBands(),width="100%")),
-          fluidRow(actionButton("Method_settings_update","Update settings",icon=icon("gears"), width="100%")),
-          fluidRow(actionButton("Method_band_config_update","Update apply table",icon=icon("gears"), width="100%"))
+          fluidRow(actionButton("sample_application_settings_update","Update settings",icon=icon("gears"), width="100%")),
+          fluidRow(actionButton("sample_application_band_config_update","Update apply table",icon=icon("gears"), width="100%"))
           )
                    )
                   )
@@ -50,21 +49,21 @@ getNumberOfBands  <- function(){
 
 
 ## information
-output$Method_control_infos = renderUI({
+output$sample_application_control_infos = renderUI({
   validate(
     need(length(Method$control) > 0 ,"Add a step or load a saved method")
   )
   if(!is.null(input$Method_steps)){
     tagList(
         column(6,box(title = "Plate Plot ", width = "33%", height = "45%",status = "warning",
-        plotOutput("Method_plot",width="400px",height="400px"))),
+        plotOutput("sample_application_plot",width="400px",height="400px"))),
         column(6,box(title = "Apply Table ", width = "33%", height = "45%",status = "warning",
         rHandsontableOutput("band_config")))
     )
   }
 })
 
-output$Method_plot = renderPlot({
+output$sample_application_plot = renderPlot({
     index = getSelectedStep()
     if (index > length(Method$control)){
         index=1

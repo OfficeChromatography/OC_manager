@@ -1,19 +1,20 @@
-output$sample_application = renderUI ({
+
+methodsUI_development = renderUI ({
     fluidPage(
     fluidRow(
     box(title = "Settings", width = "85%", height = "45%",status = "primary",
-        uiOutput("Method_control_settings"))
+        uiOutput("development_control_settings"))
     ),
     fluidRow(
     box(title = "Information", width = "85%", height = "45%",status = "primary",
-        uiOutput("Method_control_infos"))
+        uiOutput("development_control_infos"))
     )
     )
 })
 
 
 ## settings
-output$Method_control_settings = renderUI({
+output$development_control_settings = renderUI({
     validate(
     need(length(Method$control) > 0 ,"Add a step or load a saved method")
     )
@@ -27,8 +28,8 @@ output$Method_control_settings = renderUI({
           column(4,box(title = "Plate Design", width = "33%", height = "45%",status = "warning",
           rHandsontableOutput("plate_config"))),
           column(4,box(title = "Update Settings", width = "33%", height = "45%",status = "warning",
-          fluidRow(actionButton("Method_settings_update","Update settings",icon=icon("gears"), width="100%")),
-          fluidRow(actionButton("Method_band_config_update","Update apply table",icon=icon("gears"), width="100%"))
+          fluidRow(actionButton("development_settings_update","Update settings",icon=icon("gears"), width="100%")),
+          fluidRow(actionButton("development_band_config_update","Update apply table",icon=icon("gears"), width="100%"))
           )
                    )
                   )
@@ -38,21 +39,21 @@ output$Method_control_settings = renderUI({
 })
 
 ## information
-output$Method_control_infos = renderUI({
+output$development_control_infos = renderUI({
   validate(
     need(length(Method$control) > 0 ,"Add a step or load a saved method")
   )
   if(!is.null(input$Method_steps)){
     tagList(
         column(6,box(title = "Plate Plot ", width = "33%", height = "45%",status = "warning",
-        plotOutput("Method_plot",width="400px",height="400px"))),
+        plotOutput("development_plot",width="400px",height="400px"))),
         column(6,box(title = "Apply Table ", width = "33%", height = "45%",status = "warning",
         rHandsontableOutput("band_config")))
     )
   }
 })
 
-output$Method_plot = renderPlot({
+output$development_plot = renderPlot({
     index = getSelectedStep()
     if (index > length(Method$control)){
         index=1
