@@ -1,4 +1,4 @@
-methodsUI <- {
+methodsUI <- renderUI({
     fluidPage(
     fluidRow(
         box(title = "Settings", width = "85%", height = "45%",status = "primary",
@@ -9,8 +9,7 @@ methodsUI <- {
         uiOutput("Method_control_infos"))
     )
     )
-}
-
+})
 
 
 ## settings

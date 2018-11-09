@@ -32,12 +32,12 @@ output$server_method = renderUI({
     box(title = "Gcode viewer", width = "15%",solidHeader = TRUE,status = "primary",
         uiOutput("Method_control_gcode"))
     ),
-    column(9, ui_methods$methodsUI)
+    column(9, uiOutput("methodUI"))
   )
   )
 })
 
-output$methods_ui = renderUI (ui_methods$methodsUI)
+#output$methods_ui = renderUI (ui_methods_env$methodsUI)
 
 output$Method_control_methods = renderUI({
   validate(

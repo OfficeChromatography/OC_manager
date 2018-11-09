@@ -5,17 +5,18 @@ renderMethodsUI <- function (){
     switch (type,
             "sample_application" = {
                 ## load UI
-                source(paste0 (path,"sample_application/ui.R"), local=ui_methods)
+                source(paste0 (path,"sample_application/ui.R"), local=T)
                 ##load event Handler
-                source(paste0 (path,"sample_application/eventHandler.R"), local=eventHandler_methods)
+                source(paste0 (path,"sample_application/eventHandler.R"), local=T)
+                output$methodUI  <- methodsUI
                 ##load driver
                 appl_driver = ocDriver$get_sample_application_driver()
                 },
             "development" = {
                 ## load UI
-                source(paste0 (path,"development/ui.R"), local=ui_methods)
+                source(paste0 (path,"development/ui.R"))
                 ##load event Handler
-                source(paste0 (path,"development/eventHandler.R"), local=eventHandler_methods)
+                source(paste0 (path,"development/eventHandler.R"))
                 ##load driver
                 appl_driver = ocDriver$get_sample_application_driver()
                 },
@@ -38,7 +39,7 @@ getSelectedStep  <- function(){
 ## methods
 observeEvent(input$Method_step_add,{
     renderMethodsUI()
-    eventHandler_methods$renderSampleApplication()
+#    eventHandler_methods$renderSampleApplication()
 
 })
 
