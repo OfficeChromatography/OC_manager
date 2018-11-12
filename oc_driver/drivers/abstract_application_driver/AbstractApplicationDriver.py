@@ -42,13 +42,6 @@ class AbstractApplicationDriver:
         self.band_config.band_list_to_bands(band_list)
         update_band_list = self.band_config.to_band_list()
         return update_band_list
-
-    def volume_per_band(self):
-        "how much volume should be applied on a single band"
-        return self.plate.get_band_length() / \
-                  self.printer_head.get_step_range()  * \
-                  self.printer_head.get_number_of_fire() * \
-                  self.plate.get_drop_volume()  / 1000
     
     def generate_gcode_and_send(self):
         gcode = self.generate_gcode()

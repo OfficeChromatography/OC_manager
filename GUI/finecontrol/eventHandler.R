@@ -67,7 +67,7 @@ output$application_settings = renderRHandsontable({
   table = toTableApply_settings(config)
   rhandsontable(table, rowHeaderWidth = 160) %>%
       hot_cols(colWidth = 100)  %>%
-            hot_col("units", readOnly = TRUE)
+      hot_col("units", readOnly = TRUE)
 })
 
 observeEvent(input$test_ink_nozzle_test,{
@@ -81,15 +81,19 @@ observeEvent(input$test_ink_fire_selected_nozzles,{
     fineControlDriver$fire_selected_nozzles(selected_nozzles)
 })
 
+get_start_position <- function (){
+    return (as.numeric (input$Noozle_test_start_y))
+    }
+
+
 getUserInputforInkjet <- function (){
     headTable = hot_to_r(input$application_settings)
     printer_head_config = fineControlDriver$get_default_printer_head_config()
     updated_printer_head_config = toPythonTableApply_settings(headTable, printer_head_config)
-    fineControlDriver$set_printer_head(updated_printer_head_config)
+    fineControlDriver$set_configs(updated_printer_head_config, get_start_position())
     selected_nozzles = as.numeric (input$test_ink_selected_nozzles)
     print (class (selected_nozzles))
     if (class(selected_nozzles)== "numeric"){selected_nozzles = as.list(selected_nozzles)}
-    print (class (selected_nozzles))
     return (selected_nozzles)
     }
 

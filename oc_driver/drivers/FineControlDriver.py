@@ -1,3 +1,4 @@
+
 import drivers.gcodes as GCODES
 from drivers.abstract_application_driver.AbstractApplicationDriver import AbstractApplicationDriver
 
@@ -9,7 +10,7 @@ class FineControlDriver(AbstractApplicationDriver):
         'plate_height_y': 100,
         'band_length': 6,
         'relative_band_distance_x': 0,
-        'relative_band_distance_y': 0,
+        'relative_band_distance_y': 10,
     }
 
 
@@ -67,8 +68,11 @@ class FineControlDriver(AbstractApplicationDriver):
             GCODES.goYMinus()
         ])
 
-    def set_printer_head(self, printer_head_config):        
-        self.setup(head_config=printer_head_config)
+    def set_configs(self, printer_head_config, relative_band_distance_y ):
+        plate_config = self.get_default_plate_config()
+        plate_config['relative_band_distance_y'] = relative_band_distance_y
+        self.setup(plate_config, printer_head_config)
+        
 
     def stop(self):
         return self.communication.send([GCODES.DISABLE_STEPPER_MOTORS])
@@ -107,23 +111,18 @@ class FineControlDriver(AbstractApplicationDriver):
         #self.get_current_position()
         self.calculate_band_config_for_test(selected_nozzles)
         gcode = self.generate_gcode()
+        print (gcode)
         self.generate_gcode_and_send()
 
     def generate_gcode(self):
         speed = self.printer_head.get_speed()
-        gcode_start = GCODES.start(speed, 10)
+        gcode_start = GCODES.start(speed, self.get_relative_band_distance_y())
         gcode_for_bands = self.band_config.to_gcode()
         gcode_end = GCODES.END
         return (gcode_start + "\n" + gcode_for_bands + "\n" + gcode_end)
 
     def get_default_plate_config(self):
         return self.PLATE_CONFIG_DEFAULT
-
-    def get_current_position(self):
-        self.communication.send([
-            GCODES.GET_POSITION
-            ])
-        line = self.communication.listen()
-        print ("listen")
-        print(str (line))
         
+    def get_relative_band_distance_y(self):
+        return self.plate.get_relative_band_distance_y()

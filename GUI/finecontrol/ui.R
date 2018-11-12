@@ -25,7 +25,7 @@ output$server_Fine_control = renderUI({
            )),
       fluidRow(
         column(8,
-            textInput("test_ink_cmd","Command","G1 X10", width = "100%"),
+           textInput("test_ink_cmd","Command","G1 X10", width = "100%"),
            actionButton("test_ink_cmd_button","Launch GCODE")
           )
         )
@@ -50,6 +50,7 @@ output$server_Fine_control = renderUI({
   column(6,
          box(title = "Inkjet", width = "50 %", heigth ="50 %", solidHeader = TRUE,status = "primary",
            rHandsontableOutput("application_settings"),
+           textInput("Noozle_test_start_y","Starting Position Y [mm]","10", width = "100%"),
            checkboxGroupInput("test_ink_selected_nozzles","Nozzles to fire",
                               choices = seq(fineControlDriver$get_number_of_Nozzles()),
                               inline = T,selected = 1),
