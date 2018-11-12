@@ -126,3 +126,7 @@ class FineControlDriver(AbstractApplicationDriver):
         
     def get_relative_band_distance_y(self):
         return self.plate.get_relative_band_distance_y()
+
+    def LEDs(self, white = 0, red = 0, green = 0, blue = 0):
+        self.communication.send([GCODES.LEDs(str (white),str (red), str (green) , str (blue) )])
+ 
