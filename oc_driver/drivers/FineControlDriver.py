@@ -10,7 +10,6 @@ class FineControlDriver(AbstractApplicationDriver):
         'band_length': 6,
         'relative_band_distance_x': 0,
         'relative_band_distance_y': 0,
-        'drop_vol' : 0.15,
     }
 
 

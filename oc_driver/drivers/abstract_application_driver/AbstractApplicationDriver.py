@@ -12,7 +12,8 @@ class AbstractApplicationDriver:
     CREATE_BAND_CONFIG = {
         "default_nozzle_id": 1,
         'default_label': "Band",
-        "number_of_bands": 3
+        "number_of_bands": 3,
+        "drop_volume": 0.15
     }
     
     def __init__(self, communication, plate_config, head_config, calibration_x, calibration_y):

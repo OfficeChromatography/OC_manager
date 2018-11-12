@@ -23,19 +23,19 @@ settingsTabletoPythonDict  <- function(settingsTable, pythonKeys){
 
 
 bandConfToRSettingsTableFormat  <- function(bandConf){
-    labels = c("Approximate Band Start","Nozzle Id", "Approximate Band End", "Volume Set", "Volume Real", "Label")
+    labels = c("Approximate Band Start","Drop Volume","Approximate Band End","Volume Set","Nozzle Id", "Volume Real", "Label")
     fUntransposed = as.data.frame(matrix(unlist(bandConf), nrow=length(unlist(bandConf[1]))))
     f = t(fUntransposed)
     colnames(f) = labels
-    sortedFrame = f[, c(6, 2, 4, 5, 1, 3)]
+    sortedFrame = f[, c(7, 5, 2, 4, 6, 1, 3)]
     rownames(sortedFrame) = c()
     return (sortedFrame)
-    
+
 }
 
 
 bandConfSettingsTableFormatToPython  <- function(settingsFormat){
-    keys = c("label", "nozzle_id", "volume_set", "volume_real", "start", "end")
+    keys = c("label", "nozzle_id","drop_volume","volume_set", "volume_real", "start", "end")
     bandlist = c()
     for (row in 1:nrow(settingsFormat)){
         rowValues = settingsFormat[row,]

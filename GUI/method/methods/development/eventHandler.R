@@ -49,8 +49,8 @@ toTableHeadRFormat  <- function(pythonHeadConf){
 toTablePlateRFormat  <- function(pythonPlateConf) {
     pythonPlateConf$gap = NULL
     pythonPlateConf$band_length = NULL
-    labels = c("Relative Band Distance [Y]", "Relative Band Distance [X]", "Plate Height [Y]", "Plate Width [X]", "Drop Volume")
-    units = c("mm", "mm", "mm", "mm", "nl")
+    labels = c("Relative Band Distance [Y]", "Relative Band Distance [X]", "Plate Height [Y]", "Plate Width [X]")
+    units = c("mm", "mm", "mm", "nl")
     return (toRSettingsTableFormat(pythonPlateConf, labels, units))
 }
 #abstract
@@ -64,7 +64,7 @@ toPythonTablePlateFormat  <- function(tablePlateConf) {
     append_dataFrame = data.frame(row.names=c("Band Length","Gap"),
                                   "values"= c(band_length_value,0), "units" = c("mm","mm"))
     tablePlateConf_appended = rbind(tablePlateConf,append_dataFrame)
-    keysPlate = c("relative_band_distance_y", "relative_band_distance_x"  , "plate_height_y" , "plate_width_x", "drop_vol","band_length","gap")
+    keysPlate = c("relative_band_distance_y", "relative_band_distance_x"  , "plate_height_y" , "plate_width_x", "band_length","gap")
     return (settingsTabletoPythonDict(tablePlateConf_appended, keysPlate))
 }
 

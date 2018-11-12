@@ -2,7 +2,7 @@ import drivers.gcodes as GCODES
 import numpy as np
 
 class Band:
-    def __init__(self, start, end, number_of_reptitions,\
+    def __init__(self, start, end, number_of_reptitions, drop_volume, \
                  label, volume_set, nozzle_id, volume_real):
         self.volume_real = volume_real
         self.nozzle_id = nozzle_id
@@ -11,6 +11,7 @@ class Band:
         self.end = end
         self.number_of_reptition = number_of_reptitions
         self.label = label
+        self.drop_volume = drop_volume
 
     def get_number_of_repitition(self):
         "how often should one band be applied"
@@ -24,6 +25,9 @@ class Band:
         "3d-printer position for band end"
         return self.end
 
+    def get_drop_volume (self):
+        return self.drop_volume
+
     def get_nozzle_id(self):
         return self.nozzle_id
 
@@ -33,10 +37,8 @@ class Band:
     def set_number_of_reptition(self, number_of_reptition):
         self.number_of_reptition = number_of_reptition
         
-
     def to_dict(self):
-        return {'start': self.start, 'end': self.end, \
-                'label' : self.label, 'nozzle_id': self.nozzle_id, \
+        return {'start': self.start, 'end': self.end, 'drop_volume': self.drop_volume,                         'label' : self.label, 'nozzle_id': self.nozzle_id, \
                 'volume_set': self.volume_set, 'volume_real': self.volume_real}
     
     
@@ -65,32 +67,34 @@ class BandConfig:
         "Transforms the create_config into a list list"
         bands = []
         number_of_bands = int(create_config['number_of_bands'])
+        drop_volume = float (create_config['drop_volume'])
         for i in range(number_of_bands):
             bands.append({
                 'nozzle_id' : create_config['default_nozzle_id'],
                 'label' : create_config['default_label'],
-                'volume_set': round(self.volume_per_band(),3)
+                'drop_volume' : drop_volume,
+                'volume_set': round(self.volume_per_band(drop_volume),3)
             })
         return bands
 
-    def volume_per_band(self):
+    def volume_per_band(self, drop_volume):
         "how much volume should be applied on a single band"
         return self.plate.get_band_length() / \
                   self.printer_head.get_step_range()  * \
                   self.printer_head.get_number_of_fire() * \
-                  self.plate.get_drop_volume()  / 1000
+                  drop_volume  / 1000
 
     def calculate_band_end_from_start(self, start):
         "aux function to calculate the next 3d printer end pos"
         return start + self.plate.get_band_length()
 
-    def calculate_number_of_reps(self, volume_set):
+    def calculate_number_of_reps(self, volume_set, volume_per_band):
         "Calculates the number of application per band by a given volume"
-        return round(float(volume_set) / self.volume_per_band())
+        return round(float(volume_set) / volume_per_band )
 
-    def calculate_volume_real(self, number_of_reptitions):
+    def calculate_volume_real(self, number_of_reptitions, volume_per_band):
         "Calculates the applied volume depending on volume_per_band"
-        return round(number_of_reptitions * self.volume_per_band(), 3)
+        return round(number_of_reptitions * volume_per_band, 3)
 
     def calculate_start_positions(self, number_of_bands):
         start = self.plate.get_band_offset_y()
@@ -113,11 +117,14 @@ class BandConfig:
             band_start = band_start_list[idx] + shift
             band_end = self.calculate_band_end_from_start(band_start)
             volume_set = float(band_config.get('volume_set'))
-            number_of_reptitions = self.calculate_number_of_reps(volume_set)
-            volume_real = self.calculate_volume_real(number_of_reptitions)
+            drop_volume = float (band_config.get('drop_volume'))
+            volume_per_band = self.volume_per_band(drop_volume)
+            number_of_reptitions = self.calculate_number_of_reps(volume_set, volume_per_band)
+            volume_real = self.calculate_volume_real(number_of_reptitions, volume_per_band)
             label = str(band_config.get('label'))
+            
             # add new band
-            bands.append(Band(band_start, band_end, number_of_reptitions, \
+            bands.append(Band(band_start, band_end, number_of_reptitions, drop_volume, \
                               label, volume_set, nozzle_id, volume_real))
         self.bands = bands
         

@@ -10,8 +10,7 @@ class SampleApplicationDriver(AbstractApplicationDriver):
         'plate_height_y': 100,
         'band_length': 6,
         'relative_band_distance_x': 10,
-        'relative_band_distance_y': 10,
-        'drop_vol' : 0.15,
+        'relative_band_distance_y': 10
     }
 
 
