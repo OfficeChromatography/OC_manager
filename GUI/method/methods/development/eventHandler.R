@@ -117,3 +117,8 @@ observeEvent (input$development_band_config_update,{
     index = getSelectedStep()
     Method$control[[index]]$band_config = update_band_list
 })
+
+observeEvent (input$development_band_config_save,{
+    apply_table = hot_to_r(input$band_config)
+    write.table(apply_table,file = file.choose(new = T))
+})

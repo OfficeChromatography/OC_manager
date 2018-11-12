@@ -30,7 +30,9 @@ output$development_control_settings = renderUI({
           rHandsontableOutput("plate_config"))),
           column(4,box(title = "Update Settings", width = "33%", height = "45%",status = "warning",
           fluidRow(actionButton("development_settings_update","Update settings",icon=icon("gears"), width="100%")),
-          fluidRow(actionButton("development_band_config_update","Update apply table",icon=icon("gears"), width="100%"))
+          fluidRow(actionButton("development_band_config_update","Update apply table",icon=icon("gears"), width="100%")),
+          fluidRow(actionButton("development_band_config_save","Save apply table",icon=icon("save"), width="100%")
+                   )
           )
                    )
                   )

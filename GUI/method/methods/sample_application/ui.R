@@ -28,7 +28,9 @@ output$sample_application_control_settings = renderUI({
           column(4,box(title = "Update Settings", width = "33%", height = "45%",status = "warning",
           fluidRow(textInput("number_of_bands", "Number of bands", getNumberOfBands(),width="100%")),
           fluidRow(actionButton("sample_application_settings_update","Update settings",icon=icon("gears"), width="100%")),
-          fluidRow(actionButton("sample_application_band_config_update","Update apply table",icon=icon("gears"), width="100%"))
+          fluidRow(actionButton("sample_application_band_config_update","Update apply table",icon=icon("gears"), width="100%")),
+          fluidRow(actionButton("sample_application_band_config_save","Save apply table",icon=icon("save"), width="100%")
+                   )
           )
                    )
                   )
