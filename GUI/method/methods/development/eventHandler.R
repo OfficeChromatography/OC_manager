@@ -85,7 +85,7 @@ add_step  <- function(){
 }
 
 # Application
-getBandConfigFromTable <- function(){
+getBandConfigFromTable <<- function(){
     bandlistTable= hot_to_r(input$band_config)
     return (bandConfSettingsTableFormatToPython(bandlistTable))
 
