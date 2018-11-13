@@ -97,7 +97,7 @@ class BandConfig:
         return round(number_of_reptitions * volume_per_band, 3)
 
     def calculate_start_positions(self, number_of_bands):
-        start = self.plate.get_band_offset_y()
+        start = self.plate.get_band_offset_x()
         plate = self.plate 
         start_pos_list = [start]
         for i in range(number_of_bands):

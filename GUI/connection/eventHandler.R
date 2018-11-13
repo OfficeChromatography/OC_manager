@@ -19,3 +19,5 @@ observeEvent(input$Serial_port_disconnect,{
         ocDriver$disconnect()
     })
 
+Connect_with_the_board()
+

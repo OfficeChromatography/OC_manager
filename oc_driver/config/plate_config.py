@@ -13,8 +13,10 @@ class Plate:
         'relative_band_distance_y': number,           
         'relative_band_distance_x': number,                     
         """
-        self.calibration_x = calibration_x
-        self.calibration_y = calibration_y 
+        ## x direction of the axis = y direction  of the plate
+        ## y direction of the axis = x direction  of the plate
+        self.calibration_x = calibration_y
+        self.calibration_y = calibration_x 
 
         
         self.gap = float(plate_config.get('gap'))

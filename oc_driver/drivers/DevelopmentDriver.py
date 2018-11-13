@@ -31,7 +31,7 @@ class DevelopmentDriver(AbstractApplicationDriver):
 
 
     def calculate_band_length (self):
-        return self.plate.get_plate_width_x() - 2 * self.plate.get_relative_band_offset_x()
+        return self.plate.get_plate_width_x() - 2 * self.plate.get_relative_band_offset_y()
 
     def generate_gcode(self):
         gcode_start = GCODES.start(self.printer_head.get_speed(), self.plate.get_band_offset_y())

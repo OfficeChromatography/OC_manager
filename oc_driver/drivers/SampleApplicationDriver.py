@@ -32,7 +32,7 @@ class SampleApplicationDriver(AbstractApplicationDriver):
 
 
     def generate_gcode(self):
-        gcode_start = GCODES.start(self.printer_head.get_speed(), self.plate.get_band_offset_x())
+        gcode_start = GCODES.start(self.printer_head.get_speed(), self.plate.get_band_offset_y())
         gcode_for_bands = self.band_config.to_gcode()
         gcode_end = GCODES.END
         return (gcode_start + "\n" + gcode_for_bands + "\n" + gcode_end)    
