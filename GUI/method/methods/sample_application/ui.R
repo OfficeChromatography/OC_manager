@@ -21,15 +21,15 @@ output$sample_application_control_settings = renderUI({
     tagList(
       fluidPage(
           fluidRow(
-          column(4,box(title = "Printerhead ", width = "33%", height = "45%",status = "warning",
+          column(5,box(title = "Printerhead ", width = "33%", height = "45%",status = "warning",
           rHandsontableOutput("printer_head_config"))),
-          column(4,box(title = "Plate Design", width = "33%", height = "45%",status = "warning",
+          column(5,box(title = "Plate Design", width = "33%", height = "45%",status = "warning",
           rHandsontableOutput("plate_config"))),
-          column(4,box(title = "Update Settings", width = "33%", height = "45%",status = "warning",
+          column(2,box(title = "Update Settings", width = "33%", height = "45%",status = "warning",
           fluidRow(textInput("number_of_bands", "Number of bands", getNumberOfBands(),width="100%")),
-          fluidRow(actionButton("sample_application_settings_update","Update settings",icon=icon("gears"), width="100%")),
-          fluidRow(actionButton("sample_application_band_config_update","Update apply table",icon=icon("gears"), width="100%")),
-          fluidRow(actionButton("sample_application_band_config_save","Save apply table",icon=icon("save"), width="100%")
+          fluidRow(actionButton("sample_application_settings_update"," settings",icon=icon("gears"), width="100%")),
+          fluidRow(actionButton("sample_application_band_config_update"," apply table",icon=icon("gears"), width="100%")),
+          fluidRow(actionButton("sample_application_band_config_save"," apply table",icon=icon("save"), width="100%")
                    )
           )
                    )
@@ -121,10 +121,11 @@ output$band_config = renderRHandsontable({
 
         }
         rhandsontable(table, rowHeaderWidth = 160) %>%
-            hot_cols(colWidth = 50) %>%
-	    hot_col("Label", width = 100) %>%
-            hot_col("Approximate Band Start" , readOnly = TRUE) %>%
-            hot_col("Approximate Band End", readOnly = TRUE) %>%
-            hot_col("Volume Real", readOnly = TRUE)
+            hot_cols(colWidth = 80) %>%
+	    hot_col("Label", width = 90) %>%
+	    hot_col("Nozzle Id", width = 50) %>%
+            hot_col("approx. Band Start [mm]" , readOnly = TRUE) %>%
+            hot_col("approx. Band End [mm]", readOnly = TRUE) %>%
+            hot_col("Volume Real [µl]", readOnly = TRUE)
     }
 })

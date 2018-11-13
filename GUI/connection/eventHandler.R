@@ -1,7 +1,6 @@
 Connect_with_the_board  <<- function(){
     ocDriver$connect()
-    connected <<- ocDriver$is_connected()
-    if (!connected){
+    if (!ocDriver$is_connected()){
          shinyalert("Oops!", "Can't connect the Board please try again", type = "error")
    }
 }
@@ -19,5 +18,6 @@ observeEvent(input$Serial_port_disconnect,{
         ocDriver$disconnect()
     })
 
+#auto connect
 Connect_with_the_board()
 

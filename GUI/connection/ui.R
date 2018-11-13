@@ -8,15 +8,12 @@ output$server_connection = renderUI({
 
 output$Serial_portUI = renderUI({
     input$Serial_port_refresh
-    if(input$Serial_windows){
-      selectizeInput("Serial_port","Select serial port",choices = listPorts())
-    }else{
-      selectizeInput("Serial_port","Select serial port",choices = dir("/dev/",pattern = "ACM",full.names = T))
-    }
+    #selectizeInput("Serial_port","Select serial port",choices = listPorts()) # or windows
+    selectizeInput("Serial_port","Select serial port",choices = dir("/dev/",pattern = "ACM",full.names = T))
   })
 
 output$Serial_port_connectUI = renderUI({
-    if(!connected){
+    if(!ocDriver$is_connected()){
       actionButton("Serial_port_connect","Connect the board")
     }else{
       actionButton("Serial_port_disconnect","Disconnect the board")
