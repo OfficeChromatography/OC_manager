@@ -1,7 +1,6 @@
 output$server_connection = renderUI({
     column(4, h4("Board"),
           actionButton("Serial_port_refresh","Refresh serial port",icon=icon("refresh")),
-          checkboxInput("Serial_windows","Windows ??",F),
           uiOutput("Serial_portUI"), # show the /dev directory
           uiOutput("Serial_port_connectUI") # show an actionButton only if connect$login is TRUE and set connect$board to TRUE
           )
@@ -17,7 +16,7 @@ output$Serial_portUI = renderUI({
   })
 
 output$Serial_port_connectUI = renderUI({
-    if(!ocDriver$is_connected()){
+    if(!connected){
       actionButton("Serial_port_connect","Connect the board")
     }else{
       actionButton("Serial_port_disconnect","Disconnect the board")
