@@ -1,13 +1,13 @@
-#install script for OC_Lab
+#install script for OC Manager
 #!/bin/bash
 echo""
 echo "***********************************************************"
 echo ""
-echo "You are going to install OC-Lab-Lite on your Raspberry Pi."
+echo "You are going to install OC Manager on your Raspberry Pi."
 echo ""
 echo "Don't worry, this will take several hours!"
 echo ""
-echo "Are you ready to start? (y/n)"
+echo "Are you ready to stapply: Searching for program: No such file or directory, Rtermart? (y/n)"
 read userinput
 if [ "$userinput" = "y" ]
 then
