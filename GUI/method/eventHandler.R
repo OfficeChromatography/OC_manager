@@ -20,7 +20,15 @@ renderMethodsUI <- function (type){
                 ##load driver
                 appl_driver <<- ocDriver$get_development_driver()
                 },
-            "Documentation" = {}
+            "Documentation" = {
+                ## load UI
+                source(paste0 (path,"documentation/ui.R"), local=T)
+                output$methodUI <- methodsUI_documentation
+                ##load event Handler
+                source(paste0 (path,"documentation/eventHandler.R"), local=T)
+                ##load driver
+                appl_driver <<- ocDriver$get_documentation_driver()
+                }
             )
     step_add_Methods <<- add_step
 
@@ -45,7 +53,7 @@ get_Method_type <<- function () {
 
 ## methods
 observeEvent(input$Method_step_add,{
-    type = input$Method_step_new
+g    type = input$Method_step_new
     renderMethodsUI(type)
     step_add_Methods()
     Method$selected = length(Method$control)

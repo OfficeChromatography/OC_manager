@@ -31,6 +31,18 @@ FIRE = "M700"
 
 GET_POSITION = "M114"
 
+LED_OFF = "M150 W0 R0 U0 B0"
+
+LED_RED = "M150 W0 R255 U0 B0"
+
+LED_GREEN = "M150 W0 R0 U255 B0"
+
+LED_BLUE = "M150 W0 R0 U0 B255"
+
+LED_WHITE = "M150 W255 R0 U0 B0"
+
+LED_ULTRA_WHITE = "M150 W255 R255 U255 B255"
+
 END = new_lines([GO_TO_ORIGIN_X, GO_TO_ORIGIN_Y, STOP_IDLE_HOLD ])
 
 def nozzle_fire(fire_rate, nozzle_address, puls_delay):

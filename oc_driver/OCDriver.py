@@ -2,6 +2,7 @@
 from drivers.FineControlDriver import FineControlDriver
 from drivers.SampleApplicationDriver  import SampleApplicationDriver
 from drivers.DevelopmentDriver  import DevelopmentDriver
+from drivers.DocumentationDriver import DocumentationDriver
 
 from communication import Communication
 
@@ -47,8 +48,10 @@ class OCDriver:
     
     def get_fine_control_driver(self):    
         return FineControlDriver(self.communication)
-    
-        
+
+    def get_documentation_driver(self):
+        return DocumentationDriver(self.communication)
+            
     def connect(self):
         self.communication.connect()
 

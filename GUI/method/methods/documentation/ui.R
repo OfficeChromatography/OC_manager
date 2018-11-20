@@ -1,4 +1,4 @@
-methodsUI_sample_application <- renderUI({
+methodsUI_documentation <- renderUI({
     fluidPage(
     fluidRow(
         box(title = "Settings", width = "85%", height = "45%",status = "primary",
