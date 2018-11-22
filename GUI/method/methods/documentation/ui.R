@@ -1,7 +1,7 @@
 methodsUI_documentation <- renderUI({
     fluidPage(
     fluidRow(
-        box(title = "Pciture Settings", width = "85%", height = "45%",status = "primary",
+        box(title = "Picture Settings", width = "85%", height = "45%",status = "primary",
            uiOutput("documentation_settings"))
     ),
     fluidRow(
@@ -50,6 +50,17 @@ get_Image <- function (){
 }
 
 
+pictures_config_to_Table_Format<- function (pictures_config){
+    labels = c("Picture Name", "LED-white", "LED-red", "LED-green", "LED-blue")
+    fUntransposed = as.data.frame(matrix(unlist(pictures_config), nrow=length(unlist(pictures_config[1]))))
+    f = t(fUntransposed)
+    sortedFrame = f[, c(5, 2, 4, 3, 1)]
+    colnames(sortedFrame) = labels
+    rownames(sortedFrame) = c()
+    return (sortedFrame)
+}
+    
+
 ## information
 output$documentation_preview = renderUI({
   validate(
@@ -80,17 +91,17 @@ output$Method_step_feedback = renderText({
 })
 
 
-output$band_config = renderRHandsontable({
+output$pictures_config = renderRHandsontable({
     if(!is.null(input$Method_steps)) {
         index = getSelectedStep()
         pictures_list = Method$control[[index]]$pictures_config
-        table = bandConfToRSettingsTableFormat( bandlist)
+        table = pictures_config_to_Table_Format(pictures_list)
         if (!  is.matrix(table))  {
             table = t(as.matrix(table))
 
         }
         rhandsontable(table, rowHeaderWidth = 160) %>%
             hot_cols(colWidth = 80) %>%
-	    hot_col("Label", width = 90)
+	    hot_col("Picture Name", width = 90)
     }
 })

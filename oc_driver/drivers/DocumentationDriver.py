@@ -6,11 +6,11 @@ class DocumentationDriver():
 
     PICTURE_CONFIG_DEFAULT = {
         "label": "Picture",
-        "white":0,
-        "red":0,
-        "green":0,
-        "blue":0,
-        "number_of_pictures":2
+        "white":"white",
+        "red":"red",
+        "green":"green",
+        "blue":"blue",
+        "number_of_pictures":3
         }
 
     LED_LIST = ["WHITE","RED","GREEN","BLUE"] 

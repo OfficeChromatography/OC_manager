@@ -1,7 +1,7 @@
 #abstract
 setDocumentationConf  <- function(pictures_config, step){
     Method$control[[step]] = list(type="Documentation",
-                                  pictures_config )
+                                  pictures_config = pictures_config )
 
 }
 
@@ -41,12 +41,5 @@ observeEvent(input$documentation_settings_update,{
     setApplicationConf(pyHead, pyPlate, bandList, step)
 })
 
-# Application
-observeEvent (input$documentation_band_config_update,{
-    band_list = getBandConfigFromTable()
-    update_band_list = appl_driver$update_band_list(band_list)
-    index = getSelectedStep()
-    Method$control[[index]]$band_config = update_band_list
-})
 
 
