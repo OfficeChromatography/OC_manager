@@ -53,7 +53,7 @@ get_Method_type <<- function () {
 
 ## methods
 observeEvent(input$Method_step_add,{
-g    type = input$Method_step_new
+    type = input$Method_step_new
     renderMethodsUI(type)
     step_add_Methods()
     Method$selected = length(Method$control)

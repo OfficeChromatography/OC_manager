@@ -2,14 +2,13 @@
 # You can find out more about building applications with Shiny here:
 #
 # http://shiny.rstudio.com
-#
 
 library(shiny)
 # library(rPython)
 library(reticulate)
 #library(DLC)
 library(serial)#for port detection in windows
-library(rhandsontable)#devtools::install_github("rhandsontable","jrowen")
+library(rhandsontable)
 library(parallel)
 library(shinyBS)
 library(shinyalert)
