@@ -33,15 +33,7 @@ GET_POSITION = "M114"
 
 LED_OFF = "M150 W0 R0 U0 B0"
 
-LED_RED = "M150 W0 R255 U0 B0"
-
-LED_GREEN = "M150 W0 R0 U255 B0"
-
-LED_BLUE = "M150 W0 R0 U0 B255"
-
-LED_WHITE = "M150 W255 R0 U0 B0"
-
-LED_ULTRA_WHITE = "M150 W255 R255 U255 B255"
+GO_TO_FOTO_POSITION = "G1 X0 Y158"
 
 END = new_lines([GO_TO_ORIGIN_X, GO_TO_ORIGIN_Y, STOP_IDLE_HOLD ])
 
@@ -75,5 +67,5 @@ def start(speed, distX):
         goXPlus(distX)]) # maybe needs a refactor, go(direction, axis)
 
 def LEDs(white, red, green, blue):
-    return "M150" + " W" + white + " R" + red + " U" + green + " B" + blue 
+    return "M150" + " W" + str(white) + " R" + str( red ) + " U" + str (green) + " B" + str (blue) 
 

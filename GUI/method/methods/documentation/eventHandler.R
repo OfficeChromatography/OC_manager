@@ -1,7 +1,8 @@
 #abstract
-setDocumentationConf  <- function(pictures_config, step){
+setDocumentationConf  <- function(pictures_config, preview_config, step){
     Method$control[[step]] = list(type="Documentation",
-                                  pictures_config = pictures_config )
+                                  pictures_config = pictures_config,
+                                  preview_config = preview_config)
 
 }
 
@@ -10,7 +11,8 @@ setDocumentationConf  <- function(pictures_config, step){
 add_step  <- function(){
     step = length(Method$control) + 1
     pictures_config = appl_driver$get_picture_list()
-    setDocumentationConf(pictures_config, step)
+    preview_config = appl_driver$get_preview_list()
+    setDocumentationConf(pictures_config, preview_config, step)
                          
     showInfo("Please configure your documentation proccess")
 }
@@ -24,22 +26,10 @@ getBandConfigFromTable <<- function(){
 
 #abstract
 observeEvent(input$documentation_settings_update,{
-    step = getSelectedStep()
-
-    plateTable = hot_to_r(input$plate_config)
-    headTable = hot_to_r(input$printer_head_config)
-
-    pyHead = toPythonTableHeadFormat(headTable)
-    pyPlate = toPythonTablePlateFormat(plateTable)
-
-
-    appl_driver$setup(pyPlate, pyHead)
-    numberOfBands = 1
-    band_conf = appl_driver$create_band_config(numberOfBands)
-    bandList = band_conf$to_band_list()
-
-    setApplicationConf(pyHead, pyPlate, bandList, step)
 })
 
+observeEvent(input$take_a_picture,{
+    appl_driver$preview()
+})
 
 

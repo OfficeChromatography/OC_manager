@@ -44,8 +44,8 @@ getNumberOfPictures <- function(){
     return (numberOfPictures)
 }
 
-get_Image <- function (){
-    return (appl_driver$get_Preview_Path)
+get_Image_Path <- function (){
+    appl_driver$get_Preview_Path()
 
 }
 
@@ -59,6 +59,19 @@ pictures_config_to_Table_Format<- function (pictures_config){
     rownames(sortedFrame) = c()
     return (sortedFrame)
 }
+
+preview_config_to_Table_Format <- function (preview_config){
+    labels = c("LED-white", "LED-red", "LED-green", "LED-blue")
+    f = as.data.frame(matrix(unlist(preview_config), nrow=length(unlist(preview_config[1]))))
+    sortedFrame = f[c(2, 4, 3, 1),]
+    Frame = as.data.frame(sortedFrame, row.names = labels)
+    return (Frame)
+}
+
+
+Table_Format_to_Picture_Config <- function(table){
+    
+}
     
 
 ## information
@@ -69,18 +82,22 @@ output$documentation_preview = renderUI({
   if(!is.null(input$Method_steps)){
     tagList(
         column(8,box(title = "Image Preview", width = "33%", height = "45%",status = "warning",
-        imageOutput(get_Image(), width = "400px", height = "400px"))),
+        plotOutput("preview_image"))),
         column(4,box(title = "Settings", width = "33%", height = "45%",status = "warning",
-                     actionButton("documention_position",label = "Documentation Position"),
-                     actionButton("take_a_picture",label = "Take a Picture", icon=icon("camera")),
-                     checkboxGroupInput("documentation_select_LEDs","Select LEDs",
-                              choices = appl_driver$get_LED_list(),
-                              inline = T,selected = 1)
+                     rHandsontableOutput("preview_config"),
+                     actionButton("take_a_picture",label = "Take a Picture", icon=icon("camera"))
                      )
               )
         )
   }
 })
+
+output$preview_image = renderImage({
+    list(src = get_Image_Path(),
+         width = "400px",
+         height ="400px",
+         alt = "Take a picture !")
+}, deleteFile = FALSE)
 
  
 output$Method_step_feedback = renderText({
@@ -96,6 +113,7 @@ output$pictures_config = renderRHandsontable({
         index = getSelectedStep()
         pictures_list = Method$control[[index]]$pictures_config
         table = pictures_config_to_Table_Format(pictures_list)
+
         if (!  is.matrix(table))  {
             table = t(as.matrix(table))
 
@@ -105,3 +123,19 @@ output$pictures_config = renderRHandsontable({
 	    hot_col("Picture Name", width = 90)
     }
 })
+
+
+output$preview_config = renderRHandsontable({
+    if(!is.null(input$Method_steps)) {
+        index = getSelectedStep()
+        preview_list = Method$control[[index]]$preview_config
+        table = preview_config_to_Table_Format(preview_list)
+        if (!  is.matrix(table))  {
+            table = (as.matrix(table))
+
+        }
+        rhandsontable(table, rowHeaderWidth = 80, colHeaders = NULL)%>%
+            hot_cols(colWidth = 80)
+        }
+})    
+

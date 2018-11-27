@@ -12,3 +12,9 @@ use Xming as Desktop http://www.straightrunning.com/XmingNotes/
 and putty https://www.heise.de/download/product/putty-7016
 
 manual : https://www.youtube.com/watch?v=YLAYfwUPj7
+
+for picamera: you need to upgrade pi:
+
+    sudo apt-get update
+    sudo apt-get upgrade
+    sudo rpi-update
