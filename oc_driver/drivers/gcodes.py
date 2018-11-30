@@ -25,7 +25,7 @@ SET_UNITS_IN_MM = "G21"
 
 STOP_IDLE_HOLD = "M84"
 
-WAIT_UNTIL_FIRE = "M400"
+CURR_MOVEMENT_FIN = "M400"
 
 FIRE = "M700"
 
@@ -33,14 +33,14 @@ GET_POSITION = "M114"
 
 LED_OFF = "M150 W0 R0 U0 B0"
 
-GO_TO_FOTO_POSITION = "G1 X0 Y158"
+GO_TO_FOTO_POSITION = "G1 Y158"
 
 END = new_lines([GO_TO_ORIGIN_X, GO_TO_ORIGIN_Y, STOP_IDLE_HOLD ])
 
 def nozzle_fire(fire_rate, nozzle_address, puls_delay):
-    return  WAIT_UNTIL_FIRE + "\n" + \
+    return  CURR_MOVEMENT_FIN + "\n" + \
         FIRE  + " P0 " + "I" + str(fire_rate) + " L" + str(puls_delay) + " S" + nozzle_address + "\n" +\
-        WAIT_UNTIL_FIRE
+        CURR_MOVEMENT_FIN
 
 def goXMinus(steps = "5"):
     return GO_X_MINUS + str(steps)

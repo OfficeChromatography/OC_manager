@@ -1,39 +1,53 @@
 renderMethodsUI <- function (type){
     path = "./GUI/method/methods/"
-    renderMethods = ""
     switch (type,
             "Sample Application" = {
                 ## load UI
                 source(paste0 (path,"sample_application/ui.R"), local=T)
-                ##load event Handler
-                source(paste0 (path,"sample_application/eventHandler.R"), local=T)
                 output$methodUI  <- methodsUI_sample_application
-                ##load driver
-                appl_driver <<- ocDriver$get_sample_application_driver()
                 },
             "Development" = {
                 ## load UI
                 source(paste0 (path,"development/ui.R"), local=T)
                 output$methodUI <- methodsUI_development
-                ##load event Handler
-                source(paste0 (path,"development/eventHandler.R"), local=T)
-                ##load driver
-                appl_driver <<- ocDriver$get_development_driver()
                 },
             "Documentation" = {
                 ## load UI
                 source(paste0 (path,"documentation/ui.R"), local=T)
                 output$methodUI <- methodsUI_documentation
-                ##load event Handler
-                source(paste0 (path,"documentation/eventHandler.R"), local=T)
-                ##load driver
-                appl_driver <<- ocDriver$get_documentation_driver()
                 }
             )
-    step_add_Methods <<- add_step
 
 }
 
+eventHandlerMethods <- function (type){
+    path = "./GUI/method/methods/"
+    switch (type,
+            "Sample Application" = {
+                ##load event Handler
+                source(paste0 (path,"sample_application/eventHandler.R"), local=T)
+                ##load driver
+                sample_application_driver <<- ocDriver$get_sample_application_driver()
+                },
+            "Development" = {
+                ##load event Handler
+                source(paste0 (path,"development/eventHandler.R"), local=T)
+                ##load driver
+                development_driver <<- ocDriver$get_development_driver()
+                },
+            "Documentation" = {
+                ##load event Handler
+                source(paste0 (path,"documentation/eventHandler.R"), local=T)
+                ##load driver
+                documentation_driver <<- ocDriver$get_documentation_driver()
+            }
+            )
+    # override function for each eventHandler
+    step_add_Methods <<- add_step
+    step_start_Methods <<- step_start
+    
+ }
+  
 
 
 showInfo  <<- function(msg) {
@@ -55,6 +69,7 @@ get_Method_type <<- function () {
 observeEvent(input$Method_step_add,{
     type = input$Method_step_new
     renderMethodsUI(type)
+    eventHandlerMethods(type)
     step_add_Methods()
     Method$selected = length(Method$control)
 })
@@ -72,10 +87,7 @@ observeEvent(input$Method_step_delete,{
 
 ## start
 observeEvent(input$Method_step_exec,{
-    bandlistpy =  getBandConfigFromTable()
-    appl_driver$set_band_config(bandlistpy)
-    gcode = appl_driver$generate_gcode()
-    appl_driver$generate_gcode_and_send()
+    step_start_Methods()
 })
 
 output$Method_gcode_download <- downloadHandler(

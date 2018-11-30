@@ -1,6 +1,6 @@
 from vendor.printrun import printcore, gcoder
-
-import time
+from vendor.printrun.eventhandler import PrinterEventHandler
+from time import sleep
 
 class Communication:
     def __init__(self, connection_string, baud_rate):
@@ -34,16 +34,11 @@ class Communication:
         #    time.sleep(0.1)
         
     def send(self, code_list):
-        gcode = gcoder.LightGCode(code_list)
-        is_printing = self.printcore.startprint(gcode)
-        if(is_printing):
-            print("Start printing...")
-            while (self.printcore.printing):
-                time.sleep(0.1)
-            print("Printing finished!")
-        else:
-            print("Cannot print...")
+        code_list = [code.strip() for code in code_list]
+        code_list = gcoder.LightGCode(code_list)
+        self.printcore.startprint(code_list)
+        while self.printcore.printing:
+            sleep(1)
+            progress = 100 * float(self.printcore.queueindex) / len(self.printcore.mainqueue)
+   
 
-    def listen(self):
-        return self.printcore._readline()
-            

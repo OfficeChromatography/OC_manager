@@ -45,7 +45,7 @@ getNumberOfPictures <- function(){
 }
 
 get_Image_Path <- function (){
-    appl_driver$get_Preview_Path()
+    documentation_driver$get_Preview_Path()
 
 }
 
@@ -82,7 +82,7 @@ output$documentation_preview = renderUI({
   if(!is.null(input$Method_steps)){
     tagList(
         column(8,box(title = "Image Preview", width = "33%", height = "45%",status = "warning",
-        plotOutput("preview_image"))),
+        tags$img(src = "Preview.jpg", height = 400, width = 400))),
         column(4,box(title = "Settings", width = "33%", height = "45%",status = "warning",
                      rHandsontableOutput("preview_config"),
                      actionButton("take_a_picture",label = "Take a Picture", icon=icon("camera"))
@@ -92,12 +92,7 @@ output$documentation_preview = renderUI({
   }
 })
 
-output$preview_image = renderImage({
-    list(src = get_Image_Path(),
-         width = "400px",
-         height ="400px",
-         alt = "Take a picture !")
-}, deleteFile = FALSE)
+
 
  
 output$Method_step_feedback = renderText({

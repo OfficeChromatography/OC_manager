@@ -1,5 +1,5 @@
 import drivers.gcodes as GCODES
-from config.picture_config import PictureConfig 
+from config.picture_config import PictureConfig
 from picamera import PiCamera
 from time import sleep
 
@@ -12,8 +12,7 @@ class DocumentationDriver():
         "green":255,
         "blue":255,
         "number_of_pictures":2 
-        }
-    
+        }    
     PATH = "/home/pi/OC_manager/GUI/method/methods/documentation/pictures/"
     
     def __init__(self, communication):
@@ -46,7 +45,7 @@ class DocumentationDriver():
         camera.close()
 
     def get_Preview_Path(self):
-        return self.PATH + "Preview.jpg"
+        return "/home/pi/OC_manager/www/Preview.jpg"
 
     def get_picture_list(self):
         return self.pictures_config.to_picture_list()
@@ -55,12 +54,14 @@ class DocumentationDriver():
         return self.pictures_config.to_previw_list()
 
     def preview(self):
-        self.go_to_foto_position()
         LED_gcode = self.pictures_config.preview_to_gcode()
         self.communication.send([
+            GCODES.GO_TO_FOTO_POSITION,
+            GCODES.CURR_MOVEMENT_FIN,
             LED_gcode])
         Path = self.get_Preview_Path()
+        sleep(1)
         self.take_a_picture(Path)
-        self.LED_OFF()
-        self.go_to_origin()
-        
+        self.communication.send([
+            GCODES.LED_OFF,
+            GCODES.GO_TO_ORIGIN_Y])

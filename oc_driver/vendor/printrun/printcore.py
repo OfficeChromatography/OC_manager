@@ -361,6 +361,7 @@ class printcore():
             # Teststrings for resend parsing       # Firmware     exp. result
             # line="rs N2 Expected checksum 67"    # Teacup       2
             if line.lower().startswith("resend") or line.startswith("rs"):
+                print("def listen: resend")
                 for haystack in ["N:", "N", ":"]:
                     line = line.replace(haystack, " ")
                 linewords = line.split()
