@@ -82,7 +82,7 @@ output$documentation_preview = renderUI({
   if(!is.null(input$Method_steps)){
     tagList(
         column(8,box(title = "Image Preview", width = "33%", height = "45%",status = "warning",
-        tags$img(src = "Preview.jpg", height = 400, width = 400))),
+        tags$img(src = paste0("Preview.jpg?",image$hash), height = 400, width = 400))),
         column(4,box(title = "Settings", width = "33%", height = "45%",status = "warning",
                      rHandsontableOutput("preview_config"),
                      actionButton("take_a_picture",label = "Take a Picture", icon=icon("camera"))
@@ -93,7 +93,11 @@ output$documentation_preview = renderUI({
 })
 
 
+image <- reactiveValues (hash = "")
 
+creat_random_image_hash <<- function(){
+    image$hash <- toString(sample(1:100, 1))
+}
  
 output$Method_step_feedback = renderText({
   validate(

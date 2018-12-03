@@ -22,6 +22,8 @@ step_start <- function(){
 
 }
 
+
+
 # Application
 getBandConfigFromTable <<- function(){
     bandlistTable= hot_to_r(input$band_config)
@@ -37,6 +39,8 @@ observeEvent(input$documentation_settings_update,{
 
 observeEvent(input$take_a_picture,{
     documentation_driver$preview()
+    creat_random_image_hash()
+    
 })
 
 

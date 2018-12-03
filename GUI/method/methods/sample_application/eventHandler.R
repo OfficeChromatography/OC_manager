@@ -21,9 +21,9 @@ toPythonTablePlateFormat  <- function(tablePlateConf) {
 # todo refactor
 add_step  <- function(){
     step = length(Method$control) + 1
-    headConf = appl_driver$get_default_printer_head_config()
-    plateConf = appl_driver$get_default_plate_config()
-    bandConf = appl_driver$create_band_config(5)
+    headConf = sample_application_driver$get_default_printer_head_config()
+    plateConf = sample_application_driver$get_default_plate_config()
+    bandConf = sample_application_driver$create_band_config(5)
 
     bandList = bandConf$to_band_list()
 
@@ -32,7 +32,7 @@ add_step  <- function(){
     showInfo("Please configure your sample application proccess")
 }
 
-getBandConfigFromTable <<- function(){
+getBandConfigFromTable <- function(){
     bandlistTable= hot_to_r(input$band_config)
     return (bandConfSettingsTableFormatToPython(bandlistTable))
 
@@ -48,17 +48,13 @@ step_start <- function(){
 
 observeEvent(input$sample_application_settings_update,{
     step = getSelectedStep()
-
     plateTable = hot_to_r(input$plate_config)
     headTable = hot_to_r(input$printer_head_config)
-
     pyHead = toPythonTableHeadFormat(headTable)
     pyPlate = toPythonTablePlateFormat(plateTable)
-
-
-    appl_driver$setup(pyPlate, pyHead)
+    sample_application_driver$setup(pyPlate, pyHead)
     numberOfBands = input$number_of_bands
-    band_conf = appl_driver$create_band_config(numberOfBands)
+    band_conf = sample_application_driver$create_band_config(numberOfBands)
     bandList = band_conf$to_band_list()
 
     setApplicationConf(pyHead, pyPlate, bandList, step)
@@ -66,7 +62,7 @@ observeEvent(input$sample_application_settings_update,{
 
 observeEvent (input$sample_application_band_config_update,{
     band_list = getBandConfigFromTable()
-    update_band_list = appl_driver$update_band_list(band_list)
+    update_band_list = sample_application_driver$update_band_list(band_list)
     index = getSelectedStep()
     Method$control[[index]]$band_config = update_band_list
 })

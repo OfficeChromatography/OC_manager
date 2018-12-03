@@ -47,7 +47,7 @@ step_start <- function(){
 }
 
 # Application
-getBandConfigFromTable <<- function(){
+getBandConfigFromTable <- function(){
     bandlistTable= hot_to_r(input$band_config)
     return (bandConfSettingsTableFormatToPython(bandlistTable))
 
@@ -56,14 +56,10 @@ getBandConfigFromTable <<- function(){
 #abstract
 observeEvent(input$development_settings_update,{
     step = getSelectedStep()
-
     plateTable = hot_to_r(input$plate_config)
     headTable = hot_to_r(input$printer_head_config)
-
     pyHead = toPythonTableHeadFormat(headTable)
     pyPlate = toPythonTablePlateFormat(plateTable)
-
-
     development_driver$setup(pyPlate, pyHead)
     numberOfBands = 1
     band_conf = development_driver$create_band_config(numberOfBands)
