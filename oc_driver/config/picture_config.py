@@ -31,15 +31,11 @@ class Picture:
     
     
 class PictureConfig:
-    def __init__(self, PICTURE_CONFIG_DEFAULT):
-        number_of_pictures = int(PICTURE_CONFIG_DEFAULT['number_of_pictures'])
-        pictures_list = self.create_conf_to_picture_list(PICTURE_CONFIG_DEFAULT,\
-                                                         number_of_pictures)
-        assert len (pictures_list) > 0
-        self.pictures = self.build_pictures_from_picture_list(pictures_list)
-        self.preview = [self.pictures[0]]
+    
+    def __init__(self, PICTURE_CONFIG_DEFAULT, number_of_pictures):
+        pictures_list = self.create_conf_to_picture_list(PICTURE_CONFIG_DEFAULT,number_of_pictures)
+        self.build_pictures_from_picture_list(pictures_list)
         
-
     def build_pictures_from_picture_list(self, picture_list):
         "initializes all pictures given by a pictures configuration"
         if len(picture_list) <= 0:
@@ -54,11 +50,12 @@ class PictureConfig:
             # add new picture
             pictures.append(Picture(label, white, red, green,  \
                  blue))      
-        return pictures
+        self.config = pictures
         
     def create_conf_to_picture_list(self, create_config, number_of_pictures):
         'Transforms the create_config into a pictures list'
         pictures = []
+        number_of_pictures = number_of_pictures
         for i in range(number_of_pictures):
             pictures.append({
                 'label' : create_config['label'],
@@ -69,22 +66,15 @@ class PictureConfig:
             })
         return pictures
 
-        
-    def to_list(self, liste):
+    def to_list(self):
         picture_list = []
-        for picture in liste:
+        for picture in self.config:
             picture_list.append(picture.to_dict())
         return picture_list
-
-    def to_picture_list(self):
-        return self.to_list(self.pictures)
-    
-    def to_previw_list(self):
-         return self.to_list(self.preview)
         
-    def to_gcode(self, picture_object):
+    def to_gcode(self):
         gcode = ""
-        for picture in picture_object:
+        for picture in self.config:
             white = picture.get_white() 
             red = picture.get_red()
             green = picture.get_green()
@@ -92,8 +82,4 @@ class PictureConfig:
             gcode = gcode + GCODES.LEDs(white,red,green,blue)          
         return gcode
 
-    def preview_to_gcode(self):
-        return self.to_gcode(self.preview)
 
-    def pictures_to_gcode(self):
-        return self.to_gcode(self.pictures)

@@ -23,22 +23,48 @@ step_start <- function(){
 }
 
 
-
-# Application
-getBandConfigFromTable <<- function(){
-    bandlistTable= hot_to_r(input$band_config)
-    return (bandConfSettingsTableFormatToPython(bandlistTable))
-
+getPicturesConfigFromTable  <- function(){
+    settingsFormat = hot_to_r(input$pictures_config)
+    keys = c("label", "white","red","green","blue")
+    pictureslist = c()
+    for (row in 1:nrow(settingsFormat)){
+        rowValues = settingsFormat[row,]
+        pictures = py_to_r(py_dict(keys, rowValues))
+        pictureslist[[row]] = pictures
+    }
+    return (pictureslist)
 }
+
+getPreviewConfigFromTable <- function (){
+    Values = hot_to_r(input$preview_config)
+    Values = c(Values,"Preview")
+    keys = c("white","red","green","blue","label")
+    pictureslist = py_to_r(py_dict(keys, Values))
+    return (pictureslist)
+}
+
+
+
 
 #abstract
 observeEvent(input$documentation_settings_update,{
-    print ("Settings")
+    pictures_list = getPicturesConfigFromTable()
+    step = getSelectedStep()
+    Method$control[[step]]$pictures_config = pictures_list
+})
+
+observeEvent(input$documentation_pictures_update,{
+    number_of_pictures = getNumberOfPictures()
+    pictures_list = documentation_driver$update_number_of_pictures(number_of_pictures)
+    step = getSelectedStep()
+    Method$control[[step]]$pictures_config = pictures_list    
 })
 
 
 observeEvent(input$take_a_picture,{
-    documentation_driver$preview()
+    preview_list = getPreviewConfigFromTable()
+    documentation_driver$update_preview(preview_list)
+    documentation_driver$make_preview()
     creat_random_image_hash()
     
 })

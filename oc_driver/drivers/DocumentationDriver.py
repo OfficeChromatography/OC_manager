@@ -17,7 +17,9 @@ class DocumentationDriver():
     
     def __init__(self, communication):
         self.communication = communication
-        self.pictures_config = PictureConfig(self.PICTURE_CONFIG_DEFAULT)
+        number_of_pictures = int(self.PICTURE_CONFIG_DEFAULT['number_of_pictures'])
+        self.pictures = PictureConfig(self.PICTURE_CONFIG_DEFAULT,number_of_pictures)
+        self.preview  = PictureConfig(self.PICTURE_CONFIG_DEFAULT,1)
 
     def LED_OFF(self):
         self.communication.send([
@@ -48,14 +50,15 @@ class DocumentationDriver():
         return "/home/pi/OC_manager/www/Preview.jpg"
 
     def get_picture_list(self):
-        return self.pictures_config.to_picture_list()
+        return self.pictures.to_list()
 
     def get_preview_list(self):
-        return self.pictures_config.to_previw_list()
+        return self.preview.to_list()
 
-    def preview(self):
-        LED_gcode = self.pictures_config.preview_to_gcode()
+    def make_preview(self):
+        LED_gcode = self.preview.to_gcode()
         self.communication.send([
+            GCODES.SET_ABSOLUTE_POS,
             GCODES.GO_TO_FOTO_POSITION,
             GCODES.CURR_MOVEMENT_FIN,
             LED_gcode])
@@ -63,5 +66,11 @@ class DocumentationDriver():
         sleep(1)
         self.take_a_picture(Path)
         self.communication.send([
-            GCODES.LED_OFF,
-            GCODES.GO_TO_ORIGIN_Y])
+            GCODES.LED_OFF])
+
+    def update_number_of_pictures(self, number_of_pictures):
+        return self.pictures.create_conf_to_picture_list(self.PICTURE_CONFIG_DEFAULT,
+                                                  int (number_of_pictures))
+    def update_preview(self, preview_config):
+        self.preview.build_pictures_from_picture_list([preview_config]) 
+        

@@ -25,8 +25,11 @@ output$documentation_settings = renderUI({
                          )
                    ),
             column(2,box(title = "Update Settings", width = "33%", height = "45%",status = "warning",
-                         fluidRow(textInput("number_of_pictures", "Number of Pictures", getNumberOfPictures(),width="100%")),
-                         fluidRow(actionButton("documentation_settings_update"," settings",icon=icon("gears"), width="100%"))
+                         fluidRow(
+                             column(8,textInput("number_of_pictures", "Number of Pictures", getNumberOfPictures(),width="100%")),
+                             column(4, actionButton("documentation_pictures_update","",icon=icon("gears"), width="100%"))
+                         ),
+                         fluidRow(actionButton("documentation_settings_update","update Settings",icon=icon("gears"), width="100%"))
                          )
                    )
         )
@@ -35,7 +38,7 @@ output$documentation_settings = renderUI({
 })
 
 
-getNumberOfPictures <- function(){
+getNumberOfPictures <<- function(){
     numberOfPictures = input$number_of_pictures
     if (is.null ( numberOfPictures )) {
         numberOfPictures = 1
