@@ -45,6 +45,7 @@ eventHandlerMethods <- function (type){
     # override function for each eventHandler
     step_add_Methods <<- add_step
     step_start_Methods <<- step_start
+    step_save_Methods<<- step_save
     
  }
   
@@ -97,7 +98,7 @@ output$Method_gcode_download <- downloadHandler(
                                 paste0(Method$control[[as.numeric(input$Method_steps)]]$table[,2],collapse = "_"),
                                 '.gcode')},
   content = function(file) {
-    Method_file = paste0("./method/method_to_load/",".gcode")
+    Method_file = paste0("./method_to_load/",".gcode")
     Log = Method_file
     fileConn<-file(Method_file)
     writeLines(Method$control[[as.numeric(input$Method_steps)]]$gcode, fileConn)
@@ -108,8 +109,8 @@ output$Method_gcode_download <- downloadHandler(
 ## save
 
 observeEvent(input$Method_save,{
-    filePath = paste0("./method/method_to_load/",input$Method_save_name,".Rdata")
-
+    step_save_Methods()
+    filePath = paste0("/home/pi/OC_manager/GUI/method/method_to_load/",input$Method_save_name,".Rdata")
     control = Method$control
     save(control,file=filePath)
     Method_feedback$text = paste0("Saved ", filePath)
@@ -130,6 +131,7 @@ observeEvent(input$Method_load,{
 
 
 observeEvent(input$Method_steps,{
+    #step_save_Methods()
     type = get_Method_type()
     renderMethodsUI(type)
     Method$selected = getSelectedStep()

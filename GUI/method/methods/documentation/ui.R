@@ -24,12 +24,9 @@ output$documentation_settings = renderUI({
                          rHandsontableOutput("pictures_config")
                          )
                    ),
-            column(2,box(title = "Update Settings", width = "33%", height = "45%",status = "warning",
-                         fluidRow(
-                             column(8,textInput("number_of_pictures", "Number of Pictures", getNumberOfPictures(),width="100%")),
-                             column(4, actionButton("documentation_pictures_update","",icon=icon("gears"), width="100%"))
-                         ),
-                         fluidRow(actionButton("documentation_settings_update","update Settings",icon=icon("gears"), width="100%"))
+            column(2,box(title = "Number of Pictures", width = "33%", height = "45%",status = "warning",
+                         fluidRow(textInput("number_of_pictures", "", getNumberOfPictures(),width="100%")),
+                         fluidRow(actionButton("documentation_pictures_update"," Update ",icon=icon("gears"), width="100%"))
                          )
                    )
         )
@@ -70,12 +67,7 @@ preview_config_to_Table_Format <- function (preview_config){
     Frame = as.data.frame(sortedFrame, row.names = labels)
     return (Frame)
 }
-
-
-Table_Format_to_Picture_Config <- function(table){
-    
-}
-    
+  
 
 ## information
 output$documentation_preview = renderUI({

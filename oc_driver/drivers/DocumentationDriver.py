@@ -21,24 +21,9 @@ class DocumentationDriver():
         self.pictures = PictureConfig(self.PICTURE_CONFIG_DEFAULT,number_of_pictures)
         self.preview  = PictureConfig(self.PICTURE_CONFIG_DEFAULT,1)
 
-    def LED_OFF(self):
-        self.communication.send([
-            GCODES.LED_OFF])
-
-    def LEDs(self, white, red, green, blue):
-        self.communication.send([
-            GCODES.LEDs(white,red,green,blue)])
-
-    def go_to_foto_position (self):
-        self.communication.send([
-            GCODES.GO_TO_FOTO_POSITION])
-
-    def go_to_origin(self):
-        self.communication.send([
-            GCODES.GO_TO_ORIGIN ])
         
     def take_a_picture(self, Path):
-        my_file = open(Path,'r+')
+        my_file = open(Path,'w+')
         camera = PiCamera()
         ## Camera warm-up time
         sleep(2)
@@ -46,6 +31,23 @@ class DocumentationDriver():
         my_file.close()
         camera.close()
 
+    def LEDs_on(self, LED_gcode):
+        self.communication.send([
+            GCODES.SET_ABSOLUTE_POS,
+            GCODES.GO_TO_FOTO_POSITION,
+            GCODES.CURR_MOVEMENT_FIN,
+            LED_gcode])
+        sleep(1)
+
+    def LEDs_off(self):
+        self.communication.send([
+            GCODES.LED_OFF])
+        
+    def documentation_end(self):
+        self.communication.send([
+            GCODES.LED_OFF,
+            GCODES.GO_TO_ORIGIN_Y])
+        
     def get_Preview_Path(self):
         return "/home/pi/OC_manager/www/Preview.jpg"
 
@@ -55,22 +57,31 @@ class DocumentationDriver():
     def get_preview_list(self):
         return self.preview.to_list()
 
-    def make_preview(self):
-        LED_gcode = self.preview.to_gcode()
-        self.communication.send([
-            GCODES.SET_ABSOLUTE_POS,
-            GCODES.GO_TO_FOTO_POSITION,
-            GCODES.CURR_MOVEMENT_FIN,
-            LED_gcode])
-        Path = self.get_Preview_Path()
-        sleep(1)
-        self.take_a_picture(Path)
-        self.communication.send([
-            GCODES.LED_OFF])
-
     def update_number_of_pictures(self, number_of_pictures):
         return self.pictures.create_conf_to_picture_list(self.PICTURE_CONFIG_DEFAULT,
                                                   int (number_of_pictures))
     def update_preview(self, preview_config):
-        self.preview.build_pictures_from_picture_list([preview_config]) 
+        self.preview.build_pictures_from_picture_list([preview_config])
+
+    def update_pictures(self,pictures_list):
+        self.pictures.build_pictures_from_picture_list(pictures_list)
+        
+    def make_preview(self):
+        LED_gcode = self.preview.config[0].to_LEDs_gcode()
+        Path = self.get_Preview_Path()
+        self.LEDs_on(LED_gcode)
+        self.take_a_picture(Path)
+        self.LEDs_off()
+
+    def make_pictures_for_documentation(self, pictures_list):
+        self.update_pictures(pictures_list)
+        for picture in self.pictures.config:
+            LED_gcode = picture.to_LEDs_gcode()
+            label = picture.get_label()
+            Path = self.PATH + label + ".jpg"
+            self.LEDs_on(LED_gcode)
+            self.take_a_picture(Path)
+        self.documentation_end()
+            
+        
         

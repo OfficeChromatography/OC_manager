@@ -19,9 +19,18 @@ add_step  <- function(){
 
 
 step_start <- function(){
-
+    pictures_list = getPicturesConfigFromTable()
+    withProgress(message = 'Making pictures please wait', value = 0, {
+        documentation_driver$make_pictures_for_documentation(pictures_list)
+       })
 }
 
+
+step_save<-function(){
+   pictures_list = getPicturesConfigFromTable()
+   step = getSelectedStep()
+   Method$control[[step]]$pictures_config = pictures_list
+}
 
 getPicturesConfigFromTable  <- function(){
     settingsFormat = hot_to_r(input$pictures_config)
@@ -42,16 +51,6 @@ getPreviewConfigFromTable <- function (){
     pictureslist = py_to_r(py_dict(keys, Values))
     return (pictureslist)
 }
-
-
-
-
-#abstract
-observeEvent(input$documentation_settings_update,{
-    pictures_list = getPicturesConfigFromTable()
-    step = getSelectedStep()
-    Method$control[[step]]$pictures_config = pictures_list
-})
 
 observeEvent(input$documentation_pictures_update,{
     number_of_pictures = getNumberOfPictures()

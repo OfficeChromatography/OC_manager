@@ -28,6 +28,9 @@ class Picture:
     def to_dict(self):
         return {'label' : self.label , 'white' : self.white , 'red' : self.red , \
                 'green' : self.green , 'blue' : self.blue}
+
+    def to_LEDs_gcode(self):
+        return GCODES.LEDs(white = self.white, red = self.red, green = self.green, blue = self.blue)
     
     
 class PictureConfig:
@@ -72,14 +75,8 @@ class PictureConfig:
             picture_list.append(picture.to_dict())
         return picture_list
         
-    def to_gcode(self):
-        gcode = ""
-        for picture in self.config:
-            white = picture.get_white() 
-            red = picture.get_red()
-            green = picture.get_green()
-            blue = picture.get_blue()
-            gcode = gcode + GCODES.LEDs(white,red,green,blue)          
-        return gcode
+
+
+
 
 

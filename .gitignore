@@ -475,3 +475,10 @@ tests/.cache/v/cache/lastfailed
 \#*
 
 oc_driver/py_virtual_env
+
+# pictures
+*.jpg
+*.png
+
+# saved steps
+*.Rdata

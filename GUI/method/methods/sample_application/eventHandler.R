@@ -38,6 +38,10 @@ getBandConfigFromTable <- function(){
 
 }
 
+save_step <- function(){
+
+}
+
 step_start <- function(){
     bandlistpy =  getBandConfigFromTable()
     sample_application_driver$set_band_config(bandlistpy)
