@@ -59,9 +59,6 @@ class BandConfig:
         self.plate = plate
         band_list = self.create_conf_to_band_list(create_config)        
         self.build_bands_from_band_list(band_list)
-
-    def band_list_to_bands(self, band_list):
-        self.build_bands_from_band_list(band_list)
         
     def create_conf_to_band_list(self, create_config):
         "Transforms the create_config into a list list"
@@ -76,6 +73,11 @@ class BandConfig:
                 'volume_set': round(self.volume_per_band(drop_volume),3)
             })
         return bands
+
+    def create_bands(self,number_of_bands):
+        number_to_append = number_of_bands - len (self.bands)
+        self.bands.append(self.create_conf_to_band_list)
+        
 
     def volume_per_band(self, drop_volume):
         "how much volume should be applied on a single band"
@@ -97,7 +99,7 @@ class BandConfig:
         return round(number_of_reptitions * volume_per_band, 3)
 
     def calculate_start_positions(self, number_of_bands):
-        start = self.plate.get_band_offset_x()
+        start = self.plate.get_band_offset_y()
         plate = self.plate 
         start_pos_list = [start]
         for i in range(number_of_bands):
@@ -126,7 +128,7 @@ class BandConfig:
             # add new band
             bands.append(Band(band_start, band_end, number_of_reptitions, drop_volume, \
                               label, volume_set, nozzle_id, volume_real))
-        self.bands = bands
+        return bands
         
     def to_band_list(self):
         band_list = []

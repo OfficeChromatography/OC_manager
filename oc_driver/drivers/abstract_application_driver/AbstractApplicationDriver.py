@@ -20,39 +20,53 @@ class AbstractApplicationDriver:
         self.calibration_y = calibration_y
         self.setup(plate_config, head_config)
         self.communication = communication
+        self.band_config = BandConfig(CREATE_BAND_CONFIG, self.printer_head, self.plate)
 
-    def setup(self, plate_config=None, head_config=None):
+    def update_plate_and_head_configs(self, plate_config=None, head_config=None):
         if plate_config:
             self.plate = Plate(plate_config, self.calibration_x, self.calibration_y)
         if head_config:
             self.printer_head = PrinterHead(head_config)
-        self.band_config = self.create_band_config()    
 
-    def create_band_config(self, number_of_bands=CREATE_BAND_CONFIG['number_of_bands']):
+    def add_or_remove_Bands(self, number_of_bands, old_band_config):
+        difference = len (old_band_config) - number_of_bands
+        if difference < 0 :
+            new_band_config = self.add_Bands(old_band_config, difference)
+        else if difference > 0:
+            new_band_config = self.remove_Bands(old_band_config)
+        else:
+            new_band_config = old_band_config
+        return new_band_config
+
+    def add_Bands(self,old_band_config,number_of_bands_to_add):
+        new_bands = self.create_band_list(number_of_bands_to_add)
+        return old_band_config.append(new_bands)
+
+    def remove_Bands(self, old_band_config, number_of_bands_to_remove):
+        return del old_band_config[-number_of_bands_to_remove]
+                   
+    def create_band_list(self, number_of_bands=CREATE_BAND_CONFIG['number_of_bands']):
         create_conf = self.CREATE_BAND_CONFIG
         create_conf['number_of_bands'] = int(number_of_bands)
-        self.band_config = BandConfig(create_conf, self.printer_head, self.plate)
-        return self.band_config
+        return self.band_config.create_conf_to_band_list(create_conf)
 
-    def set_band_config(self, band_list):
-        self.band_config.band_list_to_bands(band_list)
+    def create_bands_from_config(self, band_config):
+        self.band_config.build_bands_from_band_list(band_list)
+        return (self.band_config.to_band_list())
 
-    def update_band_list(self, band_list):
-        self.band_config.band_list_to_bands(band_list)
-        update_band_list = self.band_config.to_band_list()
-        return update_band_list
+    def update_settings (self, plate_config, head_config, band_config, number_of_bands):
+        self.update_plate_and_head_configs(plate_config, head_config)
+        new_band_list = self.add_or_remove_Bands(number_of_bands,band_config)
+        return self.create_bands_from_config(new_band_list) 
     
     def generate_gcode_and_send(self):
         gcode = self.generate_gcode()
         gcode_list = gcode.split('\n')
         self.communication.send(gcode_list)
 
-    def control_configs (self, number_of_bands):
-        plate = self.plate
-        plate_width_x = plate.get_plate_width_x()
-        track_length = plate.get_band_length() + plate.get_gap()
-        offset = plate.get_offset_x()
-        
+    def start_application (self,band_list):
+        self.set_band_config(band_list)
+        self.generate_gcode_and_send()
     
     @abstractmethod
     def generate_gcode(self):

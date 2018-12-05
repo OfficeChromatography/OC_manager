@@ -32,7 +32,7 @@ class Plate:
     def get_calibration_y(self):
         return self.calibration_y
 
-    def get_relative_band_offset_x(self):
+    def get_relative_band_distance_x(self):
         return self.relative_band_distance_x
 
     def get_relative_band_distance_y(self):
@@ -65,3 +65,6 @@ class Plate:
 
     def get_plate_height_y(self):
         return self.plate_height_y
+
+    def set_band_length(self,band_length):
+        self.band_length = band_length

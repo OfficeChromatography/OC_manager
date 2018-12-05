@@ -42,3 +42,8 @@ class SampleApplicationDriver(AbstractApplicationDriver):
 
     def get_default_plate_config(self):
         return self.PLATE_CONFIG_DEFAULT
+
+    def update_settings(self, plate_config, head_config, number_of_bands):
+        self.setup(plate_config, head_config)
+        self.create_band_config(number_of_bands)
+        return self.band_config.to_band_list()    

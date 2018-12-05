@@ -8,7 +8,7 @@ setDocumentationConf  <- function(pictures_config, preview_config, step){
 
 
 # abstract
-add_step  <- function(){
+step_add  <- function(){
     step = length(Method$control) + 1
     pictures_config = documentation_driver$get_picture_list()
     preview_config = documentation_driver$get_preview_list()

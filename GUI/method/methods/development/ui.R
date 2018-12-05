@@ -30,7 +30,6 @@ output$development_control_settings = renderUI({
           rHandsontableOutput("plate_config"))),
           column(2,box(title = "Update Settings", width = "33%", height = "45%",status = "warning",
           fluidRow(actionButton("development_settings_update"," settings",icon=icon("gears"), width="100%")),
-          fluidRow(actionButton("development_band_config_update"," apply table",icon=icon("gears"), width="100%")),
           fluidRow(actionButton("development_band_config_save"," apply table",icon=icon("save"), width="100%")
                    )
           )
@@ -99,7 +98,7 @@ toTablePlateRFormat  <- function(pythonPlateConf) {
     pythonPlateConf$gap = NULL
     pythonPlateConf$band_length = NULL
     labels = c("Relative Band Distance [Y]", "Relative Band Distance [X]", "Plate Height [Y]", "Plate Width [X]")
-    units = c("mm", "mm", "mm", "nl")
+    units = c("mm", "mm", "mm", "mm")
     return (toRSettingsTableFormat(pythonPlateConf, labels, units))
 }
 

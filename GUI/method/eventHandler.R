@@ -43,7 +43,7 @@ eventHandlerMethods <- function (type){
             }
             )
     # override function for each eventHandler
-    step_add_Methods <<- add_step
+    step_add_Methods <<- step_add
     step_start_Methods <<- step_start
     step_save_Methods<<- step_save
     

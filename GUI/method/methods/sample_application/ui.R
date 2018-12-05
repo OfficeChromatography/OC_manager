@@ -28,7 +28,6 @@ output$sample_application_control_settings = renderUI({
           column(2,box(title = "Update Settings", width = "33%", height = "45%",status = "warning",
           fluidRow(textInput("number_of_bands", "Number of bands", getNumberOfBands(),width="100%")),
           fluidRow(actionButton("sample_application_settings_update"," settings",icon=icon("gears"), width="100%")),
-          fluidRow(actionButton("sample_application_band_config_update"," apply table",icon=icon("gears"), width="100%")),
           fluidRow(actionButton("sample_application_band_config_save"," apply table",icon=icon("save"), width="100%")
                    )
           )
@@ -38,6 +37,22 @@ output$sample_application_control_settings = renderUI({
       )
   }
 })
+
+output$sample_application_control_infos = renderUI({
+  validate(
+    need(length(Method$control) > 0 ,"Add a step or load a saved method")
+  )
+  if(!is.null(input$Method_steps)){
+    tagList(
+        column(6,box(title = "Plate Plot ", width = "33%", height = "45%",status = "warning",
+        plotOutput("sample_application_plot",width="400px",height="400px"))),
+        column(6,box(title = "Apply Table ", width = "33%", height = "45%",status = "warning",
+        rHandsontableOutput("band_config")))
+    )
+  }
+})
+
+
 
 
 getNumberOfBands  <- function(){
@@ -77,9 +92,6 @@ createApplicationPlot <- function ( plate_config, numberOfBands){
     symbols(x=50,y=50,add = T,inches = F,rectangles = rbind(c(plate_height_y,plate_width_x)),lty=2)
 }
 
-
-
-
 toTableHeadRFormat  <- function(pythonHeadConf){
     labels = c("Speed", "Pulse Delay", "Number of Fire", "Step Range", "Printer Head Resolution")
     units = c("mm/m", "\U00B5m", "", "mm", "mm")
@@ -88,27 +100,12 @@ toTableHeadRFormat  <- function(pythonHeadConf){
 
 toTablePlateRFormat  <- function(pythonPlateConf) {
     labels = c("Relative Band Distance [Y]", "Relative Band Distance [X]", "Plate Height [Y]", "Plate Width [X]", "Band Length", "Gap")
-    units = c("mm", "mm", "mm", "nl", "mm", "mm")
+    units = c("mm", "mm", "mm", "mm", "mm", "mm")
     return (toRSettingsTableFormat(pythonPlateConf, labels, units))
 }
 
 
 
-
-## information
-output$sample_application_control_infos = renderUI({
-  validate(
-    need(length(Method$control) > 0 ,"Add a step or load a saved method")
-  )
-  if(!is.null(input$Method_steps)){
-    tagList(
-        column(6,box(title = "Plate Plot ", width = "33%", height = "45%",status = "warning",
-        plotOutput("sample_application_plot",width="400px",height="400px"))),
-        column(6,box(title = "Apply Table ", width = "33%", height = "45%",status = "warning",
-        rHandsontableOutput("band_config")))
-    )
-  }
-})
 
 output$sample_application_plot = renderPlot({
     index = getSelectedStep()
@@ -125,6 +122,7 @@ output$sample_application_plot = renderPlot({
         plot(x=1,y=1,type="n",main="Update to visualize")
     }
 })
+
 output$Method_step_feedback = renderText({
   validate(
     need(length(Method$control) > 0 ,"add a step or load a saved method")
@@ -174,3 +172,6 @@ output$band_config = renderRHandsontable({
             hot_col("Volume Real [µl]", readOnly = TRUE)
     }
 })
+
+
+

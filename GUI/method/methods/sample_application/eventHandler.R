@@ -17,59 +17,57 @@ toPythonTablePlateFormat  <- function(tablePlateConf) {
     return (settingsTabletoPythonDict(tablePlateConf, keysPlate))
 }
 
+getBandConfigFromTable <- function(){
+    bandlistTable= hot_to_r(input$band_config)
+    return (bandConfSettingsTableFormatToPython(bandlistTable))
+}
 
-# todo refactor
-add_step  <- function(){
+getPlateConfigFromTable <- function (){
+    plateTable = hot_to_r(input$plate_config)
+    return (toPythonTablePlateFormat(plateTable)) 
+}
+
+getHeadConfigFromTable <- function (){
+    headTable = hot_to_r(input$printer_head_config)
+    return (toPythonTableHeadFormat(headTable)) 
+}
+
+step_add  <- function(){
     step = length(Method$control) + 1
     headConf = sample_application_driver$get_default_printer_head_config()
     plateConf = sample_application_driver$get_default_plate_config()
-    bandConf = sample_application_driver$create_band_config(5)
+    bandConf = sample_application_driver$update_settings(plateConf, headConf, number_of_bands=5)
 
-    bandList = bandConf$to_band_list()
-
-    setApplicationConf(headConf, plateConf, bandList, step)
+    setApplicationConf(headConf, plateConf, bandConf, step)
 
     showInfo("Please configure your sample application proccess")
 }
 
-getBandConfigFromTable <- function(){
-    bandlistTable= hot_to_r(input$band_config)
-    return (bandConfSettingsTableFormatToPython(bandlistTable))
-
+step_save <- function(){
+    pyPlate = getPlateConfigFromTable()
+    pyHead = getHeadConfigFromTable()
+    band_list = getBandConfigFromTable()
+    step = getSelectedStep()
+    setApplicationConf(pyHead, pyPlate, bandList, step)
 }
 
-save_step <- function(){
 
-}
 
 step_start <- function(){
     bandlistpy =  getBandConfigFromTable()
-    sample_application_driver$set_band_config(bandlistpy)
-    gcode = sample_application_driver$generate_gcode()
-    sample_application_driver$generate_gcode_and_send()
+    sample_application_driver$start_application(bandlistpy)
 }
-
 
 observeEvent(input$sample_application_settings_update,{
     step = getSelectedStep()
-    plateTable = hot_to_r(input$plate_config)
-    headTable = hot_to_r(input$printer_head_config)
-    pyHead = toPythonTableHeadFormat(headTable)
-    pyPlate = toPythonTablePlateFormat(plateTable)
-    sample_application_driver$setup(pyPlate, pyHead)
+    pyPlate = getPlateConfigFromTable()
+    pyHead = getHeadConfigFromTable()
     numberOfBands = input$number_of_bands
-    band_conf = sample_application_driver$create_band_config(numberOfBands)
-    bandList = band_conf$to_band_list()
+    bandList = sample_application_driver$update_settings(pyPlate, pyHead, numberOfBands)
 
     setApplicationConf(pyHead, pyPlate, bandList, step)
 })
 
-observeEvent (input$sample_application_band_config_update,{
-    band_list = getBandConfigFromTable()
-    update_band_list = sample_application_driver$update_band_list(band_list)
-    index = getSelectedStep()
-    Method$control[[index]]$band_config = update_band_list
-})
 
 observeEvent (input$sample_application_band_config_save,{
     apply_table = hot_to_r(input$band_config)
