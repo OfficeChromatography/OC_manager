@@ -18,7 +18,7 @@ class AbstractApplicationDriver:
     def __init__(self, communication, plate_config, head_config, calibration_x, calibration_y):
         self.calibration_x = calibration_x
         self.calibration_y = calibration_y
-        self.setup(plate_config, head_config)
+        self.update_plate_and_head_configs(plate_config, head_config)
         self.communication = communication
         self.band_config = BandConfig(CREATE_BAND_CONFIG, self.printer_head, self.plate)
 

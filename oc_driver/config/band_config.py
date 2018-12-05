@@ -59,6 +59,12 @@ class BandConfig:
         self.plate = plate
         band_list = self.create_conf_to_band_list(create_config)        
         self.build_bands_from_band_list(band_list)
+
+    def update_plate(self, plate):
+        self.plate = plate
+
+    def update_printer_head (self, printer_head):
+        self.printer_head = printer_head
         
     def create_conf_to_band_list(self, create_config):
         "Transforms the create_config into a list list"
@@ -128,7 +134,7 @@ class BandConfig:
             # add new band
             bands.append(Band(band_start, band_end, number_of_reptitions, drop_volume, \
                               label, volume_set, nozzle_id, volume_real))
-        return bands
+        self.bands = bands
         
     def to_band_list(self):
         band_list = []
