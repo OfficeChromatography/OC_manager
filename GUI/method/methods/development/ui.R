@@ -56,15 +56,13 @@ output$development_control_infos = renderUI({
 })
 
 # Application
-createApplicationPlot <- function ( plate_config, numberOfBands){
+createApplicationPlot <- function ( plate_config){
     plate_width_x = as.numeric (plate_config$plate_width_x)
     plate_height_y = as.numeric (plate_config$plate_height_y)
     band_length = as.numeric (plate_config$band_length)
     relative_band_distance_x = as.numeric (plate_config$relative_band_distance_x) + 50 - plate_width_x/2
     relative_band_distance_y = as.numeric (plate_config$relative_band_distance_y) + 50 - plate_height_y/2
-    gap = as.numeric (plate_config$gap)
-    numberOfBands=numberOfBands
-
+    
     plot(c(1,100),c(1,100),
          type="n",xaxt = 'n',
          xlim=c(0,100),ylim=c(100,0),
@@ -73,14 +71,11 @@ createApplicationPlot <- function ( plate_config, numberOfBands){
     axis(3)
     start=relative_band_distance_x
     mtext("Migration direction (Y)", side=3, line=3)
-    for(band in seq(1,numberOfBands)){
-        end=start + band_length
-        segments(x0 = relative_band_distance_y,
-                 y0 = start,
-                 y1 = end
-                 )
-        start=end + gap
-    }
+    end=start + band_length
+    segments(x0 = relative_band_distance_y,
+             y0 = start,
+             y1 = end
+             )
     symbols(x=50,y=50,add = T,inches = F,rectangles = rbind(c(plate_height_y,plate_width_x)),lty=2)
 }
 
@@ -112,7 +107,7 @@ output$development_plot = renderPlot({
     if(!is.null(currentMethod)){
         plate_config = currentMethod$plate_config
         numberOfBands= length (currentMethod$band_config)
-        createApplicationPlot(plate_config, 1)
+        createApplicationPlot(plate_config)
     }
     else{
 !        plot(x=1,y=1,type="n",main="Update to visualize")

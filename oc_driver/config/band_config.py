@@ -60,10 +60,8 @@ class BandConfig:
         band_list = self.create_conf_to_band_list(create_config)        
         self.build_bands_from_band_list(band_list)
 
-    def update_plate(self, plate):
+    def update_plate_and_head_configs_to_bands(self, plate, printer_head):
         self.plate = plate
-
-    def update_printer_head (self, printer_head):
         self.printer_head = printer_head
         
     def create_conf_to_band_list(self, create_config):
@@ -79,12 +77,7 @@ class BandConfig:
                 'volume_set': round(self.volume_per_band(drop_volume),3)
             })
         return bands
-
-    def create_bands(self,number_of_bands):
-        number_to_append = number_of_bands - len (self.bands)
-        self.bands.append(self.create_conf_to_band_list)
         
-
     def volume_per_band(self, drop_volume):
         "how much volume should be applied on a single band"
         return self.plate.get_band_length() / \
@@ -105,7 +98,7 @@ class BandConfig:
         return round(number_of_reptitions * volume_per_band, 3)
 
     def calculate_start_positions(self, number_of_bands):
-        start = self.plate.get_band_offset_y()
+        start = self.plate.get_band_offset_x()
         plate = self.plate 
         start_pos_list = [start]
         for i in range(number_of_bands):

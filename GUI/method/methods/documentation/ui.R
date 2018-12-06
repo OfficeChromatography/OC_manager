@@ -51,11 +51,11 @@ get_Image_Path <- function (){
 
 
 pictures_config_to_Table_Format<- function (pictures_config){
-    labels = c("Picture Name", "LED-white", "LED-red", "LED-green", "LED-blue")
+    labels = c("LED-blue", "LED-white", "LED-green", "LED-red", "Picture Name")
     fUntransposed = as.data.frame(matrix(unlist(pictures_config), nrow=length(unlist(pictures_config[1]))))
     f = t(fUntransposed)
+    colnames(f) = labels
     sortedFrame = f[, c(5, 2, 4, 3, 1)]
-    colnames(sortedFrame) = labels
     rownames(sortedFrame) = c()
     return (sortedFrame)
 }

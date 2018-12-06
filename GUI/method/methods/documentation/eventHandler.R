@@ -26,12 +26,6 @@ step_start <- function(){
 }
 
 
-step_save<-function(){
-   pictures_list = getPicturesConfigFromTable()
-   step = getSelectedStep()
-   Method$control[[step]]$pictures_config = pictures_list
-}
-
 getPicturesConfigFromTable  <- function(){
     settingsFormat = hot_to_r(input$pictures_config)
     keys = c("label", "white","red","green","blue")

@@ -71,7 +71,7 @@ class FineControlDriver(AbstractApplicationDriver):
     def set_configs(self, printer_head_config, relative_band_distance_y ):
         plate_config = self.get_default_plate_config()
         plate_config['relative_band_distance_y'] = relative_band_distance_y
-        self.setup(plate_config, printer_head_config)
+        self.update_plate_and_head_configs_to_driver(plate_config, printer_head_config)
         
 
     def stop(self):
@@ -101,7 +101,8 @@ class FineControlDriver(AbstractApplicationDriver):
 
     def calculate_band_config_for_test (self, selected_nozzles):
         number_of_bands = len (selected_nozzles)
-        self.create_band_config(number_of_bands=number_of_bands )
+        band_list = self.create_band_list(number_of_bands=number_of_bands )
+        self.create_bands_from_config(band_list)
         bands = self.band_config.get_bands()
         for idx, Band in enumerate(bands):
             Band.set_nozzle_id(selected_nozzles[idx])
@@ -111,7 +112,6 @@ class FineControlDriver(AbstractApplicationDriver):
         #self.get_current_position()
         self.calculate_band_config_for_test(selected_nozzles)
         gcode = self.generate_gcode()
-        print (gcode)
         self.generate_gcode_and_send()
 
     def generate_gcode(self):

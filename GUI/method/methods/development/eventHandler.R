@@ -48,13 +48,6 @@ step_add  <- function(){
     showInfo("Please configure your sample application proccess")
 }
 
-step_save <- function(){
-    pyPlate = getPlateConfigFromTable()
-    pyHead = getHeadConfigFromTable()
-    band_list = getBandConfigFromTable()
-    step = getSelectedStep()
-    setApplicationConf(pyHead, pyPlate, bandList, step)
-}
 
 step_start <- function(){
     bandlistpy =  getBandConfigFromTable()
@@ -65,7 +58,11 @@ observeEvent(input$development_settings_update,{
     step = getSelectedStep()
     pyPlate = getPlateConfigFromTable()
     pyHead = getHeadConfigFromTable()
-    bandList = development_driver$update_settings(pyPlate, pyHead)
+    band_list = getBandConfigFromTable()
+    bandList = development_driver$update_settings(plate_config=pyPlate,
+                                                         head_config=pyHead,
+                                                  band_config=band_list)
+    pyPlate$band_length = development_driver$get_band_length()
 
     setApplicationConf(pyHead, pyPlate, bandList, step)
 })

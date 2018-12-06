@@ -45,7 +45,6 @@ eventHandlerMethods <- function (type){
     # override function for each eventHandler
     step_add_Methods <<- step_add
     step_start_Methods <<- step_start
-    step_save_Methods<<- step_save
     
  }
   
@@ -107,9 +106,7 @@ output$Method_gcode_download <- downloadHandler(
   }
 )
 ## save
-
 observeEvent(input$Method_save,{
-    step_save_Methods()
     filePath = paste0("/home/pi/OC_manager/GUI/method/method_to_load/",input$Method_save_name,".Rdata")
     control = Method$control
     save(control,file=filePath)
