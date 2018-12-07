@@ -42,6 +42,9 @@ class AbstractApplicationDriver:
         gcode_list = gcode.split('\n')
         self.communication.send(gcode_list)
 
+    def get_print_time(self):
+        return self.band_config.get_print_time()
+        
     def set_band_config(self, band_list):
         self.band_config.build_bands_from_band_list(band_list)
 

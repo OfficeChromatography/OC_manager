@@ -47,17 +47,18 @@ getPreviewConfigFromTable <- function (){
 }
 
 observeEvent(input$documentation_pictures_update,{
-    number_of_pictures = getNumberOfPictures()
-    pictures_list = documentation_driver$update_number_of_pictures(number_of_pictures)
+    number_of_pictures =  (getNumberOfPictures())
+    pictures_list = getPicturesConfigFromTable()
+    pictures_list = documentation_driver$update_settings(pictures_list, number_of_pictures)
+                                                        
     step = getSelectedStep()
-    Method$control[[step]]$pictures_config = pictures_list    
+    Method$control[[step]]$pictures_config = pictures_list
 })
 
 
 observeEvent(input$take_a_picture,{
     preview_list = getPreviewConfigFromTable()
-    documentation_driver$update_preview(preview_list)
-    documentation_driver$make_preview()
+    documentation_driver$make_preview(preview_list)
     creat_random_image_hash()
     
 })

@@ -1,5 +1,6 @@
 import drivers.gcodes as GCODES 
 import numpy as np
+import datetime
 
 class Band:
     def __init__(self, start, end, number_of_reptitions, drop_volume, \
@@ -59,6 +60,7 @@ class BandConfig:
         self.plate = plate
         band_list = self.create_conf_to_band_list(create_config)        
         self.build_bands_from_band_list(band_list)
+        self.estimate_time = 0
 
     def update_plate_and_head_configs_to_bands(self, plate, printer_head):
         self.plate = plate
@@ -112,6 +114,9 @@ class BandConfig:
             return 
         bands = []
         band_start_list = self.calculate_start_positions(len(band_list))
+        speed = self.printer_head.get_speed()/60
+        position_before = 0
+        estimate_time = 0
         for idx, band_config in enumerate(band_list):
             nozzle_id = int(band_config.get('nozzle_id'))
             shift = self.printer_head.get_shift_for_nozzle(nozzle_id)
@@ -123,25 +128,38 @@ class BandConfig:
             number_of_reptitions = self.calculate_number_of_reps(volume_set, volume_per_band)
             volume_real = self.calculate_volume_real(number_of_reptitions, volume_per_band)
             label = str(band_config.get('label'))
-            
+            band_length = band_end - band_start
+            time_to_start = self.calculate_time(band_start - position_before, speed)
+            time_per_band = number_of_reptitions * self.calculate_time (band_length, speed)
+            estimate_time += time_to_start + time_per_band
             # add new band
             bands.append(Band(band_start, band_end, number_of_reptitions, drop_volume, \
                               label, volume_set, nozzle_id, volume_real))
         self.bands = bands
+        self.estimate_time = estimate_time
         
     def to_band_list(self):
         band_list = []
         for band in self.bands:
             band_list.append(band.to_dict())
         return band_list
+
+    def calculate_time (self, way, velocity):
+        return way / velocity
+
+    def get_print_time(self):
+        time_str = str(datetime.timedelta(seconds=self.estimate_time))  
+        return time_str
             
-    
     def to_gcode(self):
         "generates the gcode containing commands for applying bands of liquid on a plate"
         fire_rate = self.printer_head.get_number_of_fire()
         pulse_delay = self.printer_head.get_pulse_delay()
         step_range = self.printer_head.get_step_range()
         gcode = []
+        self.estimate_time = 0
+        position = 0
+        speed = self.printer_head.get_speed()/60
         for idx, band in enumerate(self.bands):
             gcode_band = []
             start = band.get_start()

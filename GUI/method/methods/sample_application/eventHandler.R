@@ -61,6 +61,10 @@ observeEvent(input$sample_application_settings_update,{
                                                          band_config=band_list,
                                                          number_of_bands=numberOfBands)
 
+    print_time = sample_application_driver$get_print_time()
+
+    print (print_time)
+
     setApplicationConf(pyHead, pyPlate, bandList, step)
 })
 
