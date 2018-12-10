@@ -64,7 +64,7 @@ def start(speed, distX):
         GO_TO_ORIGIN_Y,
         SET_UNITS_IN_MM,
         SET_ABSOLUTE_POS,
-        goXPlus(distX) + go_speed]) # maybe needs a refactor, go(direction, axis)
+        goXPlus(distX) + go_speed(speed)]) # maybe needs a refactor, go(direction, axis)
 
 def LEDs(white, red, green, blue):
     return "M150" + " W" + str(white) + " R" + str( red ) + " U" + str (green) + " B" + str (blue) 

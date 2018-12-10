@@ -96,6 +96,5 @@ class PrinterHead:
 
     def calculate_speed_in_mms(self, speed_in_RPM):
         "calcualtes the speed in mm/s"
-        d_pulley = 18 # in mm, information from datasheed 
-        speed_in_mms = round(speed_in_RPM/60/d_pulley/pi,3)
+        speed_in_mms = round(speed_in_RPM/60,3)
         return speed_in_mms
