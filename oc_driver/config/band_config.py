@@ -114,7 +114,8 @@ class BandConfig:
             return 
         bands = []
         band_start_list = self.calculate_start_positions(len(band_list))
-        speed = self.printer_head.get_speed()/60
+        speed_in_RPM = self.printer_head.get_speed()
+        speed = self.printer_head.calculate_speed_in_mms(speed_in_RPM)     
         position_before = 0
         estimate_time = 0
         for idx, band_config in enumerate(band_list):
@@ -130,13 +131,16 @@ class BandConfig:
             label = str(band_config.get('label'))
             band_length = band_end - band_start
             time_to_start = self.calculate_time(band_start - position_before, speed)
+            print ("time_to_start",time_to_start)
             time_per_band = number_of_reptitions * self.calculate_time (band_length, speed)
+            print ("band",idx,"band_length",band_length,"time_per_band",time_per_band)
             estimate_time += time_to_start + time_per_band
+            position_before = band_end
             # add new band
             bands.append(Band(band_start, band_end, number_of_reptitions, drop_volume, \
                               label, volume_set, nozzle_id, volume_real))
         self.bands = bands
-        self.estimate_time = estimate_time
+        self.estimate_time =  int (estimate_time)
         
     def to_band_list(self):
         band_list = []
@@ -148,7 +152,7 @@ class BandConfig:
         return way / velocity
 
     def get_print_time(self):
-        time_str = str(datetime.timedelta(seconds=self.estimate_time))  
+        time_str = str(datetime.timedelta(seconds=self.estimate_time))
         return time_str
             
     def to_gcode(self):
@@ -157,9 +161,7 @@ class BandConfig:
         pulse_delay = self.printer_head.get_pulse_delay()
         step_range = self.printer_head.get_step_range()
         gcode = []
-        self.estimate_time = 0
-        position = 0
-        speed = self.printer_head.get_speed()/60
+        speed_in_RPM = self.printer_head.get_speed()
         for idx, band in enumerate(self.bands):
             gcode_band = []
             start = band.get_start()
@@ -169,7 +171,7 @@ class BandConfig:
             address = self.printer_head.get_address_for_nozzle(nozzle_id)
             for drop_position in drops:
                 drop_position_round = round(drop_position,3)
-                gcode_band.append(GCODES.goYPlus(drop_position_round))
+                gcode_band.append(GCODES.goYPlus(drop_position_round)+GCODES.go_speed(speed_in_RPM))
                 gcode_band.append(GCODES.nozzle_fire(fire_rate, address, pulse_delay))
             gcode = gcode + gcode_band * int(band.get_number_of_repitition()) 
                 

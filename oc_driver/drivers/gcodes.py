@@ -37,6 +37,7 @@ GO_TO_FOTO_POSITION = "G1 Y158"
 
 END = new_lines([GO_TO_ORIGIN_X, GO_TO_ORIGIN_Y, STOP_IDLE_HOLD ])
 
+
 def nozzle_fire(fire_rate, nozzle_address, puls_delay):
     return  CURR_MOVEMENT_FIN + "\n" + \
         FIRE  + " P0 " + "I" + str(fire_rate) + " L" + str(puls_delay) + " S" + nozzle_address + "\n" +\
@@ -55,7 +56,7 @@ def goYPlus(steps = "5"):
     return GO_Y + str(steps)
 
 def go_speed(speed):
-    return GO+" F "+str(speed)
+    return " F "+str(speed)
 
 def start(speed, distX):
     return new_lines([
@@ -63,8 +64,7 @@ def start(speed, distX):
         GO_TO_ORIGIN_Y,
         SET_UNITS_IN_MM,
         SET_ABSOLUTE_POS,
-        go_speed(speed),
-        goXPlus(distX)]) # maybe needs a refactor, go(direction, axis)
+        goXPlus(distX) + go_speed]) # maybe needs a refactor, go(direction, axis)
 
 def LEDs(white, red, green, blue):
     return "M150" + " W" + str(white) + " R" + str( red ) + " U" + str (green) + " B" + str (blue) 
