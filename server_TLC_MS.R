@@ -587,10 +587,10 @@ TLC_MS_gcode = reactive({
     ## between
     for(j in unlist(strsplit(input$TLC_MS_batch_between,split = "\n"))){
       if(j == "G4 P2000; insert numeric elution time"){
-        j = paste0("G4 P",input$TLC_MS_elution_time,"; insert numeric elution time")
+        j = paste0("G4 P",input$TLC_MS_elution_time * 1000,"; insert numeric elution time")
       }
       if(j == "G4 P2000; insert numeric rinsing time"){
-        j = paste0("G4 P",input$TLC_MS_rinsing_time,"; insert numeric rinsing time")
+        j = paste0("G4 P",input$TLC_MS_rinsing_time * 1000,"; insert numeric rinsing time")
       }
       gcode = c(gcode,j)
     }
