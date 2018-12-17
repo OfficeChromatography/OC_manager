@@ -81,9 +81,9 @@ class FineControlDriver(AbstractApplicationDriver):
         nozzle_address = self.calculate_nozzle_address_for_gcode(selected_nozzles)
         fire_rate = self.printer_head.get_number_of_fire()
         puls_delay = self.printer_head.get_pulse_delay()
-        self.communication.send([
-            GCODES.nozzle_fire(fire_rate, nozzle_address, puls_delay)
-        ])
+        gcode = GCODES.fire(fire_rate, nozzle_address, puls_delay)
+        print (gcode)
+        self.communication.send([gcode])
 
     def calculate_nozzle_address_for_gcode(self, selected_nozzles):
         nozzle_value = 0
@@ -111,7 +111,6 @@ class FineControlDriver(AbstractApplicationDriver):
     def nozzle_testing_process(self, selected_nozzles):
         #self.get_current_position()
         self.calculate_band_config_for_test(selected_nozzles)
-        gcode = self.generate_gcode()
         self.generate_gcode_and_send()
 
     def generate_gcode(self):

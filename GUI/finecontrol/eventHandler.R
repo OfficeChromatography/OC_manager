@@ -92,7 +92,6 @@ getUserInputforInkjet <- function (){
     updated_printer_head_config = toPythonTableApply_settings(headTable, printer_head_config)
     fineControlDriver$set_configs(updated_printer_head_config, get_start_position())
     selected_nozzles = as.numeric (input$test_ink_selected_nozzles)
-    print (class (selected_nozzles))
     if (class(selected_nozzles)== "numeric"){selected_nozzles = as.list(selected_nozzles)}
     return (selected_nozzles)
     }

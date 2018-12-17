@@ -39,9 +39,12 @@ END = new_lines([GO_TO_ORIGIN_X, GO_TO_ORIGIN_Y, STOP_IDLE_HOLD ])
 
 
 def nozzle_fire(fire_rate, nozzle_address, puls_delay):
-    return  CURR_MOVEMENT_FIN + "\n" + \
-        FIRE  + " P0 " + "I" + str(fire_rate) + " L" + str(puls_delay) + " S" + nozzle_address + "\n" +\
-        CURR_MOVEMENT_FIN
+    return  new_lines([CURR_MOVEMENT_FIN,
+                        fire(fire_rate, nozzle_address, puls_delay),
+                        CURR_MOVEMENT_FIN])
+
+def fire(fire_rate,nozzle_address, puls_delay):
+    return FIRE  + " P0 " + "I" + str(fire_rate) + " L" + str(puls_delay) + " S" + nozzle_address
 
 def goXMinus(steps = "5"):
     return GO_X_MINUS + str(steps)

@@ -13,7 +13,7 @@ output$Serial_portUI = renderUI({
   })
 
 output$Serial_port_connectUI = renderUI({
-    if(!ocDriver$is_connected()){
+    if(!board$connected){
       actionButton("Serial_port_connect","Connect the board")
     }else{
       actionButton("Serial_port_disconnect","Disconnect the board")

@@ -1,7 +1,11 @@
+board <<- reactiveValues(connected = FALSE)
+
 Connect_with_the_board  <<- function(){
     ocDriver$connect()
+    board$connected <<- TRUE
     if (!ocDriver$is_connected()){
-         shinyalert("Oops!", "Can't connect the Board please try again", type = "error")
+        shinyalert("Oops!", "Can't connect the Board please try again", type = "error")
+        board$connected <<- FALSE
    }
 }
 
@@ -15,7 +19,10 @@ observeEvent(input$Serial_port_connect,{
   })
 
 observeEvent(input$Serial_port_disconnect,{
-        ocDriver$disconnect()
+    ocDriver$disconnect()
+    if (!ocDriver$is_connected()){
+        board$connected <<- FALSE
+        }
     })
 
 #auto connect

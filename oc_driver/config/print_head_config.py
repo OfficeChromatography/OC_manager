@@ -93,8 +93,13 @@ class PrinterHead:
         "how many nozzle are used from the printer head"
         return (len (self.NOZZLE_CHANNEL))
 
-
     def calculate_speed_in_mms(self, speed_in_RPM):
         "calcualtes the speed in mm/s"
         speed_in_mms = round(speed_in_RPM/60,3)
         return speed_in_mms
+
+    def calculate_nozzle_fire_waiting_time (self, fire_rate):
+        max_delay = 800 * 10**(-6)
+        return fire_rate * max_delay
+
+    

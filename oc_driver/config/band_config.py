@@ -117,6 +117,7 @@ class BandConfig:
         speed_in_RPM = self.printer_head.get_speed()
         speed = self.printer_head.calculate_speed_in_mms(speed_in_RPM)
         speed_for_accerlerated_moves = self.printer_head.calculate_speed_in_mms(400)
+        fire_rate = self.printer_head.get_number_of_fire()
         position_before = 0
         estimate_time = 0
         for idx, band_config in enumerate(band_list):
@@ -131,10 +132,8 @@ class BandConfig:
             volume_real = self.calculate_volume_real(number_of_reptitions, volume_per_band)
             label = str(band_config.get('label'))
             band_length = band_end - band_start
-            time_to_start = self.calculate_time(band_start - position_before, speed_for_accerlerated_moves)
-            print ("time to start", time_to_start)
-            time_per_band = number_of_reptitions * self.calculate_time (band_length, speed_for_accerlerated_moves)
-            print ("time per band", time_per_band)
+            time_to_start = self.calculate_time(band_start - position_before, speed)
+            time_per_band = number_of_reptitions *( self.calculate_time (2*band_length, speed_for_accerlerated_moves) + self.printer_head.calculate_nozzle_fire_waiting_time(fire_rate))
             estimate_time += time_to_start + time_per_band
             position_before = band_end
             # add new band
