@@ -116,7 +116,7 @@ observeEvent(input$resume,{
 #Docu
 
 observeEvent(input$test_ink_visu_position,{
-
+    fineControlDriver$go_to_foto_position()
 })
 observeEvent(input$test_ink_ring_on,{
     fineControlDriver$LEDs(255,255,255,255)

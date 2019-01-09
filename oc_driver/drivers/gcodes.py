@@ -33,7 +33,7 @@ GET_POSITION = "M114"
 
 LED_OFF = "M150 W0 R0 U0 B0"
 
-GO_TO_FOTO_POSITION = "G1 Y158"
+GO_TO_FOTO_POSITION = "G1 Y164"
 
 END = new_lines([GO_TO_ORIGIN_X, GO_TO_ORIGIN_Y, STOP_IDLE_HOLD ])
 
@@ -71,4 +71,3 @@ def start(speed, distX):
 
 def LEDs(white, red, green, blue):
     return "M150" + " W" + str(white) + " R" + str( red ) + " U" + str (green) + " B" + str (blue) 
-

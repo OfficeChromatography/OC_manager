@@ -82,7 +82,6 @@ class FineControlDriver(AbstractApplicationDriver):
         fire_rate = self.printer_head.get_number_of_fire()
         puls_delay = self.printer_head.get_pulse_delay()
         gcode = GCODES.fire(fire_rate, nozzle_address, puls_delay)
-        print (gcode)
         self.communication.send([gcode])
 
     def calculate_nozzle_address_for_gcode(self, selected_nozzles):
@@ -129,3 +128,6 @@ class FineControlDriver(AbstractApplicationDriver):
     def LEDs(self, white = 0, red = 0, green = 0, blue = 0):
         self.communication.send([GCODES.LEDs(str (white),str (red), str (green) , str (blue) )])
  
+    def go_to_foto_position(self):
+        self.communication.send([GCODES.SET_ABSOLUTE_POS,
+                                 GCODES.GO_TO_FOTO_POSITION])
