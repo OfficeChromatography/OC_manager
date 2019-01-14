@@ -52,13 +52,13 @@ step_add  <- function(){
 
 
 step_start <- function(){
-    bandlistpy =  getBandConfigFromTable()
     estimated_time = getEstimatedTime()
     withProgress(message = paste0('Applying the sample, please wait it takes:',estimated_time), value =0, {
-        sample_application_driver$start_application(bandlistpy)
+        sample_application_driver$start_application()
        })
     
 }
+
 
 observeEvent(input$sample_application_settings_update,{
     step = getSelectedStep()

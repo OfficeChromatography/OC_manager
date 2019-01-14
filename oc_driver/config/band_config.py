@@ -163,7 +163,6 @@ class BandConfig:
         "generates the gcode containing commands for applying bands of liquid on a plate"
         fire_rate = self.printer_head.get_number_of_fire()
         pulse_delay = self.printer_head.get_pulse_delay()
-        print (pulse_delay)
         step_range = self.printer_head.get_step_range()
         gcode = []
         speed_in_RPM = self.printer_head.get_speed()

@@ -49,8 +49,7 @@ class AbstractApplicationDriver:
     def set_band_config(self, band_list):
         self.band_config.build_bands_from_band_list(band_list)
 
-    def start_application (self,band_list):
-        self.set_band_config(band_list)
+    def start_application (self):
         self.generate_gcode_and_send()
 
         

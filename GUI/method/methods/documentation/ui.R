@@ -65,7 +65,7 @@ preview_config_to_Table_Format <- function (preview_config){
     f = as.data.frame(matrix(unlist(preview_config), nrow=length(unlist(preview_config[1]))))
     sortedFrame = f[c(2, 4, 3, 1),]
     Frame = as.data.frame(sortedFrame, row.names = labels)
-    return (Fryame)
+    return (Frame)
 }
   
 

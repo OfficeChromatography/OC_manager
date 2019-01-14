@@ -22,16 +22,14 @@ output$server_method = renderUI({
              column(1,actionButton("Method_save","",icon=icon("save")))
          ),
          fluidRow(
-             column(9,fileInput("Method_load_name","Select Method", width = "100%")),
+             column(9,selectizeInput("Method_load_name","Method to load",choices=dir("/home/pi/OC_manager/GUI/method/method_to_load/"))),
              column(1,actionButton("Method_load","",icon=icon("folder-o")))
         )),
     box(title = "Start", width = "15%", height = "10%",solidHeader = TRUE,status = "primary",
         column(1,actionButton("Method_step_exec","",icon = icon("play")))
         ),
     box( width = "15%",status = "warning",
-         uiOutput("Method_feedback")),
-    box(title = "Gcode viewer", width = "15%",solidHeader = TRUE,status = "primary",
-        uiOutput("Method_control_gcode"))
+         uiOutput("Method_feedback"))
     ),
     column(9, uiOutput("methodUI"))
   )
