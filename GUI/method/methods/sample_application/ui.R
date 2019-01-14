@@ -53,10 +53,11 @@ output$sample_application_control_infos = renderUI({
 
 
 getNumberOfBands  <- function(){
-    numberOfBands = input$number_of_bands
+    step = getSelectedStep()
+    length_band_config = length (Method$control[[step]]$band_config)
+    numberOfBands = length_band_config
     if (is.null ( numberOfBands )) {
         numberOfBands = 5
-
     }
     return (numberOfBands)
 }
