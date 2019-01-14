@@ -76,8 +76,3 @@ observeEvent(input$sample_application_settings_update,{
     setApplicationConf(pyHead, pyPlate, bandList, step, estimated_time)
 })
 
-
-observeEvent (input$sample_application_band_config_save,{
-    apply_table = hot_to_r(input$band_config)
-    write.table(apply_table,file = file.choose(new = T))
-})

@@ -65,7 +65,7 @@ preview_config_to_Table_Format <- function (preview_config){
     f = as.data.frame(matrix(unlist(preview_config), nrow=length(unlist(preview_config[1]))))
     sortedFrame = f[c(2, 4, 3, 1),]
     Frame = as.data.frame(sortedFrame, row.names = labels)
-    return (Frame)
+    return (Fryame)
 }
   
 
@@ -80,7 +80,8 @@ output$documentation_preview = renderUI({
         tags$img(src = paste0("Preview.jpg?",image$hash), height = 400, width = 400))),
         column(4,box(title = "Settings", width = "33%", height = "45%",status = "warning",
                      rHandsontableOutput("preview_config"),
-                     actionButton("take_a_picture",label = "Take a Picture", icon=icon("camera"))
+                     actionButton("take_a_picture",label = "Take a Picture", icon=icon("camera")),
+                     fluidRow (actionButton("go_home",label = "Go Home", icon= icon("home")) )
                      )
               )
         )

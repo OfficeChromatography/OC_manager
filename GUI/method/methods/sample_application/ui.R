@@ -27,14 +27,11 @@ output$sample_application_control_settings = renderUI({
           rHandsontableOutput("plate_config"))),
           column(2,box(title = "Update Settings", width = "33%", height = "45%",status = "warning",
           fluidRow(textInput("number_of_bands", "Number of bands", getNumberOfBands(),width="100%")),
-          fluidRow(actionButton("sample_application_settings_update"," settings",icon=icon("gears"), width="100%")),
-          fluidRow(actionButton("sample_application_band_config_save"," apply table",icon=icon("save"), width="100%")
-                   )
+          fluidRow(actionButton("sample_application_settings_update","Update all",icon=icon("gears"), width="100%"))
+                   ))
           )
                    )
                   )
-      )
-      )
   }
 })
 
@@ -94,7 +91,7 @@ createApplicationPlot <- function ( plate_config, numberOfBands){
 
 toTableHeadRFormat  <- function(pythonHeadConf){
     labels = c("Speed", "Pulse Delay", "Number of Fire", "Step Range", "Printer Head Resolution")
-    units = c("mm/m", "\U00B5m", "", "mm", "mm")
+    units = c("mm/m", "\U00B5s", "", "mm", "mm")
     return (toRSettingsTableFormat(pythonHeadConf, labels, units))
 }
 

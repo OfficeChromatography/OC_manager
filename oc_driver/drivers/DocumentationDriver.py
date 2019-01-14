@@ -107,4 +107,5 @@ class DocumentationDriver():
         new_picture_config = old_picture_config[0:number_of_pictures]
         return new_picture_config
 
-        
+    def go_home(self):
+        self.communication.send([GCODES.GO_TO_ORIGIN_Y])

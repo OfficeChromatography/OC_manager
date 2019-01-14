@@ -60,7 +60,10 @@ observeEvent(input$take_a_picture,{
     preview_list = getPreviewConfigFromTable()
     documentation_driver$make_preview(preview_list)
     creat_random_image_hash()
-    
+})
+
+observeEvent(input$go_home,{
+    documentation_driver$go_home()
 })
 
 
