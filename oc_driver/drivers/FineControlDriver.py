@@ -17,7 +17,7 @@ class FineControlDriver(AbstractApplicationDriver):
     HEAD_CONFIG_DEFAULT = {
         'speed': 3000,
         'number_of_fire': 10,
-        'pulse_delay': 5,
+        'pulse_delay': 0.1,
         'printer_head_resolution': 0.265,
         'step_range': 0.265
     }
@@ -70,7 +70,7 @@ class FineControlDriver(AbstractApplicationDriver):
 
     def set_configs(self, printer_head_config, relative_band_distance_y ):
         plate_config = self.get_default_plate_config()
-        plate_config['relative_band_distance_y'] = relative_band_distance_y
+        plate_config['relative_band_distance_y'] = relative_band_distance_y       
         self.update_plate_and_head_configs_to_driver(plate_config, printer_head_config)
         
 
@@ -108,7 +108,6 @@ class FineControlDriver(AbstractApplicationDriver):
             Band.set_number_of_reptition(3)
 
     def nozzle_testing_process(self, selected_nozzles):
-        #self.get_current_position()
         self.calculate_band_config_for_test(selected_nozzles)
         self.generate_gcode_and_send()
 

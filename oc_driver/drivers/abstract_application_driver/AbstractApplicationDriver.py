@@ -34,6 +34,7 @@ class AbstractApplicationDriver:
         return self.band_config.create_conf_to_band_list(create_conf)
 
     def create_bands_from_config(self, band_config):
+        self.band_config.update_plate_and_head_configs_to_bands(self.plate,self.printer_head)
         self.band_config.build_bands_from_band_list(band_config)
         return (self.band_config.to_band_list())
     

@@ -17,7 +17,7 @@ class DevelopmentDriver(AbstractApplicationDriver):
     HEAD_CONFIG_DEFAULT = {
         'speed': 3000,
         'number_of_fire': 10,
-        'pulse_delay': 5,
+        'pulse_delay': 0.1,
         'printer_head_resolution': 0.265,
         'step_range': 0.265
     }
@@ -56,5 +56,4 @@ class DevelopmentDriver(AbstractApplicationDriver):
             band_config = self.create_band_list(1)
         self.update_plate_and_head_configs_to_driver(plate_config, head_config)
         self.calculate_band_length()
-        self.band_config.update_plate_and_head_configs_to_bands(self.plate, self.printer_head)
         return self.create_bands_from_config(band_config)

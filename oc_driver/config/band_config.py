@@ -121,6 +121,7 @@ class BandConfig:
         position_before = 0
         estimate_time = 0
         for idx, band_config in enumerate(band_list):
+            # get values
             nozzle_id = int(band_config.get('nozzle_id'))
             shift = self.printer_head.get_shift_for_nozzle(nozzle_id)
             band_start = band_start_list[idx] + shift
@@ -131,11 +132,14 @@ class BandConfig:
             number_of_reptitions = self.calculate_number_of_reps(volume_set, volume_per_band)
             volume_real = self.calculate_volume_real(number_of_reptitions, volume_per_band)
             label = str(band_config.get('label'))
+
+            # estimate time 
             band_length = band_end - band_start
             time_to_start = self.calculate_time(band_start - position_before, speed)
             time_per_band = number_of_reptitions *( self.calculate_time (2*band_length, speed_for_accerlerated_moves) + self.printer_head.calculate_nozzle_fire_waiting_time(fire_rate))
             estimate_time += time_to_start + time_per_band
             position_before = band_end
+            
             # add new band
             bands.append(Band(band_start, band_end, number_of_reptitions, drop_volume, \
                               label, volume_set, nozzle_id, volume_real))
@@ -159,6 +163,7 @@ class BandConfig:
         "generates the gcode containing commands for applying bands of liquid on a plate"
         fire_rate = self.printer_head.get_number_of_fire()
         pulse_delay = self.printer_head.get_pulse_delay()
+        print (pulse_delay)
         step_range = self.printer_head.get_step_range()
         gcode = []
         speed_in_RPM = self.printer_head.get_speed()
