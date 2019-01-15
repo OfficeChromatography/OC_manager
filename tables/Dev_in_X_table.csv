@@ -1,0 +1,11 @@
+Option;Value
+Y (no bias);Y;25
+X_left;X_left;2
+X_right;X_right;98
+Speed (mm/s);speed;20
+path;path;50
+I (number of firing);I;40
+L (pulse delay <20);L;5
+Wait between path (s);wait;1
+Wait factor (multiply at each path);wait_inc;1.05
+return (keep 0 for one way);return;0

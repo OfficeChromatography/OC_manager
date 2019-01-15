@@ -1,0 +1,129 @@
+---
+title: "inkjet_grid"
+author: "Dimitri Fichou"
+date: "December 29, 2016"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(DLC)
+```
+
+## Introduction
+
+Draft to calcul GCODE for inkjet printing.
+
+* Create an array of position
+* Fill array with 0 and 1, 1 to fires.
+* Redim array; Divide one dimension by 12 because of 12 nozzles, with S values, S0 means no firing, S5 = 101 means fire first and third
+* Produce XY coordonate for each cells of the array
+* Begining GCODE
+* Iterate through the array and produce gcode on the fly
+
+```{r create_virgin_array}
+inche = 25.4 # mm/inche
+dpi = 96
+reso = inche/dpi
+nozzle_X = 12;nozzle_Y = 1
+plate_X = 100;plate_Y=100
+path = 2 ## here to get the array size
+X=floor(plate_X/reso/nozzle_X)*nozzle_X;Y=floor(plate_Y/reso/nozzle_Y)*nozzle_Y
+print(paste0("X_used: ",X*reso," - Y_used: ",Y*reso))
+
+```
+
+```{r fill array}
+## With samples, just one dot line, several
+a = array(0,dim = c(X,Y,path))
+dist_bottom = ceiling(8/reso)
+dist_gauche = ceiling(4/reso)
+band_length = ceiling(6/reso)
+gap = ceiling(2/reso)
+dist_gauche_saved = dist_gauche
+while(dist_gauche + band_length/2 < X - dist_gauche_saved){
+  a[dist_gauche:(dist_gauche+band_length),dist_bottom,] = 1
+  dist_gauche = dist_gauche+band_length+gap
+}
+print(paste0("Number of nozzles fired: ",sum(a)))
+
+dist_bottom = ceiling(20/reso)
+dist_gauche = ceiling(4/reso)
+band_length = ceiling(6/reso)
+gap = ceiling(2/reso)
+dist_gauche_saved = dist_gauche
+while(dist_gauche + band_length/2 < X - dist_gauche_saved){
+  a[dist_gauche:(dist_gauche+band_length),dist_bottom,] = 1
+  dist_gauche = dist_gauche+band_length+gap
+}
+print(paste0("Number of nozzles fired: ",sum(a)))
+# raster(1-a[,,1],xaxs="i",yaxs="i")
+```
+
+```{r redim array}
+## We need test to check which is the first nozzle, may be we will need rev() here and there 
+## this assume that the nozzle one is on top, i.e. in the inside of the design
+b = array(0,dim=c(X/nozzle_X,Y,dim(a)[3]))
+
+BinToDec <- function(x) {sum(2^(which(x == 1)-1))}
+
+DecToBin <- function(x){  rev(as.numeric(sapply(strsplit(paste(rev(intToBits(x))),""),`[[`,2)))[1:4]}
+c(1,0,1,1) %>% BinToDec() %>% DecToBin()
+
+for(i in seq(path)){
+  for(j in seq(X/nozzle_X)){
+    for(k in seq(Y/nozzle_Y)){
+      b[j,k,i] = BinToDec(a[((j-1)*nozzle_X+1):(j*nozzle_X),k,i])
+    }
+  }
+}
+
+b[,dist_bottom,1]
+print(paste0("Number of positions fired: ",sum(as.logical(b[,,1]))))
+
+```
+
+
+```{r get_coordonate}
+coordonate = list(
+  X = seq(from=reso*nozzle_X/2+reso/2,by=reso*12,length.out = dim(b)[1]),
+  Y=seq(from=reso/2,by = reso,length.out = dim(b)[2])
+)
+raster(1-a[,,1],xaxs="i",yaxs="i")
+abline(h=seq(0,dim(a)[1],by = 12),lty=3)
+coordonate$Y
+coordonate$X
+```
+
+```{r begin_GCODE}
+gcode = c("G28 ; home all axis, will have a problem with the Z",
+          "G21 ; set units to millimeters",
+          "G90 ; use absolute coordinates",
+          "M82 ; use absolute distances for extrusion",
+          "G92 E0")
+```
+
+```{r iterate}
+for(k in seq(dim(b)[3])){ # slice loop, need modulo for next loop
+  if(k %% 2 == 1){
+     s = seq(dim(b)[1])
+  }else{
+     s = seq(dim(b)[1]) %>% rev
+  }
+  for(i in s){ # X loop, need modulo
+    if(i %% 2 == 1){
+     s = seq(dim(b)[2])
+    }else{
+     s = seq(dim(b)[2]) %>% rev
+    }
+    for(j in s){
+      if(b[i,j,k] != 0){
+        gcode = c(gcode,paste0("G1 X",coordonate$X[i]," Y",coordonate$Y[j]," ; go in position"))
+        gcode = c(gcode,"M400 ; Wait for current moves to finish ")
+        gcode = c(gcode,paste0("M700 P0 S",b[i,j,k]," ; Fire inkjet bits"))
+      }
+    }
+  }
+}
+print(gcode)
+```

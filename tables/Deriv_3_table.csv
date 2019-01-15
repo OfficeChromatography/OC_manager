@@ -1,0 +1,9 @@
+Option;Value
+X_center (dist from left side);X_center;27.5
+X_width;X_width;50
+Y_center (dist from bottom);Y_center;29
+gap;gap;10
+Speed (mm/s);speed;50
+path;path;1
+Numbre of band;nbr_band;5
+L (pulse delay <20);L;5

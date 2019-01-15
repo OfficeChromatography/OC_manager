@@ -1,0 +1,1 @@
+Rscript /home/clau/Documents/Dropbox_true/Dropbox/OC/Software/OC_manager/app_exec.R

@@ -1,0 +1,13 @@
+Option;Value
+Distance to lower edge;dist_bottom;10
+First application position;dist_gauche;10
+Band length;band_length;6
+Distance between track;gap;2
+row gap in Y;row_Y_gap;10
+Numbre of row (Y);nbr_band;6
+Numbre of band (X);nbr_row;10
+Speed (mm/s);speed;10
+path;path;10
+L (pulse delay <20);L;5
+Wait between path (s);wait;0
+Used Nozzle;nozzle;1
