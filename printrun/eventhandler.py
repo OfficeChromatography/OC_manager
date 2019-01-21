@@ -124,5 +124,3 @@ class PrinterEventHandler(object):
         @param gline: The line send to the printer.
         '''
         pass
-        
-        

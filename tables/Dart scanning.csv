@@ -1,9 +1,0 @@
-Option;Value
-First application position;dist_gauche;10
-Distance between track;gap;10
-Y_start;Y_start;5
-Y_end;Y_end;95
-Numbre of band;nbr_band;5
-Speed travel (mm/s);speed_travel;5
-Speed scan (mm/s);speed_scan;0.2
-pin 63 to high before scan;M42;0

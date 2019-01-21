@@ -44,6 +44,7 @@ class SampleHandler(PrinterEventHandler):
         self.__write("on_disconnect")
     
     def on_error(self, error):
+        print("on_error", error)
         self.__write("on_error", error)
         
     def on_online(self):

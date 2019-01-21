@@ -73,14 +73,6 @@ dashboardPage(
       tabItem(tabName = "test_ink",
               uiOutput("ink_test_control_1")
       ),
-      tabItem(tabName = "Method",
-              uiOutput("Method_control_1")
-              
-      ),
-
-      tabItem(tabName = "Visu",
-              uiOutput("Visu_control_1")
-      ),
       tabItem(tabName = "TLC_MS",
               uiOutput("TLC_MS_control_1")
       ),
@@ -88,11 +80,6 @@ dashboardPage(
       tabItem(tabName = "Log",
               actionButton("Log_refresh","refresh"),
               dataTableOutput("Log")
-      ),
-      tabItem("Report",
-              # radioButtons('format', 'Document format', c('PDF', 'HTML', 'Word'),inline = TRUE),
-              # downloadButton("Report")
-              p("incoming")
       ),
       tabItem("About",
               # tabsetPanel(

@@ -39,4 +39,3 @@ else
 echo "The installation was skipped."
 fi
 
-

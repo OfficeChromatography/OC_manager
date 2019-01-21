@@ -23,10 +23,8 @@ shinyServer(function(input, output,session) {
   # connect = reactiveValues(login = login, board = board,Visa = NULL)
   connect = reactiveValues(login = login, board = board,Visa = "admin")
   source("functions.R")
-  source("server_visu.R",local = T)
   source("server_TLC_MS.R",local = T)
   source("server_Fine_control.R",local = T)
-  source("server_Method.R",local = T)  
 
   # main = py_run_file("setup_old.py")
   
