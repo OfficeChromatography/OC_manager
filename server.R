@@ -6,9 +6,9 @@
 #
 
 library(shiny)
-# library(rPython)
-library(reticulate)
 library(DLC)
+                                        # library(rPython)
+library(reticulate)
 library(serial)#for port detection in windows
 library(rhandsontable)#devtools::install_github("rhandsontable","jrowen")
 library(parallel)

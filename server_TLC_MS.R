@@ -100,7 +100,7 @@ output$TLC_MS_control_1 = renderUI({
                     # numericInput("TLC_MS_y_bias","TLC_MS_y_bias",-5)
                     textInput("TLC_MS_profile_name","Profile name to save",""),
                     actionButton("TLC_MS_profile_save","Save profile"),
-                    selectInput("TLC_MS_profiles","Profile name to load",choices = c("Default",dir("tlcms_profile/")))
+                    selectInput("TLC_MS_profiles","Profile name to load",choices = c("MS_Start",dir("tlcms_profile/")))
              )
              
     )
@@ -156,8 +156,7 @@ output$TLC_MS_control_manual = renderUI({
            if(TLC_MS_manual$head & !TLC_MS_manual$elution){actionButton("TLC_MS_manual_Valve_elution","Valve elution")}
              else if(TLC_MS_manual$head & TLC_MS_manual$elution){actionButton("TLC_MS_manual_Valve_bypass","Valve bypass")}
              else{actionButton("Stop_this","No valve control if head up",style = "background-color: tomato")},hr(), ## elution
-           actionButton("TLC_MS_Home_X","Home X"),
-           actionButton("TLC_MS_Home_YZ","Home Y/Z")
+           actionButton("TLC_MS_Home","Home")
     ),
     column(4,
            uiOutput("TLC_MS_control_manual_2")
@@ -304,7 +303,7 @@ observeEvent(input$TLC_MS_x_bias,{
   write.csv(data,"config_tlcms.csv",row.names = F)
 })
 observeEvent(input$TLC_MS_profiles,{
-  if(input$TLC_MS_profiles == "Default"){
+  if(input$TLC_MS_profiles == "MS_Start"){
     updateTextAreaInput(session,"TLC_MS_batch_before",value = TLC_MS_before)
     updateTextAreaInput(session,"TLC_MS_batch_between",value = TLC_MS_between)
     updateTextAreaInput(session,"TLC_MS_batch_after",value = TLC_MS_after)
@@ -333,25 +332,19 @@ observeEvent(input$TLC_MS_profile_save,{
     shinyalert(type="error",title="stupid user",text = "Give a name to the profile to save")
   }else{
     save(data,file=paste0("tlcms_profile/",input$TLC_MS_profile_name,".Rdata"))
-    updateSelectInput(session,"TLC_MS_profiles",choices = c("Default",dir("tlcms_profile/")))
+    updateSelectInput(session,"TLC_MS_profiles",choices = c("MS_Start",dir("tlcms_profile/")))
   }
   
 })
 
-observeEvent(input$TLC_MS_Home_X,{
+observeEvent(input$TLC_MS_Home,{
   if(connect$board){
-    main$send_gcode("gcode/TLC_MS_Home_X.gcode")
+    main$send_gcode("gcode/TLC_MS_Home.gcode")
   }else{
     shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
   }
 })
-observeEvent(input$TLC_MS_Home_YZ,{
-  if(connect$board){
-    main$send_gcode("gcode/TLC_MS_Home_YZ.gcode")
-  }else{
-    shinyalert(title = "stupid user",text = "Board not connected",type="error",closeOnClickOutside = T, showCancelButton = F)
-  }
-})
+
 observeEvent(input$TLC_MS_manual_LED_on,{
   validate(need(connect$login,"Please login"))
   main$send_gcode("gcode/TLC_MS_LED_on.gcode")
