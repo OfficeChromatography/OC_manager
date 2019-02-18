@@ -51,7 +51,7 @@ step_add  <- function(){
 
 step_start <- function(){
     bandlistpy =  getBandConfigFromTable()
-    development_driver$start_application(bandlistpy)
+    development_driver$start_application()
 }
 
 observeEvent(input$development_settings_update,{

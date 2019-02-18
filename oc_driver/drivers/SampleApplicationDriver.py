@@ -17,7 +17,7 @@ class SampleApplicationDriver(AbstractApplicationDriver):
     HEAD_CONFIG_DEFAULT = {
         'speed': 3000,
         'number_of_fire': 10,
-        'pulse_delay': 0.1,
+        'pulse_delay': 5,
         'printer_head_resolution': 0.265,
         'step_range': 0.265
     }
