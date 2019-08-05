@@ -44,7 +44,7 @@ bash Documents/oc-manager-install.sh |& tee Documents/oc-install.txt
 ## Clone this github repository
 
 ```
-git clone https://github.com/DimitriF/OC_manager.git
+git clone https://github.com/OfficeChromatography/OC_manager.git
 ```
 
 ## Run
