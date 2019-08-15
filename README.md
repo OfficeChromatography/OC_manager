@@ -7,7 +7,7 @@ Shiny app to operate apparatus of office chromatography.
 
 ## Raspberry pi image
 
-Follow [this link](https://jlubox.uni-giessen.de/dl/fiDjBMz6WyeJb9iZBq69QdxE/OC_manager_rpi_JLU-Box_Dimitri.zip) to download an image of rasbian with the OC_manager set-up, last update: 20180605.
+Follow [this link](https://jlubox.uni-giessen.de/dl/fiDjBMz6WyeJb9iZBq69QdxE/OC_manager_rpi_JLU-Box_Dimitri.zip) to download an image of raspbian with the OC_manager set-up, last update: 20180605.
 
 You will need to setup the static IP to use OC_manager the way it was intented to be used (without screen). [This link](https://raspberrypi.stackexchange.com/questions/37920/how-do-i-set-up-networking-wifi-static-ip-address) should help.
 
