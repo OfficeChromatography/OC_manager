@@ -17,7 +17,7 @@ then
   git clone https://github.com/r-lib/later
   echo ""
   echo "modifying Makevars"
-  sed -i -f OC_manager/sed.cmd later/src/Makevars
+  sudo sed -i -f OC_manager/sed.cmd later/src/Makevars
   echo ""
   echo "Installing libraries"
   yes | sudo apt-get install libssl-dev libcurl4-openssl-dev r-cran-rgl libtiff5-dev python-serial git
