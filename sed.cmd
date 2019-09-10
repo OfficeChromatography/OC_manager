@@ -1,2 +1,2 @@
 #Makevars modifizieren
-s/PKB_LIBS = -pthread/PKB_LIBS = -pthread -latomic/
+s/PKG_LIBS = -pthread/PKG_LIBS = -pthread -latomic/
