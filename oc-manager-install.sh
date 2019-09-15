@@ -22,6 +22,7 @@ then
   echo "Installing libraries"
   yes | sudo apt-get install libssl-dev libcurl4-openssl-dev r-cran-rgl libtiff5-dev python-serial git
   yes | sudo apt-get install libssh2-1-dev libboost-atomic-dev libxml2-dev
+  yes | sudo apt-get install mesa-common-dev libglu1-mesa-dev libx11-dev libgit2-dev
   yes | sudo apt-get install libpython2.7
   echo ""
   echo "Removing packages not used anymore"
