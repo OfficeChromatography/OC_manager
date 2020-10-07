@@ -42,7 +42,7 @@ git clone https://github.com/OfficeChromatography/OC_manager.git
 The following command will execute the installation and reboot the system.
 
 ```
-sudo bash OC_manager/oc-manager-install.sh |& tee Documents/oc-install.txt
+sudo bash OC_manager/oc-manager-install.sh |& tee oc-install.txt
 ```
 
 ## Run
