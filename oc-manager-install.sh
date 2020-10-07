@@ -13,11 +13,6 @@ if [ "$userinput" == "y" ]
 then
   echo "Installing r-base"
   yes | sudo apt-get install r-base
-  echo "Cloning later from git"
-  git clone https://github.com/r-lib/later
-  echo ""
-  echo "modifying Makevars"
-  sudo sed -i -f OC_manager/sed.cmd later/src/Makevars
   echo ""
   echo "Installing libraries"
   yes | sudo apt-get install libssl-dev libcurl4-openssl-dev r-cran-rgl libtiff5-dev python-serial git
@@ -28,15 +23,10 @@ then
   echo "Removing packages not used anymore"
   yes | sudo apt autoremove
   echo ""
-  echo "Installing packages BH needed for 'later'"
-  yes | sudo su - -c "R -e \"install.packages('BH', repos='http://cran.rstudio.com/')\""
-  echo ""
-  echo "Installing 'later'"
-  yes | sudo R CMD INSTALL later
-  echo ""
   echo "Installing R packages"
   echo ""
   yes | sudo su - -c "R -e \"install.packages('devtools', repos='http://cran.rstudio.com/')\""
+  yes | sudo su - -c "R -e \"remotes::install_github('r-lib/later')\""
   yes | sudo su - -c "R -e \"devtools::install_github('rstudio/httpuv')\""
   yes | sudo su - -c "R -e \"devtools::install_github('rstudio/shiny')\""
   yes | sudo su - -c "R -e \"devtools::install_github('rstudio/shinydashboard')\""
