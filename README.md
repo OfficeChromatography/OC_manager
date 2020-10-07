@@ -39,11 +39,10 @@ git clone https://github.com/OfficeChromatography/OC_manager.git
 
 ## Installation script
 
-This will download the installation script and execute it.
+The following command will execute the installation and reboot the system.
 
 ```
-wget  -P /home/pi/Documents/ https://github.com/DimitriF/OC_manager/raw/master/oc-manager-install.sh
-bash Documents/oc-manager-install.sh |& tee Documents/oc-install.txt
+sudo bash OC_manager/oc-manager-install.sh |& tee Documents/oc-install.txt
 ```
 
 ## Run
