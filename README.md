@@ -31,20 +31,19 @@ sudo apt-get upgrade
 sudo reboot
 ```
 
-## Installation script
-
-This will download the installation script and exectute it.
-
-```
-wget  -P /home/pi/Documents/ https://github.com/DimitriF/OC_manager/raw/master/oc-manager-install.sh
-bash Documents/oc-manager-install.sh |& tee Documents/oc-install.txt
-```
-
-
 ## Clone this github repository
 
 ```
 git clone https://github.com/OfficeChromatography/OC_manager.git
+```
+
+## Installation script
+
+This will download the installation script and execute it.
+
+```
+wget  -P /home/pi/Documents/ https://github.com/DimitriF/OC_manager/raw/master/oc-manager-install.sh
+bash Documents/oc-manager-install.sh |& tee Documents/oc-install.txt
 ```
 
 ## Run
