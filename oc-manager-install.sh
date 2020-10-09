@@ -36,7 +36,6 @@ then
   yes | sudo su - -c "R -e \"install.packages('shinyBS', repos='http://cran.rstudio.com/')\""
   yes | sudo su - -c "R -e \"install.packages('shinyalert', repos='http://cran.rstudio.com/')\""
   yes | sudo su - -c "R -e \"install.packages('rgl', repos='http://cran.rstudio.com/')\""
-  yes | sudo su - -c "R -e \"devtools::install_github('DimitriF/DLC')\""
   yes | sudo su - -c "R -e \"devtools::install_github('jrowen/rhandsontable')\""
   echo ""
   echo "Performing reboot"
