@@ -26,7 +26,7 @@ then
   echo ""
   yes | sudo su - -c "R -e \"install.packages('devtools', repos='http://cran.rstudio.com/')\""
   yes | sudo su - -c "R -e \"remotes::install_github('r-lib/later')\""
-  yes | sudo su - -c "R -e \"devtools::install_github('DimiriF/DLC')\""  
+  yes | sudo su - -c "R -e \"devtools::install_github('DimitriF/DLC')\""  
   yes | sudo su - -c "R -e \"devtools::install_github('rstudio/httpuv')\""
   yes | sudo su - -c "R -e \"devtools::install_github('rstudio/shiny')\""
   yes | sudo su - -c "R -e \"devtools::install_github('rstudio/shinydashboard')\""
