@@ -18,7 +18,6 @@ then
   yes | sudo apt-get install libssl-dev libcurl4-openssl-dev r-cran-rgl libtiff5-dev python-serial git
   yes | sudo apt-get install libssh2-1-dev libboost-atomic-dev libxml2-dev
   yes | sudo apt-get install mesa-common-dev libglu1-mesa-dev libx11-dev libgit2-dev
-  yes | sudo apt-get install libpython2.7
   echo ""
   echo "Removing packages not used anymore"
   yes | sudo apt autoremove
@@ -27,6 +26,7 @@ then
   echo ""
   yes | sudo su - -c "R -e \"install.packages('devtools', repos='http://cran.rstudio.com/')\""
   yes | sudo su - -c "R -e \"remotes::install_github('r-lib/later')\""
+  yes | sudo su - -c "R -e \"devtools::install_github('DimiriF/DLC')\""  
   yes | sudo su - -c "R -e \"devtools::install_github('rstudio/httpuv')\""
   yes | sudo su - -c "R -e \"devtools::install_github('rstudio/shiny')\""
   yes | sudo su - -c "R -e \"devtools::install_github('rstudio/shinydashboard')\""
