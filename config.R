@@ -1,7 +1,7 @@
 ## config.R file for OC_manager
 
 ## change here for the python version
-# use_python("/usr/bin/python3.5", required = T)
+use_python("/usr/bin/python2.7", required = T)
 
 login = T ## change to F to enable login, the admin password is "hptlc" by default.
 
