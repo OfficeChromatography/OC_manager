@@ -7,9 +7,9 @@ Shiny app to operate apparatus of office chromatography.
 
 ## Raspberry pi image
 
-Follow [this link](https://jlubox.uni-giessen.de/dl/fi5d7vosAXVt6w1cAmn4RBZ2/OC_manager_DF.gz) to download an image of Raspbian lite with the OC_manager set-up, last updated: 2020-10-12.
+Follow [this link](https://jlubox.uni-giessen.de/dl/fi5d7vosAXVt6w1cAmn4RBZ2/OC_manager_DF.gz) to download an image of Raspbian lite with the OC_manager set-up, last updated: 2020-10-12 (1 GB).
 
-If you prefer to use Raspberry Pi OS with desktop, follow [this link]() to download a respective OC-manager image, last updated: 2020-10-12. User is pi and password raspberry. Using the configuration tool, select your country, language and keyboard.
+If you prefer to use Raspberry Pi OS with desktop, follow [this link](https://jlubox.uni-giessen.de/dl/fi8fF1dzX57iKwCs2pREbE3t/OC_manager_OS.img.gz) to download a respective OC-manager image, last updated: 2020-10-12 (2.5 GB). User is pi and password raspberry. Using the configuration tool, select your country, language and keyboard.
 
 You also can later upgrade the lite version with a desktop, file manager and browser by running the following command:
 
@@ -23,7 +23,7 @@ Then you can access OC_manager from your web browser on the static IP you set as
 
 ## Manual Installation
 
-This procedure was tested on rasbian lite and desktop, downloaded 05-04-2018.
+This procedure was tested on rasbian lite and desktop, downloaded May 2018 and October 2020, respectively.
 
 ## First opening
 
@@ -35,7 +35,7 @@ sudo raspi-config
 
 expand file system
 enable camera, ssh, vnc, gpio, i2c
-set wifi passwd or static IP
+set static IP or wifi passwd
 
 followed by
 
@@ -78,7 +78,7 @@ Once in the editor, add this line which will launch the application at reboot, i
 
 ### Directly from R (in case of problem to catch the errors)
 
-From the folder (use `setwd()`) 
+From the folder (use `setwd("OC_manager")`) 
 
 ```r
 shiny::runApp()
@@ -86,7 +86,8 @@ shiny::runApp()
 
 ### Using Raspbian desktop
 
-Having installed Raspberry Pi OS with desktop and connected a monitor, keyboard and mouse to the RPi, run the OC_manager directly from R, whereafter the Raspbian browser is opened, listening to the shiny app.
+Having installed Raspberry Pi OS with desktop and connected a monitor, keyboard and mouse to the RPi, run the OC_manager directly from R, whereafter the Raspberry Pi OS browser is opened, listening to the shiny app.
+
 
 ## Documentation
 
