@@ -34,7 +34,9 @@ sudo raspi-config
 ```
 
 expand file system
+
 enable camera, ssh, vnc, gpio, i2c
+
 set static IP or wifi passwd
 
 followed by
