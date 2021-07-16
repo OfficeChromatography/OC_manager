@@ -7,9 +7,9 @@ Shiny app to operate apparatus of office chromatography.
 
 ## Raspberry pi image
 
-Follow [this link](https://jlubox.uni-giessen.de/dl/fi8aYZnHbLk1LHZhdwS12B3c/OC_manager_lite.img.gz) to download an image of Raspbian lite with the OC_manager set-up, last updated: 2020-10-12 (1 GB).
+Follow [this link](https://jlubox.uni-giessen.de/dl/fiELbCKBMo2BRtZZEcQMZaHi/OC_manager_lite.img.gz) to download an image of Raspbian lite with the OC_manager set-up, last updated: 2020-10-12 (1 GB).
 
-If you prefer to use Raspberry Pi OS with desktop, follow [this link](https://jlubox.uni-giessen.de/dl/fi8rnMcG1tTi62C8QnWrUwmQ/OC_manager_OS.img.gz) to download a respective OC-manager image, last updated: 2020-10-12 (2.5 GB). User is pi and password raspberry. Using the configuration tool, select your country, language and keyboard.
+If you prefer to use Raspberry Pi OS with desktop, follow [this link](https://jlubox.uni-giessen.de/dl/fiChCd2feuL9PSC77TaKj5Z8/OC_manager_OS.img.gz) to download a respective OC-manager image, last updated: 2020-10-12 (2.5 GB). User is pi and password raspberry. Using the configuration tool, select your country, language and keyboard.
 
 You also can later upgrade the lite version with a desktop, file manager and browser by running the following command:
 
